@@ -6,10 +6,9 @@ import 'package:portfolio/shared/widgets/custom_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactMe extends StatelessWidget {
-  ContactMe({super.key, required this.isDark});
+  ContactMe({super.key});
   final TextEditingController emailController = TextEditingController();
   final TextEditingController content = TextEditingController();
-  final bool isDark;
   Future<void> sendEmail() async {
     final email = emailController.text;
     final message = content.text;
@@ -34,7 +33,7 @@ class ContactMe extends StatelessWidget {
         spacing: 20,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: ContactLeft(isDark: isDark)),
+          Expanded(child: ContactLeft()),
           Expanded(
             child: Column(
               spacing: 10,

@@ -5,8 +5,7 @@ import 'package:portfolio/contact/widgets/map.dart';
 import 'package:portfolio/shared/extension/theme_extension.dart';
 
 class ContactLeft extends StatelessWidget {
-  const ContactLeft({super.key, required this.isDark});
-  final bool isDark;
+  const ContactLeft({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,7 +27,7 @@ class ContactLeft extends StatelessWidget {
           isMail: true,
         ),
         SizedBox(height: 10),
-        MapWidget(isDark: isDark),
+        MapWidget(),
       ],
     );
   }

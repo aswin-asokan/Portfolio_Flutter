@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
                   style: context.textTheme.bodyLarge,
                   key: contactKey,
                 ),
-                ContactMe(isDark: isDarkmode),
+                ContactMe(),
                 Footer(isDark: isDarkmode),
               ],
             ),
