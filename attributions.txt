@@ -1,0 +1,4 @@
+<a href="https://commons.wikimedia.org/wiki/File:Font_Awesome_5_brands_pinterest.svg">Font Awesome Free 5.4.1 by @fontawesome - https://fontawesome.com</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>, via Wikimedia Commons
+<a href="https://commons.wikimedia.org/wiki/File:Ionicons_logo-linkedin.svg">Ionic Team</a>, <a href="http://opensource.org/licenses/mit-license.php">MIT</a>, via Wikimedia Commons
+<a href="https://commons.wikimedia.org/wiki/File:Octicons-mark-github.svg">GitHub Inc.</a>, <a href="http://opensource.org/licenses/mit-license.php">MIT</a>, via Wikimedia Commons
+<a href="https://commons.wikimedia.org/wiki/File:Buy_Me_a_Coffee_logo.svg">Buy Me a Coffee</a>, Public domain, via Wikimedia Commons
