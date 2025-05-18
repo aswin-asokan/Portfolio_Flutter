@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/shared/extension/theme_extension.dart';
 
-class AboutButton extends StatelessWidget {
-  const AboutButton({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     super.key,
     required this.label,
     required this.onPress,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/about/screens/about_me.dart';
+import 'package:portfolio/contact/screens/contact_me.dart';
 import 'package:portfolio/core/themes/theme_switch.dart';
 import 'package:portfolio/experience/screens/experience.dart';
 import 'package:portfolio/footer/screens/footer.dart';
@@ -36,6 +37,23 @@ class _HomeState extends State<Home> {
         : themeProvider.setLightMode();
   }
 
+  final GlobalKey heroKey = GlobalKey();
+  final GlobalKey aboutKey = GlobalKey();
+  final GlobalKey experienceKey = GlobalKey();
+  final GlobalKey contactKey = GlobalKey();
+  final GlobalKey footerKey = GlobalKey();
+  final ScrollController scrollController = ScrollController();
+  void scrollTo(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,6 +77,7 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
+          controller: scrollController,
           physics: BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
@@ -67,10 +86,24 @@ class _HomeState extends State<Home> {
               spacing: 20,
               children: [
                 Navbar(onPress: switchtheme, icon: icon, isDark: isDarkmode),
-                HeroSection(),
-                AboutMe(),
-                Text("Experience", style: context.textTheme.bodyLarge),
+                HeroSection(key: heroKey),
+                AboutMe(
+                  key: aboutKey,
+                  onNavigate: scrollTo,
+                  contactKey: contactKey,
+                ),
+                Text(
+                  "Experience",
+                  style: context.textTheme.bodyLarge,
+                  key: experienceKey,
+                ),
                 Experience(),
+                Text(
+                  "Contact Me",
+                  style: context.textTheme.bodyLarge,
+                  key: contactKey,
+                ),
+                ContactMe(isDark: isDarkmode),
                 Footer(isDark: isDarkmode),
               ],
             ),

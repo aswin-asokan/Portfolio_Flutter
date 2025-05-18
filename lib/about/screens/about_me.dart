@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/about/widgets/about_button.dart';
+import 'package:portfolio/shared/widgets/custom_button.dart';
 import 'package:portfolio/about/widgets/education.dart';
 import 'package:portfolio/shared/extension/theme_extension.dart';
 import 'package:portfolio/shared/widgets/custom_container.dart';
 
 class AboutMe extends StatelessWidget {
-  const AboutMe({super.key});
-
+  const AboutMe({
+    super.key,
+    required this.onNavigate,
+    required this.contactKey,
+  });
+  final void Function(GlobalKey key) onNavigate;
+  final GlobalKey contactKey;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -41,15 +46,15 @@ class AboutMe extends StatelessWidget {
                         spacing: 20,
                         children: [
                           Expanded(
-                            child: AboutButton(
+                            child: CustomButton(
                               label: "Download Resume",
                               onPress: () {},
                             ),
                           ),
                           Expanded(
-                            child: AboutButton(
+                            child: CustomButton(
                               label: "Contact Me",
-                              onPress: () {},
+                              onPress: () => onNavigate(contactKey),
                               colorBG: context.colorScheme.surface,
                               colorSide: context.colorScheme.primary,
                               textColor: context.colorScheme.onSurface,

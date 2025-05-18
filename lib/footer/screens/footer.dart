@@ -20,6 +20,7 @@ class Footer extends StatelessWidget {
     "If you found this, you're 1 in 1,000,000 frames per second!",
   ];
   static var random = Random();
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -52,14 +53,17 @@ class Footer extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          FooterIcon(path: "assets/icons/github.svg", url: ""),
+                          FooterIcon(
+                            path: "assets/icons/github.svg",
+                            url: "https://github.com/aswin-asokan",
+                          ),
                           FooterIcon(
                             path: "assets/icons/linkedin.svg",
-                            url: "",
+                            url: "https://www.linkedin.com/in/aswin-asokan/",
                           ),
                           FooterIcon(
                             path: "assets/icons/pinterest.svg",
-                            url: "",
+                            url: "https://pin.it/416Oj6Tmc",
                           ),
                         ],
                       ),
@@ -76,7 +80,7 @@ class Footer extends StatelessWidget {
                       ),
                       FooterIcon(
                         path: "assets/icons/Buy_Me_a_Coffee_logo.svg",
-                        url: "",
+                        url: "https://buymeacoffee.com/aswin_asokan",
                       ),
                     ],
                   ),
