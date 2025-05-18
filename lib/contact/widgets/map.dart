@@ -46,7 +46,9 @@ class MapWidget extends StatelessWidget {
                 tileProvider: CancellableNetworkTileProvider(),
                 userAgentPackageName: 'com.example.portfolio',
                 retinaMode: false,
-                additionalOptions: {'Referer': 'aswinasokan.vercel.app'},
+                additionalOptions: {
+                  'Referer': 'https://aswinasokan.vercel.app',
+                },
               ),
               MarkerLayer(
                 markers: [
