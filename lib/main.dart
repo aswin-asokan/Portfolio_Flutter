@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/themes/theme_switch.dart';
-import 'package:portfolio/home/home.dart';
+import 'package:portfolio/features/home/home.dart';
 import 'package:provider/provider.dart';
 
 void main() {
