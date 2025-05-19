@@ -20,21 +20,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool isDarkmode = false;
   IconData icon = Symbols.dark_mode_rounded;
-  void switchtheme() {
-    final themeProvider = Provider.of<ThemeProvider>(
-      context,
-      listen: false,
-    ); // get the provider, listen false is necessary cause is in a function
 
+  void switchtheme() {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     setState(() {
       isDarkmode = !isDarkmode;
       icon =
           isDarkmode ? Symbols.light_mode_rounded : Symbols.dark_mode_rounded;
-    }); // change the variable
-
-    isDarkmode // call the functions
-        ? themeProvider.setDarkmode()
-        : themeProvider.setLightMode();
+    });
+    isDarkmode ? themeProvider.setDarkmode() : themeProvider.setLightMode();
   }
 
   final GlobalKey heroKey = GlobalKey();
@@ -43,6 +37,7 @@ class _HomeState extends State<Home> {
   final GlobalKey contactKey = GlobalKey();
   final GlobalKey footerKey = GlobalKey();
   final ScrollController scrollController = ScrollController();
+
   void scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
@@ -57,7 +52,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -76,38 +71,57 @@ class _HomeState extends State<Home> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          controller: scrollController,
-          physics: BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 20,
-              children: [
-                Navbar(onPress: switchtheme, icon: icon, isDark: isDarkmode),
-                HeroSection(key: heroKey),
-                AboutMe(
-                  key: aboutKey,
-                  onNavigate: scrollTo,
-                  contactKey: contactKey,
+        body: Stack(
+          children: [
+            // Scrollable content
+            SingleChildScrollView(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 60,
+                  vertical: 20,
                 ),
-                Text(
-                  "Experience",
-                  style: context.textTheme.bodyLarge,
-                  key: experienceKey,
+                child: Column(
+                  spacing: 20,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 80), // Space for navbar
+                    HeroSection(key: heroKey),
+                    AboutMe(
+                      key: aboutKey,
+                      onNavigate: scrollTo,
+                      contactKey: contactKey,
+                    ),
+                    Text(
+                      "Experience",
+                      style: context.textTheme.bodyLarge,
+                      key: experienceKey,
+                    ),
+                    Experience(),
+                    Text(
+                      "Contact Me",
+                      style: context.textTheme.bodyLarge,
+                      key: contactKey,
+                    ),
+                    ContactMe(),
+                    Footer(isDark: isDarkmode),
+                  ],
                 ),
-                Experience(),
-                Text(
-                  "Contact Me",
-                  style: context.textTheme.bodyLarge,
-                  key: contactKey,
-                ),
-                ContactMe(),
-                Footer(isDark: isDarkmode),
-              ],
+              ),
             ),
-          ),
+            // Fixed Navbar
+            Positioned(
+              top: 20,
+              left: 60,
+              right: 60,
+              child: Navbar(
+                onPress: switchtheme,
+                icon: icon,
+                isDark: isDarkmode,
+              ),
+            ),
+          ],
         ),
       ),
     );
