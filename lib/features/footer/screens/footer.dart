@@ -2,9 +2,11 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:portfolio/features/footer/widgets/footer_icon.dart';
+import 'package:portfolio/features/footer/widgets/footer_icons.dart';
+import 'package:portfolio/features/footer/widgets/footer_text.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/toast.dart';
+import 'package:portfolio/responsive/responsive.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key, required this.isDark});
@@ -30,7 +32,7 @@ class Footer extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(30),
           width: double.infinity,
-          height: 200,
+          height: Responsive.isMobile(context) ? 360 : 220,
           decoration: BoxDecoration(
             color:
                 isDark
@@ -42,50 +44,24 @@ class Footer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SelectableText(
-                        "Thanks for Scrolling!",
-                        style: context.textTheme.headlineMedium,
-                      ),
-                      Row(
-                        children: [
-                          FooterIcon(
-                            path: "assets/icons/github.svg",
-                            url: "https://github.com/aswin-asokan",
-                          ),
-                          FooterIcon(
-                            path: "assets/icons/linkedin.svg",
-                            url: "https://www.linkedin.com/in/aswin-asokan/",
-                          ),
-                          FooterIcon(
-                            path: "assets/icons/pinterest.svg",
-                            url: "https://pin.it/416Oj6Tmc",
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SelectableText(
-                        "Crafted with care and code.\nLet’s connect and create something awesome together.",
-                        style: context.textTheme.displayMedium,
-                      ),
-                      FooterIcon(
-                        path: "assets/icons/Buy_Me_a_Coffee_logo.svg",
-                        url: "https://buymeacoffee.com/aswin_asokan",
-                      ),
-                    ],
-                  ),
-                ],
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  if (Responsive.isMobile(context)) {
+                    return Column(
+                      spacing: 20,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [FooterText(), FooterIcons()],
+                    );
+                  } else {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                      children: [FooterText(), FooterIcons()],
+                    );
+                  }
+                },
               ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -98,7 +74,7 @@ class Footer extends StatelessWidget {
                         size: 20,
                       ),
                       SelectableText(
-                        "Aswin Asokan, 2025",
+                        "Aswin, 2025",
                         style: context.textTheme.displayMedium,
                       ),
                     ],

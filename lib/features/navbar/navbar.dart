@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
+import 'package:portfolio/responsive/responsive.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({
@@ -27,13 +29,22 @@ class Navbar extends StatelessWidget {
                   : "assets/images/logo/light_logo.png",
               height: 30,
             ),
+
             Row(
               spacing: 20,
               children: [
-                Text("Home", style: context.textTheme.labelMedium),
-                Text("Projects", style: context.textTheme.labelSmall),
-                Text("Contact", style: context.textTheme.labelSmall),
+                if (Responsive.isDesktop(context))
+                  Row(
+                    spacing: 10,
+                    children: [
+                      Text("Home", style: context.textTheme.labelMedium),
+                      Text("Projects", style: context.textTheme.labelSmall),
+                      Text("Contact", style: context.textTheme.labelSmall),
+                    ],
+                  ),
                 IconButton(onPressed: onPress, icon: Icon(icon)),
+                if (!Responsive.isDesktop(context))
+                  IconButton(onPressed: () {}, icon: Icon(Symbols.menu)),
               ],
             ),
           ],

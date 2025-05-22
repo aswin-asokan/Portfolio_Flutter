@@ -8,6 +8,7 @@ import 'package:portfolio/features/footer/screens/footer.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/hero/screens/hero_container.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/responsive/responsive.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -37,7 +38,6 @@ class _HomeState extends State<Home> {
   final GlobalKey contactKey = GlobalKey();
   final GlobalKey footerKey = GlobalKey();
   final ScrollController scrollController = ScrollController();
-
   void scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
@@ -49,8 +49,17 @@ class _HomeState extends State<Home> {
     }
   }
 
+  double padding = 60;
+
   @override
   Widget build(BuildContext context) {
+    if (Responsive.isDesktop(context)) {
+      padding = 60;
+    } else if (Responsive.isTablet(context)) {
+      padding = 40;
+    } else {
+      padding = 10;
+    }
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -76,10 +85,10 @@ class _HomeState extends State<Home> {
             // Scrollable content
             SingleChildScrollView(
               controller: scrollController,
-              physics: const BouncingScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 60,
+                padding: EdgeInsets.symmetric(
+                  horizontal: padding,
                   vertical: 20,
                 ),
                 child: Column(
@@ -87,7 +96,7 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 80), // Space for navbar
-                    HeroSection(key: heroKey),
+                    //HeroSection(key: heroKey),
                     AboutMe(
                       key: aboutKey,
                       onNavigate: scrollTo,
@@ -98,7 +107,7 @@ class _HomeState extends State<Home> {
                       style: context.textTheme.bodyLarge,
                       key: experienceKey,
                     ),
-                    Experience(),
+                    //Experience(),
                     Text(
                       "Contact Me",
                       style: context.textTheme.bodyLarge,
@@ -113,8 +122,8 @@ class _HomeState extends State<Home> {
             // Fixed Navbar
             Positioned(
               top: 20,
-              left: 60,
-              right: 60,
+              left: padding,
+              right: padding,
               child: Navbar(
                 onPress: switchtheme,
                 icon: icon,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
+import 'package:portfolio/responsive/responsive.dart';
 
 class ExpCard extends StatefulWidget {
   const ExpCard({
@@ -29,7 +30,7 @@ class _ExpCardState extends State<ExpCard> {
   Widget build(BuildContext context) {
     return CustomContainer(
       child: SizedBox(
-        height: 220,
+        height: Responsive.isDesktop(context) ? 220 : 300,
         child: Column(
           spacing: 5,
           crossAxisAlignment: CrossAxisAlignment.start,
