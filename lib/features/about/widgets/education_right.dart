@@ -41,7 +41,7 @@ class EducationRight extends StatelessWidget {
               child: CustomButton(
                 label: "Resume",
                 onPress: () {
-                  downloadAssetFile("assets/files/resume.pdf", "resume");
+                  downloadAssetFile("assets/files/resume.pdf", "resume.pdf");
                 },
               ),
             ),

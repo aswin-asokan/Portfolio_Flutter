@@ -54,7 +54,6 @@ class FooterIcons extends StatelessWidget {
                   _socialIconsData
                       .map(
                         (data) => Column(
-                          spacing: 5,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             FooterIcon(
@@ -67,7 +66,6 @@ class FooterIcons extends StatelessWidget {
                       )
                       .toList(),
             ),
-        const SizedBox(height: 5),
         FooterIcon(
           path: "assets/icons/Buy_Me_a_Coffee_logo.svg",
           url: "https://buymeacoffee.com/aswin_asokan",
