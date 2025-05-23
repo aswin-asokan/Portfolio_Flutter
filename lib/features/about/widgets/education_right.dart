@@ -11,10 +11,11 @@ class EducationRight extends StatelessWidget {
   });
   final void Function(GlobalKey key) onNavigate;
   final GlobalKey contactKey;
-  void downloadAssetFile(String assetPath, String downloadFileName) {
+  void downloadAssetFile() {
     web.HTMLAnchorElement()
-      ..href = assetPath
-      ..download = downloadFileName
+      ..href = "https://aswinasokan.vercel.app/assets/assets/files/resume.pdf"
+      ..download = "resume.pdf"
+      ..target = '_blank'
       ..click();
   }
 
@@ -38,12 +39,7 @@ class EducationRight extends StatelessWidget {
           spacing: 20,
           children: [
             Expanded(
-              child: CustomButton(
-                label: "Resume",
-                onPress: () {
-                  downloadAssetFile("assets/files/resume.pdf", "resume.pdf");
-                },
-              ),
+              child: CustomButton(label: "Resume", onPress: downloadAssetFile),
             ),
             Expanded(
               child: CustomButton(

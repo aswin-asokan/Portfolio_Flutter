@@ -35,6 +35,7 @@ class ExpCard extends StatelessWidget {
     web.HTMLAnchorElement()
       ..href = assetPath
       ..download = downloadFileName
+      ..target = '_blank'
       ..click();
   }
 

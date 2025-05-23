@@ -33,8 +33,8 @@ class Experience extends StatelessWidget {
         "Implemented interactive design tools for a better user experience.",
       ],
       "hasFile": true,
-      "file": "assets/files/flysoft.pdf",
-      "filename": "Flysoft_internship_report",
+      "file": "https://aswinasokan.vercel.app/assets/assets/files/flysoft.pdf",
+      "filename": "Flysoft_internship_report.pdf",
     },
     {
       "icon": Symbols.lightbulb_outline,
@@ -60,8 +60,9 @@ class Experience extends StatelessWidget {
         "Implemented firebase connection",
       ],
       "hasFile": true,
-      "file": "assets/files/laxmiinfotek.jpeg",
-      "filename": "Laxmiinfotek_internship_certificate",
+      "file":
+          "https://aswinasokan.vercel.app/assets/assets/files/laxmiinfotek.jpeg",
+      "filename": "Laxmiinfotek_internship_certificate.jpeg",
     },
   ];
 
