@@ -32,7 +32,7 @@ class Footer extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(30),
           width: double.infinity,
-          height: Responsive.isMobile(context) ? 360 : 220,
+          height: Responsive.isMobile(context) ? 380 : 220,
           decoration: BoxDecoration(
             color:
                 isDark
