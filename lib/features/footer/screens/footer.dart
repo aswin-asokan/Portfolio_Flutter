@@ -9,8 +9,7 @@ import 'package:portfolio/features/shared/widgets/toast.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({super.key, required this.isDark});
-  final bool isDark;
+  const Footer({super.key});
   static const List<String> easterEggs = [
     "Built with love… and a little bit of hot reload.",
     "May your widgets always be stateless (unless they really need to be).",
@@ -25,6 +24,7 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(

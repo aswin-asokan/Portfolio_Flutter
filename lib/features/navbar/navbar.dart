@@ -5,15 +5,7 @@ import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Navbar extends StatelessWidget {
-  const Navbar({
-    super.key,
-    required this.onPress,
-    required this.icon,
-    required this.isDark,
-  });
-  final VoidCallback onPress;
-  final IconData icon;
-  final bool isDark;
+  const Navbar({super.key});
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -24,7 +16,7 @@ class Navbar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
-              isDark
+              Theme.of(context).brightness == Brightness.dark
                   ? "assets/images/logo/dark_logo.png"
                   : "assets/images/logo/light_logo.png",
               height: 30,
@@ -33,7 +25,9 @@ class Navbar extends StatelessWidget {
             Row(
               spacing: 20,
               children: [
-                if (Responsive.isDesktop(context))
+                if (Responsive.isTablet(context) ||
+                    Responsive.isDesktop(context) ||
+                    Responsive.isDesktopLarge(context))
                   Row(
                     spacing: 10,
                     children: [
@@ -42,8 +36,8 @@ class Navbar extends StatelessWidget {
                       Text("Contact", style: context.textTheme.labelSmall),
                     ],
                   ),
-                IconButton(onPressed: onPress, icon: Icon(icon)),
-                if (!Responsive.isDesktop(context))
+                if (Responsive.isMobile(context) ||
+                    Responsive.isSmallTablet(context))
                   IconButton(onPressed: () {}, icon: Icon(Symbols.menu)),
               ],
             ),

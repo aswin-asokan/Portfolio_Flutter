@@ -2,24 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/hero/widgets/skill_tile.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/responsive/responsive.dart'; // Import the Responsive class
 
 class HeroRight extends StatelessWidget {
-  const HeroRight({super.key});
-
+  HeroRight({super.key});
+  final List<Map<String, dynamic>> skills = [
+    {"title": "Frontend", "skills": "Flutter, React", "icon": Symbols.code},
+    {"title": "Backend", "skills": "Python", "icon": Symbols.storage},
+    {
+      "title": "Database",
+      "skills": "Firebase, MySQL",
+      "icon": Symbols.database_rounded,
+    },
+    {
+      "title": "Tools",
+      "skills": "Git, Atlassian's platform",
+      "icon": Symbols.service_toolbox,
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(40),
-      height: double.infinity,
+      height:
+          Responsive.isMobile(context)
+              ? 740
+              : Responsive.isSmallTablet(context)
+              ? 500
+              : double.infinity,
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
+        borderRadius:
+            Responsive.isMobile(context) || Responsive.isSmallTablet(context)
+                ? BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                )
+                : BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
       ),
       child: Column(
-        spacing: 20,
+        // Using SizedBox for spacing instead of a custom 'spacing' property.
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -33,41 +58,92 @@ class HeroRight extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ), // Spacing after the greeting
           SelectableText(
             "I am a self-taught application developer passionate about creative problem-solving. I also love to draw while enjoying music. As a student, I am dedicated to pursuing my dreams and expanding my skills.",
             style: context.textTheme.bodySmall,
           ),
-          Row(
-            spacing: 20,
-            children: [
-              SkillTile(
-                title: "Frontend",
-                skills: "Flutter, React",
-                icon: Symbols.code,
-              ),
-              SkillTile(
-                title: "Backend",
-                skills: "Python",
-                icon: Symbols.storage,
-              ),
-            ],
-          ),
-          Row(
-            spacing: 20,
-            children: [
-              SkillTile(
-                title: "Database",
-                skills: "Firebase, MySQL",
-                icon: Symbols.database_rounded,
-              ),
-              SkillTile(
-                title: "Tools",
-                skills: "Git, Atlassian's platform",
-                icon: Symbols.service_toolbox,
-              ),
-            ],
-          ),
+          const SizedBox(height: 20), // Spacing after the description
+          // Conditionally render the SkillTiles based on desktop or non-desktop view.
+          if (Responsive.isDesktopLarge(context) ||
+              Responsive.isDesktop(context) ||
+              Responsive.isSmallTablet(context))
+            Column(
+              // Spacing between the two rows of SkillTiles.
+              children: [
+                Row(
+                  // Spacing between SkillTiles in the first row.
+                  children: [
+                    Expanded(
+                      child: SkillTile(
+                        title: skills[0]["title"],
+                        skills: skills[0]["skills"],
+                        icon: skills[0]["icon"],
+                      ),
+                    ),
+                    const SizedBox(width: 20), // Horizontal spacing
+                    Expanded(
+                      child: SkillTile(
+                        title: skills[1]["title"],
+                        skills: skills[1]["skills"],
+                        icon: skills[1]["icon"],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20), // Vertical spacing between rows
+                Row(
+                  // Spacing between SkillTiles in the second row.
+                  children: [
+                    Expanded(
+                      child: SkillTile(
+                        title: skills[2]["title"],
+                        skills: skills[2]["skills"],
+                        icon: skills[2]["icon"],
+                      ),
+                    ),
+                    const SizedBox(width: 20), // Horizontal spacing
+                    Expanded(
+                      child: SkillTile(
+                        title: skills[3]["title"],
+                        skills: skills[3]["skills"],
+                        icon: skills[3]["icon"],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          else
+            Column(
+              // In tablet/mobile view, display all SkillTiles in a single column.
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                skillTileTab(
+                  title: skills[0]["title"],
+                  skills: skills[0]["skills"],
+                  icon: skills[0]["icon"],
+                ),
+                const SizedBox(height: 20), // Vertical spacing
+                skillTileTab(
+                  title: skills[1]["title"],
+                  skills: skills[1]["skills"],
+                  icon: skills[1]["icon"],
+                ),
+                const SizedBox(height: 20), // Vertical spacing
+                skillTileTab(
+                  title: skills[2]["title"],
+                  skills: skills[2]["skills"],
+                  icon: skills[2]["icon"],
+                ),
+                const SizedBox(height: 20), // Vertical spacing
+                skillTileTab(
+                  title: skills[3]["title"],
+                  skills: skills[3]["skills"],
+                  icon: skills[3]["icon"],
+                ),
+              ],
+            ),
         ],
       ),
     );

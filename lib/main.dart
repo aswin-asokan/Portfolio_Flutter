@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/themes/theme_switch.dart';
+import 'package:portfolio/core/themes/darkmode.dart';
+import 'package:portfolio/core/themes/lightmode.dart';
 import 'package:portfolio/features/home/home.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      // create the provider
-      providers: [ChangeNotifierProvider(create: (_) => ThemeProvider())],
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,9 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Aswin',
-      theme: Provider.of<ThemeProvider>(context).currentTheme,
+      theme: lightmode,
+      darkTheme: darkmode,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: Home(),
     );
   }
 }

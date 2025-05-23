@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData darkmode = ThemeData(
-  colorScheme: ColorScheme.light(
+  colorScheme: ColorScheme.dark(
     primary: Color(0xfff8781f), // Keep primary color for brand consistency
     onPrimary: Colors.black, // Good contrast on bright primary in dark mode
     secondary: Color(

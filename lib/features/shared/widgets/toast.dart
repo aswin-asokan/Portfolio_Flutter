@@ -86,7 +86,7 @@ class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: Colors.black87.withAlpha(80),
+                color: Colors.black87,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:web/web.dart' as web;
 
-class ExpCard extends StatefulWidget {
+class ExpCard extends StatelessWidget {
   const ExpCard({
     super.key,
     required this.icon,
@@ -11,69 +14,114 @@ class ExpCard extends StatefulWidget {
     required this.role,
     required this.period,
     required this.summary,
+    this.url,
+    this.hasLink = false,
+    this.hasFile = false,
+    this.file,
+    this.filename,
   });
   final IconData icon;
   final String role;
   final String org;
   final String period;
   final List<String> summary;
+  final String? url;
+  final bool hasLink;
+  final bool hasFile;
+  final String? file;
+  final String? filename;
+  String get formattedText => summary.map((item) => "•\t\t$item").join("\n");
+  void downloadAssetFile(String assetPath, String downloadFileName) {
+    web.HTMLAnchorElement()
+      ..href = assetPath
+      ..download = downloadFileName
+      ..click();
+  }
 
-  @override
-  State<ExpCard> createState() => _ExpCardState();
-}
-
-class _ExpCardState extends State<ExpCard> {
-  String get formattedText =>
-      widget.summary.map((item) => "•\t\t$item").join("\n");
+  void _launch(String urlString) async {
+    final url = Uri.parse(urlString);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw Exception('Could not launch $urlString');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
       child: SizedBox(
-        height: Responsive.isDesktop(context) ? 220 : 300,
+        height:
+            Responsive.isDesktop(context) || Responsive.isDesktopLarge(context)
+                ? 220
+                : 300,
         child: Column(
           spacing: 5,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 10,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              spacing: 12,
               children: [
                 Container(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: context.colorScheme.secondary,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
-                    widget.icon,
+                    icon,
                     color: context.colorScheme.primary,
                     size: 50,
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SelectableText(
-                      widget.role,
-                      style: context.textTheme.bodyMedium,
-                    ),
-                    SelectableText(
-                      widget.org,
-                      style: context.textTheme.bodySmall,
-                    ),
-                    SizedBox(height: 2),
-                    SelectableText(
-                      widget.period,
-                      style: context.textTheme.displaySmall,
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        spacing: 8,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              role,
+                              style: context.textTheme.bodyMedium,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          if (hasLink || hasFile)
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  hasLink
+                                      ? _launch(url!)
+                                      : downloadAssetFile(file!, filename!);
+                                },
+                                child: Icon(
+                                  Symbols.insert_link,
+                                  color: context.colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                      SelectableText(org, style: context.textTheme.bodySmall),
+                      const SizedBox(height: 2),
+                      SelectableText(
+                        period,
+                        style: context.textTheme.displaySmall,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
 
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             SelectableText(formattedText, style: context.textTheme.bodySmall),
           ],
         ),

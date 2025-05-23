@@ -24,7 +24,8 @@ class AboutMe extends StatelessWidget {
             SelectableText("About Me", style: context.textTheme.labelLarge),
             LayoutBuilder(
               builder: (context, constraints) {
-                if (!Responsive.isDesktop(context)) {
+                if (!Responsive.isDesktop(context) &&
+                    !Responsive.isDesktopLarge(context)) {
                   return Column(
                     spacing: 20,
                     crossAxisAlignment: CrossAxisAlignment.start,

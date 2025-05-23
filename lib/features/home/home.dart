@@ -1,37 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
-import 'package:portfolio/core/themes/theme_switch.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
 import 'package:portfolio/features/footer/screens/footer.dart';
-import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/hero/screens/hero_container.dart';
+import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/responsive/responsive.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  bool isDarkmode = false;
-  IconData icon = Symbols.dark_mode_rounded;
-
-  void switchtheme() {
-    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    setState(() {
-      isDarkmode = !isDarkmode;
-      icon =
-          isDarkmode ? Symbols.light_mode_rounded : Symbols.dark_mode_rounded;
-    });
-    isDarkmode ? themeProvider.setDarkmode() : themeProvider.setLightMode();
-  }
-
   final GlobalKey heroKey = GlobalKey();
   final GlobalKey aboutKey = GlobalKey();
   final GlobalKey experienceKey = GlobalKey();
@@ -53,7 +36,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    if (Responsive.isDesktop(context)) {
+    if (Responsive.isDesktop(context) || Responsive.isDesktopLarge(context)) {
       padding = 60;
     } else if (Responsive.isTablet(context)) {
       padding = 40;
@@ -96,7 +79,8 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 80), // Space for navbar
-                    //HeroSection(key: heroKey),
+                    HeroSection(key: heroKey),
+
                     AboutMe(
                       key: aboutKey,
                       onNavigate: scrollTo,
@@ -107,29 +91,20 @@ class _HomeState extends State<Home> {
                       style: context.textTheme.bodyLarge,
                       key: experienceKey,
                     ),
-                    //Experience(),
+                    Experience(),
                     Text(
                       "Contact Me",
                       style: context.textTheme.bodyLarge,
                       key: contactKey,
                     ),
                     ContactMe(),
-                    Footer(isDark: isDarkmode),
+                    Footer(),
                   ],
                 ),
               ),
             ),
             // Fixed Navbar
-            Positioned(
-              top: 20,
-              left: padding,
-              right: padding,
-              child: Navbar(
-                onPress: switchtheme,
-                icon: icon,
-                isDark: isDarkmode,
-              ),
-            ),
+            Positioned(top: 20, left: padding, right: padding, child: Navbar()),
           ],
         ),
       ),
