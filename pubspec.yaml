@@ -42,6 +42,7 @@ dependencies:
   flutter_map: ^8.1.1
   latlong2: ^0.9.1
   flutter_map_cancellable_tile_provider: ^3.1.0
+  lottie: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,38 @@ flutter:
     - assets/icons/Buy_Me_a_Coffee_logo.svg
     - assets/files/flysoft.pdf
     - assets/files/laxmiinfotek.jpeg
+    - assets/icons/loading.json
+    - assets/files/resume.pdf
+    #Projects
+    #icons
+    - assets/files/projects/icons/PeekPub_logo.png
+    - assets/files/projects/icons/nayaytra_logo.jpeg
+    - assets/files/projects/icons/ancient_logo.png
+    - assets/files/projects/icons/internship_logo.jpeg
+    - assets/files/projects/icons/gradgate_logo.jpeg
+    - assets/files/projects/icons/sysmonitor_logo.jpeg
+    - assets/files/projects/icons/pocketdress_logo.png
+    - assets/files/projects/icons/taskevo1_logo.jpeg
+    - assets/files/projects/icons/eazygoauth_logo.png
+    - assets/files/projects/icons/eazygo_logo.png
+    - assets/files/projects/icons/hotel_logo.png
+    - assets/files/projects/icons/dairy_logo.jpeg
+    - assets/files/projects/icons/iot_logo.jpeg
+    #banner
+    - assets/files/projects/banner/peekpub_banner.png
+    - assets/files/projects/banner/nyaytra_banner.png
+    - assets/files/projects/banner/ancient_banner.png
+    - assets/files/projects/banner/floorplan_banner.png
+    - assets/files/projects/banner/gradgate_banner.png
+    - assets/files/projects/banner/system_monitor_banner.png
+    - assets/files/projects/banner/pocket_dress_banner.png
+    - assets/files/projects/banner/taskevo1_banner.png
+    - assets/files/projects/banner/eazygoAuth_banner.png
+    - assets/files/projects/banner/eazygo_banner.png
+    - assets/files/projects/banner/hotelmanagement_banner.png
+    - assets/files/projects/banner/dairymanagement_banner.png
+    - assets/files/projects/banner/iot_banner.png
+    
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

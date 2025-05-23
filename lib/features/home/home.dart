@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
 import 'package:portfolio/features/footer/screens/footer.dart';
 import 'package:portfolio/features/hero/screens/hero_container.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
+import 'package:portfolio/features/projects/screens/projects.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
@@ -15,18 +17,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final GlobalKey heroKey = GlobalKey();
-  final GlobalKey aboutKey = GlobalKey();
-  final GlobalKey experienceKey = GlobalKey();
-  final GlobalKey contactKey = GlobalKey();
-  final GlobalKey footerKey = GlobalKey();
+  final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 4), () {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    });
+  }
+
   void scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
       Scrollable.ensureVisible(
         context,
-        duration: const Duration(milliseconds: 600),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       );
     }
@@ -63,50 +75,72 @@ class _HomeState extends State<Home> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            // Scrollable content
-            SingleChildScrollView(
-              controller: scrollController,
-              physics: BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: padding,
-                  vertical: 20,
-                ),
-                child: Column(
-                  spacing: 20,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        body:
+            _isLoading
+                ? Center(
+                  // Display a loading indicator while _isLoading is true
+                  child: Lottie.asset("assets/icons/loading.json", height: 250),
+                )
+                : Stack(
                   children: [
-                    const SizedBox(height: 80), // Space for navbar
-                    HeroSection(key: heroKey),
-
-                    AboutMe(
-                      key: aboutKey,
-                      onNavigate: scrollTo,
-                      contactKey: contactKey,
+                    // Scrollable content
+                    SingleChildScrollView(
+                      controller: scrollController,
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: padding,
+                          vertical: 20,
+                        ),
+                        child: Column(
+                          spacing: 20,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 70,
+                              key: sectionKeys[0],
+                            ), // Space for navbar
+                            HeroSection(),
+                            AboutMe(
+                              onNavigate: scrollTo,
+                              contactKey: sectionKeys[4],
+                              key: sectionKeys[1],
+                            ),
+                            Text(
+                              "Experience",
+                              style: context.textTheme.bodyLarge,
+                              key: sectionKeys[2],
+                            ),
+                            Experience(),
+                            Text(
+                              "Projects",
+                              style: context.textTheme.bodyLarge,
+                              key: sectionKeys[3],
+                            ),
+                            Projects(),
+                            Text(
+                              "Contact Me",
+                              style: context.textTheme.bodyLarge,
+                              key: sectionKeys[4],
+                            ),
+                            ContactMe(),
+                            Footer(),
+                          ],
+                        ),
+                      ),
                     ),
-                    Text(
-                      "Experience",
-                      style: context.textTheme.bodyLarge,
-                      key: experienceKey,
+                    // Fixed Navbar
+                    Positioned(
+                      top: 20,
+                      left: padding,
+                      right: padding,
+                      child: Navbar(
+                        sectionKeys: sectionKeys,
+                        scrollController: scrollController,
+                      ),
                     ),
-                    Experience(),
-                    Text(
-                      "Contact Me",
-                      style: context.textTheme.bodyLarge,
-                      key: contactKey,
-                    ),
-                    ContactMe(),
-                    Footer(),
                   ],
                 ),
-              ),
-            ),
-            // Fixed Navbar
-            Positioned(top: 20, left: padding, right: padding, child: Navbar()),
-          ],
-        ),
       ),
     );
   }

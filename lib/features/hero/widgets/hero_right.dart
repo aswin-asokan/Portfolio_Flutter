@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/hero/widgets/skill_tile.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/responsive/responsive.dart'; // Import the Responsive class
+import 'package:portfolio/responsive/responsive.dart';
 
 class HeroRight extends StatelessWidget {
   HeroRight({super.key});
@@ -44,7 +44,6 @@ class HeroRight extends StatelessWidget {
                 ),
       ),
       child: Column(
-        // Using SizedBox for spacing instead of a custom 'spacing' property.
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -58,91 +57,55 @@ class HeroRight extends StatelessWidget {
                 ),
               ),
             ],
-          ), // Spacing after the greeting
+          ),
           SelectableText(
             "I am a self-taught application developer passionate about creative problem-solving. I also love to draw while enjoying music. As a student, I am dedicated to pursuing my dreams and expanding my skills.",
             style: context.textTheme.bodySmall,
           ),
-          const SizedBox(height: 20), // Spacing after the description
-          // Conditionally render the SkillTiles based on desktop or non-desktop view.
+          const SizedBox(height: 20),
           if (Responsive.isDesktopLarge(context) ||
               Responsive.isDesktop(context) ||
               Responsive.isSmallTablet(context))
             Column(
-              // Spacing between the two rows of SkillTiles.
               children: [
                 Row(
-                  // Spacing between SkillTiles in the first row.
-                  children: [
-                    Expanded(
-                      child: SkillTile(
-                        title: skills[0]["title"],
-                        skills: skills[0]["skills"],
-                        icon: skills[0]["icon"],
-                      ),
-                    ),
-                    const SizedBox(width: 20), // Horizontal spacing
-                    Expanded(
-                      child: SkillTile(
-                        title: skills[1]["title"],
-                        skills: skills[1]["skills"],
-                        icon: skills[1]["icon"],
-                      ),
-                    ),
-                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 20,
+                  children: List.generate(2, (index) {
+                    return SkillTile(
+                      title: skills[index]["title"],
+                      skills: skills[index]["skills"],
+                      icon: skills[index]["icon"],
+                    );
+                  }),
                 ),
-                const SizedBox(height: 20), // Vertical spacing between rows
+                const SizedBox(height: 20),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 20,
                   // Spacing between SkillTiles in the second row.
-                  children: [
-                    Expanded(
-                      child: SkillTile(
-                        title: skills[2]["title"],
-                        skills: skills[2]["skills"],
-                        icon: skills[2]["icon"],
-                      ),
-                    ),
-                    const SizedBox(width: 20), // Horizontal spacing
-                    Expanded(
-                      child: SkillTile(
-                        title: skills[3]["title"],
-                        skills: skills[3]["skills"],
-                        icon: skills[3]["icon"],
-                      ),
-                    ),
-                  ],
+                  children: List.generate(2, (index) {
+                    final actualIndex = index + skills.length - 2;
+                    return SkillTile(
+                      title: skills[actualIndex]["title"],
+                      skills: skills[actualIndex]["skills"],
+                      icon: skills[actualIndex]["icon"],
+                    );
+                  }),
                 ),
               ],
             )
           else
             Column(
-              // In tablet/mobile view, display all SkillTiles in a single column.
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                skillTileTab(
-                  title: skills[0]["title"],
-                  skills: skills[0]["skills"],
-                  icon: skills[0]["icon"],
-                ),
-                const SizedBox(height: 20), // Vertical spacing
-                skillTileTab(
-                  title: skills[1]["title"],
-                  skills: skills[1]["skills"],
-                  icon: skills[1]["icon"],
-                ),
-                const SizedBox(height: 20), // Vertical spacing
-                skillTileTab(
-                  title: skills[2]["title"],
-                  skills: skills[2]["skills"],
-                  icon: skills[2]["icon"],
-                ),
-                const SizedBox(height: 20), // Vertical spacing
-                skillTileTab(
-                  title: skills[3]["title"],
-                  skills: skills[3]["skills"],
-                  icon: skills[3]["icon"],
-                ),
-              ],
+              spacing: 20,
+              children: List.generate(skills.length, (index) {
+                return skillTileTab(
+                  title: skills[index]["title"],
+                  skills: skills[index]["skills"],
+                  icon: skills[index]["icon"],
+                );
+              }),
             ),
         ],
       ),

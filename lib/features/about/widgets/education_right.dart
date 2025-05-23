@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
+import 'package:web/web.dart' as web;
 
 class EducationRight extends StatelessWidget {
   const EducationRight({
@@ -10,6 +11,13 @@ class EducationRight extends StatelessWidget {
   });
   final void Function(GlobalKey key) onNavigate;
   final GlobalKey contactKey;
+  void downloadAssetFile(String assetPath, String downloadFileName) {
+    web.HTMLAnchorElement()
+      ..href = assetPath
+      ..download = downloadFileName
+      ..click();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +37,14 @@ class EducationRight extends StatelessWidget {
         Row(
           spacing: 20,
           children: [
-            Expanded(child: CustomButton(label: "Resume", onPress: () {})),
+            Expanded(
+              child: CustomButton(
+                label: "Resume",
+                onPress: () {
+                  downloadAssetFile("assets/files/resume.pdf", "resume");
+                },
+              ),
+            ),
             Expanded(
               child: CustomButton(
                 label: "Contact Me",

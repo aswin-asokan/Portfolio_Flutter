@@ -43,7 +43,7 @@ class ContactLinks extends StatelessWidget {
           onPressed: () {
             isMail ? _launchMailClient(link) : _launch(link);
           },
-          child: SelectableText(label, style: context.textTheme.bodySmall),
+          child: Text(label, style: context.textTheme.bodySmall),
         ),
       ],
     );

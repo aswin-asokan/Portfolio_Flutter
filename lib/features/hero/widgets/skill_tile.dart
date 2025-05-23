@@ -16,7 +16,7 @@ class SkillTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: Responsive.isDesktop(context) ? 150 : 130,
-      width: 230,
+      width: Responsive.isSmallTablet(context) ? 300 : 230,
       padding: EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
@@ -56,10 +56,15 @@ class skillTileTab extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         spacing: 10,
         children: [
-          Icon(icon, size: 60, color: context.colorScheme.primary),
+          Icon(
+            icon,
+            size: Responsive.isMobile(context) ? 45 : 60,
+            color: context.colorScheme.primary,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 5,
