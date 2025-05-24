@@ -74,6 +74,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.transparent,
         body:
             _isLoading

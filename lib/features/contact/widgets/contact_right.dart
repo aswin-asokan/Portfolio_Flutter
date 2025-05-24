@@ -40,32 +40,26 @@ class _ContactRightState extends State<ContactRight> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomTextfield(
-            controller: emailController,
-            hintText: "Your Email",
-            maxline: 1,
-          ),
-          SizedBox(height: 10),
-          CustomTextfield(
-            controller: content,
-            hintText: "Your Message",
-            maxline: 6,
-          ),
-          SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            child: CustomButton(label: "Send Message", onPress: sendEmail),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomTextfield(
+          controller: emailController,
+          hintText: "Your Email",
+          maxline: 1,
+        ),
+        SizedBox(height: 10),
+        CustomTextfield(
+          controller: content,
+          hintText: "Your Message",
+          maxline: 6,
+        ),
+        SizedBox(height: 20),
+        SizedBox(
+          width: double.infinity,
+          child: CustomButton(label: "Send Message", onPress: sendEmail),
+        ),
+      ],
     );
   }
 }
