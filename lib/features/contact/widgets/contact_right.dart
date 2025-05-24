@@ -3,17 +3,31 @@ import 'package:portfolio/features/contact/widgets/custom_textfield.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactRight extends StatelessWidget {
-  ContactRight({super.key});
+class ContactRight extends StatefulWidget {
+  const ContactRight({super.key});
+
+  @override
+  State<ContactRight> createState() => _ContactRightState();
+}
+
+class _ContactRightState extends State<ContactRight> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController content = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    content.dispose();
+    super.dispose();
+  }
+
   Future<void> sendEmail() async {
     final email = emailController.text;
     final message = content.text;
 
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'aswin_asokan@outlook.com', // Replace with your target email
+      path: 'aswin_asokan@outlook.com',
       query: Uri.encodeFull('subject=New Message from $email&body=$message'),
     );
 
@@ -27,7 +41,6 @@ class ContactRight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom + 20,
         left: 16,
