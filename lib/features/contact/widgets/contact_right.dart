@@ -26,24 +26,35 @@ class ContactRight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 10,
-      children: [
-        CustomTextfield(
-          controller: emailController,
-          hintText: "Your Email",
-          maxline: 1,
-        ),
-        CustomTextfield(
-          controller: content,
-          hintText: "Your Message",
-          maxline: 6,
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: CustomButton(label: "Send Message", onPress: sendEmail),
-        ),
-      ],
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+        left: 16,
+        right: 16,
+        top: 20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomTextfield(
+            controller: emailController,
+            hintText: "Your Email",
+            maxline: 1,
+          ),
+          SizedBox(height: 10),
+          CustomTextfield(
+            controller: content,
+            hintText: "Your Message",
+            maxline: 6,
+          ),
+          SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            child: CustomButton(label: "Send Message", onPress: sendEmail),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -4,7 +4,7 @@ List projects = [
     "bannerPath": "assets/files/projects/banner/peekpub_banner.png",
     "caption":
         "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
-    "categories": "Internship | Flutter | Pub.dev API",
+    "categories": "Flutter | Pub.dev API",
     "iconPath": "assets/files/projects/icons/PeekPub_logo.png",
     "gitLink": "https://github.com/aswin-asokan/peekpub",
   },
@@ -29,7 +29,7 @@ List projects = [
     "title": "Flysoft Floor Plan",
     "bannerPath": "assets/files/projects/banner/floorplan_banner.png",
     "caption": "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
-    "categories": "Flutter | JSON",
+    "categories": "Internship | Flutter | JSON",
     "iconPath": "assets/files/projects/icons/internship_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/Flysoft_Floorplan/",
   },
