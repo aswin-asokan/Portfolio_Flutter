@@ -75,58 +75,58 @@ class _HomeState extends State<Home> {
       ),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xffe5461e),
         body:
             _isLoading
                 ? Center(
-                  // Display a loading indicator while _isLoading is true
                   child: Lottie.asset("assets/icons/loading.json", height: 250),
                 )
                 : Stack(
                   children: [
-                    // Scrollable content
-                    SingleChildScrollView(
-                      controller: scrollController,
-                      physics: const BouncingScrollPhysics(),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: padding,
-                          vertical: 20,
-                        ),
-                        child: Column(
-                          spacing: 20,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 70,
-                              key: sectionKeys[0],
-                            ), // Space for navbar
-                            HeroSection(),
-                            AboutMe(
-                              onNavigate: scrollTo,
-                              contactKey: sectionKeys[4],
-                              key: sectionKeys[1],
-                            ),
-                            Text(
-                              "Experience",
-                              style: context.textTheme.bodyLarge,
-                              key: sectionKeys[2],
-                            ),
-                            Experience(),
-                            Text(
-                              "Projects",
-                              style: context.textTheme.bodyLarge,
-                              key: sectionKeys[3],
-                            ),
-                            Projects(),
-                            Text(
-                              "Contact Me",
-                              style: context.textTheme.bodyLarge,
-                              key: sectionKeys[4],
-                            ),
-                            ContactMe(),
-                            Footer(),
-                          ],
+                    RepaintBoundary(
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        physics: const BouncingScrollPhysics(),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: padding,
+                            vertical: 20,
+                          ),
+                          child: Column(
+                            spacing: 20,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 70,
+                                key: sectionKeys[0],
+                              ), // Space for navbar
+                              HeroSection(),
+                              AboutMe(
+                                onNavigate: scrollTo,
+                                contactKey: sectionKeys[4],
+                                key: sectionKeys[1],
+                              ),
+                              Text(
+                                "Experience",
+                                style: context.textTheme.bodyLarge,
+                                key: sectionKeys[2],
+                              ),
+                              Experience(),
+                              Text(
+                                "Projects",
+                                style: context.textTheme.bodyLarge,
+                                key: sectionKeys[3],
+                              ),
+                              Projects(),
+                              Text(
+                                "Contact Me",
+                                style: context.textTheme.bodyLarge,
+                                key: sectionKeys[4],
+                              ),
+                              ContactMe(),
+                              Footer(),
+                            ],
+                          ),
                         ),
                       ),
                     ),
