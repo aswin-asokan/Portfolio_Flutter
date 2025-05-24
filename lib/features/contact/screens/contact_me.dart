@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/features/contact/widgets/contact_left.dart';
 import 'package:portfolio/features/contact/widgets/contact_right.dart';
+import 'package:portfolio/features/contact/widgets/map.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
@@ -13,10 +14,16 @@ class ContactMe extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           if (Responsive.isMobile(context)) {
-            return Column(
-              spacing: 20,
+            return ContactLeft();
+          } else if (Responsive.isDesktop(context) ||
+              Responsive.isDesktopLarge(context)) {
+            return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [ContactLeft(), ContactRight()],
+              spacing: 20,
+              children: [
+                Expanded(child: ContactLeft()),
+                Expanded(child: ContactRight()),
+              ],
             );
           } else {
             return Row(
@@ -24,7 +31,7 @@ class ContactMe extends StatelessWidget {
               spacing: 20,
               children: [
                 Expanded(child: ContactLeft()),
-                Expanded(child: ContactRight()),
+                Expanded(child: MapWidget()),
               ],
             );
           }

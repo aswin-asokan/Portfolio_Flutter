@@ -3,6 +3,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/contact/widgets/contact_links.dart';
 import 'package:portfolio/features/contact/widgets/map.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/responsive/responsive.dart';
 
 class ContactLeft extends StatelessWidget {
   const ContactLeft({super.key});
@@ -26,8 +27,10 @@ class ContactLeft extends StatelessWidget {
           link: "aswin_asokan@outlook.com",
           isMail: true,
         ),
-        SizedBox(height: 10),
-        MapWidget(),
+        if (!Responsive.isSmallTablet(context) && !Responsive.isTablet(context))
+          SizedBox(height: 10),
+        if (!Responsive.isSmallTablet(context) && !Responsive.isTablet(context))
+          MapWidget(),
       ],
     );
   }
