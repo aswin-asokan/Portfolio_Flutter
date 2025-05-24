@@ -41,11 +41,9 @@ class _ContactRightState extends State<ContactRight> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-        left: 16,
-        right: 16,
-        top: 20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
