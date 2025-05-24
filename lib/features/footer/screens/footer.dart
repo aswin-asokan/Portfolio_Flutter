@@ -80,22 +80,26 @@ class Footer extends StatelessWidget {
                     ],
                   ),
                   Row(
+                    spacing: 8,
                     children: [
                       SelectableText(
                         "Made with ",
                         style: context.textTheme.displayMedium,
                       ),
-                      IconButton(
-                        onPressed: () {
-                          final randomEgg =
-                              easterEggs[random.nextInt(easterEggs.length)];
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () {
+                            final randomEgg =
+                                easterEggs[random.nextInt(easterEggs.length)];
 
-                          showToast(context, randomEgg);
-                        },
-                        icon: Icon(
-                          Symbols.flutter,
-                          color: context.colorScheme.surfaceContainerHigh,
-                          size: 20,
+                            showToast(context, randomEgg);
+                          },
+                          child: Icon(
+                            Symbols.flutter,
+                            color: context.colorScheme.surfaceContainerHigh,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ],
