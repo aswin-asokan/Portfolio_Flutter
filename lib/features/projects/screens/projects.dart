@@ -38,6 +38,7 @@ class _ProjectsState extends State<Projects> {
 
   @override
   Widget build(BuildContext context) {
+    final double cardHeight = Responsive.isMobile(context) ? 280 : 400;
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -47,19 +48,27 @@ class _ProjectsState extends State<Projects> {
           scrollDirection: Axis.horizontal,
           child: Padding(
             padding: const EdgeInsets.only(top: 5),
-            child: Row(
-              spacing: 25,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(projects.length, (index) {
-                return ProjectCard(
-                  title: projects[index]["title"],
-                  bannerPath: projects[index]["bannerPath"],
-                  caption: projects[index]["caption"],
-                  categories: projects[index]["categories"],
-                  iconPath: projects[index]["iconPath"],
-                  gitLink: projects[index]["gitLink"],
-                );
-              }),
+            child: SizedBox(
+              height: cardHeight, // Replace with actual height if needed
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: projects.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(), // disable inner scroll
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 25.0),
+                    child: ProjectCard(
+                      title: projects[index]["title"],
+                      bannerPath: projects[index]["bannerPath"],
+                      caption: projects[index]["caption"],
+                      categories: projects[index]["categories"],
+                      iconPath: projects[index]["iconPath"],
+                      gitLink: projects[index]["gitLink"],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),

@@ -59,7 +59,7 @@ class HeroRight extends StatelessWidget {
             ],
           ),
           SelectableText(
-            "I am a self-taught application developer passionate about creative problem-solving. I also love to draw while enjoying music. As a student, I am dedicated to pursuing my dreams and expanding my skills.",
+            "I'm a B.Tech CSE student and a Flutter developer, passionate about creative problem-solving and dedicated to expanding my skills. Outside of coding, I enjoy drawing while listening to music.",
             style: context.textTheme.bodySmall,
           ),
           const SizedBox(height: 20),
