@@ -43,6 +43,8 @@ dependencies:
   latlong2: ^0.9.1
   flutter_map_cancellable_tile_provider: ^3.1.0
   lottie: ^3.3.1
+  share_plus: ^11.0.0
+  simple_icons: ^14.6.1
 
 dev_dependencies:
   flutter_test:
@@ -108,7 +110,12 @@ flutter:
     - assets/files/projects/banner/hotelmanagement_banner.png
     - assets/files/projects/banner/dairymanagement_banner.png
     - assets/files/projects/banner/iot_banner.png
-    
+    #screenshots
+    - assets/files/projects/screenshots/peekpub/peekpub1.png
+    - assets/files/projects/screenshots/peekpub/peekpub2.png
+    - assets/files/projects/screenshots/peekpub/peekpub3.png
+    - assets/files/projects/screenshots/peekpub/peekpub4.png
+    - assets/files/projects/screenshots/peekpub/peekpub5.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -30,7 +30,7 @@ class EducationRight extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         SelectableText(
-          "\t\t\tI embarked on my coding adventure without formal education, driven by curiosity and passion. What started as a hobby quickly turned into a professional pursuit as I went through countless tutorials, documentation, and practice projects.\n\t\t\tThe journey wasn't always smooth, but each challenge became an opportunity to grow. From building my first \"Hello World\" app to developing complex AI-integrated applications, every step has been a valuable learning experience.",
+          "I embarked on my coding adventure without formal education, driven by curiosity and passion. What started as a hobby quickly turned into a professional pursuit as I went through countless tutorials, documentation, and practice projects.\nThe journey wasn't always smooth, but each challenge became an opportunity to grow. From building my first \"Hello World\" app to developing complex AI-integrated applications, every step has been a valuable learning experience.",
           style: context.textTheme.bodySmall,
           textAlign: TextAlign.justify,
         ),

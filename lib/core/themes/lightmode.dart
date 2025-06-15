@@ -73,5 +73,10 @@ ThemeData lightmode = ThemeData(
       fontWeight: FontWeight.w500,
       color: Colors.white,
     ),
+    headlineSmall: GoogleFonts.outfit(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: Colors.black,
+    ),
   ),
 );

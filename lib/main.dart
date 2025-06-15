@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/themes/darkmode.dart';
 import 'package:portfolio/core/themes/lightmode.dart';
+import 'package:portfolio/features/app_page/screens/app_page.dart';
 import 'package:portfolio/features/home/home.dart';
 
 void main() {

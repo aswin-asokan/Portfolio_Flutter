@@ -23,7 +23,7 @@ List projects = [
     "caption": "IndicBERT Model that Predict and Reconstruct Missing Words.",
     "categories": "BERT | GCP",
     "iconPath": "assets/files/projects/icons/ancient_logo.png",
-    "gitLink": "https://github.com/najiya101/ancient-language-preservation-",
+    "gitLink": "https://github.com/Najiya-Nazrin/ancient-language-preservation",
   },
   {
     "title": "Flysoft Floor Plan",
