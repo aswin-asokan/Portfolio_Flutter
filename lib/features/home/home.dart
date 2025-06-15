@@ -158,6 +158,13 @@ class _HomeState extends State<Home> {
                       child: Navbar(
                         sectionKeys: sectionKeys,
                         scrollController: scrollController,
+                        sections: [
+                          "Home",
+                          "About",
+                          "Experience",
+                          "Projects",
+                          "Contact",
+                        ],
                       ),
                     ),
                   ],

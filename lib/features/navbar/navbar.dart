@@ -9,24 +9,20 @@ class Navbar extends StatefulWidget {
     super.key,
     required this.sectionKeys,
     required this.scrollController,
+    required this.sections,
+    this.isBackEnabled = false,
   });
 
   final List<GlobalKey> sectionKeys;
+  final List<String> sections;
   final ScrollController scrollController;
+  final bool isBackEnabled;
   @override
   State<Navbar> createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Navbar> {
   int selectedIndex = 0;
-
-  final List<String> _sections = [
-    "Home",
-    "About",
-    "Experience",
-    "Projects",
-    "Contact",
-  ];
 
   void _scrollToSection(int index) {
     final keyContext = widget.sectionKeys[index].currentContext;
@@ -57,15 +53,15 @@ class _NavbarState extends State<Navbar> {
       ),
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: List.generate(_sections.length, (index) {
+            children: List.generate(widget.sections.length, (index) {
               final isSelected = selectedIndex == index;
               return ListTile(
                 title: Center(
                   child: Text(
-                    _sections[index],
+                    widget.sections[index],
                     style: context.textTheme.labelSmall?.copyWith(
                       fontSize: 25,
                       fontWeight:
@@ -98,26 +94,52 @@ class _NavbarState extends State<Navbar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.network(
-              Theme.of(context).brightness == Brightness.dark
-                  ? "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/dark_logo.png"
-                  : "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/light_logo.png",
-              height: 30,
-            ),
+            widget.isBackEnabled
+                ? MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Row(
+                      spacing: 8,
+                      children: [
+                        Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          size: 16,
+                          color: context.colorScheme.primary,
+                        ),
+                        if (!Responsive.isMobile(context))
+                          Text(
+                            "Go back",
+                            style: context.textTheme.labelMedium!.copyWith(
+                              fontSize: 16,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                )
+                : Image.network(
+                  Theme.of(context).brightness == Brightness.dark
+                      ? "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/dark_logo.png"
+                      : "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/light_logo.png",
+                  height: 30,
+                ),
             Row(
               children: [
                 if (Responsive.isTablet(context) ||
                     Responsive.isDesktop(context) ||
                     Responsive.isDesktopLarge(context))
                   Row(
-                    children: List.generate(_sections.length, (index) {
+                    children: List.generate(widget.sections.length, (index) {
                       final isSelected = selectedIndex == index;
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextButton(
                           onPressed: () => _scrollToSection(index),
                           child: Text(
-                            _sections[index],
+                            widget.sections[index],
                             style: context.textTheme.labelSmall?.copyWith(
                               color:
                                   isSelected
