@@ -8,7 +8,7 @@ AppModel ancientLang = AppModel(
   caption: "IndicBERT Model that Predict and Reconstruct Missing Words.",
   techStack: "BERT | GCP",
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/ancient_banner.png",
+      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/ancient/ancient.png",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/ancient_logo.png",
   gitLink: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
