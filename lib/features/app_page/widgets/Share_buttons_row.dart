@@ -26,7 +26,11 @@ class ShareButtonsRow extends StatelessWidget {
       icon: SimpleIcons.whatsapp,
       color: SimpleIconColors.whatsapp,
     ),
-    ShareItem(platform: 'x', icon: SimpleIcons.x, color: SimpleIconColors.x),
+    ShareItem(
+      platform: 'twitter',
+      icon: SimpleIcons.x,
+      color: SimpleIconColors.x,
+    ),
     ShareItem(
       platform: 'facebook',
       icon: SimpleIcons.facebook,

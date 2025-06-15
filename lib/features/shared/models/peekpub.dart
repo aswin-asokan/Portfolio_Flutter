@@ -60,8 +60,8 @@ AppModel peekpub = AppModel(
     "Developed a practical tool to improve development workflows for the entire Flutter community",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter | Pub.dev API",
-    tools: "Git | GitHub",
+    techStack: "Flutter, Pub.dev API",
+    tools: "Git, GitHub",
     skills:
         "Problem Solving, Project Management, Continuous Learning, User-Centric Thinking",
   ),

@@ -8,28 +8,6 @@ final List<String> images = [
 
 List projects = [
   {
-    "title": "PeekPub",
-    "bannerPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/peekpub_banner.png",
-    "caption":
-        "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
-    "categories": "Flutter | Pub.dev API",
-    "iconPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/PeekPub_logo.png",
-    "gitLink": "https://github.com/aswin-asokan/peekpub",
-  },
-  {
-    "title": "Nyaytra",
-    "bannerPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/nyaytra_banner.png",
-    "caption": "BERT Powered Indian Legal Document Summarizer & Assistant.",
-    "categories": "BERT | T5 | Gemini Api",
-    "iconPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/nayaytra_logo.jpeg",
-    "gitLink":
-        "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
-  },
-  {
     "title": "Ancient Text Preservation",
     "bannerPath":
         "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/ancient_banner.png",
