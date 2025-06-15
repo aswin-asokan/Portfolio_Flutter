@@ -41,8 +41,8 @@ class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      reverseDuration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 400),
+      reverseDuration: const Duration(milliseconds: 500),
       vsync: this,
     )..forward();
 

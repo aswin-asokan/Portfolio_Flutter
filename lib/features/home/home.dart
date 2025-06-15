@@ -35,6 +35,12 @@ class _HomeState extends State<Home> {
     });
   }
 
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   void scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
@@ -127,7 +133,7 @@ class _HomeState extends State<Home> {
                                   onPressed: () {
                                     showToast(
                                       context,
-                                      "Tap on the project card to view it's details",
+                                      "Tap on the project card to view it's details\nIn case system navigation doesn't work please use back option in navigation bar",
                                     );
                                   },
                                   icon: Icon(

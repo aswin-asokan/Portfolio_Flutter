@@ -8,27 +8,6 @@ final List<String> images = [
 
 List projects = [
   {
-    "title": "Flysoft Floor Plan",
-    "bannerPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/floorplan_banner.png",
-    "caption": "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
-    "categories": "Internship | Flutter | JSON",
-    "iconPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/internship_logo.jpeg",
-    "gitLink": "https://github.com/aswin-asokan/Flysoft_Floorplan/",
-  },
-  {
-    "title": "Gradgate",
-    "bannerPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/gradgate_banner.png",
-    "caption":
-        "Minimal Interface that allows Students to Apply for Jobs and Internships.",
-    "categories": "Flutter | MySQL | PHP",
-    "iconPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/gradgate_logo.jpeg",
-    "gitLink": "https://github.com/aswin-asokan/GradGate",
-  },
-  {
     "title": "System Monitor",
     "bannerPath":
         "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/system_monitor_banner.png",

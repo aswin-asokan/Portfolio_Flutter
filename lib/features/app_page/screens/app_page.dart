@@ -63,6 +63,12 @@ class _AppPageState extends State<AppPage> {
     pjtinfoItems = widget.projectInfo.items;
   }
 
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   void scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
@@ -150,11 +156,11 @@ class _AppPageState extends State<AppPage> {
                             imgPath: widget.iconPath,
                           ),
                           Divider(
+                            key: sectionKeys[1],
                             color: context.colorScheme.primary,
                             thickness: 1,
                           ),
                           SelectableText(
-                            key: sectionKeys[1],
                             "Screenshots",
                             style: context.textTheme.titleMedium!.copyWith(
                               fontSize: 25,
@@ -162,11 +168,11 @@ class _AppPageState extends State<AppPage> {
                           ),
                           AppSsList(images: widget.screenshots),
                           Divider(
+                            key: sectionKeys[2],
                             color: context.colorScheme.primary,
                             thickness: 1,
                           ),
                           AboutSection(
-                            key: sectionKeys[2],
                             title: "About this app",
                             about: widget.aboutApp,
                             subtitle1: "🛠️ Features",
@@ -176,11 +182,11 @@ class _AppPageState extends State<AppPage> {
                             infoItems: appInfoItems,
                           ),
                           Divider(
+                            key: sectionKeys[3],
                             color: context.colorScheme.primary,
                             thickness: 1,
                           ),
                           AboutSection(
-                            key: sectionKeys[3],
                             title: "About this project",
                             about: widget.aboutProject,
                             subtitle1: "⚙️ Challenges faced",

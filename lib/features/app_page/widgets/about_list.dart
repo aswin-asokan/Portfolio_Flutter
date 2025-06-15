@@ -21,7 +21,7 @@ class AboutList extends StatelessWidget {
               content.map((feature) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
+                  child: SelectableText(
                     "•\t$feature",
                     style: context.textTheme.displaySmall,
                   ),
