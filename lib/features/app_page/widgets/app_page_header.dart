@@ -47,31 +47,29 @@ class AppPageHeader extends StatelessWidget {
                         Responsive.isMobile(context) ||
                                 Responsive.isSmallTablet(context)
                             ? MediaQuery.sizeOf(context).width - 150
-                            : double.infinity,
+                            : 500, // fallback width for larger screens
                   ),
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.textTheme.titleMedium!.copyWith(
-                            fontSize: 30,
-                          ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textTheme.titleMedium!.copyWith(
+                          fontSize: 30,
                         ),
-                        Text(
-                          subTitle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.textTheme.displaySmall!.copyWith(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w100,
-                          ),
+                      ),
+                      Text(
+                        subTitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textTheme.displaySmall!.copyWith(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w100,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
