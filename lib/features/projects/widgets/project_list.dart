@@ -8,16 +8,6 @@ final List<String> images = [
 
 List projects = [
   {
-    "title": "Ancient Text Preservation",
-    "bannerPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/ancient_banner.png",
-    "caption": "IndicBERT Model that Predict and Reconstruct Missing Words.",
-    "categories": "BERT | GCP",
-    "iconPath":
-        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/ancient_logo.png",
-    "gitLink": "https://github.com/Najiya-Nazrin/ancient-language-preservation",
-  },
-  {
     "title": "Flysoft Floor Plan",
     "bannerPath":
         "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/floorplan_banner.png",

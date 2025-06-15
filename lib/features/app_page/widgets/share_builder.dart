@@ -29,20 +29,27 @@ Future<void> dialogBuilder(
                 spacing: 15,
                 children: [
                   AppIcon(path: path, radius: 8, height: 50),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 5,
-                    children: [
-                      Text(title, style: context.textTheme.titleSmall),
-                      Text(
-                        "Share this project",
-                        style: context.textTheme.displaySmall,
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 5,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.textTheme.titleSmall,
+                        ),
+                        Text(
+                          "Share this project",
+                          style: context.textTheme.displaySmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-              ShareButtonsRow(link: 'https://github.com/aswin-asokan/GradGate'),
+              ShareButtonsRow(link: link),
               ClipboardField(controller: copyController),
             ],
           ),

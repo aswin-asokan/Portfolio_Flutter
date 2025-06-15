@@ -41,23 +41,38 @@ class AppPageHeader extends StatelessWidget {
               children: [
                 if (Responsive.isMobile(context))
                   AppIcon(path: imgPath, radius: 8, height: 50),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SelectableText(
-                      title,
-                      style: context.textTheme.titleMedium!.copyWith(
-                        fontSize: 30,
-                      ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth:
+                        Responsive.isMobile(context) ||
+                                Responsive.isSmallTablet(context)
+                            ? MediaQuery.sizeOf(context).width - 150
+                            : double.infinity,
+                  ),
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.textTheme.titleMedium!.copyWith(
+                            fontSize: 30,
+                          ),
+                        ),
+                        Text(
+                          subTitle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.textTheme.displaySmall!.copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w100,
+                          ),
+                        ),
+                      ],
                     ),
-                    SelectableText(
-                      subTitle,
-                      style: context.textTheme.displaySmall!.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w100,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
