@@ -20,12 +20,6 @@ enum AppAvailability {
 
   final IconData icon;
   final String text;
-
-  static AppAvailability? fromText(String text) {
-    return AppAvailability.values.firstWhere(
-      (e) => e.text.toLowerCase() == text,
-    );
-  }
 }
 
 class SupportedDevice extends StatelessWidget {

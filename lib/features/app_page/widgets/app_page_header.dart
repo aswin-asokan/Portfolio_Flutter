@@ -11,14 +11,16 @@ class AppPageHeader extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.buttonText,
-    required this.link,
+    required this.gitLink,
+    required this.releaseLink,
     required this.device,
     required this.imgPath,
   });
   final String title;
   final String subTitle;
   final String buttonText;
-  final String link;
+  final String gitLink;
+  final String releaseLink;
   final AppAvailability device;
   final String imgPath;
   @override
@@ -61,11 +63,12 @@ class AppPageHeader extends StatelessWidget {
             ),
             AppButton(
               text: buttonText,
-              link: link,
+              gitLink: gitLink,
+              releaseLink: releaseLink,
               path: imgPath,
               title: title,
             ),
-            SupportedDevice(device: AppAvailability.androidLinux),
+            SupportedDevice(device: device),
           ],
         ),
       ],

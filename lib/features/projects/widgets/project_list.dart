@@ -1,110 +1,144 @@
+final List<String> images = [
+  "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub1.png",
+  "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub2.png",
+  "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub3.png",
+  "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub4.png",
+  "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub5.png",
+];
+
 List projects = [
   {
     "title": "PeekPub",
-    "bannerPath": "assets/files/projects/banner/peekpub_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/peekpub_banner.png",
     "caption":
         "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
     "categories": "Flutter | Pub.dev API",
-    "iconPath": "assets/files/projects/icons/PeekPub_logo.png",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/PeekPub_logo.png",
     "gitLink": "https://github.com/aswin-asokan/peekpub",
   },
   {
     "title": "Nyaytra",
-    "bannerPath": "assets/files/projects/banner/nyaytra_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/nyaytra_banner.png",
     "caption": "BERT Powered Indian Legal Document Summarizer & Assistant.",
     "categories": "BERT | T5 | Gemini Api",
-    "iconPath": "assets/files/projects/icons/nayaytra_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/nayaytra_logo.jpeg",
     "gitLink":
         "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
   },
   {
     "title": "Ancient Text Preservation",
-    "bannerPath": "assets/files/projects/banner/ancient_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/ancient_banner.png",
     "caption": "IndicBERT Model that Predict and Reconstruct Missing Words.",
     "categories": "BERT | GCP",
-    "iconPath": "assets/files/projects/icons/ancient_logo.png",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/ancient_logo.png",
     "gitLink": "https://github.com/Najiya-Nazrin/ancient-language-preservation",
   },
   {
     "title": "Flysoft Floor Plan",
-    "bannerPath": "assets/files/projects/banner/floorplan_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/floorplan_banner.png",
     "caption": "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
     "categories": "Internship | Flutter | JSON",
-    "iconPath": "assets/files/projects/icons/internship_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/internship_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/Flysoft_Floorplan/",
   },
   {
     "title": "Gradgate",
-    "bannerPath": "assets/files/projects/banner/gradgate_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/gradgate_banner.png",
     "caption":
         "Minimal Interface that allows Students to Apply for Jobs and Internships.",
     "categories": "Flutter | MySQL | PHP",
-    "iconPath": "assets/files/projects/icons/gradgate_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/gradgate_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/GradGate",
   },
   {
     "title": "System Monitor",
-    "bannerPath": "assets/files/projects/banner/system_monitor_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/system_monitor_banner.png",
     "caption": "Keep an Eye on Your Server’s Performance Effortlessly.",
     "categories": "Flutter",
-    "iconPath": "assets/files/projects/icons/sysmonitor_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/sysmonitor_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/System-Monitor",
   },
   {
     "title": "Pocket Dresses",
-    "bannerPath": "assets/files/projects/banner/pocket_dress_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/pocket_dress_banner.png",
     "caption":
         "Charming Shopping App that Offers a Curated Selection of Dresses.",
     "categories": "Flutter | Hive",
-    "iconPath": "assets/files/projects/icons/pocketdress_logo.png",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/pocketdress_logo.png",
     "gitLink": "https://github.com/aswin-asokan/FlutterFly/",
   },
   {
     "title": "TasksEVO",
-    "bannerPath": "assets/files/projects/banner/taskevo1_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/taskevo1_banner.png",
     "caption": "Supercharge your Productivity and Stay Organized.",
     "categories": "Flutter | Hive | Flutter Quill",
-    "iconPath": "assets/files/projects/icons/taskevo1_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/taskevo1_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/taskevo",
   },
   {
     "title": "EazyGo Authority",
-    "bannerPath": "assets/files/projects/banner/eazygoAuth_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/eazygoAuth_banner.png",
     "caption": "Designed for Authorities to Manage eazyGo Reports.",
     "categories": "Flutter | Firebase | OSM",
-    "iconPath": "assets/files/projects/icons/eazygoauth_logo.png",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/eazygoauth_logo.png",
     "gitLink": "https://github.com/aswin-asokan/eazyGo_Auth",
   },
   {
     "title": "EazyGo",
-    "bannerPath": "assets/files/projects/banner/eazygo_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/eazygo_banner.png",
     "caption": "Efficiently Report Infrastructural Damages on Map.",
     "categories": "Flutter | Firebase | GCP",
-    "iconPath": "assets/files/projects/icons/eazygo_logo.png",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/eazygo_logo.png",
     "gitLink": "https://github.com/aswin-asokan/EazyGo-MAp",
   },
   {
     "title": "Hotel Management",
-    "bannerPath": "assets/files/projects/banner/hotelmanagement_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/hotelmanagement_banner.png",
     "caption": "User-friendly Tool that Centralizes Room and Rental details.",
     "categories": "Java | MySQL",
-    "iconPath": "assets/files/projects/icons/hotel_logo.png",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/hotel_logo.png",
     "gitLink": "https://github.com/aswin-asokan/Hotelmanagement-App",
   },
   {
     "title": "Dairy Management",
-    "bannerPath": "assets/files/projects/banner/dairymanagement_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/dairymanagement_banner.png",
     "caption": "A Simple Java App for Managing Sales, Purchases and Staffs.",
     "categories": "Java | MySQL",
-    "iconPath": "assets/files/projects/icons/dairy_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/dairy_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/DairyManagement-App",
   },
   {
     "title": "Kerala IOT Challenge",
-    "bannerPath": "assets/files/projects/banner/iot_banner.png",
+    "bannerPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/iot_banner.png",
     "caption": "20 IoT Projects with Explanations and Working Videos.",
     "categories": "Arduino | ESP32",
-    "iconPath": "assets/files/projects/icons/iot_logo.jpeg",
+    "iconPath":
+        "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/iot_logo.jpeg",
     "gitLink": "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
   },
 ];

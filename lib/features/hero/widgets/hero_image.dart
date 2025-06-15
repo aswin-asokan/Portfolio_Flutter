@@ -9,8 +9,8 @@ class HeroImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          "assets/images/hero_image.png",
+        Image.network(
+          "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/hero_image.png",
           height: Responsive.isMobile(context) ? 500 : 800,
           fit: BoxFit.cover,
         ),

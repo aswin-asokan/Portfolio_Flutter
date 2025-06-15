@@ -9,7 +9,7 @@ void shareLink(String platform, String link) async {
   switch (platform) {
     case 'whatsapp':
       url =
-          'https://wa.me/?text=${Uri.encodeComponent("Check this out: $link")}';
+          'https://wa.me/?text=${Uri.encodeComponent("Hey, check out this super cool project I just stumbled upon!: $link")}';
       break;
     case 'facebook':
       url = 'https://www.facebook.com/sharer/sharer.php?u=$encodedLink';
@@ -19,7 +19,8 @@ void shareLink(String platform, String link) async {
           'https://twitter.com/intent/tweet?text=Check%20this%20out&url=$encodedLink';
       break;
     case 'email':
-      url = 'mailto:?subject=Check this out&body=$encodedLink';
+      url =
+          'mailto:?subject=Hey check out this super cool project I just stumbled upon!&body=$encodedLink';
       break;
     case 'copy':
       Clipboard.setData(ClipboardData(text: link));

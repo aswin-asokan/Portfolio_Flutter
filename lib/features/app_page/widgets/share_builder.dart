@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/app_page/widgets/ShareButtonsRow.dart';
+import 'package:portfolio/features/app_page/widgets/Share_buttons_row.dart';
 import 'package:portfolio/features/app_page/widgets/app_icon.dart';
 import 'package:portfolio/features/app_page/widgets/clipboard_field.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';

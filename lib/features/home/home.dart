@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
@@ -8,6 +9,7 @@ import 'package:portfolio/features/hero/screens/hero_container.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/projects/screens/projects.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/shared/widgets/toast.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Home extends StatefulWidget {
@@ -113,10 +115,28 @@ class _HomeState extends State<Home> {
                               key: sectionKeys[2],
                             ),
                             Experience(),
-                            Text(
-                              "Projects",
-                              style: context.textTheme.bodyLarge,
-                              key: sectionKeys[3],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Projects",
+                                  style: context.textTheme.bodyLarge,
+                                  key: sectionKeys[3],
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    showToast(
+                                      context,
+                                      "Tap on the project card to view it's details",
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Symbols.help_outline,
+                                    color: Colors.white,
+                                    size: 25,
+                                  ),
+                                ),
+                              ],
                             ),
                             Projects(),
                             Text(

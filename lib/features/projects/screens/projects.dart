@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:portfolio/features/app_page/screens/app_page.dart';
 import 'package:portfolio/features/projects/widgets/project_card.dart';
-import 'package:portfolio/features/projects/widgets/project_list.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/shared/models/project_list.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Projects extends StatefulWidget {
@@ -56,15 +57,47 @@ class _ProjectsState extends State<Projects> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(), // disable inner scroll
                 itemBuilder: (context, index) {
+                  final app = projects[index];
                   return Padding(
                     padding: const EdgeInsets.only(right: 25.0),
-                    child: ProjectCard(
-                      title: projects[index]["title"],
-                      bannerPath: projects[index]["bannerPath"],
-                      caption: projects[index]["caption"],
-                      categories: projects[index]["categories"],
-                      iconPath: projects[index]["iconPath"],
-                      gitLink: projects[index]["gitLink"],
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => AppPage(
+                                    title: app.title,
+                                    iconPath: app.iconPath,
+                                    gitLink: app.gitLink,
+                                    releaseLink: app.releaseLink,
+                                    subtitle: app.subtitle,
+                                    type: app.type,
+                                    devices: app.devices,
+                                    screenshots: app.screenshots,
+                                    aboutApp: app.aboutApp,
+                                    features: app.features,
+                                    futurePlan: app.futurePlan,
+                                    appInfo: app.appInfo,
+                                    aboutProject: app.aboutProject,
+                                    challeges: app.challeges,
+                                    outcomes: app.outcomes,
+                                    projectInfo: app.projectInfo,
+                                  ),
+                            ),
+                          );
+                        },
+                        child: ProjectCard(
+                          title: app.title,
+                          bannerPath: app.bannerPath,
+                          caption: app.caption,
+                          categories: app.techStack,
+                          iconPath: app.iconPath,
+                          gitLink: app.gitLink,
+                        ),
+                      ),
                     ),
                   );
                 },

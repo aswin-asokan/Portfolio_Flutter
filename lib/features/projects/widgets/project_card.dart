@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
-import 'package:svg_flutter/svg_flutter.dart';
+import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -46,7 +46,7 @@ class ProjectCard extends StatelessWidget {
             children: [
               // Image filling the entire stack
               Positioned.fill(
-                child: Image.asset(bannerPath, fit: BoxFit.cover),
+                child: Image.network(bannerPath, fit: BoxFit.cover),
               ),
               Positioned(
                 top: cardHeight * 0.5,
@@ -97,7 +97,7 @@ class ProjectCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(
                                   Responsive.isMobile(context) ? 8 : 15,
                                 ),
-                                child: Image.asset(
+                                child: Image.network(
                                   iconPath,
                                   height:
                                       Responsive.isMobile(context) ? 30 : 45,
@@ -138,13 +138,10 @@ class ProjectCard extends StatelessWidget {
                             onPressed: () {
                               _launch(gitLink);
                             },
-                            icon: SvgPicture.asset(
-                              "assets/icons/github.svg",
-                              colorFilter: ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                              height: Responsive.isMobile(context) ? 20 : 30,
+                            icon: Icon(
+                              SimpleIcons.github,
+                              color: Colors.white,
+                              size: Responsive.isMobile(context) ? 20 : 30,
                             ),
                           ),
                         ],

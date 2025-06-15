@@ -14,7 +14,7 @@ class AppIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(radius),
-      child: Image.asset(path, height: height),
+      child: Image.network(path, height: height),
     );
   }
 }

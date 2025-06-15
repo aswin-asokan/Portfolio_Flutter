@@ -8,7 +8,7 @@ class AppScreenshotCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
-      child: Image.asset(imagePath, fit: BoxFit.cover), // FIXED
+      child: Image.network(imagePath, fit: BoxFit.cover), // FIXED
     );
   }
 }

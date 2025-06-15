@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/app_page/widgets/share_app.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -33,8 +34,8 @@ class ShareButtonsRow extends StatelessWidget {
     ),
     ShareItem(
       platform: 'email',
-      icon: SimpleIcons.gmail,
-      color: SimpleIconColors.gmail,
+      icon: Symbols.mail_outline,
+      color: Color(0xff888888),
     ),
   ];
 

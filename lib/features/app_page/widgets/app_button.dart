@@ -33,12 +33,14 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     required this.text,
-    required this.link,
+    required this.gitLink,
+    required this.releaseLink,
     required this.path,
     required this.title,
   });
   final String text;
-  final String link;
+  final String gitLink;
+  final String releaseLink;
   final String path;
   final String title;
   @override
@@ -52,7 +54,7 @@ class AppButton extends StatelessWidget {
           width: 140,
           child: ElevatedButton(
             onPressed: () {
-              _launch(link);
+              _launch(releaseLink.isEmpty ? gitLink : releaseLink);
             },
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(
@@ -82,7 +84,7 @@ class AppButton extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            dialogBuilder(context, title, path, link);
+            dialogBuilder(context, title, path, gitLink);
           },
           child: Row(
             spacing: 8,

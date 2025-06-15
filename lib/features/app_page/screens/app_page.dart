@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/about_section.dart';
 import 'package:portfolio/features/app_page/widgets/app_page_header.dart';
 import 'package:portfolio/features/app_page/widgets/app_ss_list.dart';
@@ -8,47 +10,56 @@ import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class AppPage extends StatefulWidget {
-  const AppPage({super.key});
-
+  const AppPage({
+    super.key,
+    required this.title,
+    required this.iconPath,
+    required this.gitLink,
+    required this.subtitle,
+    required this.releaseLink,
+    required this.type,
+    required this.devices,
+    required this.screenshots,
+    required this.aboutApp,
+    required this.features,
+    required this.futurePlan,
+    required this.appInfo,
+    required this.aboutProject,
+    required this.challeges,
+    required this.outcomes,
+    required this.projectInfo,
+  });
+  final String title;
+  final String subtitle;
+  final String iconPath;
+  final List<String> screenshots;
+  final String gitLink;
+  final String type;
+  final String releaseLink;
+  final String aboutApp;
+  final List<String> features;
+  final List<String> futurePlan;
+  final String aboutProject;
+  final List<String> challeges;
+  final List<String> outcomes;
+  final AppAvailability devices;
+  final AppInfo appInfo;
+  final ProjectInfo projectInfo;
   @override
   State<AppPage> createState() => _AppPageState();
 }
 
 class _AppPageState extends State<AppPage> {
-  final List<String> features = [
-    "Browse and search all packages from pub.dev",
-    "View key package details: version, release date, SDK/Flutter compatibility, platforms",
-    "Quick access to pub.dev, documentation, and GitHub links",
-    "Clearly shows if a package is discontinued",
-    "Multi-language support (English, Spanish, Hindi, Malayalam)",
-    "Light and dark theme support (follows system preferences)",
-  ];
-  final List<String> upcoming = [
-    "Mark packages as favorites and get notified on updates",
-    "In-app chatbot support for suggestions and help",
-  ];
-  final List<InfoModel> infoItems = [
-    InfoModel(title: "Version", content: "1.0.0"),
-    InfoModel(title: "Updated on", content: "17th May 2025"),
-    InfoModel(title: "Product type", content: "Developer Tools"),
-    InfoModel(title: "Size", content: "48.7 MB"),
-    InfoModel(
-      title: "Languages",
-      content: "English, Spanish, Hindi, Malayalam",
-    ),
-    InfoModel(
-      title: "Links",
-      content: "https://github.com/aswin-asokan/peekpub",
-      isLink: true,
-      linkText: "Github",
-    ),
-  ];
-  final List<InfoModel> infoProject = [
-    InfoModel(title: "Tech Stack", content: "Flutter | Pub.dev API"),
-    InfoModel(title: "Tools & Services", content: "Git | Github"),
-    InfoModel(title: "Skills", content: "Git, Github"),
-  ];
+  late final List<InfoModel> appInfoItems, pjtinfoItems;
   double padding = 60;
+
+  @override
+  void initState() {
+    super.initState();
+    appInfoItems = widget.appInfo.items;
+    pjtinfoItems = widget.projectInfo.items;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (Responsive.isDesktop(context) || Responsive.isDesktopLarge(context)) {
@@ -102,12 +113,13 @@ class _AppPageState extends State<AppPage> {
                     spacing: 15,
                     children: [
                       AppPageHeader(
-                        title: "PeekPub",
-                        subTitle: "Browse, Search, and Explore.",
-                        buttonText: "Github",
-                        link: "https://github.com/aswin-asokan/peekpub",
-                        device: AppAvailability.android,
-                        imgPath: "assets/files/projects/icons/PeekPub_logo.png",
+                        title: widget.title,
+                        subTitle: widget.subtitle,
+                        buttonText: widget.type,
+                        gitLink: widget.gitLink,
+                        releaseLink: widget.releaseLink,
+                        device: widget.devices,
+                        imgPath: widget.iconPath,
                       ),
                       Divider(color: context.colorScheme.primary, thickness: 1),
                       SelectableText(
@@ -116,17 +128,26 @@ class _AppPageState extends State<AppPage> {
                           fontSize: 25,
                         ),
                       ),
-                      AppSsList(),
+                      AppSsList(images: widget.screenshots),
                       Divider(color: context.colorScheme.primary, thickness: 1),
                       AboutSection(
                         title: "About this app",
-                        about:
-                            "Trelza PeekPub is a clean and lightweight pub.dev tracker app built to help developers browse, search, and explore Flutter/Dart packages effortlessly. Whether you're looking for the latest package versions, supported platforms, or official links (pub.dev, docs, GitHub), PeekPub helps you quickly find the perfect package for your project.",
-                        subtitle1: "🚀 Features",
-                        content1: features,
-                        subtitle2: "🧩 Future Plans",
-                        content2: upcoming,
-                        infoItems: infoItems,
+                        about: widget.aboutApp,
+                        subtitle1: "🛠️ Features",
+                        content1: widget.features,
+                        subtitle2: "🚀 Future Plans",
+                        content2: widget.futurePlan,
+                        infoItems: appInfoItems,
+                      ),
+                      Divider(color: context.colorScheme.primary, thickness: 1),
+                      AboutSection(
+                        title: "About this project",
+                        about: widget.aboutProject,
+                        subtitle1: "⚙️ Challenges faced",
+                        content1: widget.challeges,
+                        subtitle2: "🎯 Learnings or outcomes",
+                        content2: widget.outcomes,
+                        infoItems: pjtinfoItems,
                       ),
                     ],
                   ),

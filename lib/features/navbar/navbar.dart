@@ -98,10 +98,10 @@ class _NavbarState extends State<Navbar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
+            Image.network(
               Theme.of(context).brightness == Brightness.dark
-                  ? "assets/images/logo/dark_logo.png"
-                  : "assets/images/logo/light_logo.png",
+                  ? "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/dark_logo.png"
+                  : "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/light_logo.png",
               height: 30,
             ),
             Row(

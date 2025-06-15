@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/features/app_page/widgets/app_screenshot_card.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class AppSsList extends StatefulWidget {
-  const AppSsList({super.key});
-
+  const AppSsList({super.key, required this.images});
+  final List<String> images;
   @override
   State<AppSsList> createState() => _AppSsListState();
 }
@@ -18,14 +17,6 @@ class _AppSsListState extends State<AppSsList> {
     _scrollController.dispose();
     super.dispose();
   }
-
-  final List<String> images = [
-    "assets/files/projects/screenshots/peekpub/peekpub1.png",
-    "assets/files/projects/screenshots/peekpub/peekpub2.png",
-    "assets/files/projects/screenshots/peekpub/peekpub3.png",
-    "assets/files/projects/screenshots/peekpub/peekpub4.png",
-    "assets/files/projects/screenshots/peekpub/peekpub5.png",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +39,10 @@ class _AppSsListState extends State<AppSsList> {
               child: SizedBox(
                 height: cardHeight,
                 child: Row(
-                  children: List.generate(images.length, (index) {
+                  children: List.generate(widget.images.length, (index) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
-                      child: AppScreenshotCard(imagePath: images[index]),
+                      child: AppScreenshotCard(imagePath: widget.images[index]),
                     );
                   }),
                 ),
