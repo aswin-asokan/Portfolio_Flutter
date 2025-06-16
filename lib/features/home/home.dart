@@ -32,12 +32,14 @@ class _HomeState extends State<Home> {
           _isLoading = false;
         });
       }
-    });
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showToast(
-        context,
-        "The pictures are hosted on Github and may take some time to load.",
-      );
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (mounted) {
+          showToast(
+            context,
+            "The pictures are hosted on Github and may take some time to load.",
+          );
+        }
+      });
     });
   }
 
