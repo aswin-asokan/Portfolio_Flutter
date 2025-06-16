@@ -46,8 +46,33 @@ class ProjectCard extends StatelessWidget {
             children: [
               // Image filling the entire stack
               Positioned.fill(
-                child: Image.network(bannerPath, fit: BoxFit.cover),
+                child: Image.network(
+                  bannerPath,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Container(
+                      color: Colors.black12,
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    );
+                  },
+                  errorBuilder:
+                      (context, error, stackTrace) => Container(
+                        color: Colors.grey.shade300,
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.broken_image,
+                          size: 40,
+                          color: Colors.grey,
+                        ),
+                      ),
+                ),
               ),
+
               Positioned(
                 top: cardHeight * 0.5,
                 left: 0,

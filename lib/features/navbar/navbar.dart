@@ -17,62 +17,12 @@ class Navbar extends StatefulWidget {
   final List<String> sections;
   final ScrollController scrollController;
   final bool isBackEnabled;
-
   @override
   State<Navbar> createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Navbar> {
   int selectedIndex = 0;
-  late List<double> sectionOffsets;
-
-  @override
-  void initState() {
-    super.initState();
-    sectionOffsets = List.filled(widget.sectionKeys.length, 0);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _calculateSectionOffsets();
-    });
-    widget.scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    widget.scrollController.removeListener(_onScroll);
-    super.dispose();
-  }
-
-  void _calculateSectionOffsets() {
-    for (int i = 0; i < widget.sectionKeys.length; i++) {
-      final context = widget.sectionKeys[i].currentContext;
-      if (context != null) {
-        final box = context.findRenderObject() as RenderBox;
-        final position = box.localToGlobal(Offset.zero).dy;
-        sectionOffsets[i] = position + widget.scrollController.offset;
-      }
-    }
-  }
-
-  void _onScroll() {
-    final currentOffset = widget.scrollController.offset;
-
-    int closestIndex = 0;
-    double minDiff = double.infinity;
-
-    for (int i = 0; i < sectionOffsets.length; i++) {
-      final diff = (sectionOffsets[i] - currentOffset).abs();
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIndex = i;
-      }
-    }
-
-    if (selectedIndex != closestIndex) {
-      setState(() {
-        selectedIndex = closestIndex;
-      });
-    }
-  }
 
   void _scrollToSection(int index) {
     final keyContext = widget.sectionKeys[index].currentContext;
@@ -103,7 +53,7 @@ class _NavbarState extends State<Navbar> {
       ),
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(widget.sections.length, (index) {
@@ -152,13 +102,13 @@ class _NavbarState extends State<Navbar> {
                       Navigator.pop(context);
                     },
                     child: Row(
+                      spacing: 8,
                       children: [
                         Icon(
                           Icons.arrow_back_ios_new_outlined,
                           size: 16,
                           color: context.colorScheme.primary,
                         ),
-                        const SizedBox(width: 8),
                         if (!Responsive.isMobile(context))
                           Text(
                             "Go back",
@@ -209,7 +159,7 @@ class _NavbarState extends State<Navbar> {
                     Responsive.isSmallTablet(context))
                   IconButton(
                     onPressed: _openBottomNavMenu,
-                    icon: const Icon(Symbols.menu),
+                    icon: Icon(Symbols.menu),
                   ),
               ],
             ),

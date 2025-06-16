@@ -33,6 +33,12 @@ class _HomeState extends State<Home> {
         });
       }
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showToast(
+        context,
+        "The pictures are hosted on Github and may take some time to load.",
+      );
+    });
   }
 
   @override
@@ -133,7 +139,7 @@ class _HomeState extends State<Home> {
                                   onPressed: () {
                                     showToast(
                                       context,
-                                      "Tap on the project card to view it's details\nIn case system navigation doesn't work please use back option in navigation bar",
+                                      "Tap on the project card to view it's details.",
                                     );
                                   },
                                   icon: Icon(

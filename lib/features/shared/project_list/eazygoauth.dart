@@ -12,7 +12,7 @@ AppModel eazygoauth = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/eazygoAuth_banner.png",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/eazygoauth_logo.png",
-  gitLink: "https://github.com/aswin-asokan/System-Monitor",
+  gitLink: "https://github.com/aswin-asokan/eazyGo_Auth",
   subtitle: "Streamlined eazyGo Report Management",
   releaseLink: "https://eazygo-375211.web.app/#/",
   type: "website",
@@ -40,11 +40,12 @@ AppModel eazygoauth = AppModel(
     productType: "Civic Tech / Governance",
     size: "NIL",
     languages: "English",
-    link: "https://github.com/aswin-asokan/System-Monitor",
+    link: "https://github.com/aswin-asokan/eazyGo_Auth",
   ),
   aboutProject:
       "EazyGo-Authority was developed as the main project for my Diploma in Computer Science. While EazyGo mobile was a team-based initiative, I chose to build the authority-side system entirely on my own to expand the project’s scope and integrate additional functionality.\nThis gave me the opportunity to explore Flutter Web, build a system that complements a mobile counterpart, and experience full-stack coordination between two independently developed applications.",
   challeges: [
+    "Google maps does not fully support web (paid): switched to OSM",
     "Flutter Web Hosting Issues: Learned how to deploy the app on Firebase Hosting",
     "Cross-platform UI overflow: Implemented responsive layout handling using MediaQuery",
   ],
