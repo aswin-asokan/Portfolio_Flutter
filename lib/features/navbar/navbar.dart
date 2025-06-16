@@ -22,13 +22,13 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  int selectedIndex = 0;
+  int? selectedIndex;
 
   void _scrollToSection(int index) {
     final keyContext = widget.sectionKeys[index].currentContext;
     if (keyContext != null) {
       final box = keyContext.findRenderObject() as RenderBox;
-      final position = box.localToGlobal(Offset.zero, ancestor: null).dy;
+      final position = box.localToGlobal(Offset.zero).dy;
       final offset =
           widget.scrollController.offset + position - kToolbarHeight - 30;
 
@@ -37,9 +37,16 @@ class _NavbarState extends State<Navbar> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
+    }
 
-      setState(() {
-        selectedIndex = index;
+    setState(() {
+      selectedIndex = index;
+    });
+
+    // On mobile, reset the selection highlight after a short delay
+    if (Responsive.isMobile(context) || Responsive.isSmallTablet(context)) {
+      Future.delayed(const Duration(seconds: 1), () {
+        if (mounted) setState(() => selectedIndex = null);
       });
     }
   }
@@ -53,28 +60,19 @@ class _NavbarState extends State<Navbar> {
       ),
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(widget.sections.length, (index) {
-              final isSelected = selectedIndex == index;
               return ListTile(
                 title: Center(
                   child: Text(
                     widget.sections[index],
-                    style: context.textTheme.labelSmall?.copyWith(
-                      fontSize: 25,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
-                      color:
-                          isSelected
-                              ? Theme.of(context).colorScheme.primary
-                              : null,
-                    ),
+                    style: context.textTheme.labelSmall?.copyWith(fontSize: 25),
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context); // Close bottom sheet
+                  Navigator.pop(context);
                   _scrollToSection(index);
                 },
               );
@@ -98,11 +96,8 @@ class _NavbarState extends State<Navbar> {
                 ? MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                    onTap: () => Navigator.pop(context),
                     child: Row(
-                      spacing: 8,
                       children: [
                         Icon(
                           Icons.arrow_back_ios_new_outlined,
@@ -110,9 +105,11 @@ class _NavbarState extends State<Navbar> {
                           color: context.colorScheme.primary,
                         ),
                         if (!Responsive.isMobile(context))
+                          const SizedBox(width: 8),
+                        if (!Responsive.isMobile(context))
                           Text(
                             "Go back",
-                            style: context.textTheme.labelMedium!.copyWith(
+                            style: context.textTheme.labelMedium?.copyWith(
                               fontSize: 16,
                             ),
                           ),
@@ -134,21 +131,29 @@ class _NavbarState extends State<Navbar> {
                   Row(
                     children: List.generate(widget.sections.length, (index) {
                       final isSelected = selectedIndex == index;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: TextButton(
-                          onPressed: () => _scrollToSection(index),
-                          child: Text(
-                            widget.sections[index],
-                            style: context.textTheme.labelSmall?.copyWith(
-                              color:
-                                  isSelected
-                                      ? Theme.of(context).colorScheme.primary
-                                      : null,
-                              fontWeight:
-                                  isSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
+                      return MouseRegion(
+                        onEnter: (_) => setState(() => selectedIndex = index),
+                        onExit: (_) {
+                          if (!Responsive.isMobile(context)) {
+                            setState(() => selectedIndex = null);
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: TextButton(
+                            onPressed: () => _scrollToSection(index),
+                            child: Text(
+                              widget.sections[index],
+                              style: context.textTheme.labelSmall?.copyWith(
+                                color:
+                                    isSelected
+                                        ? Theme.of(context).colorScheme.primary
+                                        : null,
+                                fontWeight:
+                                    isSelected
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                              ),
                             ),
                           ),
                         ),
@@ -159,7 +164,7 @@ class _NavbarState extends State<Navbar> {
                     Responsive.isSmallTablet(context))
                   IconButton(
                     onPressed: _openBottomNavMenu,
-                    icon: Icon(Symbols.menu),
+                    icon: const Icon(Symbols.menu),
                   ),
               ],
             ),
