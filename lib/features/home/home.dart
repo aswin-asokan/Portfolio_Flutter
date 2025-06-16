@@ -24,14 +24,17 @@ class _HomeState extends State<Home> {
   bool _isLoading = true;
 
   @override
+  @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 4), () {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      });
     });
   }
 
