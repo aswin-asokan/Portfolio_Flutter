@@ -74,7 +74,7 @@ AppModel gradgate = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: "Flutter, SQLite",
-    tools: "Git | Github",
+    tools: "Git, Github",
     skills:
         "Code Review Mindset, Self-Guided Refactoring, Learning Agility, Resilience",
   ),

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/projects/widgets/project_card.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/models/project_list.dart';
+import 'package:portfolio/features/shared/project_list/project_list.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Projects extends StatefulWidget {

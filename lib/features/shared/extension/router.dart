@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/features/app_page/screens/app_page.dart';
 import 'package:portfolio/features/home/home.dart';
-import 'package:portfolio/features/shared/models/project_list.dart';
+import 'package:portfolio/features/shared/project_list/project_list.dart';
 
 final GoRouter goRouter = GoRouter(
   initialLocation: '/',

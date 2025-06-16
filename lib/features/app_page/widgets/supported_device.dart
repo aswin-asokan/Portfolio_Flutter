@@ -12,6 +12,7 @@ enum AppAvailability {
     icon: Symbols.devices,
     text: "Available for Android and Desktop platform",
   ),
+  desktop(icon: Symbols.monitor, text: "Available for Desktop platform"),
   website(icon: Symbols.web, text: "Available as Website"),
   all(icon: Symbols.devices, text: "Available for All Devices"),
   codeOnly(

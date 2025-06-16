@@ -61,6 +61,6 @@ AppModel systemMonitor = AppModel(
   projectInfo: ProjectInfo(
     techStack: "Flutter",
     tools: "Git, Github",
-    skills: "Quick Learning\nDeadline Focused\nSelf-Confidence",
+    skills: "Quick Learning, Deadline Focused, Self-Confidence",
   ),
 );
