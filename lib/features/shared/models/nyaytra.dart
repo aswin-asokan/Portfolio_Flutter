@@ -4,6 +4,7 @@ import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
 AppModel nyaytra = AppModel(
+  id: "nyaytra",
   title: "Nyaytra",
   caption: "BERT Powered Indian Legal Document Summarizer & Assistant.",
   techStack: "BERT | T5 | Gemini Api",

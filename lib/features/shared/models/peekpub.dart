@@ -4,6 +4,7 @@ import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
 AppModel peekpub = AppModel(
+  id: "peekpub",
   title: "Trelza PeekPub",
   caption:
       "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",

@@ -4,6 +4,7 @@ import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
 AppModel flysoftFloorplan = AppModel(
+  id: "floorplan",
   title: "Flysoft Floor Plan",
   caption: "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
   techStack: "Internship | Flutter | JSON",

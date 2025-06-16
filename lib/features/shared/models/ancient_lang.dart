@@ -4,6 +4,7 @@ import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
 AppModel ancientLang = AppModel(
+  id: "ancientlang",
   title: "Ancient Text Preservation",
   caption: "IndicBERT Model that Predict and Reconstruct Missing Words.",
   techStack: "BERT | GCP",

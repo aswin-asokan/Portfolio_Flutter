@@ -4,6 +4,7 @@ import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
 AppModel gradgate = AppModel(
+  id: "gradgate",
   title: "Gradgate",
   caption:
       "Minimal Interface that allows Students to Apply for Jobs and Internships.",

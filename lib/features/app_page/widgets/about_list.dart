@@ -13,7 +13,10 @@ class AboutList extends StatelessWidget {
         const SizedBox(height: 5),
         SelectableText(
           title,
-          style: context.textTheme.titleMedium!.copyWith(fontSize: 18),
+          style: context.textTheme.titleMedium!.copyWith(
+            fontSize: 18,
+            fontFamily: 'NotoSansSymbols2',
+          ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

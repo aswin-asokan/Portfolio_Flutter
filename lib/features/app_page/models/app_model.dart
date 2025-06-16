@@ -3,6 +3,7 @@ import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
 class AppModel {
+  final String id;
   final String title;
   final String caption;
   final String subtitle;
@@ -23,6 +24,7 @@ class AppModel {
   final AppInfo appInfo;
   final ProjectInfo projectInfo;
   AppModel({
+    required this.id,
     required this.title,
     required this.caption,
     required this.techStack,

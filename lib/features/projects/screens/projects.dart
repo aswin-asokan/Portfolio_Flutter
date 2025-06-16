@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:portfolio/features/app_page/screens/app_page.dart';
 import 'package:portfolio/features/projects/widgets/project_card.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/models/project_list.dart';
@@ -64,30 +64,8 @@ class _ProjectsState extends State<Projects> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => AppPage(
-                                    title: app.title,
-                                    iconPath: app.iconPath,
-                                    gitLink: app.gitLink,
-                                    releaseLink: app.releaseLink,
-                                    subtitle: app.subtitle,
-                                    type: app.type,
-                                    devices: app.devices,
-                                    screenshots: app.screenshots,
-                                    aboutApp: app.aboutApp,
-                                    features: app.features,
-                                    futurePlan: app.futurePlan,
-                                    appInfo: app.appInfo,
-                                    aboutProject: app.aboutProject,
-                                    challeges: app.challeges,
-                                    outcomes: app.outcomes,
-                                    projectInfo: app.projectInfo,
-                                  ),
-                            ),
-                          );
+                          print('Navigating to /app/${app.id}');
+                          context.push('/app/${app.id}');
                         },
                         child: ProjectCard(
                           title: app.title,
