@@ -8,7 +8,10 @@ enum AppAvailability {
   mac(icon: Symbols.laptop_chromebook, text: "Available for macOS"),
   linux(icon: Symbols.laptop_chromebook, text: "Available for Linux"),
   androidWeb(icon: Symbols.devices, text: "Available for Android and Web"),
-  androidLinux(icon: Symbols.devices, text: "Available for Android and Linux"),
+  androidDesktop(
+    icon: Symbols.devices,
+    text: "Available for Android and Desktop platform",
+  ),
   website(icon: Symbols.web, text: "Available as Website"),
   all(icon: Symbols.devices, text: "Available for All Devices"),
   codeOnly(

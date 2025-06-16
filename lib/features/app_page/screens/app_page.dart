@@ -175,9 +175,9 @@ class _AppPageState extends State<AppPage> {
                           AboutSection(
                             title: "About this app",
                             about: widget.aboutApp,
-                            subtitle1: "🛠️ Features",
+                            subtitle1: "Features",
                             content1: widget.features,
-                            subtitle2: "🚀 Future Plans",
+                            subtitle2: "Future Plans",
                             content2: widget.futurePlan,
                             infoItems: appInfoItems,
                           ),
@@ -189,9 +189,9 @@ class _AppPageState extends State<AppPage> {
                           AboutSection(
                             title: "About this project",
                             about: widget.aboutProject,
-                            subtitle1: "⚙️ Challenges faced",
+                            subtitle1: "Challenges faced",
                             content1: widget.challeges,
-                            subtitle2: "🎯 Learnings or outcomes",
+                            subtitle2: "Learnings or outcomes",
                             content2: widget.outcomes,
                             infoItems: pjtinfoItems,
                           ),

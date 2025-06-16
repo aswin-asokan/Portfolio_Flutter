@@ -35,8 +35,8 @@ class SkillTile extends StatelessWidget {
   }
 }
 
-class skillTileTab extends StatelessWidget {
-  const skillTileTab({
+class SkillTileTab extends StatelessWidget {
+  const SkillTileTab({
     super.key,
     required this.title,
     required this.skills,

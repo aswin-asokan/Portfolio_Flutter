@@ -12,7 +12,7 @@ class InfoWidget extends StatelessWidget {
       children: [
         SelectableText(
           "Information",
-          style: context.textTheme.titleMedium!.copyWith(fontSize: 18),
+          style: context.textTheme.titleMedium!.copyWith(fontSize: 20),
         ),
         Wrap(
           spacing: 30,

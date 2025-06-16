@@ -33,11 +33,14 @@ class InfoItem extends StatelessWidget {
         spacing: 5,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SelectableText(title, style: context.textTheme.headlineSmall),
+          SelectableText(
+            title,
+            style: context.textTheme.headlineSmall!.copyWith(fontSize: 18),
+          ),
           if (!isLink)
             SelectableText(
               content,
-              style: context.textTheme.bodySmall!.copyWith(fontSize: 13),
+              style: context.textTheme.bodySmall!.copyWith(fontSize: 15),
             ),
           if (isLink)
             MouseRegion(

@@ -44,7 +44,10 @@ class AboutSection extends StatelessWidget {
                 children: [
                   SelectableText(
                     about,
-                    style: context.textTheme.displaySmall,
+                    style: context.textTheme.displaySmall!.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
                     textAlign: TextAlign.justify,
                   ),
                   AboutList(title: subtitle1, content: content1),

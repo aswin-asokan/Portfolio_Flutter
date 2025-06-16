@@ -64,7 +64,6 @@ class _ProjectsState extends State<Projects> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          print('Navigating to /app/${app.id}');
                           context.push('/app/${app.id}');
                         },
                         child: ProjectCard(

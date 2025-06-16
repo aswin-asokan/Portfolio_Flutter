@@ -17,7 +17,7 @@ AppModel gradgate = AppModel(
   subtitle: "Easy Job & Internship Applications",
   releaseLink: "https://github.com/aswin-asokan/GradGate/releases/tag/v1.5.0",
   type: "download",
-  devices: AppAvailability.androidLinux,
+  devices: AppAvailability.androidDesktop,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/gradgate/gradgate1.png",
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/gradgate/gradgate2.png",
@@ -43,6 +43,7 @@ AppModel gradgate = AppModel(
     "Authentication System\n- Separate login for students, colleges, and employers.",
     "Analytics\n- Student, college and company dashboards showing job and application metrics.",
     "Local Persistence\n- Entire system functions offline using sqflite.",
+    "Multi platform support\n- Supports Android(Tablet), Linux(Prerequisites should be met), Windows",
   ],
   futurePlan: [
     "Project has reached end-of-life (EOL) with no further development planned.",
@@ -69,6 +70,7 @@ AppModel gradgate = AppModel(
     "Built a fully offline-capable Flutter app with CRUD functionality across multiple modules",
     "Improved skills in data modeling, local persistence, and modular Flutter architecture",
     "Used the experience to improve code testability and maintainability",
+    "Used Github actions to generate a working Windows build without relying on Windows system",
   ],
   projectInfo: ProjectInfo(
     techStack: "Flutter, SQLite",

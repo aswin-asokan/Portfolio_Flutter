@@ -4,8 +4,8 @@ import 'package:portfolio/features/hero/widgets/hero_image.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class HeroLeft extends StatelessWidget {
-  const HeroLeft({super.key});
-
+  const HeroLeft({super.key, this.width = 450});
+  final double width;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,7 +45,7 @@ class HeroLeft extends StatelessWidget {
                             ? 500
                             : Responsive.isSmallTablet(context)
                             ? MediaQuery.sizeOf(context).width * 0.88
-                            : 450,
+                            : width * 0.3,
                     height: Responsive.isMobile(context) ? 500 : 800,
                     child: HeroImage(),
                   ),

@@ -100,7 +100,7 @@ class HeroRight extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 20,
               children: List.generate(skills.length, (index) {
-                return skillTileTab(
+                return SkillTileTab(
                   title: skills[index]["title"],
                   skills: skills[index]["skills"],
                   icon: skills[index]["icon"],

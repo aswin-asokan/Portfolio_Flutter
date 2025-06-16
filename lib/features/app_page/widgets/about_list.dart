@@ -13,10 +13,7 @@ class AboutList extends StatelessWidget {
         const SizedBox(height: 5),
         SelectableText(
           title,
-          style: context.textTheme.titleMedium!.copyWith(
-            fontSize: 18,
-            fontFamily: 'NotoSansSymbols2',
-          ),
+          style: context.textTheme.titleMedium!.copyWith(fontSize: 20),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +23,10 @@ class AboutList extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: SelectableText(
                     "•\t$feature",
-                    style: context.textTheme.displaySmall,
+                    style: context.textTheme.displaySmall!.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 );
               }).toList(),
