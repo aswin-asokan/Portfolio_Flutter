@@ -33,10 +33,6 @@ class _HomeState extends State<Home> {
         });
       }
     });
-    showToast(
-      context,
-      "The images are hosted on Github and takes some time to load.",
-    );
   }
 
   @override
