@@ -32,14 +32,6 @@ class _HomeState extends State<Home> {
           _isLoading = false;
         });
       }
-      Future.delayed(const Duration(milliseconds: 300), () {
-        if (mounted) {
-          showToast(
-            context,
-            "The pictures are hosted on Github and may take some time to load.",
-          );
-        }
-      });
     });
   }
 
@@ -141,7 +133,7 @@ class _HomeState extends State<Home> {
                                   onPressed: () {
                                     showToast(
                                       context,
-                                      "Tap on the project card to view it's details.",
+                                      "Tap on the project card to view it's details\nIn case system navigation doesn't work please use back option in navigation bar",
                                     );
                                   },
                                   icon: Icon(
