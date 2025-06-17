@@ -117,11 +117,19 @@ class _NavbarState extends State<Navbar> {
                     ),
                   ),
                 )
-                : Image.network(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/dark_logo.png"
-                      : "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/light_logo.png",
-                  height: 30,
+                : MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      _scrollToSection(0);
+                    },
+                    child: Image.network(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/dark_logo.png"
+                          : "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/light_logo.png",
+                      height: 30,
+                    ),
+                  ),
                 ),
             Row(
               children: [
