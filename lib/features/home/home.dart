@@ -102,11 +102,13 @@ class _HomeState extends State<Home> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done &&
                         snapshot.hasData) {
-                      return Lottie(
-                        composition: snapshot.data!,
-                        height: 250,
-                        frameRate: FrameRate.max,
-                        addRepaintBoundary: false,
+                      return Center(
+                        child: Lottie(
+                          composition: snapshot.data!,
+                          height: 250,
+                          frameRate: FrameRate.max,
+                          addRepaintBoundary: false,
+                        ),
                       );
                     } else {
                       return SizedBox(height: 250); // Or a fallback spinner
