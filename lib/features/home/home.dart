@@ -24,15 +24,23 @@ class _HomeState extends State<Home> {
   bool _isLoading = true;
 
   @override
-  @override
   void initState() {
     super.initState();
+
     Future.delayed(const Duration(seconds: 4), () {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      // Delay the toast slightly after removing the loader
+      Future.delayed(const Duration(milliseconds: 300), () {
         if (mounted) {
-          setState(() {
-            _isLoading = false;
-          });
+          showToast(
+            context,
+            "The pictures are hosted on Github and may take some time to load.",
+          );
         }
       });
     });
@@ -91,7 +99,11 @@ class _HomeState extends State<Home> {
             _isLoading
                 ? Center(
                   // Display a loading indicator while _isLoading is true
-                  child: Lottie.asset("assets/icons/loading.json", height: 250),
+                  child: Lottie.asset(
+                    "assets/icons/loading.json",
+                    height: 250,
+                    frameRate: FrameRate.max,
+                  ),
                 )
                 : Stack(
                   children: [
