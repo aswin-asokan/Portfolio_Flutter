@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
@@ -22,11 +22,9 @@ class _HomeState extends State<Home> {
   final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
   bool _isLoading = true;
-  late final Future<LottieComposition> _composition;
   @override
   void initState() {
     super.initState();
-    _composition = AssetLottie('assets/icons/loading.json').load();
     Future.delayed(const Duration(seconds: 4), () {
       if (!mounted) return;
 
@@ -97,23 +95,11 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         body:
             _isLoading
-                ? FutureBuilder<LottieComposition>(
-                  future: _composition,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done &&
-                        snapshot.hasData) {
-                      return Center(
-                        child: Lottie(
-                          composition: snapshot.data!,
-                          height: 250,
-                          frameRate: FrameRate.max,
-                          addRepaintBoundary: false,
-                        ),
-                      );
-                    } else {
-                      return SizedBox(height: 250); // Or a fallback spinner
-                    }
-                  },
+                ? Center(
+                  child: LoadingAnimationWidget.dotsTriangle(
+                    color: Colors.white,
+                    size: 200,
+                  ),
                 )
                 : Stack(
                   children: [
