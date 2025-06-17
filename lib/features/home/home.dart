@@ -22,11 +22,11 @@ class _HomeState extends State<Home> {
   final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
   bool _isLoading = true;
-
+  late final Future<LottieComposition> _composition;
   @override
   void initState() {
     super.initState();
-
+    _composition = AssetLottie('assets/icons/loading.json').load();
     Future.delayed(const Duration(seconds: 4), () {
       if (!mounted) return;
 
@@ -97,13 +97,21 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         body:
             _isLoading
-                ? Center(
-                  // Display a loading indicator while _isLoading is true
-                  child: Lottie.asset(
-                    "assets/icons/loading.json",
-                    height: 250,
-                    frameRate: FrameRate.max,
-                  ),
+                ? FutureBuilder<LottieComposition>(
+                  future: _composition,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      return Lottie(
+                        composition: snapshot.data!,
+                        height: 250,
+                        frameRate: FrameRate.max,
+                        addRepaintBoundary: false,
+                      );
+                    } else {
+                      return SizedBox(height: 250); // Or a fallback spinner
+                    }
+                  },
                 )
                 : Stack(
                   children: [
