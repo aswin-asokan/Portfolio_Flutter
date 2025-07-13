@@ -52,7 +52,7 @@ AppModel gradgate = AppModel(
     version: "1.5.0",
     updatedOn: "15th June 2025",
     productType: "Campus Utilities",
-    size: "Android: 56.8MB\nLinux: 20.2MB",
+    size: "Android: 56.8MB\nLinux: 20.2MB\nWindows: 14.7MB",
     languages: "English",
     link: "https://github.com/aswin-asokan/GradGate",
   ),

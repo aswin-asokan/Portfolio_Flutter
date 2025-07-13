@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/aswin/Documents/GitHub/Portfolio_Flutter/linux"
+    "cmake.sourceDirectory": "/home/aswin/Documents/GitHub/Portfolio_Flutter/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
