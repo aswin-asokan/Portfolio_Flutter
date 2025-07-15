@@ -45,7 +45,7 @@ AppModel flysoftFloorplan = AppModel(
   aboutProject:
       "During my internship at Flysoft, I worked on the Floor Plan Builder project where I focused on developing critical UI and interaction components like the boundary wall canvas and table customization system. These features were challenging but crucial, as they involved custom widget creation and deep understanding of Flutter’s rendering system.\nThis was my first real-world exposure to working within a structured software team using Jira, Bitbucket, and Confluence. I handled both frontend logic and user experience improvements, and helped deliver version 1.0.6. It was a great hands-on experience in building a scalable, cross-platform Flutter application from the ground up.",
   challeges: [
-    "Challenge	SolutionFlutter dependencies not working as intended (like flutter_box_transform)\nSolution: Developed a fully custom table widget",
+    "Flutter dependencies not working as intended (like flutter_box_transform)\nSolution: Developed a fully custom table widget",
     "Table deletion bug (wrong table removed)\nSolution: Introduced unique GlobalKey for each table",
     "Table IDs clashing across floors\nSolution: Switched from GlobalKey to ValueKey",
     "Incorrect drag offset after tab bar addition\nSolution: Adjusted drag offset to account for UI elements",
