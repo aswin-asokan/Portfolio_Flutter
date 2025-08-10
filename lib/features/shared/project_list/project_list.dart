@@ -10,10 +10,12 @@ import 'package:portfolio/features/shared/project_list/kerala_iot_challenge.dart
 import 'package:portfolio/features/shared/project_list/nyaytra.dart';
 import 'package:portfolio/features/shared/project_list/peekpub.dart';
 import 'package:portfolio/features/shared/project_list/pocket_dresses.dart';
+import 'package:portfolio/features/shared/project_list/snackfit.dart';
 import 'package:portfolio/features/shared/project_list/system_monitor.dart';
 import 'package:portfolio/features/shared/project_list/taskevo.dart';
 
 final List<AppModel> projects = [
+  snackfit,
   peekpub,
   nyaytra,
   ancientLang,

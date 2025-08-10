@@ -27,11 +27,11 @@ AppModel flysoftFloorplan = AppModel(
       "The Flysoft Floor Plan Application is a cross-platform desktop and Android app that allows users—especially restaurant owners and managers—to design custom floor layouts using a user-friendly drag-and-drop interface. With support for multi-floor layouts, interactive table management, export/import functionality, and localization in multiple languages, the app delivers a powerful yet accessible solution for visual space planning.\nUsers can draw floor boundaries, add tables, customize their properties, and export layouts in JSON format for cross-device usage. The interface is intuitive and lightweight, with precise control made possible through grid snapping and custom UI components.",
   features: [
     "Floor Plan Layout Customization:\n- Drag-to-edit control points to define custom walls\n- Snap-to-grid support for layout precision\n- Add/delete points with visual editing tools",
-    "Interactive Table Management\n- Add circular or rectangular tables\n- Resize, reposition, rename, recolor, toggle status\n- Tables snap to grid and update in real time",
-    "Multi-Floor Management\n- Add, rename, reorder, and delete multiple floors\n- Seamless switching and editing across floors",
-    "Import/Export Floor Plans\n- Export layout to JSON\n- Import JSON for reloading and cross-platform support",
-    "Localization Support\n- App supports English, German, and Chinese\n- Language switching built-in",
-    "User Experience\n- Clean Material 3-based UI\n- Platform-optimized layout\n- Logs generated for debug and QA use",
+    "Interactive Table Management:\n- Add circular or rectangular tables\n- Resize, reposition, rename, recolor, toggle status\n- Tables snap to grid and update in real time",
+    "Multi-Floor Management:\n- Add, rename, reorder, and delete multiple floors\n- Seamless switching and editing across floors",
+    "Import/Export Floor Plans;\n- Export layout to JSON\n- Import JSON for reloading and cross-platform support",
+    "Localization Support;\n- App supports English, German, and Chinese\n- Language switching built-in",
+    "User Experience:\n- Clean Material 3-based UI\n- Platform-optimized layout\n- Logs generated for debug and QA use",
   ],
   futurePlan: ["EOL reached after internship"],
   appInfo: AppInfo(
