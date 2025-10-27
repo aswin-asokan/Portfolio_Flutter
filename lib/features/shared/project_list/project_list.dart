@@ -11,10 +11,12 @@ import 'package:portfolio/features/shared/project_list/nyaytra.dart';
 import 'package:portfolio/features/shared/project_list/peekpub.dart';
 import 'package:portfolio/features/shared/project_list/pocket_dresses.dart';
 import 'package:portfolio/features/shared/project_list/snackfit.dart';
+import 'package:portfolio/features/shared/project_list/steel_defect.dart';
 import 'package:portfolio/features/shared/project_list/system_monitor.dart';
 import 'package:portfolio/features/shared/project_list/taskevo.dart';
 
 final List<AppModel> projects = [
+  steelDefectDetection,
   snackfit,
   peekpub,
   nyaytra,
