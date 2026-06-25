@@ -6,7 +6,6 @@ import 'package:portfolio/features/projects/widgets/project_card.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/project_list/project_list.dart';
 import 'package:portfolio/features/shared/widgets/keep_alive_wrapper.dart';
-import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Projects extends StatefulWidget {
@@ -18,7 +17,6 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   final ScrollController _scrollController = ScrollController();
-  bool _isImagesLoading = true;
 
   @override
   void initState() {
@@ -29,21 +27,10 @@ class _ProjectsState extends State<Projects> {
   }
 
   Future<void> _precacheProjectImages() async {
-    try {
-      final futures = <Future<void>>[];
-      for (final app in projects) {
-        futures.add(precacheImage(CachedNetworkImageProvider(app.bannerPath), context));
-        futures.add(precacheImage(CachedNetworkImageProvider(app.iconPath), context));
-      }
-      await Future.wait(futures);
-    } catch (e) {
-      // Fail-safe
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isImagesLoading = false;
-        });
-      }
+    for (final app in projects) {
+      if (!mounted) return;
+      precacheImage(CachedNetworkImageProvider(app.bannerPath), context).catchError((_) {});
+      precacheImage(CachedNetworkImageProvider(app.iconPath), context).catchError((_) {});
     }
   }
 
@@ -85,16 +72,6 @@ class _ProjectsState extends State<Projects> {
               physics: const BouncingScrollPhysics(),
               itemCount: projects.length,
               itemBuilder: (context, index) {
-                final double cardWidth = Responsive.isMobile(context) ? 350 : 550;
-                if (_isImagesLoading) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 25.0),
-                    child: ShimmerPlaceholder(
-                      width: cardWidth,
-                      height: cardHeight,
-                    ),
-                  );
-                }
                 final app = projects[index];
                 return KeepAliveWrapper(
                   child: RepaintBoundary(

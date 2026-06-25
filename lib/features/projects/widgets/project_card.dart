@@ -51,7 +51,6 @@ class ProjectCard extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: bannerPath,
                   fit: BoxFit.cover,
-                  memCacheWidth: 600,
                   fadeInDuration: const Duration(milliseconds: 1500),
                   fadeOutDuration: const Duration(milliseconds: 1000),
                   placeholder: (context, url) => const ShimmerPlaceholder(),
@@ -120,7 +119,6 @@ class ProjectCard extends StatelessWidget {
                                   imageUrl: iconPath,
                                   height:
                                       Responsive.isMobile(context) ? 30 : 45,
-                                  memCacheHeight: 100,
                                   fadeInDuration: const Duration(milliseconds: 1200),
                                   fadeOutDuration: const Duration(milliseconds: 800),
                                   placeholder: (context, url) => ShimmerPlaceholder(

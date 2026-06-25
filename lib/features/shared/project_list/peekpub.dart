@@ -10,20 +10,20 @@ AppModel peekpub = AppModel(
       "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
   techStack: "Flutter | Pub.dev API",
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/peekpub_banner.png",
+      "assets/files/projects/banner/peekpub_banner.webp",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/PeekPub_logo.png",
+      "assets/files/projects/icons/PeekPub_logo.webp",
   gitLink: "https://github.com/aswin-asokan/peekpub",
   subtitle: "Browse, Search, and Explore.",
   type: "download",
   releaseLink: "https://github.com/aswin-asokan/peekpub/releases/tag/v1.0.0",
   devices: AppAvailability.android,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub4.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/peekpub/peekpub5.png",
+    "assets/files/projects/screenshots/peekpub/peekpub1.webp",
+    "assets/files/projects/screenshots/peekpub/peekpub2.webp",
+    "assets/files/projects/screenshots/peekpub/peekpub3.webp",
+    "assets/files/projects/screenshots/peekpub/peekpub4.webp",
+    "assets/files/projects/screenshots/peekpub/peekpub5.webp",
   ],
   aboutApp:
       "Trelza PeekPub is a clean and lightweight Flutter/Dart package tracker designed to simplify the lives of developers who rely on pub.dev. With an intuitive interface and real-time access to package metadata, PeekPub enables effortless browsing, searching, and exploration of open-source packages. It provides key information such as the latest version, supported platforms, SDK compatibility, and direct links to the package’s pub.dev page, documentation, and GitHub repository. With multilingual support and a system-adaptive theme, the app offers a smooth, accessible experience for developers worldwide.",

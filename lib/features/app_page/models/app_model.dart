@@ -7,9 +7,9 @@ class AppModel {
   final String title;
   final String caption;
   final String subtitle;
-  final String bannerPath;
-  final String iconPath;
-  final List<String> screenshots;
+  final String _bannerPath;
+  final String _iconPath;
+  final List<String> _screenshots;
   final String techStack;
   final String gitLink;
   final String type;
@@ -23,19 +23,20 @@ class AppModel {
   final AppAvailability devices;
   final AppInfo appInfo;
   final ProjectInfo projectInfo;
+
   AppModel({
     required this.id,
     required this.title,
     required this.caption,
     required this.techStack,
-    required this.bannerPath,
-    required this.iconPath,
+    required String bannerPath,
+    required String iconPath,
     required this.gitLink,
     required this.subtitle,
     required this.releaseLink,
     required this.type,
     required this.devices,
-    required this.screenshots,
+    required List<String> screenshots,
     required this.aboutApp,
     required this.features,
     required this.futurePlan,
@@ -44,5 +45,18 @@ class AppModel {
     required this.challeges,
     required this.outcomes,
     required this.projectInfo,
-  });
+  })  : _bannerPath = bannerPath,
+        _iconPath = iconPath,
+        _screenshots = screenshots;
+
+  String get bannerPath => _resolvePath(_bannerPath);
+  String get iconPath => _resolvePath(_iconPath);
+  List<String> get screenshots => _screenshots.map(_resolvePath).toList();
+
+  static String _resolvePath(String path) {
+    if (path.startsWith('http')) return path;
+    const String baseUrl = "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/dev";
+    final cleanPath = path.startsWith('/') ? path.substring(1) : path;
+    return "$baseUrl/$cleanPath";
+  }
 }
