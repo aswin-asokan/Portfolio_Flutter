@@ -4,7 +4,6 @@ import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:web/web.dart' as web;
 
 class ExpCard extends StatelessWidget {
   const ExpCard({
@@ -31,12 +30,11 @@ class ExpCard extends StatelessWidget {
   final String? file;
   final String? filename;
   String get formattedText => summary.map((item) => "•\t\t$item").join("\n");
-  void downloadAssetFile(String assetPath, String downloadFileName) {
-    web.HTMLAnchorElement()
-      ..href = assetPath
-      ..download = downloadFileName
-      ..target = '_blank'
-      ..click();
+  void downloadAssetFile(String assetPath, String downloadFileName) async {
+    final url = Uri.parse(assetPath);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
   }
 
   void _launch(String urlString) async {
@@ -110,9 +108,9 @@ class ExpCard extends StatelessWidget {
                             ),
                         ],
                       ),
-                      SelectableText(org, style: context.textTheme.bodySmall),
+                      Text(org, style: context.textTheme.bodySmall),
                       const SizedBox(height: 2),
-                      SelectableText(
+                      Text(
                         period,
                         style: context.textTheme.displaySmall,
                       ),
@@ -123,7 +121,7 @@ class ExpCard extends StatelessWidget {
             ),
 
             const SizedBox(height: 8),
-            SelectableText(formattedText, style: context.textTheme.bodySmall),
+            Text(formattedText, style: context.textTheme.bodySmall),
           ],
         ),
       ),

@@ -10,11 +10,11 @@ class FooterText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 5,
       children: [
-        SelectableText(
+        Text(
           "Thanks for Scrolling!",
           style: context.textTheme.headlineMedium,
         ),
-        SelectableText(
+        Text(
           "Crafted with care and code.\nLet’s connect and create something awesome together.",
           style: context.textTheme.displayMedium,
         ),

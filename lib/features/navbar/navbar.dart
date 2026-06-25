@@ -123,10 +123,10 @@ class _NavbarState extends State<Navbar> {
                     onTap: () {
                       _scrollToSection(0);
                     },
-                    child: Image.network(
+                    child: Image.asset(
                       Theme.of(context).brightness == Brightness.dark
-                          ? "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/dark_logo.png"
-                          : "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/images/logo/light_logo.png",
+                          ? "assets/images/logo/dark_logo.png"
+                          : "assets/images/logo/light_logo.png",
                       height: 30,
                     ),
                   ),

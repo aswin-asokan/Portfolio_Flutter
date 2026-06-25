@@ -17,7 +17,7 @@ class Education extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SelectableText(
+          Text(
             "Education",
             style: context.textTheme.labelMedium!.copyWith(fontSize: 30),
           ),

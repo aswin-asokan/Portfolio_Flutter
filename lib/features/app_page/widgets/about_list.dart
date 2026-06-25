@@ -11,7 +11,7 @@ class AboutList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 5),
-        SelectableText(
+        Text(
           title,
           style: context.textTheme.titleMedium!.copyWith(fontSize: 20),
         ),
@@ -21,7 +21,7 @@ class AboutList extends StatelessWidget {
               content.map((feature) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: SelectableText(
+                  child: Text(
                     "•\t$feature",
                     style: context.textTheme.displaySmall!.copyWith(
                       fontSize: 16,

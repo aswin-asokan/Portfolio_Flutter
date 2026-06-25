@@ -35,7 +35,7 @@ class SupportedDevice extends StatelessWidget {
       spacing: 5,
       children: [
         Icon(device.icon, color: context.colorScheme.onSurface, size: 18),
-        SelectableText(
+        Text(
           device.text,
           style: context.textTheme.displaySmall!.copyWith(
             color: context.colorScheme.onSurface,

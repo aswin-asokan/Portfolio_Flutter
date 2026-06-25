@@ -27,8 +27,8 @@ class TimeLine extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText(institution, style: context.textTheme.bodyMedium),
-            SelectableText(details, style: context.textTheme.bodySmall),
+            Text(institution, style: context.textTheme.bodyMedium),
+            Text(details, style: context.textTheme.bodySmall),
           ],
         ),
       ],

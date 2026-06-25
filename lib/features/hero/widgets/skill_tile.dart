@@ -27,8 +27,8 @@ class SkillTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, size: 45, color: context.colorScheme.primary),
-          SelectableText(title, style: context.textTheme.bodyMedium),
-          SelectableText(skills, style: context.textTheme.bodySmall),
+          Text(title, style: context.textTheme.bodyMedium),
+          Text(skills, style: context.textTheme.bodySmall),
         ],
       ),
     );
@@ -69,8 +69,8 @@ class SkillTileTab extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 5,
             children: [
-              SelectableText(title, style: context.textTheme.bodyMedium),
-              SelectableText(skills, style: context.textTheme.bodySmall),
+              Text(title, style: context.textTheme.bodyMedium),
+              Text(skills, style: context.textTheme.bodySmall),
             ],
           ),
         ],

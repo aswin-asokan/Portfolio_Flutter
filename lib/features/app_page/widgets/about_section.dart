@@ -28,7 +28,7 @@ class AboutSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SelectableText(
+        Text(
           title,
           style: context.textTheme.titleMedium!.copyWith(fontSize: 25),
         ),
@@ -42,7 +42,7 @@ class AboutSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 10,
                 children: [
-                  SelectableText(
+                  Text(
                     about,
                     style: context.textTheme.displaySmall!.copyWith(
                       fontSize: 16,

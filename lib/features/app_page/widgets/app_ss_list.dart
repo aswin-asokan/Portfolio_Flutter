@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/app_page/widgets/app_screenshot_card.dart';
+import 'package:portfolio/features/shared/widgets/keep_alive_wrapper.dart';
+import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class AppSsList extends StatefulWidget {
@@ -11,6 +14,33 @@ class AppSsList extends StatefulWidget {
 
 class _AppSsListState extends State<AppSsList> {
   final ScrollController _scrollController = ScrollController();
+  bool _isImagesLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _precacheImages();
+    });
+  }
+
+  Future<void> _precacheImages() async {
+    try {
+      final futures = widget.images.map((url) {
+        return precacheImage(CachedNetworkImageProvider(url), context);
+      }).toList();
+      // Wait for all screenshots to preload/cache
+      await Future.wait(futures);
+    } catch (e) {
+      // Fail-safe: transition to images even if some fail
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isImagesLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -30,22 +60,33 @@ class _AppSsListState extends State<AppSsList> {
                       Responsive.isDesktopLarge(context)
                   ? true
                   : false,
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 18),
-              child: SizedBox(
-                height: cardHeight,
-                child: Row(
-                  children: List.generate(widget.images.length, (index) {
+          child: Padding(
+            padding: const EdgeInsets.only(top: 5, bottom: 18),
+            child: SizedBox(
+              height: cardHeight,
+              child: ListView.builder(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemCount: widget.images.length,
+                itemBuilder: (context, index) {
+                  if (_isImagesLoading) {
+                    final double placeholderWidth = Responsive.isMobile(context) ? 200 : 250;
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
-                      child: AppScreenshotCard(imagePath: widget.images[index]),
+                      child: ShimmerPlaceholder(
+                        width: placeholderWidth,
+                        height: cardHeight,
+                      ),
                     );
-                  }),
-                ),
+                  }
+                  return KeepAliveWrapper(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: AppScreenshotCard(imagePath: widget.images[index]),
+                    ),
+                  );
+                },
               ),
             ),
           ),

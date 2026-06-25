@@ -49,8 +49,8 @@ class HeroRight extends StatelessWidget {
         children: [
           Row(
             children: [
-              SelectableText("Hi I'm ", style: context.textTheme.titleMedium),
-              SelectableText(
+              Text("Hi I'm ", style: context.textTheme.titleMedium),
+              Text(
                 "Aswin",
                 style: context.textTheme.titleMedium!.copyWith(
                   color: context.colorScheme.primary,
@@ -58,7 +58,7 @@ class HeroRight extends StatelessWidget {
               ),
             ],
           ),
-          SelectableText(
+          Text(
             "I'm a B.Tech CSE student and a Flutter developer, passionate about creative problem-solving and dedicated to expanding my skills. Outside of coding, I enjoy drawing while listening to music.",
             style: context.textTheme.bodySmall,
           ),
