@@ -3,21 +3,15 @@ import 'package:portfolio/features/hero/widgets/hero_left.dart';
 import 'package:portfolio/features/hero/widgets/hero_right.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
-import 'package:web/web.dart' as web;
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
 
-  Size getWebScreenSize() {
-    final screen = web.window.screen;
-    return Size(screen.width.toDouble(), screen.height.toDouble());
-  }
-
   @override
   Widget build(BuildContext context) {
-    final screen = web.window.screen;
-    final height = screen.height - 260;
-    final width = screen.width;
+    final mediaQuery = MediaQuery.of(context);
+    final width = mediaQuery.size.width;
+    final height = mediaQuery.size.height - 260;
     return CustomContainer(
       color: Colors.transparent,
       padding: EdgeInsets.all(0),
@@ -28,7 +22,7 @@ class HeroSection extends StatelessWidget {
               ? SizedBox(
                 height:
                     Responsive.isDesktopLarge(context)
-                        ? height.toDouble()
+                        ? height
                         : Responsive.isTablet(context)
                         ? 800
                         : 620,
@@ -36,7 +30,7 @@ class HeroSection extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: !Responsive.isDesktop(context) ? 6 : 5,
-                      child: HeroLeft(width: width.toDouble()),
+                      child: HeroLeft(width: width),
                     ),
                     Expanded(
                       flex: !Responsive.isDesktop(context) ? 4 : 5,

@@ -21,7 +21,7 @@ class AboutMe extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText("About Me", style: context.textTheme.labelLarge),
+            Text("About Me", style: context.textTheme.labelLarge),
             LayoutBuilder(
               builder: (context, constraints) {
                 if (!Responsive.isDesktop(context) &&

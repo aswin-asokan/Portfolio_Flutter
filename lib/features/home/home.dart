@@ -21,26 +21,18 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
-  bool _isLoading = true;
+  final bool _isLoading = false;
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 4), () {
-      if (!mounted) return;
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      // Delay the toast slightly after removing the loader
-      Future.delayed(const Duration(milliseconds: 300), () {
-        if (mounted) {
-          showToast(
-            context,
-            "The pictures are hosted on Github and may take some time to load.",
-          );
-        }
-      });
+    // Delay the toast slightly after the page builds
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        showToast(
+          context,
+          "The pictures are hosted on Github and may take some time to load.",
+        );
+      }
     });
   }
 
@@ -93,15 +85,15 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
-        body:
-            _isLoading
-                ? Center(
-                  child: LoadingAnimationWidget.dotsTriangle(
-                    color: Colors.white,
-                    size: 200,
-                  ),
-                )
-                : Stack(
+        body: _isLoading
+            ? Center(
+                child: LoadingAnimationWidget.dotsTriangle(
+                  color: Colors.white,
+                  size: 200,
+                ),
+              )
+            : SelectionArea(
+                child: Stack(
                   children: [
                     // Scrollable content
                     SingleChildScrollView(
@@ -186,6 +178,7 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
+              ),
       ),
     );
   }

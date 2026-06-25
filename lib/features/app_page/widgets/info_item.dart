@@ -33,12 +33,12 @@ class InfoItem extends StatelessWidget {
         spacing: 5,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SelectableText(
+          Text(
             title,
             style: context.textTheme.headlineSmall!.copyWith(fontSize: 18),
           ),
           if (!isLink)
-            SelectableText(
+            Text(
               content,
               style: context.textTheme.bodySmall!.copyWith(fontSize: 15),
             ),

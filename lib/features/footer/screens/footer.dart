@@ -73,7 +73,7 @@ class Footer extends StatelessWidget {
                         color: context.colorScheme.surfaceContainerHigh,
                         size: 20,
                       ),
-                      SelectableText(
+                      Text(
                         "Aswin, 2025",
                         style: context.textTheme.displayMedium,
                       ),
@@ -82,7 +82,7 @@ class Footer extends StatelessWidget {
                   Row(
                     spacing: 8,
                     children: [
-                      SelectableText(
+                      Text(
                         "Made with ",
                         style: context.textTheme.displayMedium,
                       ),

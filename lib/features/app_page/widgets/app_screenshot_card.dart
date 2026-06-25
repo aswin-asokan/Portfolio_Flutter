@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
 
 class AppScreenshotCard extends StatelessWidget {
   const AppScreenshotCard({super.key, required this.imagePath});
@@ -8,7 +10,23 @@ class AppScreenshotCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
-      child: Image.network(imagePath, fit: BoxFit.cover), // FIXED
+      child: CachedNetworkImage(
+        imageUrl: imagePath,
+        fit: BoxFit.cover,
+        memCacheHeight: 600,
+        fadeInDuration: const Duration(milliseconds: 1500),
+        fadeOutDuration: const Duration(milliseconds: 1000),
+        placeholder: (context, url) => const ShimmerPlaceholder(),
+        errorWidget: (context, url, error) => Container(
+          color: Colors.grey.shade300,
+          alignment: Alignment.center,
+          child: const Icon(
+            Icons.broken_image,
+            size: 40,
+            color: Colors.grey,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -12,11 +12,11 @@ class ContactLeft extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SelectableText(
+        Text(
           "Get in Touch",
           style: context.textTheme.titleMedium!.copyWith(fontSize: 25),
         ),
-        SelectableText(
+        Text(
           "I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.",
           style: context.textTheme.bodySmall,
         ),

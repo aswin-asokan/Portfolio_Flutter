@@ -10,7 +10,7 @@ class InfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SelectableText(
+        Text(
           "Information",
           style: context.textTheme.titleMedium!.copyWith(fontSize: 20),
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -46,30 +48,22 @@ class ProjectCard extends StatelessWidget {
             children: [
               // Image filling the entire stack
               Positioned.fill(
-                child: Image.network(
-                  bannerPath,
+                child: CachedNetworkImage(
+                  imageUrl: bannerPath,
                   fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Container(
-                      color: Colors.black12,
-                      alignment: Alignment.center,
-                      child: const CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                    );
-                  },
-                  errorBuilder:
-                      (context, error, stackTrace) => Container(
-                        color: Colors.grey.shade300,
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.broken_image,
-                          size: 40,
-                          color: Colors.grey,
-                        ),
-                      ),
+                  memCacheWidth: 600,
+                  fadeInDuration: const Duration(milliseconds: 1500),
+                  fadeOutDuration: const Duration(milliseconds: 1000),
+                  placeholder: (context, url) => const ShimmerPlaceholder(),
+                  errorWidget: (context, url, error) => Container(
+                    color: Colors.grey.shade300,
+                    alignment: Alignment.center,
+                    child: const Icon(
+                      Icons.broken_image,
+                      size: 40,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
 
@@ -122,10 +116,28 @@ class ProjectCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(
                                   Responsive.isMobile(context) ? 8 : 15,
                                 ),
-                                child: Image.network(
-                                  iconPath,
+                                child: CachedNetworkImage(
+                                  imageUrl: iconPath,
                                   height:
                                       Responsive.isMobile(context) ? 30 : 45,
+                                  memCacheHeight: 100,
+                                  fadeInDuration: const Duration(milliseconds: 1200),
+                                  fadeOutDuration: const Duration(milliseconds: 800),
+                                  placeholder: (context, url) => ShimmerPlaceholder(
+                                    width: Responsive.isMobile(context) ? 30 : 45,
+                                    height: Responsive.isMobile(context) ? 30 : 45,
+                                    borderRadius: Responsive.isMobile(context) ? 8 : 15,
+                                  ),
+                                  errorWidget: (context, url, error) => Container(
+                                    color: Colors.grey.shade300,
+                                    width: Responsive.isMobile(context) ? 30 : 45,
+                                    height: Responsive.isMobile(context) ? 30 : 45,
+                                    alignment: Alignment.center,
+                                    child: const Icon(
+                                      Icons.broken_image,
+                                      size: 15,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Column(

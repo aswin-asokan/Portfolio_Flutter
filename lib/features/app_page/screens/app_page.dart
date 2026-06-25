@@ -110,115 +110,117 @@ class _AppPageState extends State<AppPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: padding,
-                  vertical: 20,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height:
+        body: SelectionArea(
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                controller: scrollController,
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: padding,
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height:
+                            Responsive.isMobile(context) ||
+                                    Responsive.isSmallTablet(context)
+                                ? 85
+                                : 70,
+                        key: sectionKeys[0],
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(
                           Responsive.isMobile(context) ||
                                   Responsive.isSmallTablet(context)
-                              ? 85
-                              : 70,
-                      key: sectionKeys[0],
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(
-                        Responsive.isMobile(context) ||
-                                Responsive.isSmallTablet(context)
-                            ? padding + 20
-                            : padding - 10,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: context.colorScheme.surface,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 15,
-                        children: [
-                          AppPageHeader(
-                            title: widget.title,
-                            subTitle: widget.subtitle,
-                            buttonText: widget.type,
-                            gitLink: widget.gitLink,
-                            releaseLink: widget.releaseLink,
-                            device: widget.devices,
-                            imgPath: widget.iconPath,
-                          ),
-                          Divider(
-                            key: sectionKeys[1],
-                            color: context.colorScheme.primary,
-                            thickness: 1,
-                          ),
-                          SelectableText(
-                            "Screenshots",
-                            style: context.textTheme.titleMedium!.copyWith(
-                              fontSize: 25,
+                              ? padding + 20
+                              : padding - 10,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: context.colorScheme.surface,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: 15,
+                          children: [
+                            AppPageHeader(
+                              title: widget.title,
+                              subTitle: widget.subtitle,
+                              buttonText: widget.type,
+                              gitLink: widget.gitLink,
+                              releaseLink: widget.releaseLink,
+                              device: widget.devices,
+                              imgPath: widget.iconPath,
                             ),
-                          ),
-                          AppSsList(images: widget.screenshots),
-                          Divider(
-                            key: sectionKeys[2],
-                            color: context.colorScheme.primary,
-                            thickness: 1,
-                          ),
-                          AboutSection(
-                            title: "About this app",
-                            about: widget.aboutApp,
-                            subtitle1: "Features",
-                            content1: widget.features,
-                            subtitle2: "Future Plans",
-                            content2: widget.futurePlan,
-                            infoItems: appInfoItems,
-                          ),
-                          Divider(
-                            key: sectionKeys[3],
-                            color: context.colorScheme.primary,
-                            thickness: 1,
-                          ),
-                          AboutSection(
-                            title: "About this project",
-                            about: widget.aboutProject,
-                            subtitle1: "Challenges faced",
-                            content1: widget.challeges,
-                            subtitle2: "Learnings or outcomes",
-                            content2: widget.outcomes,
-                            infoItems: pjtinfoItems,
-                          ),
-                        ],
+                            Divider(
+                              key: sectionKeys[1],
+                              color: context.colorScheme.primary,
+                              thickness: 1,
+                            ),
+                            Text(
+                              "Screenshots",
+                              style: context.textTheme.titleMedium!.copyWith(
+                                fontSize: 25,
+                              ),
+                            ),
+                            AppSsList(images: widget.screenshots),
+                            Divider(
+                              key: sectionKeys[2],
+                              color: context.colorScheme.primary,
+                              thickness: 1,
+                            ),
+                            AboutSection(
+                              title: "About this app",
+                              about: widget.aboutApp,
+                              subtitle1: "Features",
+                              content1: widget.features,
+                              subtitle2: "Future Plans",
+                              content2: widget.futurePlan,
+                              infoItems: appInfoItems,
+                            ),
+                            Divider(
+                              key: sectionKeys[3],
+                              color: context.colorScheme.primary,
+                              thickness: 1,
+                            ),
+                            AboutSection(
+                              title: "About this project",
+                              about: widget.aboutProject,
+                              subtitle1: "Challenges faced",
+                              content1: widget.challeges,
+                              subtitle2: "Learnings or outcomes",
+                              content2: widget.outcomes,
+                              infoItems: pjtinfoItems,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 20,
+                left: padding,
+                right: padding,
+                child: Navbar(
+                  sectionKeys: sectionKeys,
+                  scrollController: scrollController,
+                  isBackEnabled: true,
+                  sections: [
+                    "Header",
+                    "Screenshots",
+                    "About App",
+                    "About Project",
                   ],
                 ),
               ),
-            ),
-            Positioned(
-              top: 20,
-              left: padding,
-              right: padding,
-              child: Navbar(
-                sectionKeys: sectionKeys,
-                scrollController: scrollController,
-                isBackEnabled: true,
-                sections: [
-                  "Header",
-                  "Screenshots",
-                  "About App",
-                  "About Project",
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
