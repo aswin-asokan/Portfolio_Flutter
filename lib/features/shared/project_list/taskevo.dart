@@ -9,10 +9,10 @@ AppModel taskevo = AppModel(
   caption: "Supercharge your Productivity and Stay Organized.",
   techStack: "Flutter | Hive | Flutter Quill",
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/taskevo1_banner.png",
+      "assets/files/projects/banner/taskevo1_banner.webp",
 
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/taskevo1_logo.jpeg",
+      "assets/files/projects/icons/taskevo1_logo.webp",
 
   gitLink: "https://github.com/aswin-asokan/taskevo",
   subtitle: "Boost Productivity, Stay Organized.",
@@ -20,12 +20,12 @@ AppModel taskevo = AppModel(
   type: "download",
   devices: AppAvailability.androidWeb,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/taskevo/taskevo1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/taskevo/taskevo2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/taskevo/taskevo3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/taskevo/taskevo4.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/taskevo/taskevo5.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/taskevo/taskevo6.png",
+    "assets/files/projects/screenshots/taskevo/taskevo1.webp",
+    "assets/files/projects/screenshots/taskevo/taskevo2.webp",
+    "assets/files/projects/screenshots/taskevo/taskevo3.webp",
+    "assets/files/projects/screenshots/taskevo/taskevo4.webp",
+    "assets/files/projects/screenshots/taskevo/taskevo5.webp",
+    "assets/files/projects/screenshots/taskevo/taskevo6.webp",
   ],
   aboutApp:
       "TasksEVO is a Flutter-based productivity app that combines a to-do list and rich note-taking experience in one place. Designed with minimalism in mind, it enables users to manage tasks and related notes seamlessly—without requiring login or internet access. It stores everything locally, ensuring both privacy and performance.\nWhether you're planning a project, managing daily goals, or jotting down quick thoughts, TasksEVO offers a focused environment with advanced features like subtasks, formatting tools, due dates, and theme customization.",

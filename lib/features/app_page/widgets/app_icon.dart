@@ -21,7 +21,6 @@ class AppIcon extends StatelessWidget {
         height: height,
         width: height,
         fit: BoxFit.cover,
-        memCacheHeight: 150,
         fadeInDuration: const Duration(milliseconds: 1200),
         fadeOutDuration: const Duration(milliseconds: 800),
         placeholder: (context, url) => ShimmerPlaceholder(

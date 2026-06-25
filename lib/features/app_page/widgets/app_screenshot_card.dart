@@ -13,7 +13,6 @@ class AppScreenshotCard extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: imagePath,
         fit: BoxFit.cover,
-        memCacheHeight: 600,
         fadeInDuration: const Duration(milliseconds: 1500),
         fadeOutDuration: const Duration(milliseconds: 1000),
         placeholder: (context, url) => const ShimmerPlaceholder(),
