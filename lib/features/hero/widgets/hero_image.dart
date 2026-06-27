@@ -14,8 +14,8 @@ class HeroImage extends StatelessWidget {
       alignment: isMobileLayout ? Alignment.center : Alignment.centerRight,
       child: Image.asset(
         Theme.of(context).brightness == Brightness.dark
-            ? "assets/images/hero_img_dark.webp"
-            : "assets/images/hero_img_light.webp",
+            ? "assets/images/hero/hero_img_dark.webp"
+            : "assets/images/hero/hero_img_light.webp",
         width: isMobileLayout ? double.infinity : null,
         fit: BoxFit.contain,
         filterQuality: FilterQuality.high,

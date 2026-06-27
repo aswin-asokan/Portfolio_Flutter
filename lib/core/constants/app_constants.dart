@@ -33,4 +33,13 @@ class AppConstants {
   static const double fontDisplayXL = 80.0;
   static const double fontDisplayXXL = 100.0;
   static const double fontDisplayXXXL = 150.0;
+
+  // About card widgets constants
+  static const double iconSizeAbout = 52.0;
+  static const double aboutCardHeightRow = 200.0;
+  static const double aboutCardHeightStacked = 200.0;
+  static const double aboutMobileBreakpoint = 650.0;
+  static const double aboutTabletBreakpoint = 1020.0;
+  static const double splashMaxAmplitude = 90.0;
+  static const int splashCycleCount = 4;
 }

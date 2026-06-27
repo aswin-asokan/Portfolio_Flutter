@@ -18,11 +18,12 @@ class SparklePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round
-      ..style = PaintingStyle.stroke;
+    final Paint paint =
+        Paint()
+          ..color = color
+          ..strokeWidth = strokeWidth
+          ..strokeCap = StrokeCap.round
+          ..style = PaintingStyle.stroke;
 
     final double centerX = size.width / 2;
     final double centerY = size.height / 2;
@@ -48,7 +49,7 @@ class SparklePainter extends CustomPainter {
     canvas.translate(-centerX, -centerY);
 
     // Draw three hand-drawn lines wrapping around the corner
-    
+
     // Line 1: Top line starting from the top curve (almost vertical) - rotated by -extraSpread
     canvas.save();
     canvas.translate(centerX, centerY);
@@ -114,8 +115,8 @@ class CornerHighlight extends StatelessWidget {
         right = -24.0;
         break;
       case SparkleCorner.topLeft:
-        top = -24.0;
-        left = -12.0;
+        top = -18.0;
+        left = -15.0;
         break;
       case SparkleCorner.bottomRight:
         bottom = -24.0;

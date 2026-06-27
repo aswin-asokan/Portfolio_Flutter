@@ -60,4 +60,63 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? borderDark
           : borderLight;
+
+  // Green border and splash colors for About section
+  static const Color greenBorderLight = Color(0xFFCEEBDC);
+  static const Color greenSplashLight = Color(0xFFE6F5EC);
+  static const Color greenBorderDark = Color(0xFF1E3A2F);
+  static const Color greenSplashDark = Color(0xFF10261C);
+
+  static Color getGreenBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? greenBorderDark
+          : greenBorderLight;
+
+  static Color getGreenSplash(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? greenSplashDark
+          : greenSplashLight;
+
+  // Constant grays and basic colors to avoid runtime Material Color swatch lookup
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+  static const Color grey200 = Color(0xFFEEEEEE);
+  static const Color grey300 = Color(0xFFE0E0E0);
+  static const Color grey400 = Color(0xFFBDBDBD);
+  static const Color grey600 = Color(0xFF757575);
+  static const Color grey700 = Color(0xFF616161);
+  static const Color grey800 = Color(0xFF424242);
+
+  // Card theme-aware colors
+  static const Color cardBgDark = Color(0xFF0D1321);
+
+  static Color getCardBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? cardBgDark
+          : white;
+
+  static Color getDescriptionText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? grey400
+          : grey700;
+
+  static Color getDividerColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? grey800
+          : grey300;
+
+  static Color getSubtitleText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? grey400
+          : grey600;
+
+  static Color getGridDivider(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? grey800
+          : grey200;
+
+  static Color getTitleText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? white
+          : black;
 }

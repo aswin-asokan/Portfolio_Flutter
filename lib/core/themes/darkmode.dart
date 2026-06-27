@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 
 ThemeData darkmode = ThemeData(
@@ -13,6 +14,8 @@ ThemeData darkmode = ThemeData(
     surfaceBright: Color(0xFF1A2035),
     surfaceContainer: Color(0xFF111726),
     surfaceContainerHigh: Color(0xFF1A2035),
+    outline: AppColors.greenBorderDark,
+    primaryContainer: AppColors.greenSplashDark,
   ),
   textTheme: TextTheme(
     titleLarge: GoogleFonts.balsamiqSans(
