@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/about/widgets/education_right.dart';
 import 'package:portfolio/features/about/widgets/education.dart';
+import 'package:portfolio/features/about/widgets/education_right.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_container.dart';
 import 'package:portfolio/responsive/responsive.dart';

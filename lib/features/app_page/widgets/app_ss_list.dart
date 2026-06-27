@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/app_page/widgets/app_screenshot_card.dart';
 import 'package:portfolio/features/shared/widgets/keep_alive_wrapper.dart';
@@ -25,6 +26,14 @@ class _AppSsListState extends State<AppSsList> {
   }
 
   Future<void> _precacheImages() async {
+    if (kIsWeb) {
+      if (mounted) {
+        setState(() {
+          _isImagesLoading = false;
+        });
+      }
+      return;
+    }
     try {
       final futures = widget.images.map((url) {
         return precacheImage(CachedNetworkImageProvider(url), context);

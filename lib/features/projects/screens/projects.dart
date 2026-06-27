@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -27,6 +28,7 @@ class _ProjectsState extends State<Projects> {
   }
 
   Future<void> _precacheProjectImages() async {
+    if (kIsWeb) return;
     for (final app in projects) {
       if (!mounted) return;
       precacheImage(CachedNetworkImageProvider(app.bannerPath), context).catchError((_) {});

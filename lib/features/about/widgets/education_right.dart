@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/widgets/custom_button.dart';
+import 'package:portfolio/features/shared/widgets/custom_button.dart'
+    show CustomButton;
 import 'package:url_launcher/url_launcher.dart';
 
 class EducationRight extends StatelessWidget {
@@ -12,7 +13,9 @@ class EducationRight extends StatelessWidget {
   final void Function(GlobalKey key) onNavigate;
   final GlobalKey contactKey;
   void downloadAssetFile() async {
-    final url = Uri.parse("https://aswinasokan.vercel.app/assets/assets/files/resume.pdf");
+    final url = Uri.parse(
+      "https://aswinasokan.vercel.app/assets/assets/files/resume.pdf",
+    );
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
@@ -23,10 +26,7 @@ class EducationRight extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "My Self-Learning Journey",
-          style: context.textTheme.bodyMedium,
-        ),
+        Text("My Self-Learning Journey", style: context.textTheme.bodyMedium),
         const SizedBox(height: 15),
         Text(
           "I embarked on my coding adventure without formal education, driven by curiosity and passion. What started as a hobby quickly turned into a professional pursuit as I went through countless tutorials, documentation, and practice projects.\nThe journey wasn't always smooth, but each challenge became an opportunity to grow. From building my first \"Hello World\" app to developing complex AI-integrated applications, every step has been a valuable learning experience.",

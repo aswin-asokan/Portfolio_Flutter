@@ -98,7 +98,7 @@ class ProjectCard extends StatelessWidget {
                       Text(
                         caption,
                         maxLines: 2,
-                        style: GoogleFonts.outfit(
+                        style: GoogleFonts.balsamiqSans(
                           color: Colors.white,
                           fontSize: Responsive.isMobile(context) ? 18 : 27,
                           height: 0,
@@ -145,7 +145,7 @@ class ProjectCard extends StatelessWidget {
                                 children: [
                                   Text(
                                     title,
-                                    style: GoogleFonts.outfit(
+                                    style: GoogleFonts.balsamiqSans(
                                       fontSize:
                                           Responsive.isMobile(context)
                                               ? 15
@@ -156,7 +156,7 @@ class ProjectCard extends StatelessWidget {
                                   ),
                                   Text(
                                     categories,
-                                    style: GoogleFonts.outfit(
+                                    style: GoogleFonts.balsamiqSans(
                                       fontSize:
                                           Responsive.isMobile(context)
                                               ? 12

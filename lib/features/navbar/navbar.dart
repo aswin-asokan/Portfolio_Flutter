@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
+import 'package:provider/provider.dart';
+import 'package:portfolio/core/themes/theme_provider.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/widgets/custom_container.dart';
+import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Navbar extends StatefulWidget {
@@ -24,7 +28,7 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int? selectedIndex;
 
-  void _scrollToSection(int index) {
+  void _scrollToSection(int index, {bool updateSelection = true}) {
     final keyContext = widget.sectionKeys[index].currentContext;
     if (keyContext != null) {
       final box = keyContext.findRenderObject() as RenderBox;
@@ -39,15 +43,17 @@ class _NavbarState extends State<Navbar> {
       );
     }
 
-    setState(() {
-      selectedIndex = index;
-    });
-
-    // On mobile, reset the selection highlight after a short delay
-    if (Responsive.isMobile(context) || Responsive.isSmallTablet(context)) {
-      Future.delayed(const Duration(seconds: 1), () {
-        if (mounted) setState(() => selectedIndex = null);
+    if (updateSelection) {
+      setState(() {
+        selectedIndex = index;
       });
+
+      // On mobile, reset the selection highlight after a short delay
+      if (Responsive.isMobile(context) || Responsive.isSmallTablet(context)) {
+        Future.delayed(const Duration(seconds: 1), () {
+          if (mounted) setState(() => selectedIndex = null);
+        });
+      }
     }
   }
 
@@ -85,96 +91,171 @@ class _NavbarState extends State<Navbar> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomContainer(
+    final bool isExpanded =
+        Responsive.isTablet(context) ||
+        Responsive.isDesktop(context) ||
+        Responsive.isDesktopLarge(context);
+
+    // Logo / Back button Widget
+    final Widget logoSection =
+        widget.isBackEnabled
+            ? MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      size: 16,
+                      color: context.colorScheme.primary,
+                    ),
+                    if (!Responsive.isMobile(context)) const SizedBox(width: 8),
+                    if (!Responsive.isMobile(context))
+                      Text(
+                        "Go back",
+                        style: context.textTheme.labelMedium?.copyWith(
+                          fontSize: 16,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            )
+            : MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  _scrollToSection(0);
+                },
+                child: Image.asset(
+                  Theme.of(context).brightness == Brightness.dark
+                      ? "assets/images/logo/dark_logo.png"
+                      : "assets/images/logo/light_logo.png",
+                  height: 30,
+                ),
+              ),
+            );
+
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.getBorder(context)),
+        borderRadius: BorderRadius.circular(AppConstants.radiusM),
+        color:
+            Theme.of(context).brightness == Brightness.dark
+                ? AppColors.scaffoldDarkColor
+                : AppColors.scaffoldLightColor,
+      ),
       child: SizedBox(
         width: double.infinity,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            widget.isBackEnabled
-                ? MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_back_ios_new_outlined,
-                          size: 16,
-                          color: context.colorScheme.primary,
-                        ),
-                        if (!Responsive.isMobile(context))
-                          const SizedBox(width: 8),
-                        if (!Responsive.isMobile(context))
-                          Text(
-                            "Go back",
-                            style: context.textTheme.labelMedium?.copyWith(
-                              fontSize: 16,
+            // Left: Logo / Back button
+            Expanded(
+              child: Align(alignment: Alignment.centerLeft, child: logoSection),
+            ),
+
+            // Center: Navigation Links (only in expanded mode)
+            if (isExpanded)
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(widget.sections.length, (index) {
+                    final isSelected = selectedIndex == index;
+                    return MouseRegion(
+                      onEnter: (_) => setState(() => selectedIndex = index),
+                      onExit: (_) {
+                        if (!Responsive.isMobile(context)) {
+                          setState(() => selectedIndex = null);
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: TextButton(
+                          onPressed: () => _scrollToSection(index),
+                          child: Text(
+                            widget.sections[index],
+                            style: context.textTheme.labelSmall?.copyWith(
+                              color:
+                                  isSelected
+                                      ? Theme.of(context).colorScheme.primary
+                                      : null,
+                              fontWeight:
+                                  isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
                             ),
                           ),
-                      ],
-                    ),
-                  ),
-                )
-                : MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () {
-                      _scrollToSection(0);
-                    },
-                    child: Image.asset(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? "assets/images/logo/dark_logo.png"
-                          : "assets/images/logo/light_logo.png",
-                      height: 30,
-                    ),
-                  ),
+                        ),
+                      ),
+                    );
+                  }),
                 ),
-            Row(
-              children: [
-                if (Responsive.isTablet(context) ||
-                    Responsive.isDesktop(context) ||
-                    Responsive.isDesktopLarge(context))
-                  Row(
-                    children: List.generate(widget.sections.length, (index) {
-                      final isSelected = selectedIndex == index;
-                      return MouseRegion(
-                        onEnter: (_) => setState(() => selectedIndex = index),
-                        onExit: (_) {
-                          if (!Responsive.isMobile(context)) {
-                            setState(() => selectedIndex = null);
+              ),
+
+            // Right: Actions (Theme switcher & Let's Talk! button or Hamburger menu)
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Theme switcher
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<ThemeProvider>(
+                          context,
+                          listen: false,
+                        ).toggleTheme(context);
+                      },
+                      icon: Icon(
+                        Theme.of(context).brightness == Brightness.dark
+                            ? Symbols.light_mode
+                            : Symbols.dark_mode,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+
+                    // Expanding actions / hamburger
+                    if (isExpanded)
+                      CustomButton.filled(
+                        label: "Let's Talk!",
+                        onPress: () {
+                          final int contactIndex = widget.sections.indexWhere(
+                            (s) => s.toLowerCase() == "contact",
+                          );
+                          if (contactIndex != -1) {
+                            _scrollToSection(
+                              contactIndex,
+                              updateSelection: false,
+                            );
                           }
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: TextButton(
-                            onPressed: () => _scrollToSection(index),
-                            child: Text(
-                              widget.sections[index],
-                              style: context.textTheme.labelSmall?.copyWith(
-                                color:
-                                    isSelected
-                                        ? Theme.of(context).colorScheme.primary
-                                        : null,
-                                fontWeight:
-                                    isSelected
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                              ),
-                            ),
-                          ),
+                        color:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? AppColors.lightButton
+                                : AppColors.darkButton,
+                        suffixIcon: Icon(
+                          Symbols.chat_bubble,
+                          fill: 1,
+                          size: AppConstants.iconSizeS,
+                          color:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? AppColors.darkButton
+                                  : AppColors.lightButton,
                         ),
-                      );
-                    }),
-                  ),
-                if (Responsive.isMobile(context) ||
-                    Responsive.isSmallTablet(context))
-                  IconButton(
-                    onPressed: _openBottomNavMenu,
-                    icon: const Icon(Symbols.menu),
-                  ),
-              ],
+                      )
+                    else
+                      IconButton(
+                        onPressed: _openBottomNavMenu,
+                        icon: const Icon(Symbols.menu),
+                      ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

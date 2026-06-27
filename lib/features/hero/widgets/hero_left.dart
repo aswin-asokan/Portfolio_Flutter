@@ -1,88 +1,183 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/hero/widgets/dot_decoration.dart';
-import 'package:portfolio/features/hero/widgets/hero_image.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
+import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class HeroLeft extends StatelessWidget {
-  const HeroLeft({super.key, this.width = 450});
-  final double width;
+  const HeroLeft({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Color(0xfff97116),
-            Color(0xfff96f1a),
-            Color(0xfff56226),
-            Color(0xfff04e38),
-            Color(0xffee4442),
+    final double baseFontSize =
+        Responsive.isDesktopLarge(context)
+            ? 80
+            : Responsive.isDesktop(context)
+            ? 70
+            : Responsive.isTablet(context)
+            ? 55
+            : 45;
+
+    final double nameFontSize = baseFontSize + 10;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Hi, I'm",
+              style: GoogleFonts.comicRelief(
+                fontSize: baseFontSize,
+                height: 1.1,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            if (Responsive.isMobile(context) ||
+                Responsive.isSmallTablet(context))
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Aswin ",
+                        style: TextStyle(color: context.colorScheme.primary),
+                      ),
+                      TextSpan(
+                        text: "Asokan",
+                        style: TextStyle(
+                          color:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.white
+                                  : const Color(0xFF1F2937),
+                        ),
+                      ),
+                    ],
+                  ),
+                  style: GoogleFonts.comicRelief(
+                    fontSize: nameFontSize,
+                    height: 1.1,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              )
+            else ...[
+              Text(
+                "Aswin",
+                style: GoogleFonts.comicRelief(
+                  fontSize: nameFontSize,
+                  color: context.colorScheme.primary,
+                  height: 1.1,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                "Asokan",
+                style: GoogleFonts.comicRelief(
+                  fontSize: baseFontSize,
+                  height: 1.1,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ],
         ),
-        borderRadius:
-            Responsive.isMobile(context) || Responsive.isSmallTablet(context)
-                ? BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                )
-                : BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                ),
-      ),
-      child:
-          !Responsive.isMobile(context)
-              ? Row(
-                spacing: 20,
-                children: [
-                  SizedBox(width: 40),
-                  SizedBox(
-                    width:
-                        Responsive.isTablet(context)
-                            ? 500
-                            : Responsive.isSmallTablet(context)
-                            ? MediaQuery.sizeOf(context).width * 0.88
-                            : width * 0.3,
-                    height: Responsive.isMobile(context) ? 500 : 800,
-                    child: HeroImage(),
-                  ),
-                  if (Responsive.isDesktopLarge(context))
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        DotDecoration(
-                          spacing: 40,
-                          rowNum: 6,
-                          colNum: 6,
-                          size: 10,
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                DotDecoration(
-                                  spacing: 10,
-                                  rowNum: 6,
-                                  colNum: 3,
-                                  size: 20,
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 80),
-                          ],
-                        ),
-                      ],
-                    ),
-                ],
-              )
-              : SizedBox(
-                width: double.infinity,
-                height: 450,
-                child: HeroImage(),
+        const SizedBox(height: AppConstants.spaceXL),
+        Container(
+          padding: const EdgeInsets.all(AppConstants.spaceM),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.getBorder(context)),
+            borderRadius: BorderRadius.circular(AppConstants.radiusM),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: AppConstants.spaceS,
+            children: [
+              Icon(
+                Symbols.keyboard_arrow_right,
+                size: AppConstants.iconSizeM,
+                color: AppColors.darkGreen,
               ),
+              Flexible(
+                child: Text(
+                  "Just a developer building neat, useful things with Flutter.",
+                  style: context.textTheme.bodySmall!.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: AppConstants.spaceXL),
+        if (Responsive.isMobile(context))
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: AppConstants.spaceM,
+            children: [
+              CustomButton.filled(
+                label: "View My Work",
+                onPress: () {},
+                color:
+                    Theme.of(context).brightness == Brightness.dark
+                        ? Theme.of(context).colorScheme.primary
+                        : AppColors.darkButton,
+                suffixIcon: const Icon(
+                  Symbols.arrow_downward,
+                  size: AppConstants.iconSizeS,
+                ),
+              ),
+              CustomButton.text(
+                label: "Download CV",
+                onPress: () {},
+                textColor:
+                    Theme.of(context).brightness == Brightness.dark
+                        ? AppColors.lightButton
+                        : AppColors.darkButton,
+                suffixIcon: const Icon(
+                  Symbols.download,
+                  size: AppConstants.iconSizeS,
+                ),
+              ),
+            ],
+          )
+        else
+          Row(
+            spacing: AppConstants.spaceM,
+            children: [
+              CustomButton.filled(
+                label: "View My Work",
+                onPress: () {},
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Theme.of(context).colorScheme.primary
+                    : AppColors.darkButton,
+                suffixIcon: const Icon(
+                  Symbols.arrow_downward,
+                  size: AppConstants.iconSizeS,
+                ),
+              ),
+              CustomButton.text(
+                label: "Download CV",
+                onPress: () {},
+                textColor: Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.lightButton
+                    : AppColors.darkButton,
+                suffixIcon: const Icon(
+                  Symbols.download,
+                  size: AppConstants.iconSizeS,
+                ),
+              ),
+            ],
+          ),
+      ],
     );
   }
 }

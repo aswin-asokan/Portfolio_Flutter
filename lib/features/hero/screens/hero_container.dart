@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/hero/widgets/hero_left.dart';
 import 'package:portfolio/features/hero/widgets/hero_right.dart';
-import 'package:portfolio/features/shared/widgets/custom_container.dart';
+import 'package:portfolio/features/hero/widgets/hero_left.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class HeroSection extends StatelessWidget {
@@ -9,37 +8,29 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final width = mediaQuery.size.width;
-    final height = mediaQuery.size.height - 260;
-    return CustomContainer(
-      color: Colors.transparent,
-      padding: EdgeInsets.all(0),
-      child:
-          Responsive.isDesktopLarge(context) ||
-                  Responsive.isTablet(context) ||
-                  Responsive.isDesktop(context)
-              ? SizedBox(
-                height:
-                    Responsive.isDesktopLarge(context)
-                        ? height
-                        : Responsive.isTablet(context)
-                        ? 800
-                        : 620,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: !Responsive.isDesktop(context) ? 6 : 5,
-                      child: HeroLeft(width: width),
-                    ),
-                    Expanded(
-                      flex: !Responsive.isDesktop(context) ? 4 : 5,
-                      child: HeroRight(),
-                    ),
-                  ],
-                ),
-              )
-              : Column(children: [HeroLeft(), HeroRight()]),
-    );
+    return !Responsive.isMobile(context)
+        ? ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 550),
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: const [
+                  Expanded(
+                    child: HeroLeft(),
+                  ),
+                  Expanded(
+                    child: HeroRight(),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : Column(
+            children: [
+              const HeroLeft(),
+              const SizedBox(height: 20),
+              const HeroRight(),
+            ],
+          );
   }
 }

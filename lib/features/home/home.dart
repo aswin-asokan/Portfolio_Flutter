@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
@@ -25,15 +26,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // Delay the toast slightly after the page builds
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (mounted) {
-        showToast(
-          context,
-          "The pictures are hosted on Github and may take some time to load.",
-        );
-      }
-    });
   }
 
   @override
@@ -57,42 +49,19 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    if (Responsive.isDesktop(context) || Responsive.isDesktopLarge(context)) {
-      padding = 60;
-    } else if (Responsive.isTablet(context)) {
-      padding = 40;
-    } else {
-      padding = 10;
-    }
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Color(0xfff66d16),
-            Color(0xfff26818),
-            Color(0xffef6318),
-            Color(0xffe85819),
-            Color(0xffe9541b),
-            Color(0xffe44d1c),
-            Color(0xffe2461c),
-            Color(0xffe5461e),
-            Color(0xffe5461e),
-          ],
-        ),
-      ),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.transparent,
-        body: _isLoading
-            ? Center(
+    padding = Responsive.padding(context);
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body:
+          _isLoading
+              ? Center(
                 child: LoadingAnimationWidget.dotsTriangle(
                   color: Colors.white,
                   size: 200,
                 ),
               )
-            : SelectionArea(
+              : SelectionArea(
                 child: Stack(
                   children: [
                     // Scrollable content
@@ -109,14 +78,17 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 70,
+                              height: 90,
                               key: sectionKeys[0],
                             ), // Space for navbar
                             HeroSection(),
+                            SizedBox(
+                              height: AppConstants.spaceM,
+                              key: sectionKeys[1],
+                            ),
                             AboutMe(
                               onNavigate: scrollTo,
                               contactKey: sectionKeys[4],
-                              key: sectionKeys[1],
                             ),
                             Text(
                               "Experience",
@@ -179,7 +151,6 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-      ),
     );
   }
 }

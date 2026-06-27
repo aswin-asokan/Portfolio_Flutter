@@ -1,84 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
 
 ThemeData darkmode = ThemeData(
-  colorScheme: ColorScheme.dark(
-    primary: Color(0xfff8781f), // Keep primary color for brand consistency
-    onPrimary: Colors.black, // Good contrast on bright primary in dark mode
-    secondary: Color(
-      0xff3b2e22,
-    ), // A deep brownish tone complementing the original secondary
-    surface: Color(0xff272121), // Standard dark surface color
-    onSurface: Colors.white70,
-    surfaceBright: Color(0xff393E46),
-    surfaceContainer: Color(0xfffeecd5),
-    surfaceContainerHigh: Colors.white,
+  scaffoldBackgroundColor: const Color(0xFF090D1A),
+  colorScheme: const ColorScheme.dark(
+    primary: Color(0xFF9F88FF),
+    onPrimary: Colors.white,
+    secondary: Color(0xFF1B1633),
+    surface: Color(0xFF111726),
+    onSurface: Color(0xFFE5E7EB),
+    surfaceBright: Color(0xFF1A2035),
+    surfaceContainer: Color(0xFF111726),
+    surfaceContainerHigh: Color(0xFF1A2035),
   ),
   textTheme: TextTheme(
-    titleLarge: GoogleFonts.outfit(
-      fontSize: 100,
-      color: Colors.white38,
-      fontWeight: FontWeight.bold,
+    titleLarge: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontDisplayXXL,
     ),
-    titleMedium: GoogleFonts.outfit(
-      fontSize: 35,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
+    titleMedium: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontDisplayM,
     ),
-    titleSmall: GoogleFonts.outfit(
-      fontSize: 20,
-      fontWeight: FontWeight.w500,
-      color: Colors.white70,
+    titleSmall: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontXL,
     ),
-    bodyLarge: GoogleFonts.outfit(
-      fontSize: 40,
-      fontWeight: FontWeight.w500,
-      color: Colors.white,
+    bodyLarge: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontDisplayL,
     ),
-    bodyMedium: GoogleFonts.outfit(
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
+    bodyMedium: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontL,
     ),
-    bodySmall: GoogleFonts.outfit(
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-      color: Colors.white70,
+    bodySmall: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontM,
     ),
-    labelLarge: GoogleFonts.outfit(
-      fontSize: 40,
-      fontWeight: FontWeight.w500,
-      color: Colors.white70,
+    labelLarge: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontDisplayL,
     ),
-    labelMedium: GoogleFonts.outfit(
-      fontSize: 20,
-      fontWeight: FontWeight.w500,
-      color: Color(0xfff8781f),
+    labelMedium: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontXL,
     ),
-    labelSmall: GoogleFonts.outfit(
-      fontSize: 18,
-      fontWeight: FontWeight.w400,
-      color: Colors.white70,
+    labelSmall: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontL,
     ),
-    displayMedium: GoogleFonts.outfit(
-      fontSize: 16,
-      fontWeight: FontWeight.w300,
-      color: Colors.white,
+    displayMedium: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontM,
     ),
-    displaySmall: GoogleFonts.outfit(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: Colors.white54,
+    displaySmall: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontS,
     ),
-    headlineMedium: GoogleFonts.outfit(
-      fontSize: 30,
-      fontWeight: FontWeight.w500,
-      color: Colors.white,
+    headlineMedium: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontDisplayS,
     ),
-    headlineSmall: GoogleFonts.outfit(
-      fontSize: 15,
-      fontWeight: FontWeight.w500,
-      color: Colors.white,
+    headlineSmall: GoogleFonts.balsamiqSans(
+      fontSize: AppConstants.fontSM,
     ),
   ),
 );
