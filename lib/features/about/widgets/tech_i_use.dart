@@ -688,5 +688,3 @@ class _ToggleExpandCardState extends State<ToggleExpandCard> {
     );
   }
 }
-
-

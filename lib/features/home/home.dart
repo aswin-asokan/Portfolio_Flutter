@@ -9,6 +9,7 @@ import 'package:portfolio/features/experience/screens/experience.dart';
 import 'package:portfolio/features/footer/screens/footer.dart';
 import 'package:portfolio/features/hero/screens/hero_container.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
+import 'package:portfolio/features/pinterest/screens/pinterest_section.dart';
 import 'package:portfolio/features/projects/screens/projects.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/toast.dart';
@@ -122,6 +123,7 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                             Projects(),
+                            const PinterestSection(),
                             Text(
                               "Contact Me",
                               style: context.textTheme.bodyLarge,
