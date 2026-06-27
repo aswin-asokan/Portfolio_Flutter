@@ -93,21 +93,26 @@ class _TechIUseState extends State<TechIUse> {
     return AnimatedSize(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(AppConstants.techSectionPadding),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final double width = constraints.maxWidth;
-              final bool isSmallScreen =
-                  width < AppConstants.techMobileTitleBreakpoint;
+      alignment: Alignment.topCenter,
+      child: SizedBox(
+        width: double.infinity,
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          child: Padding(
+            padding: const EdgeInsets.all(AppConstants.techSectionPadding),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final double width = constraints.maxWidth;
+                final bool isSmallScreen =
+                    width < AppConstants.techMobileTitleBreakpoint;
 
-              if (isSmallScreen) {
-                return _buildMobileLayout(width);
-              } else {
-                return _buildDesktopLayout(width);
-              }
-            },
+                if (isSmallScreen) {
+                  return _buildMobileLayout(width);
+                } else {
+                  return _buildDesktopLayout(width);
+                }
+              },
+            ),
           ),
         ),
       ),
@@ -118,12 +123,15 @@ class _TechIUseState extends State<TechIUse> {
     // Title takes 80px, spacing takes 24px
     final double rem = totalWidth - 80 - 24;
 
-    // Collapsed item limit math:
-    // rem >= N * (itemSize + spacing) + itemSize => N = (rem - itemSize) / (itemSize + spacing)
+    const double minSpacing = 8.0;
     final int maxItems =
         ((rem - AppConstants.techItemSize) /
-                (AppConstants.techItemSize + AppConstants.techSpacing))
+                (AppConstants.techItemSize + minSpacing))
             .floor();
+    final int totalItems = maxItems + 1;
+    final double dynamicItemSize =
+        ((rem - (totalItems - 1) * AppConstants.techSpacing) / totalItems) -
+        0.1;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,43 +142,35 @@ class _TechIUseState extends State<TechIUse> {
         ),
         const SizedBox(width: 24),
         Expanded(
-          child:
-              _isExpanded
-                  ? Wrap(
-                    spacing: AppConstants.techSpacing,
-                    runSpacing: AppConstants.techSpacing,
-                    children: [
-                      ...techItems.map(
-                        (item) => TechItemCard(
-                          name: item.name,
-                          icon: item.icon,
-                          brandColor: item.color,
-                        ),
-                      ),
-                      ToggleExpandCard(
-                        isExpandButton: false,
-                        onTap: () => setState(() => _isExpanded = false),
-                      ),
-                    ],
-                  )
-                  : Row(
-                    spacing: AppConstants.techSpacing,
-                    children: [
-                      ...techItems
-                          .take(maxItems)
-                          .map(
-                            (item) => TechItemCard(
-                              name: item.name,
-                              icon: item.icon,
-                              brandColor: item.color,
-                            ),
-                          ),
-                      ToggleExpandCard(
-                        isExpandButton: true,
-                        onTap: () => setState(() => _isExpanded = true),
-                      ),
-                    ],
+          child: Wrap(
+            spacing: AppConstants.techSpacing,
+            runSpacing: AppConstants.techSpacing,
+            children: [
+              if (_isExpanded)
+                ...techItems.map(
+                  (item) => TechItemCard(
+                    name: item.name,
+                    icon: item.icon,
+                    brandColor: item.color,
+                    size: dynamicItemSize,
                   ),
+                )
+              else
+                ...techItems.take(maxItems).map(
+                  (item) => TechItemCard(
+                    name: item.name,
+                    icon: item.icon,
+                    brandColor: item.color,
+                    size: dynamicItemSize,
+                  ),
+                ),
+              ToggleExpandCard(
+                isExpandButton: !_isExpanded,
+                onTap: () => setState(() => _isExpanded = !_isExpanded),
+                size: dynamicItemSize,
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -178,10 +178,16 @@ class _TechIUseState extends State<TechIUse> {
 
   Widget _buildMobileLayout(double totalWidth) {
     // Title is above items, so we have full width inside card (totalWidth)
+    const double minSpacing = 8.0;
     final int maxItems =
         ((totalWidth - AppConstants.techItemSize) /
-                (AppConstants.techItemSize + AppConstants.techSpacing))
+                (AppConstants.techItemSize + minSpacing))
             .floor();
+    final int totalItems = maxItems + 1;
+    final double dynamicItemSize =
+        ((totalWidth - (totalItems - 1) * AppConstants.techSpacing) /
+            totalItems) -
+        0.1;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,42 +195,35 @@ class _TechIUseState extends State<TechIUse> {
       children: [
         _buildMobileTitle(),
         const SizedBox(height: 16),
-        _isExpanded
-            ? Wrap(
-              spacing: AppConstants.techSpacing,
-              runSpacing: AppConstants.techSpacing,
-              children: [
-                ...techItems.map(
-                  (item) => TechItemCard(
-                    name: item.name,
-                    icon: item.icon,
-                    brandColor: item.color,
-                  ),
+        Wrap(
+          spacing: AppConstants.techSpacing,
+          runSpacing: AppConstants.techSpacing,
+          children: [
+            if (_isExpanded)
+              ...techItems.map(
+                (item) => TechItemCard(
+                  name: item.name,
+                  icon: item.icon,
+                  brandColor: item.color,
+                  size: dynamicItemSize,
                 ),
-                ToggleExpandCard(
-                  isExpandButton: false,
-                  onTap: () => setState(() => _isExpanded = false),
+              )
+            else
+              ...techItems.take(maxItems).map(
+                (item) => TechItemCard(
+                  name: item.name,
+                  icon: item.icon,
+                  brandColor: item.color,
+                  size: dynamicItemSize,
                 ),
-              ],
-            )
-            : Row(
-              spacing: AppConstants.techSpacing,
-              children: [
-                ...techItems
-                    .take(maxItems)
-                    .map(
-                      (item) => TechItemCard(
-                        name: item.name,
-                        icon: item.icon,
-                        brandColor: item.color,
-                      ),
-                    ),
-                ToggleExpandCard(
-                  isExpandButton: true,
-                  onTap: () => setState(() => _isExpanded = true),
-                ),
-              ],
+              ),
+            ToggleExpandCard(
+              isExpandButton: !_isExpanded,
+              onTap: () => setState(() => _isExpanded = !_isExpanded),
+              size: dynamicItemSize,
             ),
+          ],
+        ),
       ],
     );
   }
@@ -339,12 +338,14 @@ class TechItemCard extends StatefulWidget {
   final String name;
   final IconData icon;
   final Color brandColor;
+  final double size;
 
   const TechItemCard({
     super.key,
     required this.name,
     required this.icon,
     required this.brandColor,
+    this.size = AppConstants.techItemSize,
   });
 
   @override
@@ -378,8 +379,8 @@ class _TechItemCardState extends State<TechItemCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOutCubic,
-        width: AppConstants.techItemSize,
-        height: AppConstants.techItemSize,
+        width: widget.size,
+        height: widget.size,
         decoration: BoxDecoration(
           color: baseBg,
           borderRadius: BorderRadius.circular(AppConstants.radiusM),
@@ -425,11 +426,13 @@ class _TechItemCardState extends State<TechItemCard> {
 class ToggleExpandCard extends StatefulWidget {
   final bool isExpandButton;
   final VoidCallback onTap;
+  final double size;
 
   const ToggleExpandCard({
     super.key,
     required this.isExpandButton,
     required this.onTap,
+    this.size = AppConstants.techItemSize,
   });
 
   @override
@@ -461,8 +464,8 @@ class _ToggleExpandCardState extends State<ToggleExpandCard> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOutCubic,
-          width: AppConstants.techItemSize,
-          height: AppConstants.techItemSize,
+          width: widget.size,
+          height: widget.size,
           decoration: BoxDecoration(
             color: baseBg,
             borderRadius: BorderRadius.circular(AppConstants.radiusM),
