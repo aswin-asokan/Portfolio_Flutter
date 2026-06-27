@@ -378,39 +378,68 @@ class AboutSplashCard extends StatelessWidget {
   }
 }
 
-class SplashItemWidget extends StatelessWidget {
+class SplashItemWidget extends StatefulWidget {
   final SplashCardItem item;
   final bool isDark;
 
   const SplashItemWidget({super.key, required this.item, required this.isDark});
 
   @override
+  State<SplashItemWidget> createState() => _SplashItemWidgetState();
+}
+
+class _SplashItemWidgetState extends State<SplashItemWidget> {
+  bool _isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          item.title,
-          style: context.textTheme.labelMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-            color: AppColors.getTitleText(context),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            widget.item.title,
+            style: context.textTheme.labelMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: AppColors.getTitleText(context),
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        item.icon,
-        const SizedBox(height: 12),
-        Text(
-          item.subtitle,
-          textAlign: TextAlign.center,
-          style: context.textTheme.bodySmall!.copyWith(
-            fontSize: 13,
-            color: AppColors.getSubtitleText(context),
-            height: 1.3,
+          const SizedBox(height: 12),
+          // Playful hover animated icon wrapper
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOutBack,
+            transform: _isHovered
+                ? Matrix4.translationValues(0, -6, 0)
+                : Matrix4.identity(),
+            child: AnimatedScale(
+              scale: _isHovered ? 1.12 : 1.0,
+              duration: const Duration(milliseconds: 150),
+              curve: Curves.easeOut,
+              child: AnimatedRotation(
+                turns: _isHovered ? 0.02 : 0.0,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOut,
+                child: widget.item.icon,
+              ),
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            widget.item.subtitle,
+            textAlign: TextAlign.center,
+            style: context.textTheme.bodySmall!.copyWith(
+              fontSize: 13,
+              color: AppColors.getSubtitleText(context),
+              height: 1.3,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
