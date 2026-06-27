@@ -8,9 +8,10 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isSmallTablet = Responsive.isSmallTablet(context);
     return !Responsive.isMobile(context)
         ? ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 550),
+            constraints: BoxConstraints(minHeight: isSmallTablet ? 0.0 : 550.0),
             child: IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
