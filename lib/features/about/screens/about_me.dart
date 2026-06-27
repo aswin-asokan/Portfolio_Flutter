@@ -17,7 +17,7 @@ class AboutMe extends StatelessWidget {
     return AboutSplashCard(
       title: "About Me",
       description:
-          "I'm a developer who loves crafting beautiful, functional, and user-friendly web experiences. When I'm not coding, you'll find me drawing, crafting, or listening to music.",
+          "I'm a Flutter developer who loves turning ideas into apps people enjoy using. When I'm not arguing with pixels or chasing the perfect animation, you'll probably find me drawing, crafting, or vibing to a good playlist.",
       image: Image.asset(
         "assets/images/about/about_image.webp",
         fit: BoxFit.contain,

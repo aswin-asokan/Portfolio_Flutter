@@ -3,17 +3,20 @@ import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
+import 'package:portfolio/features/shared/widgets/pixel_tooltip_bubble.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class TechItemData {
   final String name;
   final IconData icon;
   final Color color;
+  final String? tooltip;
 
   const TechItemData({
     required this.name,
     required this.icon,
     required this.color,
+    this.tooltip,
   });
 }
 
@@ -32,99 +35,146 @@ class _TechIUseState extends State<TechIUse> {
       name: "Flutter",
       icon: SimpleIcons.flutter,
       color: Color(0xFF02569B),
+      tooltip: "My comfort zone. Most of my ideas end up here.",
     ),
     TechItemData(
       name: "Dart",
       icon: SimpleIcons.dart,
       color: Color(0xFF0175C2),
+      tooltip: "Fluent enough that semicolons now feel optional elsewhere.",
     ),
     TechItemData(
       name: "C++",
       icon: SimpleIcons.cplusplus,
       color: Color(0xFF00599C),
+      tooltip:
+          "Learnt where pointers were scary and segfaults were life lessons.",
     ),
-    TechItemData(name: "C", icon: SimpleIcons.c, color: Color(0xFFABABAB)),
+    TechItemData(
+      name: "C",
+      icon: SimpleIcons.c,
+      color: Color(0xFFA8B9CC),
+      tooltip: "Still remember malloc. Still double-check free.",
+    ),
     TechItemData(
       name: "HTML",
       icon: SimpleIcons.html5,
       color: Color(0xFFE34F26),
+      tooltip: "My brief attempt at becoming a web developer.",
     ),
-    TechItemData(name: "CSS", icon: SimpleIcons.css, color: Color(0xFF1572B6)),
+    TechItemData(
+      name: "CSS",
+      icon: SimpleIcons.css,
+      color: Color(0xFF1572B6),
+      tooltip: "Spent more time centering divs than I'd like to admit.",
+    ),
     TechItemData(
       name: "JavaScript",
       icon: SimpleIcons.javascript,
       color: Color(0xFFF7DF1E),
-    ),
-    TechItemData(
-      name: "Python",
-      icon: SimpleIcons.python,
-      color: Color(0xFF3776AB),
+      tooltip: "We almost became best friends. Flutter had other plans.",
     ),
     TechItemData(
       name: "React",
       icon: SimpleIcons.react,
       color: Color(0xFF61DAFB),
+      tooltip: "Tried switching. Flutter politely refused to let me leave.",
+    ),
+    TechItemData(
+      name: "Python",
+      icon: SimpleIcons.python,
+      color: Color(0xFF3776AB),
+      tooltip: "The language that convinced me RAM and GPU is never enough.",
     ),
     TechItemData(
       name: "MySQL",
       icon: SimpleIcons.mysql,
       color: Color(0xFF4479A1),
+      tooltip: "Mostly retired, occasionally called back to work.",
     ),
     TechItemData(
       name: "Firebase",
       icon: SimpleIcons.firebase,
       color: Color(0xFFFFCA28),
+      tooltip: "The \"I need a backend today\" button.",
+    ),
+    TechItemData(
+      name: "GCP",
+      icon: SimpleIcons.googlecloud,
+      color: Color(0xFF4285F4),
+      tooltip: "Mostly visit for APIs and then quietly leave.",
     ),
     TechItemData(
       name: "Arduino",
       icon: SimpleIcons.arduino,
       color: Color(0xFF00979D),
+      tooltip: "Enough to make LEDs blink and ESP32s behave... mostly.",
     ),
     TechItemData(
       name: "GitHub",
       icon: SimpleIcons.github,
       color: Color(0xFF181717),
-    ),
-    TechItemData(name: "Git", icon: SimpleIcons.git, color: Color(0xFFF05032)),
-    TechItemData(
-      name: "DBeaver",
-      icon: SimpleIcons.dbeaver,
-      color: Color(0xFF382923),
+      tooltip: "Where bugs become commit history.",
     ),
     TechItemData(
-      name: "VS Code",
-      icon: SimpleIcons.vscodium,
-      color: Color(0xFF007ACC),
-    ),
-    TechItemData(
-      name: "Android Studio",
-      icon: SimpleIcons.androidstudio,
-      color: Color(0xFF3DDC84),
-    ),
-    TechItemData(
-      name: "Antigravity",
-      icon: SimpleIcons.googlegemini,
-      color: Color(0xFF1A73E8),
-    ),
-    TechItemData(
-      name: "Codex",
-      icon: SimpleIcons.openaigym,
-      color: Color(0xFF10A37F),
-    ),
-    TechItemData(
-      name: "Confluence",
-      icon: SimpleIcons.confluence,
-      color: Color(0xFF0052CC),
+      name: "Git",
+      icon: SimpleIcons.git,
+      color: Color(0xFFF05032),
+      tooltip: "git add . → git commit → hope for the best.",
     ),
     TechItemData(
       name: "Bitbucket",
       icon: SimpleIcons.bitbucket,
       color: Color(0xFF0052CC),
+      tooltip: "Corporate GitHub. Still gets the job done.",
+    ),
+    TechItemData(
+      name: "DBeaver",
+      icon: SimpleIcons.dbeaver,
+      color: Color(0xFF382923),
+      tooltip: "Because looking directly at the database feels reassuring.",
+    ),
+    TechItemData(
+      name: "VS Code",
+      icon: SimpleIcons.vscodium,
+      color: Color(0xFF007ACC),
+      tooltip: "Opened once. Closed... eventually.",
+    ),
+    TechItemData(
+      name: "Android Studio",
+      icon: SimpleIcons.androidstudio,
+      color: Color(0xFF3DDC84),
+      tooltip: "Mostly opened for the emulator. Occasionally survives longer.",
+    ),
+    TechItemData(
+      name: "XCode",
+      icon: SimpleIcons.xcode,
+      color: Color(0xFF0B4A8C),
+      tooltip: "Opened only when Apple insists.",
+    ),
+    TechItemData(
+      name: "Antigravity",
+      icon: SimpleIcons.googlegemini,
+      color: Color(0xFF1A73E8),
+      tooltip: "Helps turn half-baked ideas into actual features.",
+    ),
+    TechItemData(
+      name: "Codex",
+      icon: SimpleIcons.openaigym,
+      color: Color(0xFF10A37F),
+      tooltip: "Makes me look smarter than I probably am.",
+    ),
+    TechItemData(
+      name: "Confluence",
+      icon: SimpleIcons.confluence,
+      color: Color(0xFF0052CC),
+      tooltip: "Where documentation goes to become surprisingly useful.",
     ),
     TechItemData(
       name: "Jira",
       icon: SimpleIcons.jira,
       color: Color(0xFF0052CC),
+      tooltip: "Turning \"I'll do it later\" into actual tickets.",
     ),
   ];
 
@@ -193,6 +243,7 @@ class _TechIUseState extends State<TechIUse> {
                     icon: item.icon,
                     brandColor: item.color,
                     size: dynamicItemSize,
+                    tooltip: item.tooltip,
                   ),
                 )
               else
@@ -204,6 +255,7 @@ class _TechIUseState extends State<TechIUse> {
                         icon: item.icon,
                         brandColor: item.color,
                         size: dynamicItemSize,
+                        tooltip: item.tooltip,
                       ),
                     ),
               ToggleExpandCard(
@@ -248,6 +300,7 @@ class _TechIUseState extends State<TechIUse> {
                   icon: item.icon,
                   brandColor: item.color,
                   size: dynamicItemSize,
+                  tooltip: item.tooltip,
                 ),
               )
             else
@@ -259,6 +312,7 @@ class _TechIUseState extends State<TechIUse> {
                       icon: item.icon,
                       brandColor: item.color,
                       size: dynamicItemSize,
+                      tooltip: item.tooltip,
                     ),
                   ),
             ToggleExpandCard(
@@ -383,6 +437,7 @@ class TechItemCard extends StatefulWidget {
   final IconData icon;
   final Color brandColor;
   final double size;
+  final String? tooltip;
 
   const TechItemCard({
     super.key,
@@ -390,6 +445,7 @@ class TechItemCard extends StatefulWidget {
     required this.icon,
     required this.brandColor,
     this.size = AppConstants.techItemSize,
+    this.tooltip,
   });
 
   @override
@@ -398,6 +454,79 @@ class TechItemCard extends StatefulWidget {
 
 class _TechItemCardState extends State<TechItemCard> {
   bool _isHovered = false;
+  OverlayEntry? _overlayEntry;
+
+  @override
+  void dispose() {
+    _hideTooltip();
+    super.dispose();
+  }
+
+  void _showTooltip() {
+    _hideTooltip(); // clear existing if any
+
+    final String? msg = widget.tooltip;
+    if (msg == null || msg.isEmpty) return;
+
+    final renderBox = context.findRenderObject() as RenderBox?;
+    if (renderBox == null) return;
+
+    final size = renderBox.size;
+    final position = renderBox.localToGlobal(Offset.zero);
+
+    // Determine if we show it below or above
+    final bool showBelow = position.dy < 120;
+
+    // Boundary check and horizontal shift calculation to keep bubble fully on screen
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final globalCenterX = position.dx + size.width / 2;
+
+    double shiftX = 0.0;
+    if (globalCenterX - 90 < 8) {
+      shiftX = 8 - (globalCenterX - 90);
+    } else if (globalCenterX + 90 > screenWidth - 8) {
+      shiftX = (screenWidth - 8) - (globalCenterX + 90);
+    }
+
+    // Relative fraction of the tail location on the bubble width (180px)
+    final double tailXOffset = (90 - shiftX) / 180;
+    final double leftPos = position.dx - (180 - size.width) / 2 + shiftX;
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) {
+        return Stack(
+          children: [
+            Positioned(
+              left: leftPos,
+              top: showBelow ? position.dy + size.height + 6 : null,
+              bottom: showBelow ? null : screenHeight - position.dy + 6,
+              width: 180,
+              child: Align(
+                alignment:
+                    showBelow ? Alignment.topCenter : Alignment.bottomCenter,
+                child: Material(
+                  color: Colors.transparent,
+                  child: PixelTooltipBubble(
+                    message: msg,
+                    showBelow: showBelow,
+                    tailXOffset: tailXOffset,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  void _hideTooltip() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -418,8 +547,14 @@ class _TechItemCardState extends State<TechItemCard> {
             : BorderSide(color: AppColors.getBorder(context), width: 1.0);
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
+      onEnter: (_) {
+        setState(() => _isHovered = true);
+        _showTooltip();
+      },
+      onExit: (_) {
+        setState(() => _isHovered = false);
+        _hideTooltip();
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOutCubic,
@@ -553,3 +688,5 @@ class _ToggleExpandCardState extends State<ToggleExpandCard> {
     );
   }
 }
+
+

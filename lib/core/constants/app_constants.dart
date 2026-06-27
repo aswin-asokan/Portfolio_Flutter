@@ -36,7 +36,7 @@ class AppConstants {
 
   // About card widgets constants
   static const double iconSizeAbout = 52.0;
-  static const double aboutCardHeightRow = 200.0;
+  static const double aboutCardHeightRow = 210.0;
   static const double aboutCardHeightStacked = 200.0;
   static const double aboutMobileBreakpoint = 650.0;
   static const double aboutTabletBreakpoint = 1020.0;
