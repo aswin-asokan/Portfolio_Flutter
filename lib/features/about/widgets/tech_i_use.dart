@@ -29,6 +29,22 @@ class _TechIUseState extends State<TechIUse> {
 
   static const List<TechItemData> techItems = [
     TechItemData(
+      name: "Flutter",
+      icon: SimpleIcons.flutter,
+      color: Color(0xFF02569B),
+    ),
+    TechItemData(
+      name: "Dart",
+      icon: SimpleIcons.dart,
+      color: Color(0xFF0175C2),
+    ),
+    TechItemData(
+      name: "C++",
+      icon: SimpleIcons.cplusplus,
+      color: Color(0xFF00599C),
+    ),
+    TechItemData(name: "C", icon: SimpleIcons.c, color: Color(0xFFABABAB)),
+    TechItemData(
       name: "HTML",
       icon: SimpleIcons.html5,
       color: Color(0xFFE34F26),
@@ -40,9 +56,9 @@ class _TechIUseState extends State<TechIUse> {
       color: Color(0xFFF7DF1E),
     ),
     TechItemData(
-      name: "TypeScript",
-      icon: SimpleIcons.typescript,
-      color: Color(0xFF3178C6),
+      name: "Python",
+      icon: SimpleIcons.python,
+      color: Color(0xFF3776AB),
     ),
     TechItemData(
       name: "React",
@@ -50,30 +66,9 @@ class _TechIUseState extends State<TechIUse> {
       color: Color(0xFF61DAFB),
     ),
     TechItemData(
-      name: "Next.js",
-      icon: SimpleIcons.nextdotjs,
-      color: Colors.black,
-    ),
-    TechItemData(
-      name: "Tailwind",
-      icon: SimpleIcons.tailwindcss,
-      color: Color(0xFF06B6D4),
-    ),
-    TechItemData(name: "Git", icon: SimpleIcons.git, color: Color(0xFFF05032)),
-    TechItemData(
-      name: "VS Code",
-      icon: SimpleIcons.claudecode,
-      color: Color(0xFF007ACC),
-    ),
-    TechItemData(
-      name: "Flutter",
-      icon: SimpleIcons.flutter,
-      color: Color(0xFF02569B),
-    ),
-    TechItemData(
-      name: "Dart",
-      icon: SimpleIcons.dart,
-      color: Color(0xFF0175C2),
+      name: "MySQL",
+      icon: SimpleIcons.mysql,
+      color: Color(0xFF4479A1),
     ),
     TechItemData(
       name: "Firebase",
@@ -81,11 +76,56 @@ class _TechIUseState extends State<TechIUse> {
       color: Color(0xFFFFCA28),
     ),
     TechItemData(
-      name: "Node.js",
-      icon: SimpleIcons.nodedotjs,
-      color: Color(0xFF339933),
+      name: "Arduino",
+      icon: SimpleIcons.arduino,
+      color: Color(0xFF00979D),
     ),
-    TechItemData(name: "GitHub", icon: SimpleIcons.github, color: Colors.black),
+    TechItemData(
+      name: "GitHub",
+      icon: SimpleIcons.github,
+      color: Color(0xFF181717),
+    ),
+    TechItemData(name: "Git", icon: SimpleIcons.git, color: Color(0xFFF05032)),
+    TechItemData(
+      name: "DBeaver",
+      icon: SimpleIcons.dbeaver,
+      color: Color(0xFF382923),
+    ),
+    TechItemData(
+      name: "VS Code",
+      icon: SimpleIcons.vscodium,
+      color: Color(0xFF007ACC),
+    ),
+    TechItemData(
+      name: "Android Studio",
+      icon: SimpleIcons.androidstudio,
+      color: Color(0xFF3DDC84),
+    ),
+    TechItemData(
+      name: "Antigravity",
+      icon: SimpleIcons.googlegemini,
+      color: Color(0xFF1A73E8),
+    ),
+    TechItemData(
+      name: "Codex",
+      icon: SimpleIcons.openaigym,
+      color: Color(0xFF10A37F),
+    ),
+    TechItemData(
+      name: "Confluence",
+      icon: SimpleIcons.confluence,
+      color: Color(0xFF0052CC),
+    ),
+    TechItemData(
+      name: "Bitbucket",
+      icon: SimpleIcons.bitbucket,
+      color: Color(0xFF0052CC),
+    ),
+    TechItemData(
+      name: "Jira",
+      icon: SimpleIcons.jira,
+      color: Color(0xFF0052CC),
+    ),
   ];
 
   @override
@@ -156,14 +196,16 @@ class _TechIUseState extends State<TechIUse> {
                   ),
                 )
               else
-                ...techItems.take(maxItems).map(
-                  (item) => TechItemCard(
-                    name: item.name,
-                    icon: item.icon,
-                    brandColor: item.color,
-                    size: dynamicItemSize,
-                  ),
-                ),
+                ...techItems
+                    .take(maxItems)
+                    .map(
+                      (item) => TechItemCard(
+                        name: item.name,
+                        icon: item.icon,
+                        brandColor: item.color,
+                        size: dynamicItemSize,
+                      ),
+                    ),
               ToggleExpandCard(
                 isExpandButton: !_isExpanded,
                 onTap: () => setState(() => _isExpanded = !_isExpanded),
@@ -209,14 +251,16 @@ class _TechIUseState extends State<TechIUse> {
                 ),
               )
             else
-              ...techItems.take(maxItems).map(
-                (item) => TechItemCard(
-                  name: item.name,
-                  icon: item.icon,
-                  brandColor: item.color,
-                  size: dynamicItemSize,
-                ),
-              ),
+              ...techItems
+                  .take(maxItems)
+                  .map(
+                    (item) => TechItemCard(
+                      name: item.name,
+                      icon: item.icon,
+                      brandColor: item.color,
+                      size: dynamicItemSize,
+                    ),
+                  ),
             ToggleExpandCard(
               isExpandButton: !_isExpanded,
               onTap: () => setState(() => _isExpanded = !_isExpanded),
