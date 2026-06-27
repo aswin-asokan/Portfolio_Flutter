@@ -42,4 +42,11 @@ class AppConstants {
   static const double aboutTabletBreakpoint = 1020.0;
   static const double splashMaxAmplitude = 90.0;
   static const int splashCycleCount = 4;
+
+  // Tech I Use section constants
+  static const double techItemSize = 78.0;
+  static const double techIconSize = 28.0;
+  static const double techSpacing = 12.0;
+  static const double techSectionPadding = 20.0;
+  static const double techMobileTitleBreakpoint = 600.0;
 }

@@ -5,6 +5,15 @@ import 'package:portfolio/core/constants/app_constants.dart';
 
 ThemeData lightmode = ThemeData(
   scaffoldBackgroundColor: const Color(0xFFFBFBFC),
+  cardTheme: CardThemeData(
+    color: Colors.white,
+    elevation: 0,
+    margin: EdgeInsets.zero,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppConstants.radiusXL),
+      side: const BorderSide(color: AppColors.borderLight, width: 1.5),
+    ),
+  ),
   colorScheme: const ColorScheme.light(
     primary: Color(0xFF6F52F6),
     onPrimary: Colors.white,

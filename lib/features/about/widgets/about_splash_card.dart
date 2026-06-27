@@ -237,12 +237,20 @@ class AboutSplashCard extends StatelessWidget {
                         mainAxisSize:
                             isMobile ? MainAxisSize.min : MainAxisSize.max,
                         children: [
-                          Text(
-                            title,
-                            style: context.textTheme.labelLarge!.copyWith(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: textColor,
+                          CornerHighlight(
+                            corner: SparkleCorner.topLeft,
+                            color:
+                                isDark
+                                    ? AppColors.lightGreen
+                                    : AppColors.darkGreen,
+                            lengthFactor: 0.7,
+                            child: Text(
+                              title,
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: textColor,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -325,9 +333,7 @@ class AboutSplashCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Divider(
-                      color: AppColors.getGridDivider(context),
-                    ),
+                    Divider(color: AppColors.getGridDivider(context)),
                     Row(
                       children: [
                         Expanded(
@@ -413,9 +419,10 @@ class _SplashItemWidgetState extends State<SplashItemWidget> {
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeOutBack,
-            transform: _isHovered
-                ? Matrix4.translationValues(0, -6, 0)
-                : Matrix4.identity(),
+            transform:
+                _isHovered
+                    ? Matrix4.translationValues(0, -6, 0)
+                    : Matrix4.identity(),
             child: AnimatedScale(
               scale: _isHovered ? 1.12 : 1.0,
               duration: const Duration(milliseconds: 150),

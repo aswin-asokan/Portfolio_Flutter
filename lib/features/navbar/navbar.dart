@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
+import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
 import 'package:provider/provider.dart';
 import 'package:portfolio/core/themes/theme_provider.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
@@ -221,31 +222,36 @@ class _NavbarState extends State<Navbar> {
 
                     // Expanding actions / hamburger
                     if (isExpanded)
-                      CustomButton.filled(
-                        label: "Let's Talk!",
-                        onPress: () {
-                          final int contactIndex = widget.sections.indexWhere(
-                            (s) => s.toLowerCase() == "contact",
-                          );
-                          if (contactIndex != -1) {
-                            _scrollToSection(
-                              contactIndex,
-                              updateSelection: false,
+                      CornerHighlight(
+                        lengthFactor: 0.5,
+                        strokeWidth: 2.4,
+                        corner: SparkleCorner.topRight,
+                        child: CustomButton.filled(
+                          label: "Let's Talk!",
+                          onPress: () {
+                            final int contactIndex = widget.sections.indexWhere(
+                              (s) => s.toLowerCase() == "contact",
                             );
-                          }
-                        },
-                        color:
-                            Theme.of(context).brightness == Brightness.dark
-                                ? AppColors.lightButton
-                                : AppColors.darkButton,
-                        suffixIcon: Icon(
-                          Symbols.chat_bubble,
-                          fill: 1,
-                          size: AppConstants.iconSizeS,
+                            if (contactIndex != -1) {
+                              _scrollToSection(
+                                contactIndex,
+                                updateSelection: false,
+                              );
+                            }
+                          },
                           color:
                               Theme.of(context).brightness == Brightness.dark
-                                  ? AppColors.darkButton
-                                  : AppColors.lightButton,
+                                  ? AppColors.lightButton
+                                  : AppColors.darkButton,
+                          suffixIcon: Icon(
+                            Symbols.chat_bubble,
+                            fill: 1,
+                            size: AppConstants.iconSizeS,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.darkButton
+                                    : AppColors.lightButton,
+                          ),
                         ),
                       )
                     else

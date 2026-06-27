@@ -119,4 +119,8 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? white
           : black;
+
+  // Sparkles and decorative colors
+  static const Color sparklePink = Color(0xFFFF3E81);
+  static const Color sparklePurple = Color(0xFF6F52F6);
 }

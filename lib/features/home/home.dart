@@ -3,6 +3,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
+import 'package:portfolio/features/about/widgets/tech_i_use.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
 import 'package:portfolio/features/footer/screens/footer.dart';
@@ -90,6 +91,7 @@ class _HomeState extends State<Home> {
                               onNavigate: scrollTo,
                               contactKey: sectionKeys[4],
                             ),
+                            const TechIUse(),
                             Text(
                               "Experience",
                               style: context.textTheme.bodyLarge,
