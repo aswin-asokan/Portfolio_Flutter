@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:portfolio/core/themes/darkmode.dart';
 import 'package:portfolio/core/themes/lightmode.dart';
 import 'package:portfolio/core/themes/theme_provider.dart';
+import 'package:portfolio/core/themes/theme_transition_overlay.dart';
 import 'package:portfolio/features/shared/extension/router.dart';
 
 void main() {
@@ -29,6 +30,12 @@ class MyApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       debugShowCheckedModeBanner: false,
       routerConfig: router,
+      builder: (context, child) {
+        return ThemeTransitionOverlay(
+          isSwitching: themeProvider.isSwitchingTheme,
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
     );
   }
 }
