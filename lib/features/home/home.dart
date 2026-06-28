@@ -8,6 +8,7 @@ import 'package:portfolio/features/contact/screens/contact_me.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
 import 'package:portfolio/features/footer/screens/footer.dart';
 import 'package:portfolio/features/hero/screens/hero_container.dart';
+import 'package:portfolio/features/anilist/screens/anilist_section.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/pinterest/screens/pinterest_section.dart';
 import 'package:portfolio/features/projects/screens/projects.dart';
@@ -25,6 +26,7 @@ class _HomeState extends State<Home> {
   final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
   final bool _isLoading = false;
+  bool _isAnilistVisible = false;
   @override
   void initState() {
     super.initState();
@@ -123,7 +125,34 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                             Projects(),
-                            const PinterestSection(),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              spacing: _isAnilistVisible ? 20 : 0,
+                              children: [
+                                PinterestSection(
+                                  onEasterEggPressed: () {
+                                    setState(() {
+                                      _isAnilistVisible = !_isAnilistVisible;
+                                    });
+                                  },
+                                ),
+                                AnimatedSize(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                  alignment: Alignment.topCenter,
+                                  child: _isAnilistVisible
+                                      ? AnilistSection(
+                                          onClosePressed: () {
+                                            setState(() {
+                                              _isAnilistVisible = false;
+                                            });
+                                          },
+                                        )
+                                      : const SizedBox.shrink(),
+                                ),
+                              ],
+                            ),
                             Text(
                               "Contact Me",
                               style: context.textTheme.bodyLarge,

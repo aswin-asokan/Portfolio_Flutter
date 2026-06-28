@@ -34,147 +34,159 @@ class _TechIUseState extends State<TechIUse> {
     TechItemData(
       name: "Flutter",
       icon: SimpleIcons.flutter,
-      color: Color(0xFF02569B),
+      color: AppColors.brandFlutter,
       tooltip: "My comfort zone. Most of my ideas end up here.",
     ),
     TechItemData(
       name: "Dart",
       icon: SimpleIcons.dart,
-      color: Color(0xFF0175C2),
+      color: AppColors.brandDart,
       tooltip: "Fluent enough that semicolons now feel optional elsewhere.",
     ),
     TechItemData(
       name: "C++",
       icon: SimpleIcons.cplusplus,
-      color: Color(0xFF00599C),
+      color: AppColors.brandCpp,
       tooltip:
           "Learnt where pointers were scary and segfaults were life lessons.",
     ),
     TechItemData(
       name: "C",
       icon: SimpleIcons.c,
-      color: Color(0xFFA8B9CC),
+      color: AppColors.brandC,
       tooltip: "Still remember malloc. Still double-check free.",
     ),
     TechItemData(
       name: "HTML",
       icon: SimpleIcons.html5,
-      color: Color(0xFFE34F26),
+      color: AppColors.brandHtml,
       tooltip: "My brief attempt at becoming a web developer.",
     ),
     TechItemData(
       name: "CSS",
       icon: SimpleIcons.css,
-      color: Color(0xFF1572B6),
+      color: AppColors.brandCss,
       tooltip: "Spent more time centering divs than I'd like to admit.",
     ),
     TechItemData(
       name: "JavaScript",
       icon: SimpleIcons.javascript,
-      color: Color(0xFFF7DF1E),
+      color: AppColors.brandJavascript,
       tooltip: "We almost became best friends. Flutter had other plans.",
     ),
     TechItemData(
       name: "React",
       icon: SimpleIcons.react,
-      color: Color(0xFF61DAFB),
+      color: AppColors.brandReact,
       tooltip: "Tried switching. Flutter politely refused to let me leave.",
     ),
     TechItemData(
       name: "Python",
       icon: SimpleIcons.python,
-      color: Color(0xFF3776AB),
+      color: AppColors.brandPython,
       tooltip: "The language that convinced me RAM and GPU is never enough.",
     ),
     TechItemData(
       name: "MySQL",
       icon: SimpleIcons.mysql,
-      color: Color(0xFF4479A1),
+      color: AppColors.brandMysql,
       tooltip: "Mostly retired, occasionally called back to work.",
     ),
     TechItemData(
       name: "Firebase",
       icon: SimpleIcons.firebase,
-      color: Color(0xFFFFCA28),
+      color: AppColors.brandFirebase,
       tooltip: "The \"I need a backend today\" button.",
     ),
     TechItemData(
       name: "GCP",
       icon: SimpleIcons.googlecloud,
-      color: Color(0xFF4285F4),
+      color: AppColors.brandGcp,
       tooltip: "Mostly visit for APIs and then quietly leave.",
     ),
     TechItemData(
       name: "Arduino",
       icon: SimpleIcons.arduino,
-      color: Color(0xFF00979D),
+      color: AppColors.brandArduino,
       tooltip: "Enough to make LEDs blink and ESP32s behave... mostly.",
     ),
     TechItemData(
       name: "GitHub",
       icon: SimpleIcons.github,
-      color: Color(0xFF181717),
+      color: AppColors.brandGithub,
       tooltip: "Where bugs become commit history.",
     ),
     TechItemData(
       name: "Git",
       icon: SimpleIcons.git,
-      color: Color(0xFFF05032),
+      color: AppColors.brandGit,
       tooltip: "git add . → git commit → hope for the best.",
     ),
     TechItemData(
       name: "Bitbucket",
       icon: SimpleIcons.bitbucket,
-      color: Color(0xFF0052CC),
+      color: AppColors.brandBitbucket,
       tooltip: "Corporate GitHub. Still gets the job done.",
     ),
     TechItemData(
       name: "DBeaver",
       icon: SimpleIcons.dbeaver,
-      color: Color(0xFF382923),
+      color: AppColors.brandDbeaver,
       tooltip: "Because looking directly at the database feels reassuring.",
     ),
     TechItemData(
       name: "VS Code",
       icon: SimpleIcons.vscodium,
-      color: Color(0xFF007ACC),
+      color: AppColors.brandVsCode,
       tooltip: "Opened once. Closed... eventually.",
     ),
     TechItemData(
       name: "Android Studio",
       icon: SimpleIcons.androidstudio,
-      color: Color(0xFF3DDC84),
+      color: AppColors.brandAndroidStudio,
       tooltip: "Mostly opened for the emulator. Occasionally survives longer.",
     ),
     TechItemData(
       name: "XCode",
       icon: SimpleIcons.xcode,
-      color: Color(0xFF0B4A8C),
+      color: AppColors.brandXcode,
       tooltip: "Opened only when Apple insists.",
     ),
     TechItemData(
       name: "Antigravity",
       icon: SimpleIcons.googlegemini,
-      color: Color(0xFF1A73E8),
+      color: AppColors.brandAntigravity,
       tooltip: "Helps turn half-baked ideas into actual features.",
     ),
     TechItemData(
       name: "Codex",
       icon: SimpleIcons.openaigym,
-      color: Color(0xFF10A37F),
+      color: AppColors.brandCodex,
       tooltip: "Makes me look smarter than I probably am.",
     ),
     TechItemData(
       name: "Confluence",
       icon: SimpleIcons.confluence,
-      color: Color(0xFF0052CC),
+      color: AppColors.brandConfluence,
       tooltip: "Where documentation goes to become surprisingly useful.",
     ),
     TechItemData(
       name: "Jira",
       icon: SimpleIcons.jira,
-      color: Color(0xFF0052CC),
+      color: AppColors.brandJira,
       tooltip: "Turning \"I'll do it later\" into actual tickets.",
+    ),
+    TechItemData(
+      name: "Pop OS",
+      icon: SimpleIcons.popos,
+      color: AppColors.brandPopOs,
+      tooltip: "The OS that just lets me build things.",
+    ),
+    TechItemData(
+      name: "MacOS",
+      icon: SimpleIcons.apple,
+      color: AppColors.brandMacOs,
+      tooltip: "Work mode: enabled.",
     ),
   ];
 
@@ -210,10 +222,13 @@ class _TechIUseState extends State<TechIUse> {
   }
 
   Widget _buildDesktopLayout(double totalWidth) {
-    // Title takes 80px, spacing takes 24px
-    final double rem = totalWidth - 80 - 24;
+    // Title takes techDesktopTitleWidth, spacing takes techDesktopTitleSpacing
+    final double rem =
+        totalWidth -
+        AppConstants.techDesktopTitleWidth -
+        AppConstants.techDesktopTitleSpacing;
 
-    const double minSpacing = 8.0;
+    const double minSpacing = AppConstants.spaceS;
     final int maxItems =
         ((rem - AppConstants.techItemSize) /
                 (AppConstants.techItemSize + minSpacing))
@@ -227,10 +242,15 @@ class _TechIUseState extends State<TechIUse> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: SizedBox(width: 80, child: _buildDesktopTitle()),
+          padding: const EdgeInsets.only(
+            top: AppConstants.techDesktopTitleTopPadding,
+          ),
+          child: SizedBox(
+            width: AppConstants.techDesktopTitleWidth,
+            child: _buildDesktopTitle(),
+          ),
         ),
-        const SizedBox(width: 24),
+        const SizedBox(width: AppConstants.techDesktopTitleSpacing),
         Expanded(
           child: Wrap(
             spacing: AppConstants.techSpacing,
@@ -272,7 +292,7 @@ class _TechIUseState extends State<TechIUse> {
 
   Widget _buildMobileLayout(double totalWidth) {
     // Title is above items, so we have full width inside card (totalWidth)
-    const double minSpacing = 8.0;
+    const double minSpacing = AppConstants.spaceS;
     final int maxItems =
         ((totalWidth - AppConstants.techItemSize) /
                 (AppConstants.techItemSize + minSpacing))
@@ -288,7 +308,7 @@ class _TechIUseState extends State<TechIUse> {
       mainAxisSize: MainAxisSize.min,
       children: [
         _buildMobileTitle(),
-        const SizedBox(height: 16),
+        const SizedBox(height: AppConstants.techMobileTitleSpacing),
         Wrap(
           spacing: AppConstants.techSpacing,
           runSpacing: AppConstants.techSpacing,
@@ -328,7 +348,7 @@ class _TechIUseState extends State<TechIUse> {
 
   Widget _buildDesktopTitle() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark ? Colors.white : Colors.black;
+    final textColor = isDark ? AppColors.white : AppColors.black;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -344,37 +364,37 @@ class _TechIUseState extends State<TechIUse> {
                   context.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: textColor,
-                    fontSize: 20,
+                    fontSize: AppConstants.techTitleFontSizeDesktop,
                   ) ??
                   TextStyle(
-                    fontSize: 20,
+                    fontSize: AppConstants.techTitleFontSizeDesktop,
                     fontWeight: FontWeight.bold,
                     color: textColor,
                   ),
             ),
-            const SizedBox(width: 4),
+            const SizedBox(width: AppConstants.spaceXS),
             Text(
               "I",
               style:
                   context.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: AppColors.sparklePurple,
-                    fontSize: 20,
+                    fontSize: AppConstants.techTitleFontSizeDesktop,
                   ) ??
                   const TextStyle(
-                    fontSize: 20,
+                    fontSize: AppConstants.techTitleFontSizeDesktop,
                     fontWeight: FontWeight.bold,
                     color: AppColors.sparklePurple,
                   ),
             ),
           ],
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: AppConstants.spaceXS),
         CornerHighlight(
           corner: SparkleCorner.rightCenter,
           color: AppColors.sparklePink.withValues(alpha: 0.6),
           lengthFactor: 0.6,
-          strokeWidth: 2.0,
+          strokeWidth: AppConstants.techTitleStrokeWidth,
           extraSpread: 0.1,
           child: Padding(
             padding: const EdgeInsets.only(right: 6, bottom: 2),
@@ -384,10 +404,10 @@ class _TechIUseState extends State<TechIUse> {
                   context.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: textColor,
-                    fontSize: 20,
+                    fontSize: AppConstants.techTitleFontSizeDesktop,
                   ) ??
                   TextStyle(
-                    fontSize: 20,
+                    fontSize: AppConstants.techTitleFontSizeDesktop,
                     fontWeight: FontWeight.bold,
                     color: textColor,
                   ),
@@ -400,13 +420,13 @@ class _TechIUseState extends State<TechIUse> {
 
   Widget _buildMobileTitle() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark ? Colors.white : Colors.black;
+    final textColor = isDark ? AppColors.white : AppColors.black;
 
     return CornerHighlight(
       corner: SparkleCorner.rightCenter,
       color: AppColors.sparklePink.withValues(alpha: 0.6),
       lengthFactor: 0.6,
-      strokeWidth: 2.0,
+      strokeWidth: AppConstants.techTitleStrokeWidth,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -417,15 +437,15 @@ class _TechIUseState extends State<TechIUse> {
                 context.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: textColor,
-                  fontSize: 18,
+                  fontSize: AppConstants.techTitleFontSizeMobile,
                 ) ??
                 TextStyle(
-                  fontSize: 18,
+                  fontSize: AppConstants.techTitleFontSizeMobile,
                   fontWeight: FontWeight.bold,
                   color: textColor,
                 ),
           ),
-          SizedBox(width: AppConstants.spaceS),
+          const SizedBox(width: AppConstants.spaceS),
         ],
       ),
     );
@@ -475,7 +495,7 @@ class _TechItemCardState extends State<TechItemCard> {
     final position = renderBox.localToGlobal(Offset.zero);
 
     // Determine if we show it below or above
-    final bool showBelow = position.dy < 120;
+    final bool showBelow = position.dy < AppConstants.techTooltipOffsetLimit;
 
     // Boundary check and horizontal shift calculation to keep bubble fully on screen
     final screenWidth = MediaQuery.of(context).size.width;
@@ -483,15 +503,24 @@ class _TechItemCardState extends State<TechItemCard> {
     final globalCenterX = position.dx + size.width / 2;
 
     double shiftX = 0.0;
-    if (globalCenterX - 90 < 8) {
-      shiftX = 8 - (globalCenterX - 90);
-    } else if (globalCenterX + 90 > screenWidth - 8) {
-      shiftX = (screenWidth - 8) - (globalCenterX + 90);
+    if (globalCenterX - AppConstants.techTooltipHorizontalLimit <
+        AppConstants.spaceS) {
+      shiftX =
+          AppConstants.spaceS -
+          (globalCenterX - AppConstants.techTooltipHorizontalLimit);
+    } else if (globalCenterX + AppConstants.techTooltipHorizontalLimit >
+        screenWidth - AppConstants.spaceS) {
+      shiftX =
+          (screenWidth - AppConstants.spaceS) -
+          (globalCenterX + AppConstants.techTooltipHorizontalLimit);
     }
 
-    // Relative fraction of the tail location on the bubble width (180px)
-    final double tailXOffset = (90 - shiftX) / 180;
-    final double leftPos = position.dx - (180 - size.width) / 2 + shiftX;
+    // Relative fraction of the tail location on the bubble width (techTooltipWidth)
+    final double tailXOffset =
+        (AppConstants.techTooltipHorizontalLimit - shiftX) /
+        AppConstants.techTooltipWidth;
+    final double leftPos =
+        position.dx - (AppConstants.techTooltipWidth - size.width) / 2 + shiftX;
 
     _overlayEntry = OverlayEntry(
       builder: (context) {
@@ -499,9 +528,9 @@ class _TechItemCardState extends State<TechItemCard> {
           children: [
             Positioned(
               left: leftPos,
-              top: showBelow ? position.dy + size.height + 6 : null,
-              bottom: showBelow ? null : screenHeight - position.dy + 6,
-              width: 180,
+              top: showBelow ? position.dy + size.height + 6.0 : null,
+              bottom: showBelow ? null : screenHeight - position.dy + 6.0,
+              width: AppConstants.techTooltipWidth,
               child: Align(
                 alignment:
                     showBelow ? Alignment.topCenter : Alignment.bottomCenter,
@@ -531,20 +560,23 @@ class _TechItemCardState extends State<TechItemCard> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final baseBg = isDark ? const Color(0xFF1A2035) : Colors.white;
+    final baseBg = AppColors.getTechCardBg(context);
 
     final resolvedColor =
         (widget.name == "Next.js" || widget.name == "GitHub")
-            ? (isDark ? Colors.white : Colors.black)
+            ? (isDark ? AppColors.white : AppColors.black)
             : widget.brandColor;
 
     final borderSide =
         _isHovered
             ? BorderSide(
               color: resolvedColor.withAlpha((0.8 * 255).round()),
-              width: 1.5,
+              width: AppConstants.techCardBorderWidthHovered,
             )
-            : BorderSide(color: AppColors.getBorder(context), width: 1.0);
+            : BorderSide(
+              color: AppColors.getBorder(context),
+              width: AppConstants.techCardBorderWidthDefault,
+            );
 
     return MouseRegion(
       onEnter: (_) {
@@ -578,7 +610,11 @@ class _TechItemCardState extends State<TechItemCard> {
         ),
         transform:
             _isHovered
-                ? Matrix4.translationValues(0, -4.0, 0)
+                ? Matrix4.translationValues(
+                  0,
+                  AppConstants.techCardHoverTranslateY,
+                  0,
+                )
                 : Matrix4.identity(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -591,7 +627,10 @@ class _TechItemCardState extends State<TechItemCard> {
             const SizedBox(height: 6),
             Text(
               widget.name,
-              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                fontSize: AppConstants.techItemFontSize,
+                fontWeight: FontWeight.w600,
+              ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -624,16 +663,19 @@ class _ToggleExpandCardState extends State<ToggleExpandCard> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final baseBg = isDark ? const Color(0xFF1A2035) : Colors.white;
+    final baseBg = AppColors.getTechCardBg(context);
     final accentColor = Theme.of(context).colorScheme.primary;
 
     final borderSide =
         _isHovered
             ? BorderSide(
               color: accentColor.withAlpha((0.8 * 255).round()),
-              width: 1.5,
+              width: AppConstants.techCardBorderWidthHovered,
             )
-            : BorderSide(color: AppColors.getBorder(context), width: 1.0);
+            : BorderSide(
+              color: AppColors.getBorder(context),
+              width: AppConstants.techCardBorderWidthDefault,
+            );
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
@@ -663,21 +705,28 @@ class _ToggleExpandCardState extends State<ToggleExpandCard> {
           ),
           transform:
               _isHovered
-                  ? Matrix4.translationValues(0, -4.0, 0)
+                  ? Matrix4.translationValues(
+                    0,
+                    AppConstants.techCardHoverTranslateY,
+                    0,
+                  )
                   : Matrix4.identity(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 widget.isExpandButton ? Icons.more_horiz : Icons.expand_less,
-                color: isDark ? Colors.white60 : Colors.black54,
+                color:
+                    isDark
+                        ? AppColors.white.withValues(alpha: 0.6)
+                        : AppColors.black.withValues(alpha: 0.54),
                 size: AppConstants.techIconSize,
               ),
               const SizedBox(height: 6),
               Text(
                 widget.isExpandButton ? "More" : "Less",
                 style: const TextStyle(
-                  fontSize: 10,
+                  fontSize: AppConstants.techItemFontSize,
                   fontWeight: FontWeight.w600,
                 ),
               ),

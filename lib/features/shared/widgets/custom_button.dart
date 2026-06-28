@@ -116,7 +116,7 @@ class CustomButton extends StatelessWidget {
     if (prefixIcon != null || suffixIcon != null) {
       content = Row(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         spacing: 8,
         children: [
           if (prefixIcon != null) prefixIcon!,

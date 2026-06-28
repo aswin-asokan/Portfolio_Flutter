@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/pinterest/widgets/iframe_widget.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
+import 'package:portfolio/features/shared/widgets/corner_star.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
-import 'package:svg_flutter/svg.dart';
+import 'package:portfolio/features/pinterest/widgets/anime_easter_egg.dart';
+import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PinterestSection extends StatelessWidget {
-  const PinterestSection({super.key});
+  final VoidCallback? onEasterEggPressed;
+  const PinterestSection({super.key, this.onEasterEggPressed});
 
   final String _pinterestUrl = "https://pin.it/416Oj6Tmc";
 
@@ -66,8 +67,9 @@ class PinterestSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final double width = MediaQuery.sizeOf(context).width;
-    final bool isDesktopLayout = width >= 1150;
-    final bool isMobileLayout = width < 600;
+    final bool isDesktopLayout =
+        width >= AppConstants.pinterestDesktopBreakpoint;
+    final bool isMobileLayout = width < AppConstants.pinterestMobileBreakpoint;
 
     return Container(
       width: double.infinity,
@@ -88,10 +90,11 @@ class PinterestSection extends StatelessWidget {
           if (!isMobileLayout) {
             final double mockupColumnWidth =
                 constraints.maxWidth * (isDesktopLayout ? 0.32 : 0.45);
-            final double mockupWidth = (mockupColumnWidth - 16).clamp(
-              200.0,
-              300.0,
-            );
+            final double mockupWidth = (mockupColumnWidth - AppConstants.spaceM)
+                .clamp(
+                  AppConstants.pinterestMockupWidthMin,
+                  AppConstants.pinterestMockupWidthMax,
+                );
 
             return _buildHorizontalLayout(
               context,
@@ -114,13 +117,25 @@ class PinterestSection extends StatelessWidget {
     required double mockupWidth,
   }) {
     final double screenWidth = MediaQuery.sizeOf(context).width;
-    final double leftPadding = screenWidth < 850 ? 24.0 : 48.0;
-    final double rightPadding = screenWidth < 850 ? 12.0 : 20.0;
-    final double titleFontSize = screenWidth < 850 ? 22.0 : 28.0;
-    final double descFontSize = screenWidth < 850 ? 12.0 : 14.0;
+    final double leftPadding =
+        screenWidth < AppConstants.pinterestResponsiveTitleBreakpoint
+            ? AppConstants.pinterestPaddingLeftSmall
+            : AppConstants.pinterestPaddingLeftLarge;
+    final double rightPadding =
+        screenWidth < AppConstants.pinterestResponsiveTitleBreakpoint
+            ? AppConstants.pinterestPaddingRightSmall
+            : AppConstants.pinterestPaddingRightLarge;
+    final double titleFontSize =
+        screenWidth < AppConstants.pinterestResponsiveTitleBreakpoint
+            ? AppConstants.pinterestTitleFontSizeTablet
+            : AppConstants.pinterestTitleFontSizeDesktop;
+    final double descFontSize =
+        screenWidth < AppConstants.pinterestResponsiveTitleBreakpoint
+            ? AppConstants.pinterestDescFontSizeTablet
+            : AppConstants.pinterestDescFontSizeDesktop;
 
     return SizedBox(
-      height: 300,
+      height: AppConstants.pinterestMockupHeightHorizontal,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -133,20 +148,28 @@ class PinterestSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CornerHighlight(
-                    corner: SparkleCorner.topRight,
-                    color: AppColors.sparklePink,
-                    lengthFactor: 1.1,
-                    child: Text(
-                      "My Art & Crafts",
-                      style: context.textTheme.labelLarge!.copyWith(
-                        fontSize: titleFontSize,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.getTitleText(context),
+                  Row(
+                    spacing: AppConstants.spaceS,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      AnimeEasterEgg(
+                        onTap: onEasterEggPressed,
+                        height: AppConstants.iconSize68,
                       ),
-                    ),
+                      CornerStars(
+                        position: StarPosition.topRight,
+                        child: Text(
+                          "My Art & Crafts",
+                          style: context.textTheme.labelLarge!.copyWith(
+                            fontSize: titleFontSize,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.getTitleText(context),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AppConstants.spaceM),
                   Text(
                     "A little corner of my world where ideas take shape beyond the screen. Sketches, illustrations, and handmade things I love creating.",
                     style: context.textTheme.bodySmall!.copyWith(
@@ -155,18 +178,15 @@ class PinterestSection extends StatelessWidget {
                       height: 1.6,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AppConstants.spaceL),
                   CustomButton.filled(
-                    color: isDark ? Colors.white : const Color(0xFF1A1A1A),
-                    textColor: isDark ? Colors.black : Colors.white,
+                    color: isDark ? AppColors.white : AppColors.darkButton,
+                    textColor: isDark ? AppColors.black : AppColors.white,
                     label: "Explore on Pinterest",
-                    prefixIcon: SvgPicture.asset(
-                      "assets/icons/pinterest.svg",
-                      height: 18,
-                      colorFilter: ColorFilter.mode(
-                        isDark ? Colors.black : Colors.white,
-                        BlendMode.srcIn,
-                      ),
+                    prefixIcon: Icon(
+                      SimpleIcons.pinterest,
+                      size: AppConstants.pinterestIconSize,
+                      color: isDark ? AppColors.black : AppColors.white,
                     ),
                     onPress: _launchPinterest,
                   ),
@@ -175,134 +195,147 @@ class PinterestSection extends StatelessWidget {
             ),
           ),
 
-          // Middle: Arrow & Phone Mockup
+          // Combined Middle & Right area
           Expanded(
-            flex: isDesktop ? 32 : 45,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                  top: -20,
-                  bottom: -20,
-                  width: mockupWidth,
-                  child: _buildTabletMockup(context, isDark),
-                ),
-              ],
+            flex: isDesktop ? 62 : 45,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (!isDesktop) {
+                  // Tablet layout (Middle mockup only)
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Positioned(
+                        top: -20,
+                        bottom: -20,
+                        width: mockupWidth,
+                        child: _buildTabletMockup(context, isDark),
+                      ),
+                    ],
+                  );
+                } else {
+                  // Desktop layout: character placed relative to the phone mockup frame
+                  final double totalWidth = constraints.maxWidth;
+                  final double middleWidth = totalWidth * (32 / 62);
+                  final double mockupLeft = (middleWidth - mockupWidth) / 2;
+
+                  // Position the character so that the left edge of the image is close to/overlaps the mockup slightly
+                  final double characterLeft = mockupLeft + mockupWidth + 60;
+
+                  return Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      // Layer 1: Character (Behind mockup for safety)
+                      Positioned(
+                        left: characterLeft,
+                        bottom: 15,
+                        height: 270,
+                        child: Image.asset(
+                          "assets/images/pinterest/pin_img.webp",
+                          fit: BoxFit.contain,
+                          alignment: Alignment.bottomRight,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
+                      // Layer 2: Phone Mockup (On top of character)
+                      Positioned(
+                        left: mockupLeft,
+                        top: -20,
+                        bottom: -20,
+                        width: mockupWidth,
+                        child: _buildTabletMockup(context, isDark),
+                      ),
+                    ],
+                  );
+                }
+              },
             ),
           ),
-
-          // Right: Cartoon winking avatar & thought bubble (Only on desktop!)
-          if (isDesktop)
-            Expanded(
-              flex: 30,
-              child: Stack(
-                children: [
-                  // Thought bubble
-                  Positioned(
-                    left: 15,
-                    top: 42,
-                    child: _buildThoughtBubble(context, isDark),
-                  ),
-                  // Floating Pink Heart
-                  Positioned(
-                    right: 40,
-                    bottom: 120,
-                    child: Icon(
-                      Symbols.favorite,
-                      fill: 1.0,
-                      weight: 700,
-                      size: 32,
-                      color: AppColors.sparklePink,
-                    ),
-                  ),
-                  // Character image peeking from bottom-right
-                  Positioned(
-                    right: -15,
-                    bottom: -18,
-                    height: 220,
-                    child: Image.asset(
-                      "assets/images/about/about_image.webp",
-                      fit: BoxFit.contain,
-                      alignment: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
         ],
       ),
     );
   }
 
   Widget _buildStackedLayout(BuildContext context, bool isDark, bool isMobile) {
-    final double deviceWidth = isMobile ? 254 : 310;
-    final double deviceHeight = isMobile ? 350 : 360;
-    final double hiddenBottom = isMobile ? deviceHeight * 0.25 : 0;
+    final double deviceWidth =
+        isMobile
+            ? AppConstants.pinterestDeviceWidthMobile
+            : AppConstants.pinterestDeviceWidthTablet;
+    final double deviceHeight =
+        isMobile
+            ? AppConstants.pinterestDeviceHeightMobile
+            : AppConstants.pinterestDeviceHeightTablet;
+    final double hiddenBottom = isMobile ? deviceHeight * 0.25 : 0.0;
 
-    return SizedBox(
-      height: 500,
-      child: Stack(
-        clipBehavior: Clip.none,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        isMobile ? AppConstants.spaceL : AppConstants.spaceXL + 8.0,
+        AppConstants.spaceXL,
+        isMobile ? AppConstants.spaceL : AppConstants.spaceXL + 8.0,
+        0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              isMobile ? 24.0 : 40.0,
-              32.0,
-              isMobile ? 24.0 : 40.0,
-              isMobile ? 170.0 : 56.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CornerHighlight(
-                  corner: SparkleCorner.topRight,
-                  color: AppColors.sparklePink,
-                  lengthFactor: 1.1,
-                  child: Text(
-                    "My Art & Crafts",
-                    style: context.textTheme.labelLarge!.copyWith(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.getTitleText(context),
-                    ),
+          Row(
+            spacing: AppConstants.spaceS,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              AnimeEasterEgg(
+                onTap: onEasterEggPressed,
+                height: AppConstants.iconSize68,
+              ),
+              CornerStars(
+                position: StarPosition.topRight,
+                child: Text(
+                  "My Art & Crafts",
+                  style: context.textTheme.labelLarge!.copyWith(
+                    fontSize: AppConstants.pinterestTitleFontSizeMobile,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.getTitleText(context),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  "A little corner of my world where ideas take shape beyond the screen. Sketches, illustrations, and handmade things I love creating.",
-                  style: context.textTheme.bodySmall!.copyWith(
-                    color: AppColors.getDescriptionText(context),
-                    fontSize: 14,
-                    height: 1.6,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                CustomButton.filled(
-                  color: isDark ? Colors.white : const Color(0xFF1A1A1A),
-                  textColor: isDark ? Colors.black : Colors.white,
-                  label: "Explore on Pinterest",
-                  prefixIcon: SvgPicture.asset(
-                    "assets/icons/pinterest.svg",
-                    height: 18,
-                    colorFilter: ColorFilter.mode(
-                      isDark ? Colors.black : Colors.white,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  onPress: _launchPinterest,
-                ),
-              ],
+              ),
+            ],
+          ),
+          const SizedBox(height: AppConstants.spaceM),
+          Text(
+            "A little corner of my world where ideas take shape beyond the screen. Sketches, illustrations, and handmade things I love creating.",
+            style: context.textTheme.bodySmall!.copyWith(
+              color: AppColors.getDescriptionText(context),
+              fontSize: AppConstants.pinterestDescFontSizeMobile,
+              height: 1.6,
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: -hiddenBottom,
-            child: Center(
-              child: SizedBox(
-                width: deviceWidth,
-                height: deviceHeight,
-                child: _buildTabletMockup(context, isDark),
+          const SizedBox(height: AppConstants.techSectionPadding),
+          CustomButton.filled(
+            color: isDark ? AppColors.white : AppColors.darkButton,
+            textColor: isDark ? AppColors.black : AppColors.white,
+            label: "Explore on Pinterest",
+            prefixIcon: Icon(
+              SimpleIcons.pinterest,
+              size: AppConstants.pinterestIconSize,
+              color: isDark ? AppColors.black : AppColors.white,
+            ),
+            onPress: _launchPinterest,
+          ),
+          const SizedBox(height: AppConstants.spaceXL),
+          Center(
+            child: SizedBox(
+              width: deviceWidth,
+              height: deviceHeight - hiddenBottom,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: deviceHeight,
+                    child: _buildTabletMockup(context, isDark),
+                  ),
+                ],
               ),
             ),
           ),
@@ -312,6 +345,7 @@ class PinterestSection extends StatelessWidget {
   }
 
   Widget _buildTabletMockup(BuildContext context, bool isDark) {
+    final buttonColor = AppColors.getMockupButton(context);
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -320,16 +354,16 @@ class PinterestSection extends StatelessWidget {
           left: -5,
           top: 120,
           child: _sideButton(
-            height: 42,
-            color: isDark ? Colors.black87 : Colors.grey.shade800,
+            height: AppConstants.pinterestMockupButtonHeight,
+            color: buttonColor,
           ),
         ),
         Positioned(
           left: -5,
           top: 170,
           child: _sideButton(
-            height: 42,
-            color: isDark ? Colors.black87 : Colors.grey.shade800,
+            height: AppConstants.pinterestMockupButtonHeight,
+            color: buttonColor,
           ),
         ),
 
@@ -338,22 +372,24 @@ class PinterestSection extends StatelessWidget {
           right: -5,
           top: 120,
           child: _sideButton(
-            height: 42,
-            color: isDark ? Colors.black87 : Colors.grey.shade800,
+            height: AppConstants.pinterestMockupButtonHeight,
+            color: buttonColor,
           ),
         ),
 
         Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF101018) : Colors.white,
-            borderRadius: BorderRadius.circular(28),
+            color: AppColors.getMockupDeviceBg(context),
+            borderRadius: BorderRadius.circular(
+              AppConstants.pinterestMockupBorderRadius,
+            ),
             border: Border.all(
-              color: isDark ? Colors.white24 : Colors.black87,
-              width: 7,
+              color: AppColors.getMockupDeviceBorder(context),
+              width: AppConstants.pinterestMockupBorderWidth,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.15),
+                color: AppColors.black.withValues(alpha: 0.15),
                 blurRadius: 20,
                 offset: const Offset(0, 10),
               ),
@@ -361,9 +397,11 @@ class PinterestSection extends StatelessWidget {
           ),
           clipBehavior: Clip.antiAlias,
           child: Padding(
-            padding: EdgeInsets.only(top: AppConstants.spaceS),
+            padding: const EdgeInsets.only(top: AppConstants.spaceS),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(
+                AppConstants.pinterestMockupInnerRadius,
+              ),
               child: IFrameWidget(
                 viewId: "pinterest-profile-view",
                 url: _getPinterestDataUrl(isDark),
@@ -383,78 +421,6 @@ class PinterestSection extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(4),
       ),
-    );
-  }
-
-  Widget _buildThoughtBubble(BuildContext context, bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF2E2E3A) : Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: isDark ? Colors.white30 : Colors.black87,
-              width: 2.0,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.08),
-                blurRadius: 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Text(
-            "Art feeds\nthe code.",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 13,
-              fontFamily: 'monospace',
-              color: isDark ? Colors.white : Colors.black87,
-              height: 1.3,
-            ),
-          ),
-        ),
-        const SizedBox(height: 6),
-        // Thought bubble small tail circles
-        Padding(
-          padding: const EdgeInsets.only(left: 30),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                width: 9,
-                height: 9,
-                decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF2E2E3A) : Colors.white,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isDark ? Colors.white30 : Colors.black87,
-                    width: 1.5,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 4),
-              Container(
-                width: 5,
-                height: 5,
-                decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF2E2E3A) : Colors.white,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isDark ? Colors.white30 : Colors.black87,
-                    width: 1.5,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

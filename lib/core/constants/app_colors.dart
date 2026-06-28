@@ -91,36 +91,91 @@ class AppColors {
   static const Color cardBgDark = Color(0xFF0D1321);
 
   static Color getCardBg(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? cardBgDark
-          : white;
+      Theme.of(context).brightness == Brightness.dark ? cardBgDark : white;
 
   static Color getDescriptionText(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? grey400
-          : grey700;
+      Theme.of(context).brightness == Brightness.dark ? grey400 : grey700;
 
   static Color getDividerColor(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? grey800
-          : grey300;
+      Theme.of(context).brightness == Brightness.dark ? grey800 : grey300;
 
   static Color getSubtitleText(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? grey400
-          : grey600;
+      Theme.of(context).brightness == Brightness.dark ? grey400 : grey600;
 
   static Color getGridDivider(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? grey800
-          : grey200;
+      Theme.of(context).brightness == Brightness.dark ? grey800 : grey200;
 
   static Color getTitleText(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? white
-          : black;
+      Theme.of(context).brightness == Brightness.dark ? white : black;
 
   // Sparkles and decorative colors
   static const Color sparklePink = Color(0xFFFF3E81);
   static const Color sparklePurple = Color(0xFF6F52F6);
+
+  // Tech I Use card background colors
+  static const Color techCardBgDark = Color(0xFF1A2035);
+  static Color getTechCardBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? techCardBgDark : white;
+
+  // Mockup volume/power buttons colors
+  static const Color mockupButtonDark = Color(0xDD000000);
+  static const Color mockupButtonLight = Color(0xFF424242);
+  static Color getMockupButton(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? mockupButtonDark
+          : mockupButtonLight;
+
+  // Mockup Device frame colors
+  static const Color mockupDeviceBgDark = Color(0xFF101018);
+  static Color getMockupDeviceBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? mockupDeviceBgDark
+          : white;
+
+  static const Color mockupDeviceBorderDark = Color(0x3DFFFFFF);
+  static const Color mockupDeviceBorderLight = Color(0xDD000000);
+  static Color getMockupDeviceBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? mockupDeviceBorderDark
+          : mockupDeviceBorderLight;
+
+  // Thought Bubble colors
+  static const Color bubbleBgDark = Color(0xFF2E2E3A);
+  static Color getBubbleBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? bubbleBgDark : white;
+
+  static const Color bubbleBorderDark = Color(0x4DFFFFFF);
+  static const Color bubbleBorderLight = Color(0xDD000000);
+  static Color getBubbleBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? bubbleBorderDark
+          : bubbleBorderLight;
+
+  // Brand colors for Tech I Use section
+  static const Color brandFlutter = Color(0xFF02569B);
+  static const Color brandDart = Color(0xFF0175C2);
+  static const Color brandCpp = Color(0xFF00599C);
+  static const Color brandC = Color(0xFFA8B9CC);
+  static const Color brandHtml = Color(0xFFE34F26);
+  static const Color brandCss = Color(0xFF1572B6);
+  static const Color brandJavascript = Color(0xFFF7DF1E);
+  static const Color brandReact = Color(0xFF61DAFB);
+  static const Color brandPython = Color(0xFF3776AB);
+  static const Color brandMysql = Color(0xFF4479A1);
+  static const Color brandFirebase = Color(0xFFFFCA28);
+  static const Color brandGcp = Color(0xFF4285F4);
+  static const Color brandArduino = Color(0xFF00979D);
+  static const Color brandGithub = Color(0xFF181717);
+  static const Color brandGit = Color(0xFFF05032);
+  static const Color brandBitbucket = Color(0xFF0052CC);
+  static const Color brandDbeaver = Color(0xFF382923);
+  static const Color brandVsCode = Color(0xFF007ACC);
+  static const Color brandAndroidStudio = Color(0xFF3DDC84);
+  static const Color brandXcode = Color(0xFF0B4A8C);
+  static const Color brandAntigravity = Color(0xFF1A73E8);
+  static const Color brandCodex = Color(0xFF10A37F);
+  static const Color brandConfluence = Color(0xFF0052CC);
+  static const Color brandJira = Color(0xFF0052CC);
+  static const Color brandPopOs = Color(0xFFDF80FF);
+  static const Color brandMacOs = Color(0xFF0066CC);
 }

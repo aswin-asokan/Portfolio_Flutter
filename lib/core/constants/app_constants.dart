@@ -12,6 +12,7 @@ class AppConstants {
   static const double iconSizeM = 24.0;
   static const double iconSizeL = 32.0;
   static const double iconSizeXL = 40.0;
+  static const double iconSize68 = 60;
 
   // Border radius values
   static const double radiusS = 8.0;
@@ -49,4 +50,54 @@ class AppConstants {
   static const double techSpacing = 12.0;
   static const double techSectionPadding = 20.0;
   static const double techMobileTitleBreakpoint = 600.0;
+  static const double techTitleFontSizeDesktop = 20.0;
+  static const double techTitleFontSizeMobile = 18.0;
+  static const double techTitleStrokeWidth = 2.0;
+  static const double techDesktopTitleWidth = 80.0;
+  static const double techDesktopTitleTopPadding = 16.0;
+  static const double techDesktopTitleSpacing = 24.0;
+  static const double techMobileTitleSpacing = 16.0;
+  static const double techTooltipOffsetLimit = 120.0;
+  static const double techTooltipHorizontalLimit = 90.0;
+  static const double techTooltipWidth = 180.0;
+  static const double techCardBorderWidthHovered = 1.5;
+  static const double techCardBorderWidthDefault = 1.0;
+  static const double techCardHoverTranslateY = -4.0;
+  static const double techItemFontSize = 10.0;
+
+  // Pinterest Section constants
+  static const double pinterestDesktopBreakpoint = 1150.0;
+  static const double pinterestMobileBreakpoint = 600.0;
+  static const double pinterestResponsiveTitleBreakpoint = 850.0;
+  static const double pinterestMockupWidthMin = 200.0;
+  static const double pinterestMockupWidthMax = 300.0;
+
+  static const double pinterestTitleFontSizeDesktop = 28.0;
+  static const double pinterestTitleFontSizeTablet = 22.0;
+  static const double pinterestTitleFontSizeMobile = 26.0;
+
+  static const double pinterestDescFontSizeDesktop = 14.0;
+  static const double pinterestDescFontSizeTablet = 12.0;
+  static const double pinterestDescFontSizeMobile = 14.0;
+
+  static const double pinterestMockupHeightHorizontal = 300.0;
+  static const double pinterestMockupHeightStacked = 500.0;
+
+  static const double pinterestDeviceWidthMobile = 254.0;
+  static const double pinterestDeviceWidthTablet = 310.0;
+  static const double pinterestDeviceHeightMobile = 350.0;
+  static const double pinterestDeviceHeightTablet = 360.0;
+
+  static const double pinterestMockupButtonHeight = 42.0;
+  static const double pinterestMockupBorderWidth = 7.0;
+  static const double pinterestMockupBorderRadius = 28.0;
+  static const double pinterestMockupInnerRadius = 20.0;
+
+  static const double pinterestIconSize = 18.0;
+  static const double pinterestThoughtBubbleFontSize = 13.0;
+
+  static const double pinterestPaddingLeftLarge = 48.0;
+  static const double pinterestPaddingLeftSmall = 24.0;
+  static const double pinterestPaddingRightLarge = 20.0;
+  static const double pinterestPaddingRightSmall = 12.0;
 }
