@@ -53,12 +53,12 @@ class Education extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Transform.translate(
-                offset: const Offset(-8, -8),
+                offset: const Offset(-12, -10),
                 child: Transform.rotate(
                   angle: 0.5, // tilted slightly counter-clockwise
                   child: Icon(
                     Symbols.school,
-                    color: context.colorScheme.onSurface,
+                    color: AppColors.educationHat,
                     size: AppConstants.iconSizeL,
                     fill: 1,
                   ),

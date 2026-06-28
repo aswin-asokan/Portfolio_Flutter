@@ -224,6 +224,11 @@ class _SocialsCard extends StatelessWidget {
         onTap: ContactMe._launchMailClient,
       ),
       _SocialLink(
+        icon: const _LinkedInMark(),
+        label: "linkedin.com/in/aswin-asokan",
+        onTap: () => ContactMe._launchUrl(ContactMe._linkedinUrl),
+      ),
+      _SocialLink(
         icon: const Icon(SimpleIcons.pinterest),
         label: "pin.it/416Oj6Tmc",
         iconColor: AppColors.brandpinterest,
@@ -237,11 +242,6 @@ class _SocialsCard extends StatelessWidget {
                 ? AppColors.brandGithub
                 : AppColors.white,
         onTap: () => ContactMe._launchUrl(ContactMe._gitHub),
-      ),
-      _SocialLink(
-        icon: const _LinkedInMark(),
-        label: "linkedin.com/in/aswin-asokan",
-        onTap: () => ContactMe._launchUrl(ContactMe._linkedinUrl),
       ),
     ];
 
@@ -257,6 +257,7 @@ class _SocialsCard extends StatelessWidget {
           if (useRow) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 18,
               children:
                   links
@@ -299,6 +300,7 @@ class _SocialLinkTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox.square(
               dimension: 22,
@@ -314,8 +316,6 @@ class _SocialLinkTile extends StatelessWidget {
             Flexible(
               child: Text(
                 link.label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
                 style: context.textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),

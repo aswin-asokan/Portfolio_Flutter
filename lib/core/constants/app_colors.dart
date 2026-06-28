@@ -76,7 +76,7 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? greenSplashDark
           : greenSplashLight;
-
+  static const Color educationHat = Color(0xFFF46868);
   // Constant grays and basic colors to avoid runtime Material Color swatch lookup
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
