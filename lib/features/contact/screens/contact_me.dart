@@ -232,7 +232,10 @@ class _SocialsCard extends StatelessWidget {
       _SocialLink(
         icon: const Icon(SimpleIcons.github),
         label: "github.com/aswin-asokan",
-        iconColor: AppColors.brandGithub,
+        iconColor:
+            Theme.of(context).brightness == Brightness.light
+                ? AppColors.brandGithub
+                : AppColors.white,
         onTap: () => ContactMe._launchUrl(ContactMe._gitHub),
       ),
       _SocialLink(

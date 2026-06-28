@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
+import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
+import 'package:portfolio/features/shared/widgets/striped_loading_bar.dart';
+import 'package:portfolio/features/shared/widgets/theme_switch_indicator.dart';
 
 class ThemeTransitionOverlay extends StatefulWidget {
   final Widget child;
@@ -16,13 +20,15 @@ class ThemeTransitionOverlay extends StatefulWidget {
 }
 
 class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _controller;
+  late AnimationController _progressController;
   late Animation<double> _opacityAnimation;
+  late Animation<double> _progressAnimation;
   bool _visible = false;
 
-  Color? _cachedBackgroundColor;
-  Color? _cachedForegroundColor;
+  /// true when the user triggered a switch while in dark mode → going to light.
+  bool _isDarkToLight = false;
 
   @override
   void initState() {
@@ -31,8 +37,17 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
-    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    _opacityAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+    _progressController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+    _progressAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _progressController, curve: Curves.easeOutCubic),
     );
 
     if (widget.isSwitching) {
@@ -47,20 +62,23 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
     if (widget.isSwitching != oldWidget.isSwitching) {
       if (widget.isSwitching) {
         final theme = Theme.of(context);
-        _cachedBackgroundColor = theme.scaffoldBackgroundColor;
-        _cachedForegroundColor = theme.colorScheme.primary;
+
+        // Determine direction: if current brightness is dark we're going to
+        // light, otherwise we're going to dark.
+        _isDarkToLight = theme.brightness == Brightness.dark;
 
         setState(() {
           _visible = true;
         });
+        _progressController.forward(from: 0.0);
         _controller.forward();
       } else {
+        _progressController.stop();
         _controller.reverse().then((_) {
           if (!mounted) return;
+          _progressController.reset();
           setState(() {
             _visible = false;
-            _cachedBackgroundColor = null;
-            _cachedForegroundColor = null;
           });
         });
       }
@@ -69,15 +87,30 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
 
   @override
   void dispose() {
+    _progressController.dispose();
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final bgColor = _cachedBackgroundColor ?? theme.scaffoldBackgroundColor;
-    final fgColor = _cachedForegroundColor ?? theme.colorScheme.primary;
+    final bgColor =
+        _isDarkToLight
+            ? AppColors.scaffoldLightColor
+            : AppColors.scaffoldDarkColor;
+    final fontColor =
+        _isDarkToLight
+            ? AppColors.scaffoldDarkColor
+            : AppColors.scaffoldLightColor;
+    final themeImage =
+        _isDarkToLight
+            ? 'assets/images/others/theme_loading_light.webp'
+            : 'assets/images/others/theme_loading_dark.webp';
+
+    final switchMode =
+        _isDarkToLight
+            ? ThemeSwitchMode.darkToLight
+            : ThemeSwitchMode.lightToDark;
 
     return Stack(
       children: [
@@ -87,26 +120,44 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
             opacity: _opacityAnimation,
             child: IgnorePointer(
               ignoring: !widget.isSwitching,
-              child: Container(
+              child: Material(
                 color: bgColor,
                 child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      LoadingAnimationWidget.dotsTriangle(
-                        color: fgColor,
-                        size: 80,
-                      ),
-                      const SizedBox(height: 24),
-                      Text(
-                        "Loading...",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1.2,
-                              color: fgColor,
-                            ),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppConstants.spaceXL),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ThemeSwitchIndicator(mode: switchMode),
+                        const SizedBox(height: AppConstants.spaceM),
+                        Image.asset(
+                          themeImage,
+                          width: MediaQuery.sizeOf(
+                            context,
+                          ).width.clamp(240.0, 750.0),
+                          fit: BoxFit.contain,
+                          gaplessPlayback: true,
+                        ),
+                        const SizedBox(height: AppConstants.spaceM),
+                        CornerHighlight(
+                          corner: SparkleCorner.topRight,
+                          color: AppColors.primaryPurpleDark,
+                          child: Text(
+                            'Switching vibes...',
+                            style: TextStyle(color: fontColor),
+                          ),
+                        ),
+                        const SizedBox(height: AppConstants.spaceL),
+                        AnimatedBuilder(
+                          animation: _progressAnimation,
+                          builder: (context, _) {
+                            return StripedLoadingBar(
+                              progress: _progressAnimation.value,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
