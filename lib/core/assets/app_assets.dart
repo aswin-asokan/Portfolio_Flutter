@@ -16,13 +16,7 @@ class AppAssets {
     'assets/images/pinterest/anime_image_2.webp',
     'assets/images/pinterest/anime_easter_egg.webp',
     'assets/images/maps/map.webp',
-    'assets/images/logo/dark_logo.png'
-  ];
-
-  static const List<String> vectorImages = [
-    'assets/icons/github.svg',
-    'assets/icons/linkedin.svg',
-    'assets/icons/pinterest.svg',
-    'assets/icons/Buy_Me_a_Coffee_logo.svg',
+    'assets/images/logo/dark_logo.png',
+    'assets/icons/char_icon.webp',
   ];
 }

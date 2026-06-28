@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:portfolio/core/assets/app_assets.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
@@ -20,8 +19,7 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
   Object? _loadError;
   double _progress = 0;
 
-  int get _assetCount =>
-      AppAssets.rasterImages.length + AppAssets.vectorImages.length;
+  int get _assetCount => AppAssets.rasterImages.length;
 
   @override
   void didChangeDependencies() {
@@ -46,11 +44,6 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
     try {
       for (final asset in AppAssets.rasterImages) {
         await precacheImage(AssetImage(asset), context);
-        updateProgress();
-      }
-
-      for (final asset in AppAssets.vectorImages) {
-        await rootBundle.load(asset);
         updateProgress();
       }
 

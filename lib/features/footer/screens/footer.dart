@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
@@ -26,7 +27,7 @@ class Footer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           decoration: BoxDecoration(
             color: AppColors.coffeeBg,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(AppConstants.radiusM),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -40,7 +41,7 @@ class Footer extends StatelessWidget {
                 ),
               ),
               const Icon(
-                Symbols.coffee,
+                SimpleIcons.buymeacoffee,
                 color: AppColors.coffeeText,
                 size: 20,
               ),
@@ -63,13 +64,10 @@ class Footer extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        Text("Just a bunch of widgets", style: context.textTheme.displaySmall),
         Text(
-          "No pixels were harmed",
-          style: context.textTheme.displayMedium,
-        ),
-        Text(
-          "in the making of this site.",
-          style: context.textTheme.displayMedium,
+          "pretending to be a website.",
+          style: context.textTheme.displaySmall,
         ),
       ],
     );
@@ -91,16 +89,13 @@ class Footer extends StatelessWidget {
                     ? Colors.black26.withAlpha(50)
                     : Colors.white10.withAlpha(50),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.getBorder(context),
-              width: 1.5,
-            ),
+            border: Border.all(color: AppColors.getBorder(context), width: 1.5),
           ),
           child: LayoutBuilder(
             builder: (context, constraints) {
               final double width = MediaQuery.sizeOf(context).width;
 
-              if (width < 768) {
+              if (width < 540) {
                 // Mobile layout (same as current)
                 return Column(
                   mainAxisSize: MainAxisSize.min,
@@ -114,7 +109,7 @@ class Footer extends StatelessWidget {
                         const CircleAvatar(
                           radius: 25,
                           backgroundImage: AssetImage(
-                            "assets/images/about/personality.webp",
+                            "assets/icons/char_icon.webp",
                           ),
                           backgroundColor: Colors.transparent,
                         ),
@@ -125,14 +120,14 @@ class Footer extends StatelessWidget {
                             Text(
                               "Thanks for making it this far!",
                               textAlign: TextAlign.center,
-                              style: context.textTheme.headlineMedium?.copyWith(
+                              style: context.textTheme.displayMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
                               "Best enjoyed on desktop. Mobile misses some fun stuff!",
                               textAlign: TextAlign.center,
-                              style: context.textTheme.displayMedium?.copyWith(
+                              style: context.textTheme.displaySmall?.copyWith(
                                 color: AppColors.getDescriptionText(context),
                               ),
                             ),
@@ -143,7 +138,7 @@ class Footer extends StatelessWidget {
 
                     // Built with
                     Text(
-                      "Built with 💖",
+                      "Built with 💙 Flutter",
                       style: context.textTheme.displayMedium,
                     ),
 
@@ -168,7 +163,7 @@ class Footer extends StatelessWidget {
                           const CircleAvatar(
                             radius: 25,
                             backgroundImage: AssetImage(
-                              "assets/images/about/personality.webp",
+                              "assets/icons/char_icon.webp",
                             ),
                             backgroundColor: Colors.transparent,
                           ),
@@ -178,13 +173,12 @@ class Footer extends StatelessWidget {
                             children: [
                               Text(
                                 "Thanks for making it this far!",
-                                style: context.textTheme.headlineMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: context.textTheme.displayMedium
+                                    ?.copyWith(fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 "Best enjoyed on desktop. Mobile misses some fun stuff!",
-                                style: context.textTheme.displayMedium?.copyWith(
+                                style: context.textTheme.displaySmall?.copyWith(
                                   color: AppColors.getDescriptionText(context),
                                 ),
                               ),
@@ -201,7 +195,7 @@ class Footer extends StatelessWidget {
                         spacing: 16,
                         children: [
                           Text(
-                            "Built with 💖",
+                            "Built with 💙 Flutter",
                             style: context.textTheme.displayMedium,
                           ),
                           _buildBuyMeACoffeeButton(context),
@@ -212,10 +206,10 @@ class Footer extends StatelessWidget {
                   ],
                 );
               } else {
-                // Desktop layout (single row, with Built with 💖 centered)
+                // Desktop layout (single row, with Built with 💙 Flutter centered)
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     // Left side: Avatar + Text
                     Expanded(
@@ -225,7 +219,7 @@ class Footer extends StatelessWidget {
                           const CircleAvatar(
                             radius: 25,
                             backgroundImage: AssetImage(
-                              "assets/images/about/personality.webp",
+                              "assets/icons/char_icon.webp",
                             ),
                             backgroundColor: Colors.transparent,
                           ),
@@ -237,15 +231,17 @@ class Footer extends StatelessWidget {
                               children: [
                                 Text(
                                   "Thanks for making it this far!",
-                                  style: context.textTheme.headlineMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: context.textTheme.displayMedium
+                                      ?.copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   "Best enjoyed on desktop. Mobile misses some fun stuff!",
-                                  style: context.textTheme.displayMedium?.copyWith(
-                                    color: AppColors.getDescriptionText(context),
-                                  ),
+                                  style: context.textTheme.displaySmall
+                                      ?.copyWith(
+                                        color: AppColors.getDescriptionText(
+                                          context,
+                                        ),
+                                      ),
                                 ),
                               ],
                             ),
@@ -254,9 +250,9 @@ class Footer extends StatelessWidget {
                       ),
                     ),
 
-                    // Center: Built with 💖 (mathematically centered via two equal expanded side elements)
+                    // Center: Built with 💙 Flutter (mathematically centered via two equal expanded side elements)
                     Text(
-                      "Built with 💖",
+                      "Built with 💙 Flutter",
                       style: context.textTheme.displayMedium,
                     ),
 

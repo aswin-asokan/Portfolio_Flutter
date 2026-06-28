@@ -72,6 +72,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/icons/char_icon.webp
     - assets/images/hero/hero_img_dark.webp
     - assets/images/hero/hero_img_light.webp
     - assets/images/about/about_image.webp
@@ -87,14 +88,9 @@ flutter:
     - assets/images/maps/map.webp
     - assets/images/logo/dark_logo.png
     - assets/images/logo/light_logo.png
-    - assets/icons/github.svg
-    - assets/icons/linkedin.svg
-    - assets/icons/pinterest.svg
-    - assets/icons/Buy_Me_a_Coffee_logo.svg
     - assets/files/flysoft.pdf
     - assets/files/laxmiinfotek.jpeg
     - assets/files/resume.pdf
-    - assets/icons/Animation - 1747991678993.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
