@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
@@ -25,7 +24,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
-  final bool _isLoading = false;
   bool _isAnilistVisible = false;
   @override
   void initState() {
@@ -57,129 +55,115 @@ class _HomeState extends State<Home> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body:
-          _isLoading
-              ? Center(
-                child: LoadingAnimationWidget.dotsTriangle(
-                  color: Colors.white,
-                  size: 200,
+      body: SelectionArea(
+        child: Stack(
+          children: [
+            // Scrollable content
+            SingleChildScrollView(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: padding,
+                  vertical: 20,
                 ),
-              )
-              : SelectionArea(
-                child: Stack(
+                child: Column(
+                  spacing: 20,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Scrollable content
-                    SingleChildScrollView(
-                      controller: scrollController,
-                      physics: const BouncingScrollPhysics(),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: padding,
-                          vertical: 20,
-                        ),
-                        child: Column(
-                          spacing: 20,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 90,
-                              key: sectionKeys[0],
-                            ), // Space for navbar
-                            HeroSection(),
-                            SizedBox(
-                              height: AppConstants.spaceM,
-                              key: sectionKeys[1],
-                            ),
-                            AboutMe(
-                              onNavigate: scrollTo,
-                              contactKey: sectionKeys[4],
-                            ),
-                            const TechIUse(),
-                            Text(
-                              "Experience",
-                              style: context.textTheme.bodyLarge,
-                              key: sectionKeys[2],
-                            ),
-                            Experience(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Projects",
-                                  style: context.textTheme.bodyLarge,
-                                  key: sectionKeys[3],
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    showToast(
-                                      context,
-                                      "Tap on the project card to view it's details\nIn case system navigation doesn't work please use back option in navigation bar",
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Symbols.help_outline,
-                                    color: Colors.white,
-                                    size: 25,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Projects(),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: _isAnilistVisible ? 20 : 0,
-                              children: [
-                                PinterestSection(
-                                  onEasterEggPressed: () {
-                                    setState(() {
-                                      _isAnilistVisible = !_isAnilistVisible;
-                                    });
-                                  },
-                                ),
-                                AnimatedSize(
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut,
-                                  alignment: Alignment.topCenter,
-                                  child:
-                                      _isAnilistVisible
-                                          ? AnilistSection(
-                                            onClosePressed: () {
-                                              setState(() {
-                                                _isAnilistVisible = false;
-                                              });
-                                            },
-                                          )
-                                          : const SizedBox.shrink(),
-                                ),
-                              ],
-                            ),
-                            ContactMe(key: sectionKeys[4]),
-                            Footer(),
-                          ],
-                        ),
-                      ),
+                    SizedBox(
+                      height: 90,
+                      key: sectionKeys[0],
+                    ), // Space for navbar
+                    HeroSection(),
+                    SizedBox(height: AppConstants.spaceM, key: sectionKeys[1]),
+                    AboutMe(onNavigate: scrollTo, contactKey: sectionKeys[4]),
+                    const TechIUse(),
+                    Text(
+                      "Experience",
+                      style: context.textTheme.bodyLarge,
+                      key: sectionKeys[2],
                     ),
-                    // Fixed Navbar
-                    Positioned(
-                      top: 20,
-                      left: padding,
-                      right: padding,
-                      child: Navbar(
-                        sectionKeys: sectionKeys,
-                        scrollController: scrollController,
-                        sections: [
-                          "Home",
-                          "About",
-                          "Experience",
+                    Experience(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
                           "Projects",
-                          "Contact",
-                        ],
-                      ),
+                          style: context.textTheme.bodyLarge,
+                          key: sectionKeys[3],
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            showToast(
+                              context,
+                              "Tap on the project card to view it's details\nIn case system navigation doesn't work please use back option in navigation bar",
+                            );
+                          },
+                          icon: Icon(
+                            Symbols.help_outline,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                        ),
+                      ],
                     ),
+                    Projects(),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: _isAnilistVisible ? 20 : 0,
+                      children: [
+                        PinterestSection(
+                          onEasterEggPressed: () {
+                            setState(() {
+                              _isAnilistVisible = !_isAnilistVisible;
+                            });
+                          },
+                        ),
+                        AnimatedSize(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                          alignment: Alignment.topCenter,
+                          child:
+                              _isAnilistVisible
+                                  ? AnilistSection(
+                                    onClosePressed: () {
+                                      setState(() {
+                                        _isAnilistVisible = false;
+                                      });
+                                    },
+                                  )
+                                  : const SizedBox.shrink(),
+                        ),
+                      ],
+                    ),
+                    ContactMe(key: sectionKeys[4]),
+                    Footer(),
                   ],
                 ),
               ),
+            ),
+            // Fixed Navbar
+            Positioned(
+              top: 20,
+              left: padding,
+              right: padding,
+              child: Navbar(
+                sectionKeys: sectionKeys,
+                scrollController: scrollController,
+                sections: [
+                  "Home",
+                  "About",
+                  "Experience",
+                  "Projects",
+                  "Contact",
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
