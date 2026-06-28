@@ -43,11 +43,36 @@ class PinterestSection extends StatelessWidget {
       background: $scrollbarColor;
       border-radius: 2px;
     }
+    .pinterest-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    /* Target only the top-level span and iframe created by pinit.js to make it full screen and remove card styles */
+    .PIN_embed_grid,
+    .PIN_embed_grid > iframe {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
   </style>
 </head>
 <body>
-  <div style="display: flex; justify-content: center; align-items: flex-start; width: 100%; height: 100%; overflow: hidden; padding-bottom: 100px; box-sizing: border-box;">
-    <a data-pin-do="embedUser" data-pin-board-width="220" data-pin-scale-width="140" data-pin-scale-height="285" href="https://www.pinterest.com/ArtMyDay/"></a>
+  <div class="pinterest-container">
+    <a data-pin-do="embedUser" data-pin-board-width="300" data-pin-scale-width="240" data-pin-scale-height="320" href="https://www.pinterest.com/ArtMyDay/"></a>
   </div>
   <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
 </body>
