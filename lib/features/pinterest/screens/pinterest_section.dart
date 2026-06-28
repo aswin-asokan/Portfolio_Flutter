@@ -168,7 +168,7 @@ class PinterestSection extends StatelessWidget {
           Expanded(
             flex: isDesktop ? 38 : 55,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(leftPadding, 20, rightPadding, 20),
+              padding: EdgeInsets.fromLTRB(leftPadding, 16, rightPadding, 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -234,7 +234,11 @@ class PinterestSection extends StatelessWidget {
                         top: -20,
                         bottom: -20,
                         width: mockupWidth,
-                        child: _buildTabletMockup(context, isDark, bottomOffset: 20.0),
+                        child: _buildTabletMockup(
+                          context,
+                          isDark,
+                          bottomOffset: 20.0,
+                        ),
                       ),
                     ],
                   );
@@ -268,7 +272,11 @@ class PinterestSection extends StatelessWidget {
                         top: -20,
                         bottom: -20,
                         width: mockupWidth,
-                        child: _buildTabletMockup(context, isDark, bottomOffset: 20.0),
+                        child: _buildTabletMockup(
+                          context,
+                          isDark,
+                          bottomOffset: 20.0,
+                        ),
                       ),
                     ],
                   );
@@ -358,7 +366,11 @@ class PinterestSection extends StatelessWidget {
                     left: 0,
                     right: 0,
                     height: deviceHeight,
-                    child: _buildTabletMockup(context, isDark, bottomOffset: hiddenBottom - 14.0),
+                    child: _buildTabletMockup(
+                      context,
+                      isDark,
+                      bottomOffset: hiddenBottom - 14.0,
+                    ),
                   ),
                 ],
               ),
@@ -449,8 +461,12 @@ class PinterestSection extends StatelessWidget {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            AppColors.getMockupDeviceBg(context).withValues(alpha: 0.0),
-                            AppColors.getMockupDeviceBg(context).withValues(alpha: 0.85),
+                            AppColors.getMockupDeviceBg(
+                              context,
+                            ).withValues(alpha: 0.0),
+                            AppColors.getMockupDeviceBg(
+                              context,
+                            ).withValues(alpha: 0.85),
                             AppColors.getMockupDeviceBg(context),
                           ],
                           stops: const [0.0, 0.35, 1.0],
@@ -463,7 +479,9 @@ class PinterestSection extends StatelessWidget {
                       child: Center(
                         child: InkWell(
                           onTap: _launchPinterest,
-                          borderRadius: BorderRadius.circular(AppConstants.radiusS),
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusS,
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: AppConstants.spaceM,

@@ -178,4 +178,8 @@ class AppColors {
   static const Color brandJira = Color(0xFF0052CC);
   static const Color brandPopOs = Color(0xFFDF80FF);
   static const Color brandMacOs = Color(0xFF0066CC);
+
+  static const Color brandMail = Color(0xFF005FF9);
+  static const Color brandlinkedIn = Color(0xFF0A66C2);
+  static const Color brandpinterest = Color(0xFFE60023);
 }
