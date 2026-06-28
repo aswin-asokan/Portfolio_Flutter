@@ -141,24 +141,20 @@ class _HomeState extends State<Home> {
                                   duration: const Duration(milliseconds: 500),
                                   curve: Curves.easeInOut,
                                   alignment: Alignment.topCenter,
-                                  child: _isAnilistVisible
-                                      ? AnilistSection(
-                                          onClosePressed: () {
-                                            setState(() {
-                                              _isAnilistVisible = false;
-                                            });
-                                          },
-                                        )
-                                      : const SizedBox.shrink(),
+                                  child:
+                                      _isAnilistVisible
+                                          ? AnilistSection(
+                                            onClosePressed: () {
+                                              setState(() {
+                                                _isAnilistVisible = false;
+                                              });
+                                            },
+                                          )
+                                          : const SizedBox.shrink(),
                                 ),
                               ],
                             ),
-                            Text(
-                              "Contact Me",
-                              style: context.textTheme.bodyLarge,
-                              key: sectionKeys[4],
-                            ),
-                            ContactMe(),
+                            ContactMe(key: sectionKeys[4]),
                             Footer(),
                           ],
                         ),
