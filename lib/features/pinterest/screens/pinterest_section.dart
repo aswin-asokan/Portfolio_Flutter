@@ -3,7 +3,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/pinterest/widgets/iframe_widget.dart';
-import 'package:portfolio/features/pinterest/widgets/hand_drawn_arrow.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
@@ -66,8 +65,9 @@ class PinterestSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bool isDesktopLayout = MediaQuery.sizeOf(context).width >= 1150;
-    final bool isMobileLayout = MediaQuery.sizeOf(context).width < 768;
+    final double width = MediaQuery.sizeOf(context).width;
+    final bool isDesktopLayout = width >= 1150;
+    final bool isMobileLayout = width < 600;
 
     return Container(
       width: double.infinity,
@@ -85,8 +85,20 @@ class PinterestSection extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          if (isDesktopLayout) {
-            return _buildDesktopLayout(context, isDark);
+          if (!isMobileLayout) {
+            final double mockupColumnWidth =
+                constraints.maxWidth * (isDesktopLayout ? 0.32 : 0.45);
+            final double mockupWidth = (mockupColumnWidth - 16).clamp(
+              200.0,
+              300.0,
+            );
+
+            return _buildHorizontalLayout(
+              context,
+              isDark,
+              isDesktop: isDesktopLayout,
+              mockupWidth: mockupWidth,
+            );
           } else {
             return _buildStackedLayout(context, isDark, isMobileLayout);
           }
@@ -95,17 +107,28 @@ class PinterestSection extends StatelessWidget {
     );
   }
 
-  Widget _buildDesktopLayout(BuildContext context, bool isDark) {
+  Widget _buildHorizontalLayout(
+    BuildContext context,
+    bool isDark, {
+    required bool isDesktop,
+    required double mockupWidth,
+  }) {
+    final double screenWidth = MediaQuery.sizeOf(context).width;
+    final double leftPadding = screenWidth < 850 ? 24.0 : 48.0;
+    final double rightPadding = screenWidth < 850 ? 12.0 : 20.0;
+    final double titleFontSize = screenWidth < 850 ? 22.0 : 28.0;
+    final double descFontSize = screenWidth < 850 ? 12.0 : 14.0;
+
     return SizedBox(
-      height: 360,
+      height: 300,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Left text content
           Expanded(
-            flex: 38,
+            flex: isDesktop ? 38 : 55,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(48, 28, 20, 28),
+              padding: EdgeInsets.fromLTRB(leftPadding, 20, rightPadding, 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -117,22 +140,22 @@ class PinterestSection extends StatelessWidget {
                     child: Text(
                       "My Art & Crafts",
                       style: context.textTheme.labelLarge!.copyWith(
-                        fontSize: 28,
+                        fontSize: titleFontSize,
                         fontWeight: FontWeight.bold,
                         color: AppColors.getTitleText(context),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Text(
                     "A little corner of my world where ideas take shape beyond the screen. Sketches, illustrations, and handmade things I love creating.",
                     style: context.textTheme.bodySmall!.copyWith(
                       color: AppColors.getDescriptionText(context),
-                      fontSize: 14,
+                      fontSize: descFontSize,
                       height: 1.6,
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 24),
                   CustomButton.filled(
                     color: isDark ? Colors.white : const Color(0xFF1A1A1A),
                     textColor: isDark ? Colors.black : Colors.white,
@@ -154,83 +177,70 @@ class PinterestSection extends StatelessWidget {
 
           // Middle: Arrow & Phone Mockup
           Expanded(
-            flex: 32,
+            flex: isDesktop ? 32 : 45,
             child: Stack(
               alignment: Alignment.center,
               children: [
-                // Hand-drawn arrow swooping from left to the phone
                 Positioned(
-                  left: 6,
-                  top: 145,
-                  width: 90,
-                  height: 100,
-                  child: HandDrawnArrow(
-                    color:
-                        isDark
-                            ? AppColors.primaryPurpleDark.withValues(alpha: 0.6)
-                            : AppColors.primaryPurple.withValues(alpha: 0.5),
-                  ),
-                ),
-                // Tablet container
-                Positioned(
-                  top: 24,
-                  bottom: 24,
-                  width: 300,
+                  top: -20,
+                  bottom: -20,
+                  width: mockupWidth,
                   child: _buildTabletMockup(context, isDark),
                 ),
               ],
             ),
           ),
 
-          // Right: Cartoon winking avatar & thought bubble
-          Expanded(
-            flex: 30,
-            child: Stack(
-              children: [
-                // Thought bubble
-                Positioned(
-                  left: 15,
-                  top: 42,
-                  child: _buildThoughtBubble(context, isDark),
-                ),
-                // Floating Pink Heart
-                Positioned(
-                  right: 40,
-                  bottom: 120,
-                  child: Icon(
-                    Symbols.favorite,
-                    fill: 1.0,
-                    weight: 700,
-                    size: 32,
-                    color: AppColors.sparklePink,
+          // Right: Cartoon winking avatar & thought bubble (Only on desktop!)
+          if (isDesktop)
+            Expanded(
+              flex: 30,
+              child: Stack(
+                children: [
+                  // Thought bubble
+                  Positioned(
+                    left: 15,
+                    top: 42,
+                    child: _buildThoughtBubble(context, isDark),
                   ),
-                ),
-                // Character image peeking from bottom-right
-                Positioned(
-                  right: -15,
-                  bottom: -18,
-                  height: 220,
-                  child: Image.asset(
-                    "assets/images/about/about_image.webp",
-                    fit: BoxFit.contain,
-                    alignment: Alignment.bottomRight,
+                  // Floating Pink Heart
+                  Positioned(
+                    right: 40,
+                    bottom: 120,
+                    child: Icon(
+                      Symbols.favorite,
+                      fill: 1.0,
+                      weight: 700,
+                      size: 32,
+                      color: AppColors.sparklePink,
+                    ),
                   ),
-                ),
-              ],
+                  // Character image peeking from bottom-right
+                  Positioned(
+                    right: -15,
+                    bottom: -18,
+                    height: 220,
+                    child: Image.asset(
+                      "assets/images/about/about_image.webp",
+                      fit: BoxFit.contain,
+                      alignment: Alignment.bottomRight,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );
   }
 
   Widget _buildStackedLayout(BuildContext context, bool isDark, bool isMobile) {
-    final double deviceWidth = isMobile ? 248 : 310;
-    final double deviceHeight = isMobile ? 330 : 360;
+    final double deviceWidth = isMobile ? 254 : 310;
+    final double deviceHeight = isMobile ? 350 : 360;
     final double hiddenBottom = isMobile ? deviceHeight * 0.25 : 0;
 
     return SizedBox(
-      height: isMobile ? 640 : 670,
+      height: 500,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -287,7 +297,7 @@ class PinterestSection extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            bottom: isMobile ? -hiddenBottom : 32,
+            bottom: -hiddenBottom,
             child: Center(
               child: SizedBox(
                 width: deviceWidth,
@@ -302,27 +312,56 @@ class PinterestSection extends StatelessWidget {
   }
 
   Widget _buildTabletMockup(BuildContext context, bool isDark) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF101018) : Colors.white,
-        borderRadius: BorderRadius.circular(28.0),
-        border: Border.all(
-          color: isDark ? Colors.white24 : Colors.black87,
-          width: 7.0,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        // Volume buttons
+        Positioned(
+          left: -5,
+          top: 120,
+          child: _sideButton(
+            height: 42,
+            color: isDark ? Colors.black87 : Colors.grey.shade800,
           ),
-        ],
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+        ),
+        Positioned(
+          left: -5,
+          top: 170,
+          child: _sideButton(
+            height: 42,
+            color: isDark ? Colors.black87 : Colors.grey.shade800,
+          ),
+        ),
+
+        // Power button
+        Positioned(
+          right: -5,
+          top: 120,
+          child: _sideButton(
+            height: 42,
+            color: isDark ? Colors.black87 : Colors.grey.shade800,
+          ),
+        ),
+
+        Container(
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF101018) : Colors.white,
+            borderRadius: BorderRadius.circular(28),
+            border: Border.all(
+              color: isDark ? Colors.white24 : Colors.black87,
+              width: 7,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.15),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Padding(
+            padding: EdgeInsets.only(top: AppConstants.spaceS),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: IFrameWidget(
@@ -331,31 +370,18 @@ class PinterestSection extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: 2,
-            child: Container(
-              width: 4,
-              decoration: BoxDecoration(
-                color: isDark ? Colors.black54 : Colors.black87,
-                borderRadius: BorderRadius.circular(999),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 58,
-            bottom: 58,
-            right: 2,
-            child: Container(
-              width: 4,
-              decoration: BoxDecoration(
-                color: isDark ? Colors.black54 : Colors.black87,
-                borderRadius: BorderRadius.circular(999),
-              ),
-            ),
-          ),
-        ],
+        ),
+      ],
+    );
+  }
+
+  Widget _sideButton({required double height, required Color color}) {
+    return Container(
+      width: 5,
+      height: height,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(4),
       ),
     );
   }
