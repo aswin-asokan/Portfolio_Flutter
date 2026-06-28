@@ -168,7 +168,7 @@ class _ConnectContent extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          "I'm always open to new ideas, opportunities, or just a friendly hello.",
+          "Found a cool project? Count me in.",
           style: context.textTheme.bodySmall?.copyWith(height: 1.45),
         ),
         const SizedBox(height: 18),

@@ -1,26 +1,79 @@
-import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:portfolio/features/footer/widgets/footer_icons.dart';
-import 'package:portfolio/features/footer/widgets/footer_text.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/widgets/toast.dart';
-import 'package:portfolio/responsive/responsive.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
-  static const List<String> easterEggs = [
-    "Built with love… and a little bit of hot reload.",
-    "May your widgets always be stateless (unless they really need to be).",
-    "No bugs here... just undocumented features!",
-    "This isn't the widget you're looking for...",
-    "This message is wrapped in a Padding of mystery.",
-    "Life’s better with const everywhere.",
-    "You just discovered the flutter of a hidden wing.",
-    "If you found this, you're 1 in 1,000,000 frames per second!",
-  ];
-  static var random = Random();
+
+  void _launch(String urlString) async {
+    final url = Uri.parse(urlString);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw Exception('Could not launch $urlString');
+    }
+  }
+
+  Widget _buildBuyMeACoffeeButton(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => _launch("https://buymeacoffee.com/aswin_asokan"),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          decoration: BoxDecoration(
+            color: AppColors.coffeeBg,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 8,
+            children: [
+              Text(
+                "Buy me a coffee",
+                style: context.textTheme.displayMedium?.copyWith(
+                  color: AppColors.coffeeText,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Icon(
+                Symbols.coffee,
+                color: AppColors.coffeeText,
+                size: 20,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCopyrightBlock(BuildContext context, {required bool isMobile}) {
+    return Column(
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          "© ${DateTime.now().year} Aswin",
+          style: context.textTheme.displayMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          "No pixels were harmed",
+          style: context.textTheme.displayMedium,
+        ),
+        Text(
+          "in the making of this site.",
+          style: context.textTheme.displayMedium,
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,83 +83,198 @@ class Footer extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
         child: Container(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 24),
           width: double.infinity,
-          height: Responsive.isMobile(context) ? 420 : 220,
           decoration: BoxDecoration(
             color:
                 isDark
                     ? Colors.black26.withAlpha(50)
-                    : Colors.white10.withAlpha(50), // semi-transparent color
+                    : Colors.white10.withAlpha(50),
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: AppColors.getBorder(context),
+              width: 1.5,
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  if (Responsive.isMobile(context)) {
-                    return Column(
-                      spacing: 20,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [FooterText(), FooterIcons()],
-                    );
-                  } else {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final double width = MediaQuery.sizeOf(context).width;
 
-                      children: [FooterText(), FooterIcons()],
-                    );
-                  }
-                },
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    spacing: 8,
-                    children: [
-                      Icon(
-                        Symbols.copyright,
-                        color: context.colorScheme.surfaceContainerHigh,
-                        size: 20,
-                      ),
-                      Text(
-                        "Aswin, 2025",
-                        style: context.textTheme.displayMedium,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    spacing: 8,
-                    children: [
-                      Text(
-                        "Made with ",
-                        style: context.textTheme.displayMedium,
-                      ),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () {
-                            final randomEgg =
-                                easterEggs[random.nextInt(easterEggs.length)];
-
-                            showToast(context, randomEgg);
-                          },
-                          child: Icon(
-                            Symbols.flutter,
-                            color: context.colorScheme.surfaceContainerHigh,
-                            size: 20,
+              if (width < 768) {
+                // Mobile layout (same as current)
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 20,
+                  children: [
+                    // Avatar + Text
+                    Column(
+                      spacing: 12,
+                      children: [
+                        const CircleAvatar(
+                          radius: 25,
+                          backgroundImage: AssetImage(
+                            "assets/images/about/personality.webp",
                           ),
+                          backgroundColor: Colors.transparent,
                         ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          spacing: 4,
+                          children: [
+                            Text(
+                              "Thanks for making it this far!",
+                              textAlign: TextAlign.center,
+                              style: context.textTheme.headlineMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "Best enjoyed on desktop. Mobile misses some fun stuff!",
+                              textAlign: TextAlign.center,
+                              style: context.textTheme.displayMedium?.copyWith(
+                                color: AppColors.getDescriptionText(context),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    // Built with
+                    Text(
+                      "Built with 💖",
+                      style: context.textTheme.displayMedium,
+                    ),
+
+                    // Buy me a coffee
+                    _buildBuyMeACoffeeButton(context),
+
+                    // Copyright
+                    _buildCopyrightBlock(context, isMobile: true),
+                  ],
+                );
+              } else if (width < 1280) {
+                // Tablet layout (split into two columns)
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Left column
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 16,
+                        children: [
+                          const CircleAvatar(
+                            radius: 25,
+                            backgroundImage: AssetImage(
+                              "assets/images/about/personality.webp",
+                            ),
+                            backgroundColor: Colors.transparent,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: 4,
+                            children: [
+                              Text(
+                                "Thanks for making it this far!",
+                                style: context.textTheme.headlineMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "Best enjoyed on desktop. Mobile misses some fun stuff!",
+                                style: context.textTheme.displayMedium?.copyWith(
+                                  color: AppColors.getDescriptionText(context),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                    ),
+                    const SizedBox(width: 32),
+                    // Right column
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        spacing: 16,
+                        children: [
+                          Text(
+                            "Built with 💖",
+                            style: context.textTheme.displayMedium,
+                          ),
+                          _buildBuyMeACoffeeButton(context),
+                          _buildCopyrightBlock(context, isMobile: false),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                // Desktop layout (single row, with Built with 💖 centered)
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Left side: Avatar + Text
+                    Expanded(
+                      child: Row(
+                        spacing: 16,
+                        children: [
+                          const CircleAvatar(
+                            radius: 25,
+                            backgroundImage: AssetImage(
+                              "assets/images/about/personality.webp",
+                            ),
+                            backgroundColor: Colors.transparent,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              spacing: 4,
+                              children: [
+                                Text(
+                                  "Thanks for making it this far!",
+                                  style: context.textTheme.headlineMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "Best enjoyed on desktop. Mobile misses some fun stuff!",
+                                  style: context.textTheme.displayMedium?.copyWith(
+                                    color: AppColors.getDescriptionText(context),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Center: Built with 💖 (mathematically centered via two equal expanded side elements)
+                    Text(
+                      "Built with 💖",
+                      style: context.textTheme.displayMedium,
+                    ),
+
+                    // Right side: Buy me a coffee + Copyright
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        spacing: 16,
+                        children: [
+                          _buildBuyMeACoffeeButton(context),
+                          _buildCopyrightBlock(context, isMobile: false),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              }
+            },
           ),
         ),
       ),
