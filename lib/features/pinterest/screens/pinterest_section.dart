@@ -234,7 +234,7 @@ class PinterestSection extends StatelessWidget {
                         top: -20,
                         bottom: -20,
                         width: mockupWidth,
-                        child: _buildTabletMockup(context, isDark),
+                        child: _buildTabletMockup(context, isDark, bottomOffset: 20.0),
                       ),
                     ],
                   );
@@ -268,7 +268,7 @@ class PinterestSection extends StatelessWidget {
                         top: -20,
                         bottom: -20,
                         width: mockupWidth,
-                        child: _buildTabletMockup(context, isDark),
+                        child: _buildTabletMockup(context, isDark, bottomOffset: 20.0),
                       ),
                     ],
                   );
@@ -358,7 +358,7 @@ class PinterestSection extends StatelessWidget {
                     left: 0,
                     right: 0,
                     height: deviceHeight,
-                    child: _buildTabletMockup(context, isDark),
+                    child: _buildTabletMockup(context, isDark, bottomOffset: hiddenBottom - 14.0),
                   ),
                 ],
               ),
@@ -369,7 +369,11 @@ class PinterestSection extends StatelessWidget {
     );
   }
 
-  Widget _buildTabletMockup(BuildContext context, bool isDark) {
+  Widget _buildTabletMockup(
+    BuildContext context,
+    bool isDark, {
+    double bottomOffset = 0.0,
+  }) {
     final buttonColor = AppColors.getMockupButton(context);
     return Stack(
       clipBehavior: Clip.none,
@@ -427,9 +431,70 @@ class PinterestSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                 AppConstants.pinterestMockupInnerRadius,
               ),
-              child: IFrameWidget(
-                viewId: "pinterest-profile-view",
-                url: _getPinterestDataUrl(isDark),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: IFrameWidget(
+                      viewId: "pinterest-profile-view",
+                      url: _getPinterestDataUrl(isDark),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            AppColors.getMockupDeviceBg(context).withValues(alpha: 0.0),
+                            AppColors.getMockupDeviceBg(context).withValues(alpha: 0.85),
+                            AppColors.getMockupDeviceBg(context),
+                          ],
+                          stops: const [0.0, 0.35, 1.0],
+                        ),
+                      ),
+                      padding: EdgeInsets.only(
+                        top: AppConstants.spaceM,
+                        bottom: AppConstants.spaceS + bottomOffset,
+                      ),
+                      child: Center(
+                        child: InkWell(
+                          onTap: _launchPinterest,
+                          borderRadius: BorderRadius.circular(AppConstants.radiusS),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppConstants.spaceM,
+                              vertical: AppConstants.spaceXS + 2.0,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "Visit Profile, View All",
+                                  style: context.textTheme.bodySmall!.copyWith(
+                                    color: const Color(0xFFE60023),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: AppConstants.fontS,
+                                    letterSpacing: 0.3,
+                                  ),
+                                ),
+                                const SizedBox(width: AppConstants.spaceXS),
+                                const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Color(0xFFE60023),
+                                  size: AppConstants.fontXS,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
