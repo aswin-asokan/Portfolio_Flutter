@@ -169,6 +169,7 @@ class AppColors {
   static const Color brandGit = Color(0xFFF05032);
   static const Color brandBitbucket = Color(0xFF0052CC);
   static const Color brandDbeaver = Color(0xFF382923);
+  static const Color figma = Color(0xFFF24E1E);
   static const Color brandVsCode = Color(0xFF007ACC);
   static const Color brandAndroidStudio = Color(0xFF3DDC84);
   static const Color brandXcode = Color(0xFF0B4A8C);

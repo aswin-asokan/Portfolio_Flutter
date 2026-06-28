@@ -13,6 +13,8 @@ class AppAssets {
     'assets/images/about/personality.webp',
     'assets/images/others/theme_loading_light.webp',
     'assets/images/others/theme_loading_dark.webp',
+    'assets/images/others/mace.webp',
+    'assets/images/others/gpc.webp',
     'assets/images/pinterest/pin_img.webp',
     'assets/images/pinterest/anime_image_1.webp',
     'assets/images/pinterest/anime_image_2.webp',

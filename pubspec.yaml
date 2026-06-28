@@ -84,6 +84,8 @@ flutter:
     - assets/images/others/loading_image.webp
     - assets/images/others/theme_loading_light.webp
     - assets/images/others/theme_loading_dark.webp
+    - assets/images/others/mace.webp
+    - assets/images/others/gpc.webp
     - assets/images/pinterest/anime_image_1.webp
     - assets/images/pinterest/anime_image_2.webp
     - assets/images/pinterest/anime_easter_egg.webp

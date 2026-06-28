@@ -4,6 +4,7 @@ import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/about/widgets/tech_i_use.dart';
 import 'package:portfolio/features/contact/screens/contact_me.dart';
+import 'package:portfolio/features/education/screens/education.dart';
 import 'package:portfolio/features/experience/screens/experience.dart';
 import 'package:portfolio/features/footer/screens/footer.dart';
 import 'package:portfolio/features/hero/screens/hero_container.dart';
@@ -85,6 +86,7 @@ class _HomeState extends State<Home> {
                       key: sectionKeys[2],
                     ),
                     Experience(),
+                    Education(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

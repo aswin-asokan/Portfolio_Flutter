@@ -135,6 +135,12 @@ class _TechIUseState extends State<TechIUse> {
       tooltip: "Because looking directly at the database feels reassuring.",
     ),
     TechItemData(
+      name: "Figma",
+      icon: SimpleIcons.figma,
+      color: AppColors.figma,
+      tooltip: "Because looking directly at the database feels reassuring.",
+    ),
+    TechItemData(
       name: "VS Code",
       icon: SimpleIcons.vscodium,
       color: AppColors.brandVsCode,
