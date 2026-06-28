@@ -128,6 +128,8 @@ class _LoadingView extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.asset(AppAssets.logoLight, height: 60, fit: BoxFit.contain),
+              const SizedBox(height: AppConstants.spaceM),
               Image.asset(
                 AppAssets.loadingImage,
                 width: imageSize,
