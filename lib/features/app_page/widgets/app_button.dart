@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/app_page/widgets/share_builder.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum AppButtonEnum {
   download(icon: Symbols.download, text: "Download"),
   website(icon: SimpleIcons.googlechrome, text: "Website"),
-  github(icon: SimpleIcons.github, text: "GitHub");
+  github(icon: SimpleIcons.github, text: "GitHub"),
+  playstore(icon: SimpleIcons.googleplay, text: "Play Store"),
+  appstore(icon: SimpleIcons.appstore, text: "App Store");
 
   const AppButtonEnum({required this.icon, required this.text});
 
@@ -16,7 +19,20 @@ enum AppButtonEnum {
   final String text;
 
   static AppButtonEnum? fromText(String text) {
-    return AppButtonEnum.values.firstWhere((e) => e.text.toLowerCase() == text);
+    final lower = text.toLowerCase().trim();
+    if (lower == 'web' || lower == 'website') return AppButtonEnum.website;
+    if (lower == 'github' || lower == 'git') return AppButtonEnum.github;
+    if (lower == 'playstore' ||
+        lower == 'play store' ||
+        lower == 'google play' ||
+        lower == 'googleplay')
+      return AppButtonEnum.playstore;
+    if (lower == 'appstore' ||
+        lower == 'app store' ||
+        lower == 'apple app store' ||
+        lower == 'apple')
+      return AppButtonEnum.appstore;
+    return AppButtonEnum.download;
   }
 }
 
@@ -49,38 +65,12 @@ class AppButton extends StatelessWidget {
     return Row(
       spacing: 8,
       children: [
-        SizedBox(
-          height: 40,
-          width: 140,
-          child: ElevatedButton(
-            onPressed: () {
-              _launch(releaseLink.isEmpty ? gitLink : releaseLink);
-            },
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(
-                context.colorScheme.primary,
-              ),
-              shape: WidgetStatePropertyAll(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(8),
-                ),
-              ),
-            ),
-            child: Row(
-              spacing: 5,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  (appButton?.icon) ?? Symbols.download,
-                  color: context.colorScheme.surfaceContainerHigh,
-                ),
-                Text(
-                  (appButton?.text) ?? "Download",
-                  style: context.textTheme.displayMedium,
-                ),
-              ],
-            ),
-          ),
+        CustomButton.outline(
+          label: (appButton?.text) ?? "Download",
+          onPress: () {
+            _launch(releaseLink.isEmpty ? gitLink : releaseLink);
+          },
+          prefixIcon: Icon((appButton?.icon) ?? Symbols.download),
         ),
         TextButton(
           onPressed: () {

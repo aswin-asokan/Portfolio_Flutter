@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 
 class ShimmerPlaceholder extends StatefulWidget {
   final double? width;
@@ -42,11 +43,8 @@ class _ShimmerPlaceholderState extends State<ShimmerPlaceholder>
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    // Sleek, theme-aware colors
-    final baseColor = isDark ? const Color(0xFF2E2E2E) : const Color(0xFFE0E0E0);
-    final highlightColor = isDark ? const Color(0xFF3D3D3D) : const Color(0xFFF5F5F5);
+    final baseColor = AppColors.getShimmerBase(context);
+    final highlightColor = AppColors.getShimmerHighlight(context);
 
     return AnimatedBuilder(
       animation: _animation,

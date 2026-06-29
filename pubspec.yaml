@@ -2,7 +2,7 @@ name: portfolio
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -65,7 +65,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -73,17 +72,30 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/hero_image.png
+    - assets/icons/char_icon.webp
+    - assets/images/hero/hero_img_dark.webp
+    - assets/images/hero/hero_img_light.webp
+    - assets/images/about/about_image.webp
+    - assets/images/about/focus.webp
+    - assets/images/about/fuel.webp
+    - assets/images/about/hobbies.webp
+    - assets/images/about/personality.webp
+    - assets/images/pinterest/pin_img.webp
+    - assets/images/others/loading_image.webp
+    - assets/images/others/theme_loading_light.webp
+    - assets/images/others/theme_loading_dark.webp
+    - assets/images/others/mace.webp
+    - assets/images/others/gpc.webp
+    - assets/images/pinterest/anime_image_1.webp
+    - assets/images/pinterest/anime_image_2.webp
+    - assets/images/pinterest/anime_easter_egg.webp
+    - assets/images/maps/map.webp
+    - assets/images/others/projects_hero.webp
     - assets/images/logo/dark_logo.png
     - assets/images/logo/light_logo.png
-    - assets/icons/github.svg
-    - assets/icons/linkedin.svg
-    - assets/icons/pinterest.svg
-    - assets/icons/Buy_Me_a_Coffee_logo.svg
     - assets/files/flysoft.pdf
     - assets/files/laxmiinfotek.jpeg
     - assets/files/resume.pdf
-    - assets/icons/Animation - 1747991678993.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,50 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class HeroImage extends StatelessWidget {
-  const HeroImage({super.key});
+  final String? lightImagePath;
+  final String? darkImagePath;
+
+  const HeroImage({
+    super.key,
+    this.lightImagePath,
+    this.darkImagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          "assets/images/hero_image.png",
-          height: Responsive.isMobile(context) ? 500 : 800,
-          fit: BoxFit.cover,
-        ),
-        if (Responsive.isDesktop(context) ||
-            Responsive.isDesktopLarge(context) | Responsive.isTablet(context))
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: SizedBox(
-              child: Text(
-                "PortFolio",
-                softWrap: true,
-                overflow: TextOverflow.visible,
-                style: context.textTheme.titleLarge,
-              ),
-            ),
-          ),
-        if (Responsive.isMobile(context) || Responsive.isSmallTablet(context))
-          Positioned(
-            right: 0,
-            bottom: 10,
-            child: SizedBox(
-              child: RotatedBox(
-                quarterTurns: 3,
-                child: Text(
-                  "PortFolio",
-                  style: context.textTheme.titleLarge!.copyWith(
-                    fontSize: Responsive.isMobile(context) ? 80 : 150,
-                  ),
-                ),
-              ),
-            ),
-          ),
-      ],
+    final bool isMobile = Responsive.isMobile(context);
+    final bool isSmallTablet = Responsive.isSmallTablet(context);
+    final bool isMobileLayout = isMobile || isSmallTablet;
+
+    return Align(
+      alignment: isMobileLayout ? Alignment.center : Alignment.centerRight,
+      child: Image.asset(
+        Theme.of(context).brightness == Brightness.dark
+            ? (darkImagePath ?? "assets/images/hero/hero_img_dark.webp")
+            : (lightImagePath ?? "assets/images/hero/hero_img_light.webp"),
+        width: isMobileLayout ? double.infinity : null,
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.high,
+      ),
     );
   }
 }
