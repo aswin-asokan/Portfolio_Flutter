@@ -3,6 +3,7 @@ import 'package:portfolio/features/app_page/screens/app_page.dart';
 import 'package:portfolio/features/home/home.dart';
 import 'package:portfolio/features/loading/initial_loading_screen.dart';
 import 'package:portfolio/features/shared/project_list/project_list.dart';
+import 'package:portfolio/features/projects/screens/project_list_screen.dart';
 
 final GoRouter goRouter = GoRouter(
   initialLocation: '/',
@@ -10,6 +11,11 @@ final GoRouter goRouter = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) => const InitialLoadingScreen(child: Home()),
+    ),
+    GoRoute(
+      name: "projects",
+      path: '/projects',
+      builder: (context, state) => const ProjectListScreen(),
     ),
     GoRoute(
       name: "app",

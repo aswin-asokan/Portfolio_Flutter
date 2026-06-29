@@ -89,12 +89,20 @@ class _ProjectsState extends State<Projects> {
                   ),
                 ],
               ),
-              // Dummy View All text button
-              Text(
-                "View All →",
-                style: context.textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.getSubtitleText(context),
+              // Interactive View All text button
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    context.push('/projects');
+                  },
+                  child: Text(
+                    "View All →",
+                    style: context.textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.getSubtitleText(context),
+                    ),
+                  ),
                 ),
               ),
             ],

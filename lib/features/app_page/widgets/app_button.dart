@@ -8,7 +8,9 @@ import 'package:url_launcher/url_launcher.dart';
 enum AppButtonEnum {
   download(icon: Symbols.download, text: "Download"),
   website(icon: SimpleIcons.googlechrome, text: "Website"),
-  github(icon: SimpleIcons.github, text: "GitHub");
+  github(icon: SimpleIcons.github, text: "GitHub"),
+  playstore(icon: SimpleIcons.googleplay, text: "Play Store"),
+  appstore(icon: SimpleIcons.appstore, text: "App Store");
 
   const AppButtonEnum({required this.icon, required this.text});
 
@@ -16,7 +18,12 @@ enum AppButtonEnum {
   final String text;
 
   static AppButtonEnum? fromText(String text) {
-    return AppButtonEnum.values.firstWhere((e) => e.text.toLowerCase() == text);
+    final lower = text.toLowerCase().trim();
+    if (lower == 'web' || lower == 'website') return AppButtonEnum.website;
+    if (lower == 'github' || lower == 'git') return AppButtonEnum.github;
+    if (lower == 'playstore' || lower == 'play store' || lower == 'google play' || lower == 'googleplay') return AppButtonEnum.playstore;
+    if (lower == 'appstore' || lower == 'app store' || lower == 'apple app store' || lower == 'apple') return AppButtonEnum.appstore;
+    return AppButtonEnum.download;
   }
 }
 

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
-import 'package:portfolio/features/app_page/widgets/about_section.dart';
+import 'package:portfolio/features/app_page/widgets/about_app_section.dart';
+import 'package:portfolio/features/app_page/widgets/about_project_section.dart';
 import 'package:portfolio/features/app_page/widgets/app_page_header.dart';
 import 'package:portfolio/features/app_page/widgets/app_ss_list.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
-import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/footer/screens/footer.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class AppPage extends StatefulWidget {
@@ -99,6 +100,7 @@ class _AppPageState extends State<AppPage> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 15,
                   children: [
                     SizedBox(
                       height:
@@ -108,73 +110,34 @@ class _AppPageState extends State<AppPage> {
                               : 70,
                       key: sectionKeys[0],
                     ),
-                    Container(
-                      padding: EdgeInsets.all(
-                        Responsive.isMobile(context) ||
-                                Responsive.isSmallTablet(context)
-                            ? padding + 20
-                            : padding - 10,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: context.colorScheme.surface,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 15,
-                        children: [
-                          AppPageHeader(
-                            title: widget.title,
-                            subTitle: widget.subtitle,
-                            buttonText: widget.type,
-                            gitLink: widget.gitLink,
-                            releaseLink: widget.releaseLink,
-                            device: widget.devices,
-                            imgPath: widget.iconPath,
-                          ),
-                          Divider(
-                            key: sectionKeys[1],
-                            color: context.colorScheme.primary,
-                            thickness: 1,
-                          ),
-                          Text(
-                            "Screenshots",
-                            style: context.textTheme.titleMedium!.copyWith(
-                              fontSize: 25,
-                            ),
-                          ),
-                          AppSsList(images: widget.screenshots),
-                          Divider(
-                            key: sectionKeys[2],
-                            color: context.colorScheme.primary,
-                            thickness: 1,
-                          ),
-                          AboutSection(
-                            title: "About this app",
-                            about: widget.aboutApp,
-                            subtitle1: "Features",
-                            content1: widget.features,
-                            subtitle2: "Future Plans",
-                            content2: widget.futurePlan,
-                            infoItems: appInfoItems,
-                          ),
-                          Divider(
-                            key: sectionKeys[3],
-                            color: context.colorScheme.primary,
-                            thickness: 1,
-                          ),
-                          AboutSection(
-                            title: "About this project",
-                            about: widget.aboutProject,
-                            subtitle1: "Challenges faced",
-                            content1: widget.challeges,
-                            subtitle2: "Learnings or outcomes",
-                            content2: widget.outcomes,
-                            infoItems: pjtinfoItems,
-                          ),
-                        ],
-                      ),
+                    AppPageHeader(
+                      title: widget.title,
+                      subTitle: widget.subtitle,
+                      buttonText: widget.type,
+                      gitLink: widget.gitLink,
+                      releaseLink: widget.releaseLink,
+                      device: widget.devices,
+                      imgPath: widget.iconPath,
                     ),
+                    AppSsList(
+                      key: sectionKeys[1],
+                      images: widget.screenshots,
+                    ),
+                    AboutAppSection(
+                      key: sectionKeys[2],
+                      about: widget.aboutApp,
+                      features: widget.features,
+                      futurePlans: widget.futurePlan,
+                      infoItems: appInfoItems,
+                    ),
+                    AboutProjectSection(
+                      key: sectionKeys[3],
+                      about: widget.aboutProject,
+                      challenges: widget.challeges,
+                      outcomes: widget.outcomes,
+                      infoItems: pjtinfoItems,
+                    ),
+                    const Footer(),
                   ],
                 ),
               ),
