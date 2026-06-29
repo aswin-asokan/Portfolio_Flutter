@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 
 /// A progress bar with animated diagonal stripes.
 ///
@@ -57,7 +58,7 @@ class StripedLoadingBar extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF7B61FF),
+                color: AppColors.loadingBarStripe1,
               ),
             ),
           ),
@@ -78,7 +79,7 @@ class _StripedProgressPainter extends CustomPainter {
     );
 
     // Base purple fill
-    canvas.drawRRect(rrect, Paint()..color = const Color(0xFF8B6DFF));
+    canvas.drawRRect(rrect, Paint()..color = AppColors.loadingBarStripe2);
 
     // Clip to rounded progress
     canvas.save();

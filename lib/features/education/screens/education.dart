@@ -6,9 +6,9 @@ import 'package:portfolio/features/education/widgets/edu_card.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 
 class Education extends StatelessWidget {
-  Education({super.key});
+  const Education({super.key});
 
-  final List<Map<String, dynamic>> educationItems = [
+  static const List<Map<String, dynamic>> educationItems = [
     {
       "title": "BTech in Computer Science and Engineering",
       "year": "2023 - 2026",
@@ -29,15 +29,15 @@ class Education extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(AppConstants.spaceL),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(AppConstants.radius15),
         color: context.colorScheme.surface,
-        border: Border.all(color: AppColors.getBorder(context), width: 1.5),
+        border: Border.all(color: AppColors.getBorder(context), width: AppConstants.borderWidth),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16,
+        spacing: AppConstants.spaceM,
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -46,17 +46,17 @@ class Education extends StatelessWidget {
               Text(
                 "Education",
                 style: context.textTheme.labelLarge!.copyWith(
-                  fontSize: 28,
+                  fontSize: AppConstants.sectionTitleFontSize,
                   fontWeight: FontWeight.bold,
                   color: context.colorScheme.onSurface,
                 ),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: AppConstants.spaceXS),
               Transform.translate(
                 offset: const Offset(-12, -10),
                 child: Transform.rotate(
                   angle: 0.5, // tilted slightly counter-clockwise
-                  child: Icon(
+                  child: const Icon(
                     Symbols.school,
                     color: AppColors.educationHat,
                     size: AppConstants.iconSizeL,
@@ -68,8 +68,8 @@ class Education extends StatelessWidget {
           ),
           LayoutBuilder(
             builder: (context, constraints) {
-              final double spacing = 16.0;
-              final double minWidthPerItem = 450.0;
+              const double spacing = AppConstants.spaceM;
+              const double minWidthPerItem = AppConstants.educationMinWidthPerItem;
               final int itemCount = educationItems.length;
 
               // Check if all items fit in a single row

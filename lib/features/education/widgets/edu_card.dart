@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,7 +36,7 @@ class _EduCardState extends State<EduCard> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final bool isSmallScreen = screenWidth <= 540;
+    final bool isSmallScreen = screenWidth <= AppConstants.educationCardMobileBreakpoint;
 
     Widget buildImageWidget({required bool fullWidth}) {
       return MouseRegion(
@@ -44,13 +45,15 @@ class _EduCardState extends State<EduCard> {
           onTap: _launchUrl,
           child: Container(
             width: fullWidth ? double.infinity : null,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+            padding: const EdgeInsets.all(AppConstants.spaceS),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppConstants.radiusS)),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(AppConstants.spaceXS),
               child: Image.asset(
                 widget.icon,
-                height: fullWidth ? 140 : 120,
+                height: fullWidth
+                    ? AppConstants.educationImageHeightMobile
+                    : AppConstants.educationImageHeightDesktop,
                 width: fullWidth ? double.infinity : null,
                 fit: fullWidth ? BoxFit.cover : BoxFit.contain,
                 filterQuality: FilterQuality.high,
@@ -63,11 +66,11 @@ class _EduCardState extends State<EduCard> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: isSmallScreen ? 16 : 0,
+        horizontal: AppConstants.spaceM,
+        vertical: isSmallScreen ? AppConstants.spaceM : 0,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppConstants.radiusM),
         color: context.colorScheme.surface,
         border: Border.all(color: AppColors.getBorder(context)),
       ),
@@ -76,7 +79,7 @@ class _EduCardState extends State<EduCard> {
               ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
-                spacing: 8,
+                spacing: AppConstants.spaceS,
                 children: [
                   Text(
                     widget.title,
@@ -91,7 +94,7 @@ class _EduCardState extends State<EduCard> {
               )
               : Row(
                 mainAxisSize: MainAxisSize.min,
-                spacing: 12,
+                spacing: AppConstants.radiusM,
                 children: [
                   buildImageWidget(fullWidth: false),
                   Flexible(

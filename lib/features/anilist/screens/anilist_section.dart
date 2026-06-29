@@ -292,14 +292,8 @@ class AnilistSection extends StatelessWidget {
         width >= AppConstants.pinterestDesktopBreakpoint;
     final bool isMobileLayout = width < AppConstants.pinterestMobileBreakpoint;
 
-    // Background colors: light mode -> 0xFF2b2d42, dark mode -> 0xFF152232
-    final bgColor = isDark ? const Color(0xFF152232) : const Color(0xFF2b2d42);
-
-    // Border colors: matching layout
-    final borderColor =
-        isDark
-            ? const Color(0xFF2E354F).withValues(alpha: 0.3)
-            : const Color(0xFF3F4E75).withValues(alpha: 0.25);
+    final bgColor = AppColors.getAnilistBg(context);
+    final borderColor = AppColors.getAnilistBorder(context);
 
     return Container(
       width: double.infinity,
@@ -435,13 +429,13 @@ class AnilistSection extends StatelessWidget {
                     spacing: AppConstants.spaceM,
                     children: [
                       CustomButton.filled(
-                        color: Colors.white,
-                        textColor: const Color(0xFF0F172A),
+                        color: AppColors.white,
+                        textColor: AppColors.anilistBtnText,
                         label: "See My Collection",
                         prefixIcon: const Icon(
                           SimpleIcons.anilist,
                           size: AppConstants.pinterestIconSize,
-                          color: Color(0xFF0F172A),
+                          color: AppColors.anilistBtnText,
                         ),
                         onPress: _launchAnilist,
                       ),
@@ -555,13 +549,13 @@ class AnilistSection extends StatelessWidget {
             spacing: AppConstants.spaceM,
             children: [
               CustomButton.filled(
-                color: Colors.white,
-                textColor: const Color(0xFF0F172A),
+                color: AppColors.white,
+                textColor: AppColors.anilistBtnText,
                 label: "View on AniList",
                 prefixIcon: const Icon(
                   Icons.open_in_new,
                   size: AppConstants.pinterestIconSize,
-                  color: Color(0xFF0F172A),
+                  color: AppColors.anilistBtnText,
                 ),
                 onPress: _launchAnilist,
               ),
@@ -593,9 +587,8 @@ class AnilistSection extends StatelessWidget {
 
   Widget _buildTabletMockup(BuildContext context, bool isDark) {
     // Custom mockup button colors for dark bg context
-    final deviceBg = isDark ? const Color(0xFF101018) : const Color(0xFF0F172A);
-    final deviceColor =
-        isDark ? const Color(0x3DFFFFFF) : const Color(0x7FFFFFFF);
+    final deviceBg = AppColors.getAnilistDeviceBg(context);
+    final deviceColor = AppColors.getAnilistDeviceBorder(context);
 
     return Stack(
       clipBehavior: Clip.none,

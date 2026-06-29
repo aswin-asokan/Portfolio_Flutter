@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 enum ThemeSwitchMode { darkToLight, lightToDark }
@@ -20,11 +21,11 @@ class ThemeSwitchIndicator extends StatelessWidget {
     final isLightToDark = mode == ThemeSwitchMode.lightToDark;
 
     final selectedBg =
-        isLightToDark ? const Color(0xFF120B2B) : const Color(0xFFFFF5D9);
+        isLightToDark ? AppColors.themeSwitchBgDark : AppColors.themeSwitchBgLight;
 
-    const borderColor = Color(0xFFD2B9FF);
-    const purple = Color(0xFFA86CFF);
-    const yellow = Color(0xFFF8BE2C);
+    const borderColor = AppColors.themeSwitchBorder;
+    const purple = AppColors.themeSwitchPurple;
+    const yellow = AppColors.themeSwitchYellow;
 
     return Container(
       width: width,

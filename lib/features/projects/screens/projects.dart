@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/project_list/project_list.dart';
@@ -49,11 +50,11 @@ class _ProjectsState extends State<Projects> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(AppConstants.spaceL),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(AppConstants.radius15),
         color: context.colorScheme.surface,
-        border: Border.all(color: AppColors.getBorder(context), width: 1.5),
+        border: Border.all(color: AppColors.getBorder(context), width: AppConstants.borderWidth),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,20 +71,20 @@ class _ProjectsState extends State<Projects> {
                   Text(
                     "Projects",
                     style: context.textTheme.labelLarge!.copyWith(
-                      fontSize: 28,
+                      fontSize: AppConstants.sectionTitleFontSize,
                       fontWeight: FontWeight.bold,
                       color: context.colorScheme.onSurface,
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: AppConstants.spaceXS),
                   Transform.translate(
                     offset: const Offset(-8, -8),
                     child: Transform.rotate(
                       angle: 0.3,
-                      child: Icon(
+                      child: const Icon(
                         Symbols.insights,
                         color: AppColors.sparklePurple,
-                        size: 24,
+                        size: AppConstants.iconSizeM,
                       ),
                     ),
                   ),
@@ -188,26 +189,25 @@ class ProjectTheme {
 }
 
 ProjectTheme _getProjectTheme(BuildContext context, int index) {
-  final bool isDark = Theme.of(context).brightness == Brightness.dark;
   final int colorIndex = index % 3;
 
   if (colorIndex == 0) {
     // Lavender
     return ProjectTheme(
-      bgColor: isDark ? const Color(0xFF1B1633) : const Color(0xFFF1EFFF),
-      borderColor: isDark ? const Color(0xFF382E66) : const Color(0xFFDCD8FF),
+      bgColor: AppColors.getLavenderBg(context),
+      borderColor: AppColors.getLavenderBorder(context),
     );
   } else if (colorIndex == 1) {
     // Mint/Green
     return ProjectTheme(
-      bgColor: isDark ? const Color(0xFF0A2316) : const Color(0xFFEBF7EE),
-      borderColor: isDark ? const Color(0xFF1E3A2F) : const Color(0xFFCEEBDC),
+      bgColor: AppColors.getMintBg(context),
+      borderColor: AppColors.getGreenBorder(context),
     );
   } else {
     // Orange/Yellow
     return ProjectTheme(
-      bgColor: isDark ? const Color(0xFF2E1C0A) : const Color(0xFFFFF3E0),
-      borderColor: isDark ? const Color(0xFF4E3629) : const Color(0xFFFFE0B2),
+      bgColor: AppColors.getOrangeBg(context),
+      borderColor: AppColors.getOrangeBorder(context),
     );
   }
 }

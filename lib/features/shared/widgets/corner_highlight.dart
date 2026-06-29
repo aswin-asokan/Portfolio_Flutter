@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 
 enum SparkleCorner {
   topLeft,
@@ -181,7 +182,7 @@ class CornerHighlight extends StatelessWidget {
     super.key,
     required this.child,
     this.corner = SparkleCorner.topRight,
-    this.color = const Color(0xFFFDD835), // yellow accent from mockup
+    this.color = AppColors.coffeeBg, // yellow accent from mockup
     this.strokeWidth = 3.5,
     this.extraSpread = 0.0,
     this.lengthFactor = 1.0,

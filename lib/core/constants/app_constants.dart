@@ -100,4 +100,15 @@ class AppConstants {
   static const double pinterestPaddingLeftSmall = 24.0;
   static const double pinterestPaddingRightLarge = 20.0;
   static const double pinterestPaddingRightSmall = 12.0;
+
+  // General section constants
+  static const double sectionTitleFontSize = 28.0;
+  static const double radius15 = 15.0;
+  static const double borderWidth = 1.5;
+
+  // Education section constants
+  static const double educationMinWidthPerItem = 450.0;
+  static const double educationCardMobileBreakpoint = 540.0;
+  static const double educationImageHeightMobile = 140.0;
+  static const double educationImageHeightDesktop = 120.0;
 }

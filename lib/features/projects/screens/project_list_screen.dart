@@ -127,12 +127,12 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
 
   Color _getSelectedTextColor(Color lightColor, bool isDark) {
     if (!isDark) return lightColor;
-    if (lightColor == const Color(0xFF6F52F6)) return const Color(0xFF9F88FF); // Purple
-    if (lightColor == const Color(0xFF0288D1)) return const Color(0xFF4FC3F7); // Blue
-    if (lightColor == const Color(0xFF00796B)) return const Color(0xFF4DB6AC); // Teal
-    if (lightColor == const Color(0xFFF57C00)) return const Color(0xFFFFB74D); // Orange
-    if (lightColor == const Color(0xFF7B1FA2)) return const Color(0xFFBA68C8); // Purple/Pink
-    if (lightColor == const Color(0xFF455A64)) return const Color(0xFFB0BEC5); // Grey
+    if (lightColor == AppColors.primaryPurple) return AppColors.primaryPurpleDark; // Purple
+    if (lightColor == AppColors.filterBlueLight) return AppColors.filterBlueDark; // Blue
+    if (lightColor == AppColors.filterTealLight) return AppColors.filterTealDark; // Teal
+    if (lightColor == AppColors.filterOrangeLight) return AppColors.filterOrangeDark; // Orange
+    if (lightColor == AppColors.filterAiLight) return AppColors.filterAiDark; // Purple/Pink
+    if (lightColor == AppColors.filterGreyLight) return AppColors.filterGreyDark; // Grey
     return lightColor;
   }
 
@@ -284,11 +284,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           Symbols.grid_view,
           size: 22,
           color: _selectedCategory == "All" 
-              ? const Color(0xFF6F52F6) 
+              ? AppColors.primaryPurple 
               : (isDark ? Colors.white70 : Colors.black87),
         ),
-        selectedBg: isDark ? const Color(0xFF2C244C) : const Color(0xFFE8E4FF),
-        selectedText: const Color(0xFF6F52F6),
+        selectedBg: isDark ? AppColors.lavenderBadgeBgDark : AppColors.lavenderBadgeBgLight,
+        selectedText: AppColors.primaryPurple,
       ),
       FilterCategory(
         name: "Flutter",
@@ -296,11 +296,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           SimpleIcons.flutter,
           size: 22,
           color: _selectedCategory == "Flutter" 
-              ? const Color(0xFF0288D1) 
+              ? AppColors.filterBlueLight 
               : (isDark ? Colors.white70 : Colors.black87),
         ),
-        selectedBg: isDark ? const Color(0xFF0A304E) : const Color(0xFFE3F2FD),
-        selectedText: const Color(0xFF0288D1),
+        selectedBg: isDark ? AppColors.filterBlueBgDark : AppColors.filterBlueBgLight,
+        selectedText: AppColors.filterBlueLight,
       ),
       FilterCategory(
         name: "Web",
@@ -308,11 +308,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           Symbols.language,
           size: 22,
           color: _selectedCategory == "Web" 
-              ? const Color(0xFF00796B) 
+              ? AppColors.filterTealLight 
               : (isDark ? Colors.white70 : Colors.black87),
         ),
-        selectedBg: isDark ? const Color(0xFF0A3C36) : const Color(0xFFE0F2F1),
-        selectedText: const Color(0xFF00796B),
+        selectedBg: isDark ? AppColors.filterTealBgDark : AppColors.filterTealBgLight,
+        selectedText: AppColors.filterTealLight,
       ),
       FilterCategory(
         name: "Tools",
@@ -320,11 +320,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           Symbols.construction,
           size: 22,
           color: _selectedCategory == "Tools" 
-              ? const Color(0xFFF57C00) 
+              ? AppColors.filterOrangeLight 
               : (isDark ? Colors.white70 : Colors.black87),
         ),
-        selectedBg: isDark ? const Color(0xFF4E2A0A) : const Color(0xFFFFF3E0),
-        selectedText: const Color(0xFFF57C00),
+        selectedBg: isDark ? AppColors.filterOrangeBgDark : AppColors.filterOrangeBgLight,
+        selectedText: AppColors.filterOrangeLight,
       ),
       FilterCategory(
         name: "AI / ML",
@@ -332,11 +332,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           Symbols.psychology,
           size: 22,
           color: _selectedCategory == "AI / ML" 
-              ? const Color(0xFF7B1FA2) 
+              ? AppColors.filterAiLight 
               : (isDark ? Colors.white70 : Colors.black87),
         ),
-        selectedBg: isDark ? const Color(0xFF3F134A) : const Color(0xFFF3E5F5),
-        selectedText: const Color(0xFF7B1FA2),
+        selectedBg: isDark ? AppColors.filterAiBgDark : AppColors.filterAiBgLight,
+        selectedText: AppColors.filterAiLight,
       ),
       FilterCategory(
         name: "Other",
@@ -344,11 +344,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           Symbols.more_horiz,
           size: 22,
           color: _selectedCategory == "Other" 
-              ? const Color(0xFF455A64) 
+              ? AppColors.filterGreyLight 
               : (isDark ? Colors.white70 : Colors.black87),
         ),
-        selectedBg: isDark ? const Color(0xFF2C3539) : const Color(0xFFECEFF1),
-        selectedText: const Color(0xFF455A64),
+        selectedBg: isDark ? AppColors.filterGreyBgDark : AppColors.filterGreyBgLight,
+        selectedText: AppColors.filterGreyLight,
       ),
     ];
 
@@ -629,38 +629,38 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
     if (colorIndex == 0) {
       // Lavender
       return CardThemeColor(
-        bgColor: isDark ? const Color(0xFF1B1633) : const Color(0xFFF1EFFF),
-        borderColor: isDark ? const Color(0xFF382E66) : const Color(0xFFDCD8FF),
-        textColor: isDark ? const Color(0xFFE1D3FF) : const Color(0xFF5E35B1),
-        badgeBg: isDark ? const Color(0xFF2C244C) : const Color(0xFFE8E4FF),
-        badgeText: isDark ? const Color(0xFFB39DFF) : const Color(0xFF6F52F6),
+        bgColor: isDark ? AppColors.lavenderBgDark : AppColors.lavenderBgLight,
+        borderColor: isDark ? AppColors.lavenderBorderDark : AppColors.lavenderBorderLight,
+        textColor: isDark ? AppColors.lavenderTextDark : AppColors.lavenderTextLight,
+        badgeBg: isDark ? AppColors.lavenderBadgeBgDark : AppColors.lavenderBadgeBgLight,
+        badgeText: isDark ? AppColors.lavenderBadgeTextDark : AppColors.lavenderBadgeTextLight,
       );
     } else if (colorIndex == 1) {
       // Mint/Green
       return CardThemeColor(
-        bgColor: isDark ? const Color(0xFF0A2316) : const Color(0xFFEBF7EE),
-        borderColor: isDark ? const Color(0xFF1E3A2F) : const Color(0xFFCEEBDC),
-        textColor: isDark ? const Color(0xFFA3E2C9) : const Color(0xFF2E7D32),
-        badgeBg: isDark ? const Color(0xFF133221) : const Color(0xFFE8F5E9),
-        badgeText: isDark ? const Color(0xFF81C784) : const Color(0xFF2E7D32),
+        bgColor: isDark ? AppColors.mintBgDark : AppColors.mintBgLight,
+        borderColor: isDark ? AppColors.mintBorderDark : AppColors.mintBorderLight,
+        textColor: isDark ? AppColors.mintTextDark : AppColors.mintTextLight,
+        badgeBg: isDark ? AppColors.mintBadgeBgDark : AppColors.mintBadgeBgLight,
+        badgeText: isDark ? AppColors.mintBadgeTextDark : AppColors.mintBadgeTextLight,
       );
     } else if (colorIndex == 2) {
       // Orange/Yellow
       return CardThemeColor(
-        bgColor: isDark ? const Color(0xFF2E1C0A) : const Color(0xFFFFF3E0),
-        borderColor: isDark ? const Color(0xFF4E3629) : const Color(0xFFFFE0B2),
-        textColor: isDark ? const Color(0xFFFFCC80) : const Color(0xFFEF6C00),
-        badgeBg: isDark ? const Color(0xFF3E2712) : const Color(0xFFFFF3E0),
-        badgeText: isDark ? const Color(0xFFFFB74D) : const Color(0xFFEF6C00),
+        bgColor: isDark ? AppColors.orangeBgDark : AppColors.orangeBgLight,
+        borderColor: isDark ? AppColors.orangeBorderDark : AppColors.orangeBorderLight,
+        textColor: isDark ? AppColors.orangeTextDark : AppColors.orangeTextLight,
+        badgeBg: isDark ? AppColors.orangeBadgeBgDark : AppColors.orangeBadgeBgLight,
+        badgeText: isDark ? AppColors.orangeBadgeTextDark : AppColors.orangeBadgeTextLight,
       );
     } else {
       // Pink/Red
       return CardThemeColor(
-        bgColor: isDark ? const Color(0xFF33161C) : const Color(0xFFFFEBEE),
-        borderColor: isDark ? const Color(0xFF5C2932) : const Color(0xFFFFCDD2),
-        textColor: isDark ? const Color(0xFFFFCCD5) : const Color(0xFFC2185B),
-        badgeBg: isDark ? const Color(0xFF4A1F26) : const Color(0xFFFFEBEE),
-        badgeText: isDark ? const Color(0xFFFF8A80) : const Color(0xFFC2185B),
+        bgColor: isDark ? AppColors.pinkBgDark : AppColors.pinkBgLight,
+        borderColor: isDark ? AppColors.pinkBorderDark : AppColors.pinkBorderLight,
+        textColor: isDark ? AppColors.pinkTextDark : AppColors.pinkTextLight,
+        badgeBg: isDark ? AppColors.pinkBadgeBgDark : AppColors.pinkBadgeBgLight,
+        badgeText: isDark ? AppColors.pinkBadgeTextDark : AppColors.pinkBadgeTextLight,
       );
     }
   }

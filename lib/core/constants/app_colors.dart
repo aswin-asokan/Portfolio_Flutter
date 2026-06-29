@@ -183,4 +183,135 @@ class AppColors {
   static const Color brandMail = Color(0xFF005FF9);
   static const Color brandlinkedIn = Color(0xFF0A66C2);
   static const Color brandpinterest = Color(0xFFE60023);
+
+  // AniList Section Colors
+  static const Color anilistBgLight = Color(0xFF2B2D42);
+  static const Color anilistBgDark = Color(0xFF152232);
+  static const Color anilistBorderLight = Color(0x403F4E75);
+  static const Color anilistBorderDark = Color(0x4D2E354F);
+  static const Color anilistBtnText = Color(0xFF0F172A);
+  static const Color anilistDeviceBgDark = Color(0xFF101018);
+  static const Color anilistDeviceBgLight = Color(0xFF0F172A);
+  static const Color anilistDeviceBorderDark = Color(0x3DFFFFFF);
+  static const Color anilistDeviceBorderLight = Color(0x7FFFFFFF);
+
+  static Color getAnilistBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? anilistBgDark : anilistBgLight;
+  static Color getAnilistBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? anilistBorderDark : anilistBorderLight;
+  static Color getAnilistDeviceBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? anilistDeviceBgDark : anilistDeviceBgLight;
+  static Color getAnilistDeviceBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? anilistDeviceBorderDark : anilistDeviceBorderLight;
+
+  // Shimmer & Loading Bar Colors
+  static const Color shimmerBaseLight = Color(0xFFE0E0E0);
+  static const Color shimmerBaseDark = Color(0xFF2E2E2E);
+  static const Color shimmerHighlightLight = Color(0xFFF5F5F5);
+  static const Color shimmerHighlightDark = Color(0xFF3D3D3D);
+  static const Color loadingBarStripe1 = Color(0xFF7B61FF);
+  static const Color loadingBarStripe2 = Color(0xFF8B6DFF);
+
+  static Color getShimmerBase(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? shimmerBaseDark : shimmerBaseLight;
+  static Color getShimmerHighlight(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? shimmerHighlightDark : shimmerHighlightLight;
+
+  // Theme Switch Indicator Colors
+  static const Color themeSwitchBgDark = Color(0xFF120B2B);
+  static const Color themeSwitchBgLight = Color(0xFFFFF5D9);
+  static const Color themeSwitchBorder = Color(0xFFD2B9FF);
+  static const Color themeSwitchPurple = Color(0xFFA86CFF);
+  static const Color themeSwitchYellow = Color(0xFFF8BE2C);
+
+  // Specific Brand / Tech Colors
+  static const Color brandGemini = Color(0xFF8E75FF);
+  static const Color brandSqlite = Color(0xFF003B57);
+
+  // Experience Timeline Dots Colors
+  static const Color expDotGreen = Color(0xFF66BB6A);
+  static const Color expDotOrange = Color(0xFFFFB74D);
+  static const Color expDotPink = Color(0xFFF48FB1);
+  static const Color expDotBlue = Color(0xFF4FC3F7);
+
+  // Project Themes & Badges (Lavender, Mint, Orange, Pink)
+  static const Color lavenderBorderLight = Color(0xFFDCD8FF);
+  static const Color lavenderBorderDark = Color(0xFF382E66);
+  static const Color lavenderTextLight = Color(0xFF5E35B1);
+  static const Color lavenderTextDark = Color(0xFFE1D3FF);
+  static const Color lavenderBadgeBgLight = Color(0xFFE8E4FF);
+  static const Color lavenderBadgeBgDark = Color(0xFF2C244C);
+  static const Color lavenderBadgeTextLight = Color(0xFF6F52F6);
+  static const Color lavenderBadgeTextDark = Color(0xFFB39DFF);
+
+  static const Color mintBorderLight = Color(0xFFCEEBDC);
+  static const Color mintBorderDark = Color(0xFF1E3A2F);
+  static const Color mintTextLight = Color(0xFF2E7D32);
+  static const Color mintTextDark = Color(0xFFA3E2C9);
+  static const Color mintBadgeBgLight = Color(0xFFE8F5E9);
+  static const Color mintBadgeBgDark = Color(0xFF133221);
+  static const Color mintBadgeTextLight = Color(0xFF2E7D32);
+  static const Color mintBadgeTextDark = Color(0xFF81C784);
+
+  static const Color orangeBgLight = Color(0xFFFFF3E0);
+  static const Color orangeBgDark = Color(0xFF2E1C0A);
+  static const Color orangeBorderLight = Color(0xFFFFE0B2);
+  static const Color orangeBorderDark = Color(0xFF4E3629);
+  static const Color orangeTextLight = Color(0xFFEF6C00);
+  static const Color orangeTextDark = Color(0xFFFFCC80);
+  static const Color orangeBadgeBgLight = Color(0xFFFFF3E0);
+  static const Color orangeBadgeBgDark = Color(0xFF3E2712);
+  static const Color orangeBadgeTextLight = Color(0xFFEF6C00);
+  static const Color orangeBadgeTextDark = Color(0xFFFFB74D);
+
+  static const Color pinkBgLight = Color(0xFFFFEBEE);
+  static const Color pinkBgDark = Color(0xFF33161C);
+  static const Color pinkBorderLight = Color(0xFFFFCDD2);
+  static const Color pinkBorderDark = Color(0xFF5C2932);
+  static const Color pinkTextLight = Color(0xFFC2185B);
+  static const Color pinkTextDark = Color(0xFFFFCCD5);
+  static const Color pinkBadgeBgLight = Color(0xFFFFEBEE);
+  static const Color pinkBadgeBgDark = Color(0xFF4A1F26);
+  static const Color pinkBadgeTextLight = Color(0xFFC2185B);
+  static const Color pinkBadgeTextDark = Color(0xFFFF8A80);
+
+  // Filter Chips Selected Colors
+  static const Color filterBlueLight = Color(0xFF0288D1);
+  static const Color filterBlueDark = Color(0xFF4FC3F7);
+  static const Color filterBlueBgLight = Color(0xFFE3F2FD);
+  static const Color filterBlueBgDark = Color(0xFF0A304E);
+
+  static const Color filterTealLight = Color(0xFF00796B);
+  static const Color filterTealDark = Color(0xFF4DB6AC);
+  static const Color filterTealBgLight = Color(0xFFE0F2F1);
+  static const Color filterTealBgDark = Color(0xFF0A3C36);
+
+  static const Color filterOrangeLight = Color(0xFFF57C00);
+  static const Color filterOrangeDark = Color(0xFFFFB74D);
+  static const Color filterOrangeBgLight = Color(0xFFFFF3E0);
+  static const Color filterOrangeBgDark = Color(0xFF4E2A0A);
+
+  static const Color filterAiLight = Color(0xFF7B1FA2);
+  static const Color filterAiDark = Color(0xFFBA68C8);
+  static const Color filterAiBgLight = Color(0xFFF3E5F5);
+  static const Color filterAiBgDark = Color(0xFF3F134A);
+
+  static const Color filterGreyLight = Color(0xFF455A64);
+  static const Color filterGreyDark = Color(0xFFB0BEC5);
+  static const Color filterGreyBgLight = Color(0xFFECEFF1);
+  static const Color filterGreyBgDark = Color(0xFF2C3539);
+
+  static const Color textGrey = Color(0xFF888888);
+  static const Color textDarkGrey = Color(0xFF1F2937);
+
+  static Color getLavenderBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? lavenderBorderDark : lavenderBorderLight;
+  static Color getOrangeBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? orangeBgDark : orangeBgLight;
+  static Color getOrangeBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? orangeBorderDark : orangeBorderLight;
+  static Color getPinkBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? pinkBgDark : pinkBgLight;
+  static Color getPinkBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? pinkBorderDark : pinkBorderLight;
 }
