@@ -24,7 +24,6 @@ class EduCard extends StatefulWidget {
 }
 
 class _EduCardState extends State<EduCard> {
-  bool _isIconHovered = false;
 
   void _launchUrl() async {
     final Uri uri = Uri.parse(widget.url);
@@ -41,8 +40,6 @@ class _EduCardState extends State<EduCard> {
     Widget buildImageWidget({required bool fullWidth}) {
       return MouseRegion(
         cursor: SystemMouseCursors.click,
-        onEnter: (_) => setState(() => _isIconHovered = true),
-        onExit: (_) => setState(() => _isIconHovered = false),
         child: GestureDetector(
           onTap: _launchUrl,
           child: Container(

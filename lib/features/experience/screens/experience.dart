@@ -179,7 +179,7 @@ class _ExperienceState extends State<Experience> {
                   Expanded(
                     child: Container(
                       width: 2.5,
-                      color: dotColor.withOpacity(0.35),
+                      color: dotColor.withValues(alpha: 0.35),
                     ),
                   ),
               ],
@@ -502,8 +502,8 @@ class _ExperienceState extends State<Experience> {
                                         begin: Alignment.topCenter,
                                         end: Alignment.bottomCenter,
                                         colors: [
-                                          context.colorScheme.surface.withOpacity(0.0),
-                                          context.colorScheme.surface.withOpacity(0.85),
+                                          context.colorScheme.surface.withValues(alpha: 0.0),
+                                          context.colorScheme.surface.withValues(alpha: 0.85),
                                           context.colorScheme.surface,
                                         ],
                                       ),

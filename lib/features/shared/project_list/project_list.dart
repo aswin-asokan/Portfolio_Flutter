@@ -5,7 +5,6 @@ import 'package:portfolio/features/shared/project_list/eazygo.dart';
 import 'package:portfolio/features/shared/project_list/eazygoauth.dart';
 import 'package:portfolio/features/shared/project_list/flysoft_floorplan.dart';
 import 'package:portfolio/features/shared/project_list/gradgate.dart';
-//import 'package:portfolio/features/shared/project_list/hotelmgmt.dart';
 import 'package:portfolio/features/shared/project_list/kerala_iot_challenge.dart';
 import 'package:portfolio/features/shared/project_list/nyaytra.dart';
 import 'package:portfolio/features/shared/project_list/peekpub.dart';
@@ -28,7 +27,6 @@ final List<AppModel> projects = [
   taskevo,
   eazygoauth,
   eazygo,
-  //hotelManagement,
   dairyManagement,
   keralaiot,
 ];

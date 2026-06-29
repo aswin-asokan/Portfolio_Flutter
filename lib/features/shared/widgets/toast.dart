@@ -24,10 +24,10 @@ class ToastAnimationWidget extends StatefulWidget {
   final VoidCallback onDismiss;
 
   const ToastAnimationWidget({
-    Key? key,
+    super.key,
     required this.message,
     required this.onDismiss,
-  }) : super(key: key);
+  });
 
   @override
   State<ToastAnimationWidget> createState() => _ToastAnimationWidgetState();

@@ -166,8 +166,8 @@ class _ProjectsState extends State<Projects> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    context.colorScheme.surface.withOpacity(0.0),
-                    context.colorScheme.surface.withOpacity(0.85),
+                    context.colorScheme.surface.withValues(alpha: 0.0),
+                    context.colorScheme.surface.withValues(alpha: 0.85),
                     context.colorScheme.surface,
                   ],
                 ),

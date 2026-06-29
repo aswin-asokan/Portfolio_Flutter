@@ -704,13 +704,13 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
             color: theme.bgColor,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: _isHovered ? theme.textColor.withOpacity(0.8) : theme.borderColor,
+              color: _isHovered ? theme.textColor.withValues(alpha: 0.8) : theme.borderColor,
               width: 1.5,
             ),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: theme.textColor.withOpacity(0.15),
+                      color: theme.textColor.withValues(alpha: 0.15),
                       blurRadius: 16,
                       offset: const Offset(0, 8),
                     ),
