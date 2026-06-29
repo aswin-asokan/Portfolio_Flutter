@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/about/screens/about_me.dart';
 import 'package:portfolio/features/about/widgets/tech_i_use.dart';
@@ -12,8 +11,6 @@ import 'package:portfolio/features/anilist/screens/anilist_section.dart';
 import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/pinterest/screens/pinterest_section.dart';
 import 'package:portfolio/features/projects/screens/projects.dart';
-import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/widgets/toast.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class Home extends StatefulWidget {
@@ -26,6 +23,8 @@ class _HomeState extends State<Home> {
   final List<GlobalKey> sectionKeys = List.generate(5, (_) => GlobalKey());
   final ScrollController scrollController = ScrollController();
   bool _isAnilistVisible = false;
+  bool _isExperienceExpanded = false;
+  double? _experienceExpandedHeight;
   @override
   void initState() {
     super.initState();
@@ -80,37 +79,121 @@ class _HomeState extends State<Home> {
                     SizedBox(height: AppConstants.spaceM, key: sectionKeys[1]),
                     AboutMe(onNavigate: scrollTo, contactKey: sectionKeys[4]),
                     const TechIUse(),
-                    Text(
-                      "Experience",
-                      style: context.textTheme.bodyLarge,
-                      key: sectionKeys[2],
-                    ),
-                    Experience(),
-                    Education(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Projects",
-                          style: context.textTheme.bodyLarge,
-                          key: sectionKeys[3],
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            showToast(
-                              context,
-                              "Tap on the project card to view it's details\nIn case system navigation doesn't work please use back option in navigation bar",
-                            );
+                    if (MediaQuery.sizeOf(context).width >= 1024) ...[
+                      Builder(
+                        builder: (context) {
+                          final double contentWidth = MediaQuery.sizeOf(context).width - 2 * padding;
+                          final double normalProjectsWidth = (contentWidth - 20) / 2 - 48;
+                          final double expandedProjectsWidth = contentWidth - 48;
+
+                          final double expLeft = 0;
+                          final double expTop = 0;
+                          final double expWidth = _isExperienceExpanded ? contentWidth : (contentWidth - 20) / 2;
+                          
+                          final double expHeight;
+                          if (!_isExperienceExpanded) {
+                            expHeight = 490.0;
+                          } else {
+                            expHeight = _experienceExpandedHeight ??
+                                (contentWidth < 1100
+                                    ? 560.0
+                                    : contentWidth < 1300
+                                        ? 500.0
+                                        : 460.0);
+                          }
+
+                          final double projLeft = _isExperienceExpanded ? 0 : (contentWidth - 20) / 2 + 20;
+                          final double projTop = _isExperienceExpanded ? expHeight + 20 : 0;
+                          final double projWidth = _isExperienceExpanded ? contentWidth : (contentWidth - 20) / 2;
+                          final double projHeight = _isExperienceExpanded ? 490.0 : 490.0;
+
+                          final double totalHeight = _isExperienceExpanded
+                              ? expHeight + projHeight + 20
+                              : 490.0;
+
+                          return AnimatedContainer(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                            height: totalHeight,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                AnimatedPositioned(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                  left: expLeft,
+                                  top: expTop,
+                                  width: expWidth,
+                                  height: expHeight,
+                                  child: ClipRect(
+                                    child: RepaintBoundary(
+                                      child: Experience(
+                                        key: sectionKeys[2],
+                                        isExpanded: _isExperienceExpanded,
+                                        forcedWidth: _isExperienceExpanded ? contentWidth : null,
+                                        onToggleExpand: () {
+                                          setState(() {
+                                            _isExperienceExpanded = !_isExperienceExpanded;
+                                            if (!_isExperienceExpanded) {
+                                              _experienceExpandedHeight = null;
+                                            }
+                                          });
+                                        },
+                                        onHeightMeasured: (height) {
+                                          if (_experienceExpandedHeight != height) {
+                                            setState(() {
+                                              _experienceExpandedHeight = height;
+                                            });
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                AnimatedPositioned(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                  left: projLeft,
+                                  top: projTop,
+                                  width: projWidth,
+                                  height: projHeight,
+                                  child: ClipRect(
+                                    child: RepaintBoundary(
+                                      child: Projects(
+                                        key: sectionKeys[3],
+                                        forcedWidth: _isExperienceExpanded
+                                            ? expandedProjectsWidth
+                                            : normalProjectsWidth,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                      Education(),
+                    ] else ...[
+                      AnimatedSize(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                        alignment: Alignment.topCenter,
+                        child: Experience(
+                          key: sectionKeys[2],
+                          isExpanded: _isExperienceExpanded,
+                          onToggleExpand: () {
+                            setState(() {
+                              _isExperienceExpanded = !_isExperienceExpanded;
+                            });
                           },
-                          icon: Icon(
-                            Symbols.help_outline,
-                            color: Colors.white,
-                            size: 25,
-                          ),
                         ),
-                      ],
-                    ),
-                    Projects(),
+                      ),
+                      Projects(
+                        key: sectionKeys[3],
+                      ),
+                      Education(),
+                    ],
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
