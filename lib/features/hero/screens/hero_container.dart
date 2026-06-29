@@ -4,7 +4,12 @@ import 'package:portfolio/features/hero/widgets/hero_left.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final VoidCallback? onViewWorkPressed;
+
+  const HeroSection({
+    super.key,
+    this.onViewWorkPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +20,11 @@ class HeroSection extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
+                children: [
                   Expanded(
-                    child: HeroLeft(),
+                    child: HeroLeft(onViewWorkPressed: onViewWorkPressed),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: HeroRight(),
                   ),
                 ],
@@ -28,7 +33,7 @@ class HeroSection extends StatelessWidget {
           )
         : Column(
             children: [
-              const HeroLeft(),
+              HeroLeft(onViewWorkPressed: onViewWorkPressed),
               const SizedBox(height: 20),
               const HeroRight(),
             ],

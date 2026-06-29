@@ -6,9 +6,26 @@ import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:portfolio/responsive/responsive.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HeroLeft extends StatelessWidget {
-  const HeroLeft({super.key});
+  final VoidCallback? onViewWorkPressed;
+
+  const HeroLeft({
+    super.key,
+    this.onViewWorkPressed,
+  });
+
+  void _downloadCV() async {
+    final Uri url = Uri.parse("assets/assets/files/resume.pdf");
+    try {
+      await launchUrl(url);
+    } catch (e) {
+      debugPrint("Could not launch relative asset: $e");
+      final Uri fallbackUrl = Uri.parse("https://aswinasokan.vercel.app/assets/assets/files/resume.pdf");
+      await launchUrl(fallbackUrl);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +142,7 @@ class HeroLeft extends StatelessWidget {
             children: [
               CustomButton.filled(
                 label: "View My Work",
-                onPress: () {},
+                onPress: onViewWorkPressed ?? () {},
                 color:
                     Theme.of(context).brightness == Brightness.dark
                         ? Theme.of(context).colorScheme.primary
@@ -137,7 +154,7 @@ class HeroLeft extends StatelessWidget {
               ),
               CustomButton.text(
                 label: "Download CV",
-                onPress: () {},
+                onPress: _downloadCV,
                 textColor:
                     Theme.of(context).brightness == Brightness.dark
                         ? AppColors.lightButton
@@ -155,7 +172,7 @@ class HeroLeft extends StatelessWidget {
             children: [
               CustomButton.filled(
                 label: "View My Work",
-                onPress: () {},
+                onPress: onViewWorkPressed ?? () {},
                 color: Theme.of(context).brightness == Brightness.dark
                     ? Theme.of(context).colorScheme.primary
                     : AppColors.darkButton,
@@ -166,7 +183,7 @@ class HeroLeft extends StatelessWidget {
               ),
               CustomButton.text(
                 label: "Download CV",
-                onPress: () {},
+                onPress: _downloadCV,
                 textColor: Theme.of(context).brightness == Brightness.dark
                     ? AppColors.lightButton
                     : AppColors.darkButton,

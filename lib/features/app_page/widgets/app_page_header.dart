@@ -30,7 +30,7 @@ class AppPageHeader extends StatelessWidget {
       spacing: 15,
       children: [
         if (!Responsive.isMobile(context))
-          AppIcon(path: imgPath, radius: 15, height: 130),
+          AppIcon(path: imgPath, radius: 15, height: 140),
         Column(
           spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.start,

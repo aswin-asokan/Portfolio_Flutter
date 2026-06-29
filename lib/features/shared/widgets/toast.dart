@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 
 void showToast(BuildContext context, String message) {
@@ -91,7 +92,9 @@ class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
               ),
               child: Text(
                 widget.message,
-                style: context.textTheme.displayMedium,
+                style: context.textTheme.displayMedium!.copyWith(
+                  color: AppColors.white,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

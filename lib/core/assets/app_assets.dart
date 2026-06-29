@@ -20,6 +20,7 @@ class AppAssets {
     'assets/images/pinterest/anime_image_2.webp',
     'assets/images/pinterest/anime_easter_egg.webp',
     'assets/images/maps/map.webp',
+    'assets/images/others/projects_hero.webp',
     'assets/images/logo/dark_logo.png',
     'assets/icons/char_icon.webp',
   ];

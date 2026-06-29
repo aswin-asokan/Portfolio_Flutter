@@ -196,13 +196,21 @@ class AppColors {
   static const Color anilistDeviceBorderLight = Color(0x7FFFFFFF);
 
   static Color getAnilistBg(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? anilistBgDark : anilistBgLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? anilistBgDark
+          : anilistBgLight;
   static Color getAnilistBorder(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? anilistBorderDark : anilistBorderLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? anilistBorderDark
+          : anilistBorderLight;
   static Color getAnilistDeviceBg(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? anilistDeviceBgDark : anilistDeviceBgLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? anilistDeviceBgDark
+          : anilistDeviceBgLight;
   static Color getAnilistDeviceBorder(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? anilistDeviceBorderDark : anilistDeviceBorderLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? anilistDeviceBorderDark
+          : anilistDeviceBorderLight;
 
   // Shimmer & Loading Bar Colors
   static const Color shimmerBaseLight = Color(0xFFE0E0E0);
@@ -213,9 +221,13 @@ class AppColors {
   static const Color loadingBarStripe2 = Color(0xFF8B6DFF);
 
   static Color getShimmerBase(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? shimmerBaseDark : shimmerBaseLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? shimmerBaseDark
+          : shimmerBaseLight;
   static Color getShimmerHighlight(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? shimmerHighlightDark : shimmerHighlightLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? shimmerHighlightDark
+          : shimmerHighlightLight;
 
   // Theme Switch Indicator Colors
   static const Color themeSwitchBgDark = Color(0xFF120B2B);
@@ -305,13 +317,25 @@ class AppColors {
   static const Color textDarkGrey = Color(0xFF1F2937);
 
   static Color getLavenderBorder(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? lavenderBorderDark : lavenderBorderLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? lavenderBorderDark
+          : lavenderBorderLight;
   static Color getOrangeBg(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? orangeBgDark : orangeBgLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? orangeBgDark
+          : orangeBgLight;
   static Color getOrangeBorder(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? orangeBorderDark : orangeBorderLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? orangeBorderDark
+          : orangeBorderLight;
   static Color getPinkBg(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? pinkBgDark : pinkBgLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? pinkBgDark
+          : pinkBgLight;
   static Color getPinkBorder(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? pinkBorderDark : pinkBorderLight;
+      Theme.of(context).brightness == Brightness.dark
+          ? pinkBorderDark
+          : pinkBorderLight;
+  static Color getBlackBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light ? black : white;
 }

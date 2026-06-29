@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/responsive/responsive.dart';
 
 class HeroImage extends StatelessWidget {
-  const HeroImage({super.key});
+  final String? lightImagePath;
+  final String? darkImagePath;
+
+  const HeroImage({
+    super.key,
+    this.lightImagePath,
+    this.darkImagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +21,8 @@ class HeroImage extends StatelessWidget {
       alignment: isMobileLayout ? Alignment.center : Alignment.centerRight,
       child: Image.asset(
         Theme.of(context).brightness == Brightness.dark
-            ? "assets/images/hero/hero_img_dark.webp"
-            : "assets/images/hero/hero_img_light.webp",
+            ? (darkImagePath ?? "assets/images/hero/hero_img_dark.webp")
+            : (lightImagePath ?? "assets/images/hero/hero_img_light.webp"),
         width: isMobileLayout ? double.infinity : null,
         fit: BoxFit.contain,
         filterQuality: FilterQuality.high,

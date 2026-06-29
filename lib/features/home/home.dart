@@ -12,6 +12,7 @@ import 'package:portfolio/features/navbar/navbar.dart';
 import 'package:portfolio/features/pinterest/screens/pinterest_section.dart';
 import 'package:portfolio/features/projects/screens/projects.dart';
 import 'package:portfolio/responsive/responsive.dart';
+import 'package:portfolio/features/shared/widgets/toast.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,9 +26,19 @@ class _HomeState extends State<Home> {
   bool _isAnilistVisible = false;
   bool _isExperienceExpanded = false;
   double? _experienceExpandedHeight;
+  static bool _hasShownToast = false;
+
   @override
   void initState() {
     super.initState();
+    if (!_hasShownToast) {
+      _hasShownToast = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          showToast(context, "Work in Progress, Prone to changes. Continuously shipping questionable decisions!");
+        }
+      });
+    }
   }
 
   @override
@@ -75,7 +86,9 @@ class _HomeState extends State<Home> {
                       height: 90,
                       key: sectionKeys[0],
                     ), // Space for navbar
-                    HeroSection(),
+                    HeroSection(
+                      onViewWorkPressed: () => scrollTo(sectionKeys[3]),
+                    ),
                     SizedBox(height: AppConstants.spaceM, key: sectionKeys[1]),
                     AboutMe(onNavigate: scrollTo, contactKey: sectionKeys[4]),
                     const TechIUse(),
