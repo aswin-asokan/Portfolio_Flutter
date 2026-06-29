@@ -19,10 +19,13 @@ class _AppSsListState extends State<AppSsList> {
   final ScrollController _scrollController = ScrollController();
   bool _isImagesLoading = true;
   int _currentIndex = 0;
+  late List<double> _aspectRatios;
 
   @override
   void initState() {
     super.initState();
+    // Default aspect ratio set to portrait (9:16)
+    _aspectRatios = List.filled(widget.images.length, 9.0 / 16.0);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _precacheImages();
     });
@@ -31,46 +34,88 @@ class _AppSsListState extends State<AppSsList> {
 
   void _onScroll() {
     if (!mounted) return;
-    final double itemWidth = Responsive.isMobile(context) ? 215.0 : 265.0; // cardWidth + right padding (15)
-    final double offset = _scrollController.offset;
-    final int newIndex = (offset / itemWidth).round();
-    if (newIndex != _currentIndex && newIndex >= 0 && newIndex < widget.images.length) {
+    final double currentOffset = _scrollController.offset;
+    
+    // Find the index whose starting offset is closest to the current scroll offset
+    int closestIndex = 0;
+    double minDiff = double.infinity;
+    for (int i = 0; i < widget.images.length; i++) {
+      final double itemOffset = _getScrollOffset(i);
+      final double diff = (currentOffset - itemOffset).abs();
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    }
+    if (closestIndex != _currentIndex && closestIndex >= 0 && closestIndex < widget.images.length) {
       setState(() {
-        _currentIndex = newIndex;
+        _currentIndex = closestIndex;
       });
     }
   }
 
+  double _getItemWidth(int index) {
+    final double cardHeight = Responsive.isMobile(context) ? 350.0 : 450.0;
+    final double aspect = _aspectRatios[index];
+    final double imageWidth = cardHeight * aspect;
+    return imageWidth + 15.0; // width + right padding (15.0)
+  }
+
+  double _getScrollOffset(int index) {
+    double offset = 0.0;
+    for (int i = 0; i < index; i++) {
+      offset += _getItemWidth(i);
+    }
+    return offset;
+  }
+
   Future<void> _precacheImages() async {
-    if (kIsWeb) {
-      if (mounted) {
+    int resolvedCount = 0;
+    for (int i = 0; i < widget.images.length; i++) {
+      final url = widget.images[i];
+      try {
+        final provider = CachedNetworkImageProvider(url);
+        if (!kIsWeb) {
+          await precacheImage(provider, context);
+        }
+        final ImageStream stream = provider.resolve(const ImageConfiguration());
+        stream.addListener(ImageStreamListener((ImageInfo info, bool _) {
+          resolvedCount++;
+          if (mounted) {
+            setState(() {
+              _aspectRatios[i] = info.image.width / info.image.height;
+              // Transition to content view once at least the first few are resolved, or all resolved
+              if (resolvedCount >= widget.images.length || resolvedCount >= 2) {
+                _isImagesLoading = false;
+              }
+            });
+          }
+        }, onError: (dynamic exception, StackTrace? stackTrace) {
+          resolvedCount++;
+          if (resolvedCount >= widget.images.length && mounted) {
+            setState(() {
+              _isImagesLoading = false;
+            });
+          }
+        }));
+      } catch (e) {
+        resolvedCount++;
+      }
+    }
+    // Fallback timer just in case image loading hangs
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted && _isImagesLoading) {
         setState(() {
           _isImagesLoading = false;
         });
       }
-      return;
-    }
-    try {
-      final futures = widget.images.map((url) {
-        return precacheImage(CachedNetworkImageProvider(url), context);
-      }).toList();
-      await Future.wait(futures);
-    } catch (e) {
-      // Fail-safe
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isImagesLoading = false;
-        });
-      }
-    }
+    });
   }
 
   void _scrollToIndex(int index) {
     if (index < 0 || index >= widget.images.length) return;
-    final double itemWidth = Responsive.isMobile(context) ? 215.0 : 265.0;
     _scrollController.animateTo(
-      index * itemWidth,
+      _getScrollOffset(index),
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
     );
@@ -129,7 +174,7 @@ class _AppSsListState extends State<AppSsList> {
   @override
   Widget build(BuildContext context) {
     final double cardHeight = Responsive.isMobile(context) ? 350 : 450;
-    final double itemWidth = Responsive.isMobile(context) ? 200 : 250;
+    final double defaultItemWidth = Responsive.isMobile(context) ? 200 : 250;
 
     return Container(
       width: double.infinity,
@@ -175,7 +220,7 @@ class _AppSsListState extends State<AppSsList> {
                         return Padding(
                           padding: const EdgeInsets.only(right: 15.0),
                           child: ShimmerPlaceholder(
-                            width: itemWidth,
+                            width: defaultItemWidth,
                             height: cardHeight,
                           ),
                         );
