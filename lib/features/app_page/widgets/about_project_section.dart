@@ -216,11 +216,13 @@ class _ProjectDetailsCard extends StatelessWidget {
             spacing: 8,
             children: [
               Icon(icon, color: iconColor, size: 20),
-              Text(
-                title,
-                style: context.textTheme.titleMedium!.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  title,
+                  style: context.textTheme.titleMedium!.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

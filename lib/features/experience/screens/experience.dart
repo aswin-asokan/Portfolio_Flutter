@@ -249,6 +249,7 @@ class _ExperienceState extends State<Experience> {
                     illustrationPath,
                     width: illSize,
                     height: illSize,
+                    cacheWidth: 200,
                     fit: BoxFit.contain,
                     gaplessPlayback: true,
                   ),

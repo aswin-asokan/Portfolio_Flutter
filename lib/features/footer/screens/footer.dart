@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
-import 'package:portfolio/core/constants/app_constants.dart';
+
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -84,8 +84,9 @@ class Footer extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           radius: 25,
-                          backgroundImage: AssetImage(
-                            "assets/icons/char_icon.webp",
+                          backgroundImage: ResizeImage(
+                            AssetImage("assets/icons/char_icon.webp"),
+                            width: 100,
                           ),
                           backgroundColor: Colors.transparent,
                         ),
@@ -155,8 +156,9 @@ class Footer extends StatelessWidget {
                         children: [
                           const CircleAvatar(
                             radius: 25,
-                            backgroundImage: AssetImage(
-                              "assets/icons/char_icon.webp",
+                            backgroundImage: ResizeImage(
+                              AssetImage("assets/icons/char_icon.webp"),
+                              width: 100,
                             ),
                             backgroundColor: Colors.transparent,
                           ),
@@ -229,8 +231,9 @@ class Footer extends StatelessWidget {
                         children: [
                           const CircleAvatar(
                             radius: 25,
-                            backgroundImage: AssetImage(
-                              "assets/icons/char_icon.webp",
+                            backgroundImage: ResizeImage(
+                              AssetImage("assets/icons/char_icon.webp"),
+                              width: 100,
                             ),
                             backgroundColor: Colors.transparent,
                           ),

@@ -55,6 +55,7 @@ class _EduCardState extends State<EduCard> {
                     ? AppConstants.educationImageHeightMobile
                     : AppConstants.educationImageHeightDesktop,
                 width: fullWidth ? double.infinity : null,
+                cacheWidth: 400,
                 fit: fullWidth ? BoxFit.cover : BoxFit.contain,
                 filterQuality: FilterQuality.high,
                 gaplessPlayback: true,

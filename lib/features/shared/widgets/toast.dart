@@ -37,6 +37,8 @@ class ToastAnimationWidget extends StatefulWidget {
 class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
@@ -46,6 +48,12 @@ class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
       reverseDuration: const Duration(milliseconds: 500),
       vsync: this,
     )..forward();
+
+    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.5),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     // Automatically dismiss the toast after 2 seconds
     Future.delayed(const Duration(seconds: 2), () {
@@ -68,21 +76,11 @@ class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
       right: 0,
       left: 0,
       child: Center(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return Opacity(
-              opacity: _controller.value,
-              child: Transform.translate(
-                offset: Offset(
-                  0,
-                  20 * (1 - _controller.value),
-                ), // Slide up from bottom
-                child: child,
-              ),
-            );
-          },
-          child: Material(
+        child: FadeTransition(
+          opacity: _fadeAnimation,
+          child: SlideTransition(
+            position: _slideAnimation,
+            child: Material(
             color: Colors.transparent,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -96,6 +94,7 @@ class _ToastAnimationWidgetState extends State<ToastAnimationWidget>
                   color: AppColors.white,
                 ),
                 textAlign: TextAlign.center,
+              ),
               ),
             ),
           ),

@@ -142,6 +142,7 @@ class _LoadingView extends StatelessWidget {
               Image.asset(
                 AppAssets.logoLight,
                 height: 60,
+                cacheWidth: 200,
                 fit: BoxFit.contain,
                 gaplessPlayback: true,
               ),
