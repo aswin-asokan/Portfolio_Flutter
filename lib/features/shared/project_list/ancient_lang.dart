@@ -9,9 +9,9 @@ AppModel ancientLang = AppModel(
   caption: "IndicBERT Model that Predict and Reconstruct Missing Words.",
   techStack: "BERT | GCP",
   bannerPath:
-      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_preserve%2Fancient_banner.webp?alt=media&token=4a56750c-b487-488a-b2ef-9c06ba35189e",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_preserve%2Fancient_banner.webp?alt=media",
   iconPath:
-      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_preserve%2Fancient_logo.webp?alt=media&token=b7fa291a-7fb9-4400-82b4-449a2a26c63d",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_preserve%2Fancient_logo.webp?alt=media",
   gitLink: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
   subtitle: "Filling in the Blanks, Intelligently",
   homeSummary: "Teaching AI to read ancient Malayalam so you don't have to squint at palm leaves anymore. Vattezhuthu meets neural networks!",
@@ -19,7 +19,7 @@ AppModel ancientLang = AppModel(
   type: "github",
   devices: AppAvailability.codeOnly,
   screenshots: [
-    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_preserve%2Fancient.webp?alt=media&token=064aa02b-adaa-4d55-a6f9-586f5fd1cefb",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_preserve%2Fancient.webp?alt=media",
   ],
   aboutApp:
       "This project focuses on the digital restoration of ancient Sanskrit manuscripts by leveraging IndicBERT, a multilingual language model tuned for Indian languages. The goal is to intelligently fill in missing or damaged words in old Sanskrit texts using masked language modeling. Users can upload scanned document images, extract the text using OCR, and use the model to predict the most probable replacements for missing parts. This tool serves as a technological bridge to preserve India’s literary heritage using modern NLP techniques.",

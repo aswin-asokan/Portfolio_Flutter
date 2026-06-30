@@ -34,7 +34,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  google_fonts: ^8.1.0
   material_symbols_icons: ^4.2815.0
   provider: ^6.1.5
   svg_flutter: ^0.0.1
@@ -127,3 +126,28 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  fonts:
+    - family: BalsamiqSans
+      fonts:
+        - asset: assets/fonts/BalsamiqSans-Regular.ttf
+        - asset: assets/fonts/BalsamiqSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/BalsamiqSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/BalsamiqSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+    - family: ComicRelief
+      fonts:
+        - asset: assets/fonts/ComicRelief-Regular.ttf
+        - asset: assets/fonts/ComicRelief-Bold.ttf
+          weight: 700
+    - family: PixelifySans
+      fonts:
+        - asset: assets/fonts/PixelifySans-Regular.ttf
+        - asset: assets/fonts/PixelifySans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/PixelifySans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PixelifySans-Bold.ttf
+          weight: 700

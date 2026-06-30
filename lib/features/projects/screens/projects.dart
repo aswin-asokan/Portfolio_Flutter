@@ -8,6 +8,7 @@ import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/project_list/project_list.dart';
 import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 class Projects extends StatefulWidget {
   final double? forcedWidth;
@@ -83,12 +84,12 @@ class _ProjectsState extends State<Projects> {
                   ),
                   const SizedBox(width: AppConstants.spaceXS),
                   Transform.translate(
-                    offset: const Offset(-8, -8),
+                    offset: const Offset(0, -4),
                     child: Transform.rotate(
                       angle: 0.3,
                       child: const Icon(
-                        Symbols.insights,
-                        color: AppColors.sparklePurple,
+                        SimpleIcons.rocket,
+                        color: SimpleIconColors.rocket,
                         size: AppConstants.iconSizeM,
                       ),
                     ),

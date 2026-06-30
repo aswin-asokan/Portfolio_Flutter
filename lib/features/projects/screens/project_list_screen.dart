@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -210,7 +210,8 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
               ),
             ],
           ),
-          style: GoogleFonts.comicRelief(
+          style: TextStyle(
+            fontFamily: 'ComicRelief',
             fontSize: baseFontSize,
             height: 1.1,
             fontWeight: FontWeight.bold,
@@ -276,6 +277,15 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
             ? 4
             : 5;
 
+    // Chunk projects list into rows of size crossAxisCount
+    final List<List<AppModel>> chunkedProjects = [];
+    for (int i = 0; i < filteredProjects.length; i += crossAxisCount) {
+      final end =
+          (i + crossAxisCount < filteredProjects.length)
+              ? i + crossAxisCount
+              : filteredProjects.length;
+      chunkedProjects.add(filteredProjects.sublist(i, end));
+    }
 
     // Note: To add more filter options from code, simply add a new FilterCategory to this list!
     // Increased Icon Size to 22 for filter chips
@@ -614,22 +624,47 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                 else
                   SliverPadding(
                     padding: EdgeInsets.symmetric(horizontal: padding),
-                    sliver: SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        crossAxisSpacing: 16.0,
-                        mainAxisSpacing: 16.0,
-                        mainAxisExtent: 330.0, // Pre-calculated safe height for all cards
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return ProjectGridCard(
-                            app: filteredProjects[index],
-                            index: index,
-                          );
-                        },
-                        childCount: filteredProjects.length,
-                      ),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate((context, rowIndex) {
+                        final chunk = chunkedProjects[rowIndex];
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom:
+                                rowIndex < chunkedProjects.length - 1
+                                    ? 16.0
+                                    : 0.0,
+                          ),
+                          child: IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: List.generate(crossAxisCount * 2 - 1, (
+                                index,
+                              ) {
+                                if (index.isOdd) {
+                                  return const SizedBox(
+                                    width: 16,
+                                  ); // Horizontal space between cards
+                                }
+                                final colIndex = index ~/ 2;
+                                if (colIndex < chunk.length) {
+                                  return Expanded(
+                                    child: ProjectGridCard(
+                                      app: chunk[colIndex],
+                                      index:
+                                          rowIndex * crossAxisCount + colIndex,
+                                    ),
+                                  );
+                                } else {
+                                  // Dummy card widget space container to balance layout width
+                                  return const Expanded(
+                                    child: SizedBox.shrink(),
+                                  );
+                                }
+                              }),
+                            ),
+                          ),
+                        );
+                      }, childCount: chunkedProjects.length),
                     ),
                   ),
                 SliverPadding(

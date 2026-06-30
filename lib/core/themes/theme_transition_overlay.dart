@@ -114,6 +114,19 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
 
     return Stack(
       children: [
+        // Keep active listeners on these images so they are NEVER evicted from the ImageCache
+        Offstage(
+          child: Image.asset(
+            'assets/images/others/theme_loading_light.webp',
+            cacheWidth: 800,
+          ),
+        ),
+        Offstage(
+          child: Image.asset(
+            'assets/images/others/theme_loading_dark.webp',
+            cacheWidth: 800,
+          ),
+        ),
         widget.child,
         if (_visible)
           FadeTransition(
@@ -123,41 +136,43 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
               child: Material(
                 color: bgColor,
                 child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppConstants.spaceXL),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ThemeSwitchIndicator(mode: switchMode),
-                        const SizedBox(height: AppConstants.spaceM),
-                        Image.asset(
-                          themeImage,
-                          width: MediaQuery.sizeOf(
-                            context,
-                          ).width.clamp(240.0, 750.0),
-                          cacheWidth: 800,
-                          fit: BoxFit.contain,
-                          gaplessPlayback: true,
-                        ),
-                        const SizedBox(height: AppConstants.spaceM),
-                        CornerHighlight(
-                          corner: SparkleCorner.topRight,
-                          color: AppColors.primaryPurpleDark,
-                          child: Text(
-                            'Switching vibes...',
-                            style: TextStyle(color: fontColor),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppConstants.spaceXL),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ThemeSwitchIndicator(mode: switchMode),
+                          const SizedBox(height: AppConstants.spaceM),
+                          Image.asset(
+                            themeImage,
+                            width: MediaQuery.sizeOf(
+                              context,
+                            ).width.clamp(240.0, 750.0),
+                            cacheWidth: 800,
+                            fit: BoxFit.contain,
+                            gaplessPlayback: true,
                           ),
-                        ),
-                        const SizedBox(height: AppConstants.spaceL),
-                        AnimatedBuilder(
-                          animation: _progressAnimation,
-                          builder: (context, _) {
-                            return StripedLoadingBar(
-                              progress: _progressAnimation.value,
-                            );
-                          },
-                        ),
-                      ],
+                          const SizedBox(height: AppConstants.spaceM),
+                          CornerHighlight(
+                            corner: SparkleCorner.topRight,
+                            color: AppColors.primaryPurpleDark,
+                            child: Text(
+                              'Switching vibes...',
+                              style: TextStyle(color: fontColor),
+                            ),
+                          ),
+                          const SizedBox(height: AppConstants.spaceL),
+                          AnimatedBuilder(
+                            animation: _progressAnimation,
+                            builder: (context, _) {
+                              return StripedLoadingBar(
+                                progress: _progressAnimation.value,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

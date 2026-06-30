@@ -44,10 +44,11 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
 
     try {
       for (final asset in AppAssets.criticalImages) {
-        final ImageProvider provider = asset.cacheWidth != null
-            ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
-            : AssetImage(asset.path);
-            
+        final ImageProvider provider =
+            asset.cacheWidth != null
+                ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
+                : AssetImage(asset.path);
+
         await precacheImage(provider, context);
         updateProgress();
       }
@@ -57,7 +58,7 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
         _progress = 1;
         _isLoaded = true;
       });
-      
+
       _loadSecondaryAssets();
     } catch (error, stackTrace) {
       FlutterError.reportError(
@@ -74,14 +75,15 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
       });
     }
   }
-  
+
   Future<void> _loadSecondaryAssets() async {
     for (final asset in AppAssets.secondaryImages) {
       if (!mounted) return;
-      final ImageProvider provider = asset.cacheWidth != null
-          ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
-          : AssetImage(asset.path);
-          
+      final ImageProvider provider =
+          asset.cacheWidth != null
+              ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
+              : AssetImage(asset.path);
+
       precacheImage(provider, context).catchError((_) {});
     }
   }
@@ -134,51 +136,52 @@ class _LoadingView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppConstants.spaceXL),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                AppAssets.logoLight,
-                height: 60,
-                cacheWidth: 200,
-                fit: BoxFit.contain,
-                gaplessPlayback: true,
-              ),
-              const SizedBox(height: AppConstants.spaceM),
-              Image.asset(
-                AppAssets.loadingImage,
-                width: imageSize,
-                cacheWidth: 800,
-                fit: BoxFit.contain,
-                gaplessPlayback: true,
-              ),
-              const SizedBox(height: AppConstants.spaceM),
-              CornerHighlight(
-                corner: SparkleCorner.topRight,
-                color: AppColors.primaryPurpleDark,
-                child: Text("Loading awesome ideas..."),
-              ),
-              const SizedBox(height: AppConstants.spaceL),
-              StripedLoadingBar(progress: progress),
-              if (error != null) ...[
-                const SizedBox(height: AppConstants.spaceM),
-                Text(
-                  'Could not load app assets.',
-                  style: textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface,
-                  ),
-                  textAlign: TextAlign.center,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppConstants.spaceXL),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  AppAssets.logoLight,
+                  height: 60,
+                  cacheWidth: 200,
+                  fit: BoxFit.contain,
+                  gaplessPlayback: true,
                 ),
-                const SizedBox(height: AppConstants.spaceS),
-                TextButton(onPressed: onRetry, child: const Text('Retry')),
+                const SizedBox(height: AppConstants.spaceM),
+                Image.asset(
+                  AppAssets.loadingImage,
+                  width: imageSize,
+                  cacheWidth: 800,
+                  fit: BoxFit.contain,
+                  gaplessPlayback: true,
+                ),
+                const SizedBox(height: AppConstants.spaceM),
+                CornerHighlight(
+                  corner: SparkleCorner.topRight,
+                  color: AppColors.primaryPurpleDark,
+                  child: Text("Loading awesome ideas..."),
+                ),
+                const SizedBox(height: AppConstants.spaceL),
+                StripedLoadingBar(progress: progress),
+                if (error != null) ...[
+                  const SizedBox(height: AppConstants.spaceM),
+                  Text(
+                    'Could not load app assets.',
+                    style: textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: AppConstants.spaceS),
+                  TextButton(onPressed: onRetry, child: const Text('Retry')),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-

@@ -22,7 +22,9 @@ class AboutProjectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDesktopLayout = !Responsive.isMobile(context);
+    final bool isMobile = Responsive.isMobile(context);
+    final bool isTablet = Responsive.isTablet(context) || Responsive.isSmallTablet(context);
+    final bool isDesktop = !isMobile && !isTablet;
 
     // Find the items dynamically by title to ensure robust mapping
     final techStackItem = infoItems.firstWhere(
@@ -60,7 +62,7 @@ class AboutProjectSection extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          if (isDesktopLayout)
+          if (isDesktop)
             Column(
               spacing: 20,
               children: [
@@ -96,6 +98,56 @@ class AboutProjectSection extends StatelessWidget {
                       ),
                       Expanded(
                         child: _buildSkillsCard(context, skillsItem.content),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          else if (isTablet)
+            Column(
+              spacing: 20,
+              children: [
+                // Row 1: Why I built this, Challenges faced, Learning / Outcome
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: 20,
+                    children: [
+                      Expanded(
+                        child: _buildWhyIBuiltCard(context),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          spacing: 20,
+                          children: [
+                            _buildChallengesCard(context),
+                            Expanded(child: _buildLearningCard(context)), // Expanded to fill remaining intrinsic height if needed
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Row 2: Tech Stack, Tools & Services, Skills
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: 20,
+                    children: [
+                      Expanded(
+                        child: _buildTechStackCard(context, techStackItem.content),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          spacing: 20,
+                          children: [
+                            _buildToolsCard(context, toolsItem.content),
+                            Expanded(child: _buildSkillsCard(context, skillsItem.content)),
+                          ],
+                        ),
                       ),
                     ],
                   ),

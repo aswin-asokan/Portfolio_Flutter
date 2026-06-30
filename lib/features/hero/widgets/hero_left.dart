@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
@@ -50,7 +50,8 @@ class HeroLeft extends StatelessWidget {
           children: [
             Text(
               "Hi, I'm",
-              style: GoogleFonts.comicRelief(
+              style: TextStyle(
+                fontFamily: 'ComicRelief',
                 fontSize: baseFontSize,
                 height: 1.1,
                 fontWeight: FontWeight.w600,
@@ -79,7 +80,8 @@ class HeroLeft extends StatelessWidget {
                       ),
                     ],
                   ),
-                  style: GoogleFonts.comicRelief(
+                  style: TextStyle(
+                  fontFamily: 'ComicRelief',
                     fontSize: nameFontSize,
                     height: 1.1,
                     fontWeight: FontWeight.w600,
@@ -89,7 +91,8 @@ class HeroLeft extends StatelessWidget {
             else ...[
               Text(
                 "Aswin",
-                style: GoogleFonts.comicRelief(
+                style: TextStyle(
+                  fontFamily: 'ComicRelief',
                   fontSize: nameFontSize,
                   color: context.colorScheme.primary,
                   height: 1.1,
@@ -98,7 +101,8 @@ class HeroLeft extends StatelessWidget {
               ),
               Text(
                 "Asokan",
-                style: GoogleFonts.comicRelief(
+                style: TextStyle(
+                  fontFamily: 'ComicRelief',
                   fontSize: baseFontSize,
                   height: 1.1,
                   fontWeight: FontWeight.w600,

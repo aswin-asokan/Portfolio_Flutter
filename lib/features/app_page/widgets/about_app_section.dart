@@ -23,7 +23,9 @@ class AboutAppSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDesktopLayout = !Responsive.isMobile(context);
+    final bool isMobile = Responsive.isMobile(context);
+    final bool isTablet = Responsive.isTablet(context) || Responsive.isSmallTablet(context);
+    final bool isDesktop = !isMobile && !isTablet;
 
     return Container(
       width: double.infinity,
@@ -47,28 +49,33 @@ class AboutAppSection extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          if (isDesktopLayout)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          if (isDesktop || isTablet)
+            Column(
               spacing: 20,
               children: [
-                // Left Column: Overview (About) & Features
-                Expanded(
-                  child: Column(
+                // Overview gets full width to avoid needing to height-match with taller elements
+                _buildOverviewCard(context),
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: 20,
                     children: [
-                      _buildOverviewCard(context),
-                      _buildFeaturesCard(context),
-                    ],
-                  ),
-                ),
-                // Right Column: Future Plans & Info
-                Expanded(
-                  child: Column(
-                    spacing: 20,
-                    children: [
-                      _buildFuturePlansCard(context),
-                      _buildInfoCard(context),
+                      // Features balances against Info and Future Plans
+                      Expanded(
+                        flex: 5,
+                        child: _buildFeaturesCard(context),
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          spacing: 20,
+                          children: [
+                            _buildInfoCard(context),
+                            Expanded(child: _buildFuturePlansCard(context)), // Fills the tiny bit of remaining height
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -80,8 +87,8 @@ class AboutAppSection extends StatelessWidget {
               children: [
                 _buildOverviewCard(context),
                 _buildFeaturesCard(context),
-                _buildFuturePlansCard(context),
                 _buildInfoCard(context),
+                _buildFuturePlansCard(context),
               ],
             ),
         ],
