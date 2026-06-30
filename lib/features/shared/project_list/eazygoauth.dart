@@ -14,6 +14,7 @@ AppModel eazygoauth = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/eazygoauth_logo.png",
   gitLink: "https://github.com/aswin-asokan/eazyGo_Auth",
   subtitle: "Streamlined eazyGo Report Management",
+  homeSummary: "The conductor's best friend. Validate tickets with a tap instead of a hole puncher!",
   releaseLink: "https://eazygo-375211.web.app/#/",
   type: "website",
   devices: AppAvailability.website,

@@ -74,7 +74,7 @@ class _AppSsListState extends State<AppSsList> {
     for (int i = 0; i < widget.images.length; i++) {
       final url = widget.images[i];
       try {
-        final provider = CachedNetworkImageProvider(url);
+        final provider = CachedNetworkImageProvider(url, maxWidth: 800);
         if (!kIsWeb) {
           await precacheImage(provider, context);
         }
@@ -210,33 +210,35 @@ class _AppSsListState extends State<AppSsList> {
               Expanded(
                 child: SizedBox(
                   height: cardHeight,
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: widget.images.length,
-                    itemBuilder: (context, index) {
-                      if (_isImagesLoading) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
-                          child: ShimmerPlaceholder(
-                            width: defaultItemWidth,
-                            height: cardHeight,
+                  child: RepaintBoundary(
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: widget.images.length,
+                      itemBuilder: (context, index) {
+                        if (_isImagesLoading) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 15.0),
+                            child: ShimmerPlaceholder(
+                              width: defaultItemWidth,
+                              height: cardHeight,
+                            ),
+                          );
+                        }
+                        return KeepAliveWrapper(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 15.0),
+                            child: AppScreenshotCard(
+                              imagePath: widget.images[index],
+                              height: cardHeight,
+                              images: widget.images,
+                              index: index,
+                            ),
                           ),
                         );
-                      }
-                      return KeepAliveWrapper(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
-                          child: AppScreenshotCard(
-                            imagePath: widget.images[index],
-                            height: cardHeight,
-                            images: widget.images,
-                            index: index,
-                          ),
-                        ),
-                      );
-                    },
+                      },
+                    ),
                   ),
                 ),
               ),

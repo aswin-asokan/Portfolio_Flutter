@@ -14,6 +14,7 @@ AppModel flysoftFloorplan = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/internship_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
   subtitle: "Restaurant Layouts, Simplified",
+  homeSummary: "Playing The Sims, but for restaurant seating. Drag, drop, and optimize those tables!",
   releaseLink: "",
   type: "github",
   devices: AppAvailability.all,

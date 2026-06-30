@@ -16,6 +16,7 @@ AppModel pocketDresses = AppModel(
 
   gitLink: "https://github.com/aswin-asokan/FlutterFly/",
   subtitle: "Your Perfect Dress, Curated.",
+  homeSummary: "Window shopping, but in your pocket. Because your closet definitely needs one more dress.",
   releaseLink: "https://github.com/aswin-asokan/FlutterFly/releases/tag/v1.0.1",
   type: "download",
   devices: AppAvailability.android,

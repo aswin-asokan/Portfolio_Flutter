@@ -15,6 +15,7 @@ AppModel gradgate = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/gradgate_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/GradGate",
   subtitle: "Easy Job & Internship Applications",
+  homeSummary: "Digitizing college gate passes. No more forging signatures to get out of campus early!",
   releaseLink: "https://github.com/aswin-asokan/GradGate/releases/tag/v1.5.0",
   type: "download",
   devices: AppAvailability.androidDesktop,

@@ -15,9 +15,11 @@ class StripedLoadingBar extends StatelessWidget {
     final percent = (safeProgress * 100).round();
 
     return SizedBox(
-      width: 300,
+      width: 356, // 300 original width + 56 padding to balance right elements
       child: Row(
         children: [
+          // Padding to perfectly balance the percentage text on the right
+          const SizedBox(width: 56),
           Expanded(
             child: Container(
               height: 30,

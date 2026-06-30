@@ -14,6 +14,7 @@ AppModel dairyManagement = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/dairy_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/DairyManagement-App",
   subtitle: "Streamlined Sales, Purchases, Staff.",
+  homeSummary: "Moo-ving dairy farming into the digital age. Less time on paperwork, more time for the cows.",
   releaseLink:
       "https://github.com/aswin-asokan/DairyManagement-App/releases/tag/v1.0.0",
   type: "download",

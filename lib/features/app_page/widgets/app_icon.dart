@@ -18,6 +18,7 @@ class AppIcon extends StatelessWidget {
       borderRadius: BorderRadius.circular(radius),
       child: CachedNetworkImage(
         imageUrl: path,
+        memCacheWidth: 400,
         height: height,
         width: height,
         fit: BoxFit.cover,

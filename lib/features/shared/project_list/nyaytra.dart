@@ -15,6 +15,7 @@ AppModel nyaytra = AppModel(
   gitLink:
       "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
   subtitle: "BERT-driven Legal Insights for India",
+  homeSummary: "An extra pair of AI eyes for the visually impaired. It's like a smart superpower in your pocket!",
   releaseLink: "",
   type: "github",
   devices: AppAvailability.codeOnly,

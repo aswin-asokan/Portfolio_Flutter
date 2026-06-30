@@ -14,6 +14,7 @@ AppModel eazygo = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/eazygo_logo.png",
   gitLink: "https://github.com/aswin-asokan/EazyGo-MAp",
   subtitle: "Map & Report Infrastructural Damage.",
+  homeSummary: "Skip the line and book bus tickets from your couch. Because running after a moving bus is so last decade.",
   releaseLink: "https://github.com/aswin-asokan/EazyGo-MAp/releases/tag/v1.0.0",
   type: "download",
   devices: AppAvailability.android,

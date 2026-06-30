@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 
@@ -26,44 +26,57 @@ ThemeData darkmode = ThemeData(
     outline: AppColors.greenBorderDark,
     primaryContainer: AppColors.greenSplashDark,
   ),
-  textTheme: TextTheme(
-    titleLarge: GoogleFonts.balsamiqSans(
+  textTheme: const TextTheme(
+    titleLarge: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontDisplayXXL,
     ),
-    titleMedium: GoogleFonts.balsamiqSans(
+    titleMedium: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontDisplayM,
     ),
-    titleSmall: GoogleFonts.balsamiqSans(
+    titleSmall: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontXL,
     ),
-    bodyLarge: GoogleFonts.balsamiqSans(
+    bodyLarge: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontDisplayL,
     ),
-    bodyMedium: GoogleFonts.balsamiqSans(
+    bodyMedium: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontL,
     ),
-    bodySmall: GoogleFonts.balsamiqSans(
+    bodySmall: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontM,
     ),
-    labelLarge: GoogleFonts.balsamiqSans(
+    labelLarge: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontDisplayL,
     ),
-    labelMedium: GoogleFonts.balsamiqSans(
+    labelMedium: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontXL,
     ),
-    labelSmall: GoogleFonts.balsamiqSans(
+    labelSmall: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontL,
     ),
-    displayMedium: GoogleFonts.balsamiqSans(
+    displayMedium: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontM,
     ),
-    displaySmall: GoogleFonts.balsamiqSans(
+    displaySmall: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontS,
     ),
-    headlineMedium: GoogleFonts.balsamiqSans(
+    headlineMedium: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontDisplayS,
     ),
-    headlineSmall: GoogleFonts.balsamiqSans(
+    headlineSmall: TextStyle(
+      fontFamily: 'BalsamiqSans',
       fontSize: AppConstants.fontSM,
     ),
   ),

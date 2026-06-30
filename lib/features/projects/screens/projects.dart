@@ -8,6 +8,7 @@ import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/project_list/project_list.dart';
 import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 class Projects extends StatefulWidget {
   final double? forcedWidth;
@@ -28,20 +29,22 @@ class _ProjectsState extends State<Projects> {
 
   Future<void> _precacheProjectImages() async {
     try {
+      final List<String> imageUrls = [];
       for (final app in projects) {
-        if (!mounted) return;
         if (app.screenshots.isNotEmpty) {
-          precacheImage(
-            CachedNetworkImageProvider(app.screenshots[0]),
-            context,
-            onError: (exception, stackTrace) {},
-          );
+          imageUrls.add(app.screenshots[0]);
         }
-        precacheImage(
-          CachedNetworkImageProvider(app.bannerPath),
+        imageUrls.add(app.bannerPath);
+      }
+
+      for (final url in imageUrls) {
+        if (!mounted) return;
+        await precacheImage(
+          CachedNetworkImageProvider(url, maxWidth: 800),
           context,
           onError: (exception, stackTrace) {},
-        );
+        ).catchError((_) {});
+        await Future.delayed(const Duration(milliseconds: 50));
       }
     } catch (_) {}
   }
@@ -54,7 +57,10 @@ class _ProjectsState extends State<Projects> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstants.radius15),
         color: context.colorScheme.surface,
-        border: Border.all(color: AppColors.getBorder(context), width: AppConstants.borderWidth),
+        border: Border.all(
+          color: AppColors.getBorder(context),
+          width: AppConstants.borderWidth,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,12 +84,12 @@ class _ProjectsState extends State<Projects> {
                   ),
                   const SizedBox(width: AppConstants.spaceXS),
                   Transform.translate(
-                    offset: const Offset(-8, -8),
+                    offset: const Offset(0, -4),
                     child: Transform.rotate(
                       angle: 0.3,
                       child: const Icon(
-                        Symbols.insights,
-                        color: AppColors.sparklePurple,
+                        SimpleIcons.rocket,
+                        color: SimpleIconColors.rocket,
                         size: AppConstants.iconSizeM,
                       ),
                     ),
@@ -91,18 +97,15 @@ class _ProjectsState extends State<Projects> {
                 ],
               ),
               // Interactive View All text button
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    context.push('/projects');
-                  },
-                  child: Text(
-                    "View All →",
-                    style: context.textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.getSubtitleText(context),
-                    ),
+              TextButton(
+                onPressed: () {
+                  context.push('/projects');
+                },
+                child: Text(
+                  "View All →",
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.getSubtitleText(context),
                   ),
                 ),
               ),
@@ -110,13 +113,12 @@ class _ProjectsState extends State<Projects> {
           ),
           const SizedBox(height: 24),
           if (widget.forcedWidth != null)
-            Expanded(
-              child: _buildCardsRow(context, widget.forcedWidth!),
-            )
+            Expanded(child: _buildCardsRow(context, widget.forcedWidth!))
           else
             LayoutBuilder(
-              builder: (context, constraints) =>
-                  _buildCardsRow(context, constraints.maxWidth),
+              builder:
+                  (context, constraints) =>
+                      _buildCardsRow(context, constraints.maxWidth),
             ),
         ],
       ),
@@ -125,11 +127,10 @@ class _ProjectsState extends State<Projects> {
 
   Widget _buildCardsRow(BuildContext context, double availableWidth) {
     final double spacing = 16.0;
-    final double baseCardWidth = 190.0;
+    final double cardWidth = 250.0;
 
-    int fitCount = (availableWidth + spacing) ~/ (baseCardWidth + spacing);
+    int fitCount = (availableWidth / (cardWidth + spacing)).ceil() + 1;
     fitCount = fitCount.clamp(1, projects.length);
-    final double cardWidth = (availableWidth - (fitCount - 1) * spacing) / fitCount;
 
     return Stack(
       children: [
@@ -138,20 +139,13 @@ class _ProjectsState extends State<Projects> {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
-            child: IntrinsicHeight(
-              child: Row(
-                spacing: spacing,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  for (int i = 0; i < fitCount; i++)
-                    _ProjectCard(
-                      app: projects[i],
-                      index: i,
-                      width: cardWidth,
-                    ),
-                  SizedBox(width: spacing),
-                ],
-              ),
+            child: Row(
+              spacing: spacing,
+              children: [
+                for (int i = 0; i < fitCount; i++)
+                  _ProjectCard(app: projects[i], index: i, width: cardWidth),
+                SizedBox(width: spacing),
+              ],
             ),
           ),
         ),
@@ -236,14 +230,11 @@ class _ProjectCard extends StatelessWidget {
         },
         child: Container(
           width: width,
-          height: 370,
+          height: 380,
           decoration: BoxDecoration(
             color: theme.bgColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: theme.borderColor,
-              width: 1.5,
-            ),
+            border: Border.all(color: theme.borderColor, width: 1.5),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -257,19 +248,21 @@ class _ProjectCard extends StatelessWidget {
                     topRight: Radius.circular(11),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: app.screenshots.isNotEmpty ? app.screenshots[0] : app.bannerPath,
+                    imageUrl: app.bannerPath,
+                    memCacheWidth: 800,
                     fit: BoxFit.cover,
                     alignment: Alignment.topCenter,
                     placeholder: (context, url) => const ShimmerPlaceholder(),
-                    errorWidget: (context, url, error) => Container(
-                      color: Colors.grey.shade200,
-                      alignment: Alignment.center,
-                      child: const Icon(
-                        Symbols.phone_iphone,
-                        color: Colors.grey,
-                        size: 24,
-                      ),
-                    ),
+                    errorWidget:
+                        (context, url, error) => Container(
+                          color: Colors.grey.shade200,
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Symbols.phone_iphone,
+                            color: Colors.grey,
+                            size: 24,
+                          ),
+                        ),
                   ),
                 ),
               ),
@@ -294,7 +287,7 @@ class _ProjectCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       // Description
                       Text(
-                        app.caption,
+                        app.homeSummary,
                         style: context.textTheme.bodySmall?.copyWith(
                           color: AppColors.getDescriptionText(context),
                           fontSize: 13,

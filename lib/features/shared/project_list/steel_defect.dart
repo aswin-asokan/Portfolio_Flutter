@@ -15,6 +15,7 @@ AppModel steelDefectDetection = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/steel_icon.png", // Placeholder icon
   gitLink: "https://github.com/aswin-asokan/steel_defect_detection",
   subtitle: "Accurate Surface Defect Segmentation for Manufacturing",
+  homeSummary: "Teaching AI to spot scratches on steel better than a highly caffeinated inspector.",
   releaseLink: "",
   type: "github",
   devices: AppAvailability.codeOnly,

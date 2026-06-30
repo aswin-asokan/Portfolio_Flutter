@@ -7,6 +7,7 @@ class AppModel {
   final String title;
   final String caption;
   final String subtitle;
+  final String homeSummary;
   final String _bannerPath;
   final String _iconPath;
   final List<String> _screenshots;
@@ -33,6 +34,7 @@ class AppModel {
     required String iconPath,
     required this.gitLink,
     required this.subtitle,
+    required this.homeSummary,
     required this.releaseLink,
     required this.type,
     required this.devices,

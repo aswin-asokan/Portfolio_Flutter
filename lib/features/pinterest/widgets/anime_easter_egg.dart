@@ -121,6 +121,7 @@ class _AnimeEasterEggState extends State<AnimeEasterEgg> {
               child: Image.asset(
                 "assets/images/pinterest/anime_easter_egg.webp",
                 height: resolvedHeight,
+                cacheWidth: 400,
                 fit: BoxFit.contain,
               ),
             ),

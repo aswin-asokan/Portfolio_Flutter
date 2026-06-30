@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
 import 'package:portfolio/responsive/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+enum Position { intern, dev, instructor, lead }
 
 class Experience extends StatefulWidget {
   final bool isExpanded;
@@ -28,75 +31,53 @@ class Experience extends StatefulWidget {
 class _ExperienceState extends State<Experience> {
   final List<Map<String, dynamic>> experiences = [
     {
-      "icon": Symbols.school,
-      "role": "Bootcamp Instructor",
-      "org": "ISTE MACE Chapter",
-      "period": "Apr 2025 - Present",
-      "summary": [
-        "Guided 30+ students in a Flutter app development bootcamp.",
-        "Covered multi-page app functionality",
-        "Provided training on integrating apps with an online database.",
-        "Created and shared structured documentation",
-      ],
-      "url": "https://aswin-asokan.github.io/iste_bootcamp/",
-      "hasLink": true,
+      "role": "Jr Flutter Developer",
+      "org": "Flysoft Systems",
+      "period": "Dec 2025 - Present",
+      "summary":
+          "Currently working as a Junior Flutter Developer, developing POS systems and related applications, contributing to application development, release management, technical documentation, and collaborating with cross-functional teams to deliver reliable software solutions.",
+      "position": Position.dev,
     },
     {
-      "icon": Symbols.school,
       "role": "Bootcamp Instructor",
       "org": "ISTE MACE Chapter",
-      "period": "Apr 2025 - Present",
-      "summary": [
-        "Guided 30+ students in a Flutter app development bootcamp.",
-        "Covered multi-page app functionality",
-        "Provided training on integrating apps with an online database.",
-        "Created and shared structured documentation",
-      ],
+      "period": "Apr 2025 - Apr 2025",
+      "summary":
+          "Guided 30+ students through a Flutter app development bootcamp, covering multi-page application development, online database integration, and providing structured documentation to support their learning.",
       "url": "https://aswin-asokan.github.io/iste_bootcamp/",
       "hasLink": true,
+      "position": Position.instructor,
     },
     {
-      "icon": Symbols.computer,
-      "role": "Flutter Developer",
-      'org': "Flysoft Systems | Intern",
+      "role": "Flutter Dev Intern",
+      'org': "Flysoft Systems",
       "period": "Oct 2024 - Dec 2024",
-      "summary": [
-        "Contributed to the development of a Flutter application for restaurants.",
-        "Enabled users to create customized multi-floor plans.",
-        "Integrated features to arrange tables and optimize layouts with intuitive controls.",
-        "Implemented interactive design tools for a better user experience.",
-      ],
+      "summary":
+          "Contributed to the development of a Flutter application for restaurants, enabling users to create customized multi-floor layouts with interactive tools for arranging tables and optimizing floor plans through an intuitive user experience.",
       "hasFile": true,
       "file": "https://aswinasokan.vercel.app/assets/assets/files/flysoft.pdf",
       "filename": "Flysoft_internship_report.pdf",
+      "position": Position.intern,
     },
     {
-      "icon": Symbols.lightbulb_outline,
       "role": "Technology Lead",
       'org': "IEDC Kalamassery",
       'period': "Aug 2021 - Mar 2023",
-      "summary": [
-        "Actively organized and coordinated Yanthrika 2K22 Idea Fest.",
-        "Managed the evaluation of 25+ innovative project ideas.",
-        "Organized a 3D printing workshop with 50+ participants.",
-        "Conducted an IoT workshop, engaging 30+ students in hands-on learning.",
-      ],
+      "summary":
+          "Successfully contributed to organizing Yanthrika 2K22, coordinating the Idea Fest by managing the evaluation of 25+ innovative project ideas, while also organizing a 3D Printing workshop for 50+ participants and conducting an IoT workshop that engaged 30+ students in hands-on learning.",
+      "position": Position.lead,
     },
     {
-      "icon": Symbols.android,
-      "role": "Flutter Developer",
-      "org": "Laxmiinfotek | Intern",
+      "role": "Flutter Dev Intern",
+      "org": "Laxmiinfotek",
       "period": "Sep 2022",
-      "summary": [
-        "Successfully completed an internship program.",
-        "Developed a To-Do application using Flutter.",
-        "Applied core concepts of UI design and state management.",
-        "Implemented firebase connection",
-      ],
+      "summary":
+          "Successfully completed an internship program where I developed a Flutter-based To-Do application, applying core UI design and state management concepts while implementing Firebase integration for backend connectivity.",
       "hasFile": true,
       "file":
           "https://aswinasokan.vercel.app/assets/assets/files/laxmiinfotek.jpeg",
       "filename": "Laxmiinfotek_internship_certificate.jpeg",
+      "position": Position.intern,
     },
   ];
 
@@ -107,12 +88,18 @@ class _ExperienceState extends State<Experience> {
     const Color(0xFF4FC3F7), // blue
   ];
 
-  final List<String> illustrations = [
-    "assets/images/about/focus.webp",
-    "assets/images/about/hobbies.webp",
-    "assets/images/about/personality.webp",
-    "assets/images/about/fuel.webp",
-  ];
+  String _getIllustrationForPosition(Position position) {
+    switch (position) {
+      case Position.intern:
+        return "assets/images/exp/intern.webp";
+      case Position.dev:
+        return "assets/images/exp/dev.webp";
+      case Position.instructor:
+        return "assets/images/exp/instructor.webp";
+      case Position.lead:
+        return "assets/images/exp/lead.webp";
+    }
+  }
 
   void downloadAssetFile(String assetPath, String downloadFileName) async {
     final url = Uri.parse(assetPath);
@@ -137,15 +124,14 @@ class _ExperienceState extends State<Experience> {
     bool isLast,
   ) {
     final Color dotColor = accentColors[index % accentColors.length];
-    final String illustrationPath = illustrations[index % illustrations.length];
+    final String illustrationPath = _getIllustrationForPosition(
+      exp["position"] as Position,
+    );
 
     final String role = exp["role"] as String;
     final String org = exp["org"] as String;
     final String period = exp["period"] as String;
-    final List<String> summary = exp["summary"] as List<String>;
-    final String summaryText = summary
-        .map((s) => s.endsWith('.') ? s : '$s.')
-        .join(" ");
+    final String summaryText = exp["summary"] as String;
 
     final String? url = exp["url"] as String?;
     final bool hasLink = exp["hasLink"] as bool? ?? false;
@@ -263,7 +249,9 @@ class _ExperienceState extends State<Experience> {
                     illustrationPath,
                     width: illSize,
                     height: illSize,
+                    cacheWidth: 200,
                     fit: BoxFit.contain,
+                    gaplessPlayback: true,
                   ),
                 ],
               ),
@@ -364,16 +352,21 @@ class _ExperienceState extends State<Experience> {
 
   void _checkHeight() {
     if (!mounted || !widget.isExpanded) return;
-    final RenderBox? renderBox = _contentKey.currentContext?.findRenderObject() as RenderBox?;
+    final RenderBox? renderBox =
+        _contentKey.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox != null) {
       final double currentWidth = renderBox.size.width;
-      final double height = renderBox.size.height + 48.0 + 3.0; // Column height + vertical padding (24*2) + border width
+      final double height =
+          renderBox.size.height +
+          48.0 +
+          3.0; // Column height + vertical padding (24*2) + border width
 
       // If the width is still changing (parent AnimatedPositioned animating),
       // keep re-measuring so we capture the correct height at final width.
       // Use addPostFrameCallback only (no scheduleFrame) to piggyback on
       // frames that the animation system already requests.
-      if (_lastMeasuredWidth == null || (currentWidth - _lastMeasuredWidth!).abs() > 0.5) {
+      if (_lastMeasuredWidth == null ||
+          (currentWidth - _lastMeasuredWidth!).abs() > 0.5) {
         _lastMeasuredWidth = currentWidth;
         WidgetsBinding.instance.addPostFrameCallback((_) => _checkHeight());
       }
@@ -405,130 +398,32 @@ class _ExperienceState extends State<Experience> {
         color: context.colorScheme.surface,
         border: Border.all(color: AppColors.getBorder(context), width: 1.5),
       ),
-      clipBehavior: Clip.antiAlias, // Cleanly clip rounded corners and prevent bottom bleed
-      child: isDesktopLayout
-          ? AnimatedCrossFade(
-              duration: const Duration(milliseconds: 500),
-              firstCurve: Curves.easeInOut,
-              secondCurve: Curves.easeInOut,
-              sizeCurve: Curves.easeInOut,
-              crossFadeState: widget.isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-              firstChild: ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                child: SingleChildScrollView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Header Row
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Experience",
-                                  style: context.textTheme.labelLarge!.copyWith(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: context.colorScheme.onSurface,
-                                  ),
-                                ),
-                                const SizedBox(width: 4),
-                                Transform.translate(
-                                  offset: const Offset(-8, -8),
-                                  child: Transform.rotate(
-                                    angle: 0.3,
-                                    child: Icon(
-                                      Symbols.insights,
-                                      color: AppColors.sparklePurple,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: widget.onToggleExpand,
-                                child: Text(
-                                  "View All →",
-                                  style: context.textTheme.bodySmall?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.getSubtitleText(context),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                        // Collapsed content Stack
-                        SizedBox(
-                          height: 381.0, // 490 - 48 (vertical padding) - 34 (header) - 24 (spacing) - 3 (border) = 381
-                          child: Stack(
-                            children: [
-                              Positioned.fill(
-                                child: ScrollConfiguration(
-                                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                                  child: SingleChildScrollView(
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        for (int i = 0; i < experiences.length; i++)
-                                          _buildTimelineItem(context, experiences[i], i, i == experiences.length - 1),
-                                        const SizedBox(height: 24),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              // Foggy Overlay at bottom
-                              Positioned(
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                height: 100,
-                                child: IgnorePointer(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          context.colorScheme.surface.withValues(alpha: 0.0),
-                                          context.colorScheme.surface.withValues(alpha: 0.85),
-                                          context.colorScheme.surface,
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              secondChild: SizedBox(
-                width: widget.forcedWidth,
-                child: ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+      clipBehavior:
+          Clip.antiAlias, // Cleanly clip rounded corners and prevent bottom bleed
+      child:
+          isDesktopLayout
+              ? AnimatedCrossFade(
+                duration: const Duration(milliseconds: 500),
+                firstCurve: Curves.easeInOut,
+                secondCurve: Curves.easeInOut,
+                sizeCurve: Curves.easeInOut,
+                crossFadeState:
+                    widget.isExpanded
+                        ? CrossFadeState.showSecond
+                        : CrossFadeState.showFirst,
+                firstChild: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(
+                    context,
+                  ).copyWith(scrollbars: false),
                   child: SingleChildScrollView(
                     physics: const NeverScrollableScrollPhysics(),
                     child: Padding(
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.only(
+                        top: 24,
+                        left: 24,
+                        right: 24,
+                      ),
                       child: Column(
-                        key: _contentKey,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Header Row
@@ -541,89 +436,190 @@ class _ExperienceState extends State<Experience> {
                                 children: [
                                   Text(
                                     "Experience",
-                                    style: context.textTheme.labelLarge!.copyWith(
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold,
-                                      color: context.colorScheme.onSurface,
-                                    ),
+                                    style: context.textTheme.labelLarge!
+                                        .copyWith(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold,
+                                          color: context.colorScheme.onSurface,
+                                        ),
                                   ),
-                                  const SizedBox(width: 4),
-                                  Transform.translate(
-                                    offset: const Offset(-8, -8),
-                                    child: Transform.rotate(
-                                      angle: 0.3,
-                                      child: Icon(
-                                        Symbols.insights,
-                                        color: AppColors.sparklePurple,
-                                        size: 24,
-                                      ),
-                                    ),
+                                  CornerHighlight(
+                                    corner: SparkleCorner.rightCenter,
+                                    child: const SizedBox(width: 4),
                                   ),
                                 ],
                               ),
-                              MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: widget.onToggleExpand,
-                                  child: Text(
-                                    "view less ←",
-                                    style: context.textTheme.bodySmall?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.getSubtitleText(context),
-                                    ),
+                              TextButton(
+                                onPressed: widget.onToggleExpand,
+                                child: Text(
+                                  "View All →",
+                                  style: context.textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.getSubtitleText(context),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                           const SizedBox(height: 24),
-                          _buildExpandedDesktopTimeline(context, experiences),
+                          // Collapsed content Stack
+                          SizedBox(
+                            height:
+                                411.0, // 520 - 48 (vertical padding) - 34 (header) - 24 (spacing) - 3 (border) = 411
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: ScrollConfiguration(
+                                    behavior: ScrollConfiguration.of(
+                                      context,
+                                    ).copyWith(scrollbars: false),
+                                    child: SingleChildScrollView(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          for (
+                                            int i = 0;
+                                            i < experiences.length;
+                                            i++
+                                          )
+                                            _buildTimelineItem(
+                                              context,
+                                              experiences[i],
+                                              i,
+                                              i == experiences.length - 1,
+                                            ),
+                                          const SizedBox(height: 24),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Foggy Overlay at bottom
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 0,
+                                  height: 100,
+                                  child: IgnorePointer(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            context.colorScheme.surface
+                                                .withValues(alpha: 0.0),
+                                            context.colorScheme.surface
+                                                .withValues(alpha: 0.85),
+                                            context.colorScheme.surface,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
-              ),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Header Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Experience",
-                            style: context.textTheme.labelLarge!.copyWith(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: context.colorScheme.onSurface,
+                secondChild: SizedBox(
+                  width: widget.forcedWidth,
+                  child: ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(
+                      context,
+                    ).copyWith(scrollbars: false),
+                    child: SingleChildScrollView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          key: _contentKey,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Header Row
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Experience",
+                                      style: context.textTheme.labelLarge!
+                                          .copyWith(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                context.colorScheme.onSurface,
+                                          ),
+                                    ),
+                                    CornerHighlight(
+                                      corner: SparkleCorner.rightCenter,
+                                      child: const SizedBox(width: 4),
+                                    ),
+                                  ],
+                                ),
+                                TextButton(
+                                  onPressed: widget.onToggleExpand,
+                                  child: Text(
+                                    "view less ←",
+                                    style: context.textTheme.bodySmall
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.getSubtitleText(
+                                            context,
+                                          ),
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          const SizedBox(width: 4),
-                          Transform.translate(
-                            offset: const Offset(-8, -8),
-                            child: Transform.rotate(
-                              angle: 0.3,
-                              child: Icon(
-                                Symbols.insights,
-                                color: AppColors.sparklePurple,
-                                size: 24,
+                            const SizedBox(height: 24),
+                            _buildExpandedDesktopTimeline(context, experiences),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+              : Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Experience",
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: context.colorScheme.onSurface,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: widget.onToggleExpand,
+                            CornerHighlight(
+                              corner: SparkleCorner.rightCenter,
+                              child: const SizedBox(width: 4),
+                            ),
+                          ],
+                        ),
+                        TextButton(
+                          onPressed: widget.onToggleExpand,
                           child: Text(
                             widget.isExpanded ? "view less ←" : "View All →",
                             style: context.textTheme.bodySmall?.copyWith(
@@ -632,22 +628,30 @@ class _ExperienceState extends State<Experience> {
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    AnimatedCrossFade(
+                      duration: const Duration(milliseconds: 500),
+                      firstCurve: Curves.easeInOut,
+                      secondCurve: Curves.easeInOut,
+                      sizeCurve: Curves.easeInOut,
+                      crossFadeState:
+                          widget.isExpanded
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
+                      firstChild: _buildSingleColumnTimeline(
+                        context,
+                        experiences.take(2).toList(),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  AnimatedCrossFade(
-                    duration: const Duration(milliseconds: 500),
-                    firstCurve: Curves.easeInOut,
-                    secondCurve: Curves.easeInOut,
-                    sizeCurve: Curves.easeInOut,
-                    crossFadeState: widget.isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                    firstChild: _buildSingleColumnTimeline(context, experiences.take(2).toList()),
-                    secondChild: _buildSingleColumnTimeline(context, experiences),
-                  ),
-                ],
+                      secondChild: _buildSingleColumnTimeline(
+                        context,
+                        experiences,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
     );
   }
 }

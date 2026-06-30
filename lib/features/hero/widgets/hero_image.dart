@@ -24,8 +24,10 @@ class HeroImage extends StatelessWidget {
             ? (darkImagePath ?? "assets/images/hero/hero_img_dark.webp")
             : (lightImagePath ?? "assets/images/hero/hero_img_light.webp"),
         width: isMobileLayout ? double.infinity : null,
+        cacheWidth: 800,
         fit: BoxFit.contain,
         filterQuality: FilterQuality.high,
+        gaplessPlayback: true,
       ),
     );
   }

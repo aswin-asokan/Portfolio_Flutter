@@ -649,6 +649,7 @@ class AnilistSection extends StatelessWidget {
               child: IFrameWidget(
                 viewId: "anilist-profile-view",
                 url: _getAnilistDataUrl(),
+                placeholder: _buildAnilistPlaceholder(context),
               ),
             ),
           ),
@@ -664,6 +665,213 @@ class AnilistSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(4),
+      ),
+    );
+  }
+
+  Widget _buildAnilistPlaceholder(BuildContext context) {
+    const primaryBlue = Color(0xFF3DB4F2);
+    const darkBg = Color(0xFF0B1622);
+    const cardBg = Color(0xFF152232);
+
+    return Container(
+      color: darkBg,
+      child: Stack(
+        children: [
+          // Skeleton content representing AniList list
+          Positioned.fill(
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Opacity(
+                opacity: 0.15,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      color: cardBg,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withValues(alpha: 0.4),
+                              shape: BoxShape.circle,
+                              border: Border.all(color: primaryBlue, width: 1.5),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: primaryBlue,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Container(
+                                width: 60,
+                                height: 6,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.withValues(alpha: 0.4),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Body cards
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          _anilistSkeletonCard(),
+                          const SizedBox(height: 6),
+                          _anilistSkeletonCard(),
+                          const SizedBox(height: 6),
+                          _anilistSkeletonCard(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Central prompt
+          Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.8),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: primaryBlue.withValues(alpha: 0.3),
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: primaryBlue,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      SimpleIcons.anilist,
+                      color: Colors.white,
+                      size: 22,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Anime Tracker",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  const Text(
+                    "AniList Feed",
+                    style: TextStyle(
+                      fontSize: 9,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _anilistSkeletonCard() {
+    const cardBg = Color(0xFF152232);
+    return Container(
+      padding: const EdgeInsets.all(6),
+      decoration: BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 30,
+            height: 42,
+            decoration: BoxDecoration(
+              color: Colors.grey.withValues(alpha: 0.4),
+              borderRadius: BorderRadius.circular(3),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 120,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withValues(alpha: 0.4),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Container(
+                  width: double.infinity,
+                  height: 3,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(1.5),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withValues(alpha: 0.4),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                    Container(
+                      width: 20,
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withValues(alpha: 0.4),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -760,9 +968,11 @@ class _AnilistHoverImageState extends State<_AnilistHoverImage> {
         _isHovered
             ? "assets/images/pinterest/anime_image_2.webp"
             : "assets/images/pinterest/anime_image_1.webp",
+        cacheWidth: 800,
         fit: BoxFit.contain,
         alignment: Alignment.bottomRight,
         filterQuality: FilterQuality.high,
+        gaplessPlayback: true,
       ),
     );
   }

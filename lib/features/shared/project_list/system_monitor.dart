@@ -14,6 +14,7 @@ AppModel systemMonitor = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/sysmonitor_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/System-Monitor",
   subtitle: "Effortless Server Monitoring.",
+  homeSummary: "Obsessively tracking your PC's CPU temperature from your phone. Nerd out in style.",
   releaseLink:
       "https://github.com/aswin-asokan/System-Monitor/releases/tag/v1.0.0",
   type: "download",

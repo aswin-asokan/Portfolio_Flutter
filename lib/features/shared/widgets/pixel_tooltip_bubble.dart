@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class PixelTooltipBubble extends StatelessWidget {
   final String message;
@@ -29,7 +29,8 @@ class PixelTooltipBubble extends StatelessWidget {
         padding: padding,
         child: Text(
           message,
-          style: GoogleFonts.pixelifySans(
+          style: TextStyle(
+            fontFamily: 'PixelifySans',
             color: Colors.black,
             fontSize: 12,
             fontWeight: FontWeight.w600,

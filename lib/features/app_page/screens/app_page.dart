@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
@@ -62,6 +63,21 @@ class _AppPageState extends State<AppPage> {
     super.initState();
     appInfoItems = widget.appInfo.items;
     pjtinfoItems = widget.projectInfo.items;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _precacheIcon();
+    });
+  }
+
+  Future<void> _precacheIcon() async {
+    try {
+      if (mounted && widget.iconPath.isNotEmpty) {
+        await precacheImage(
+          CachedNetworkImageProvider(widget.iconPath, maxWidth: 300),
+          context,
+          onError: (exception, stackTrace) {},
+        ).catchError((_) {});
+      }
+    } catch (_) {}
   }
 
   @override
@@ -110,34 +126,44 @@ class _AppPageState extends State<AppPage> {
                               : 70,
                       key: sectionKeys[0],
                     ),
-                    AppPageHeader(
-                      title: widget.title,
-                      subTitle: widget.subtitle,
-                      buttonText: widget.type,
-                      gitLink: widget.gitLink,
-                      releaseLink: widget.releaseLink,
-                      device: widget.devices,
-                      imgPath: widget.iconPath,
+                    RepaintBoundary(
+                      child: AppPageHeader(
+                        title: widget.title,
+                        subTitle: widget.subtitle,
+                        buttonText: widget.type,
+                        gitLink: widget.gitLink,
+                        releaseLink: widget.releaseLink,
+                        device: widget.devices,
+                        imgPath: widget.iconPath,
+                      ),
                     ),
-                    AppSsList(
-                      key: sectionKeys[1],
-                      images: widget.screenshots,
+                    RepaintBoundary(
+                      child: AppSsList(
+                        key: sectionKeys[1],
+                        images: widget.screenshots,
+                      ),
                     ),
-                    AboutAppSection(
-                      key: sectionKeys[2],
-                      about: widget.aboutApp,
-                      features: widget.features,
-                      futurePlans: widget.futurePlan,
-                      infoItems: appInfoItems,
+                    RepaintBoundary(
+                      child: AboutAppSection(
+                        key: sectionKeys[2],
+                        about: widget.aboutApp,
+                        features: widget.features,
+                        futurePlans: widget.futurePlan,
+                        infoItems: appInfoItems,
+                      ),
                     ),
-                    AboutProjectSection(
-                      key: sectionKeys[3],
-                      about: widget.aboutProject,
-                      challenges: widget.challeges,
-                      outcomes: widget.outcomes,
-                      infoItems: pjtinfoItems,
+                    RepaintBoundary(
+                      child: AboutProjectSection(
+                        key: sectionKeys[3],
+                        about: widget.aboutProject,
+                        challenges: widget.challeges,
+                        outcomes: widget.outcomes,
+                        infoItems: pjtinfoItems,
+                      ),
                     ),
-                    const Footer(),
+                    const RepaintBoundary(
+                      child: Footer(),
+                    ),
                   ],
                 ),
               ),
@@ -146,16 +172,18 @@ class _AppPageState extends State<AppPage> {
               top: 20,
               left: padding,
               right: padding,
-              child: Navbar(
-                sectionKeys: sectionKeys,
-                scrollController: scrollController,
-                isBackEnabled: true,
-                sections: [
-                  "Header",
-                  "Screenshots",
-                  "About App",
-                  "About Project",
-                ],
+              child: RepaintBoundary(
+                child: Navbar(
+                  sectionKeys: sectionKeys,
+                  scrollController: scrollController,
+                  isBackEnabled: true,
+                  sections: [
+                    "Header",
+                    "Screenshots",
+                    "About App",
+                    "About Project",
+                  ],
+                ),
               ),
             ),
           ],

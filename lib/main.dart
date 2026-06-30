@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:portfolio/core/themes/darkmode.dart';
@@ -7,6 +8,14 @@ import 'package:portfolio/core/themes/theme_transition_overlay.dart';
 import 'package:portfolio/features/shared/extension/router.dart';
 
 void main() {
+  // Resize the lifecycle channel buffer to prevent "message discarded" warnings on startup
+  channelBuffers.resize('flutter/lifecycle', 100);
+  
+  WidgetsFlutterBinding.ensureInitialized();
+  // Limit image cache to prevent high memory usage on Web
+  PaintingBinding.instance.imageCache.maximumSize = 100;
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 50 << 20; // 50 MB
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),

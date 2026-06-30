@@ -25,13 +25,15 @@ enum AppButtonEnum {
     if (lower == 'playstore' ||
         lower == 'play store' ||
         lower == 'google play' ||
-        lower == 'googleplay')
+        lower == 'googleplay') {
       return AppButtonEnum.playstore;
+    }
     if (lower == 'appstore' ||
         lower == 'app store' ||
         lower == 'apple app store' ||
-        lower == 'apple')
+        lower == 'apple') {
       return AppButtonEnum.appstore;
+    }
     return AppButtonEnum.download;
   }
 }
