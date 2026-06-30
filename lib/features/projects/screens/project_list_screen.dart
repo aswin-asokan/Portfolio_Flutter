@@ -41,8 +41,6 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<GlobalKey> _sectionKeys = List.generate(1, (_) => GlobalKey());
 
-
-
   @override
   void dispose() {
     _scrollController.dispose();
@@ -204,14 +202,10 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
               WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4.0),
-                  child: Icon(
-                    Symbols.rocket_launch,
-                    size: baseFontSize * 0.85,
-                    color: context.colorScheme.primary,
-                    fill: 1,
-                  ),
+                child: Icon(
+                  SimpleIcons.rocket,
+                  size: baseFontSize * 0.85,
+                  color: SimpleIconColors.rocket,
                 ),
               ),
             ],
@@ -438,7 +432,10 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Expanded(
-                                  child: _buildHeaderLeft(context, baseFontSize),
+                                  child: _buildHeaderLeft(
+                                    context,
+                                    baseFontSize,
+                                  ),
                                 ),
                                 const SizedBox(width: 40),
                                 const Expanded(
@@ -506,93 +503,95 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
 
                               return IntrinsicHeight(
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                                  children: List.generate(rowChunk.length * 2 - 1, (
-                                    colIndex,
-                                  ) {
-                                    if (colIndex.isOdd) {
-                                      // Vertical separator line (has vertical margins, does not touch top/bottom edges)
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 8,
-                                        ),
-                                        child: Container(
-                                          width: 1.5,
-                                          color: AppColors.getBorder(context),
-                                        ),
-                                      );
-                                    }
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: List.generate(
+                                    rowChunk.length * 2 - 1,
+                                    (colIndex) {
+                                      if (colIndex.isOdd) {
+                                        // Vertical separator line (has vertical margins, does not touch top/bottom edges)
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 8,
+                                          ),
+                                          child: Container(
+                                            width: 1.5,
+                                            color: AppColors.getBorder(context),
+                                          ),
+                                        );
+                                      }
 
-                                    final itemIndex = colIndex ~/ 2;
-                                    final cat = rowChunk[itemIndex];
-                                    final isSelected =
-                                        _selectedCategory == cat.name;
+                                      final itemIndex = colIndex ~/ 2;
+                                      final cat = rowChunk[itemIndex];
+                                      final isSelected =
+                                          _selectedCategory == cat.name;
 
-                                    return Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(
-                                          4,
-                                        ), // Floating pill effect padding
-                                        child: MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                _selectedCategory = cat.name;
-                                              });
-                                            },
-                                            child: AnimatedContainer(
-                                              duration: const Duration(
-                                                milliseconds: 200,
-                                              ),
-                                              padding: const EdgeInsets.symmetric(
-                                                vertical: 10,
-                                              ),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                color: _getBgColor(
-                                                  context,
-                                                  cat,
-                                                  isSelected,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  cat.icon,
-                                                  const SizedBox(width: 8),
-                                                  Text(
-                                                    cat.name,
-                                                    style: context
-                                                        .textTheme
-                                                        .bodySmall
-                                                        ?.copyWith(
-                                                          fontWeight:
-                                                              isSelected
-                                                                  ? FontWeight
-                                                                      .bold
-                                                                  : FontWeight
-                                                                      .normal,
-                                                          color: _getTextColor(
-                                                            context,
-                                                            cat,
-                                                            isSelected,
-                                                          ),
-                                                          fontSize: 15,
-                                                        ),
+                                      return Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(
+                                            4,
+                                          ), // Floating pill effect padding
+                                          child: MouseRegion(
+                                            cursor: SystemMouseCursors.click,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  _selectedCategory = cat.name;
+                                                });
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                    ),
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  color: _getBgColor(
+                                                    context,
+                                                    cat,
+                                                    isSelected,
                                                   ),
-                                                ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    cat.icon,
+                                                    const SizedBox(width: 8),
+                                                    Text(
+                                                      cat.name,
+                                                      style: context
+                                                          .textTheme
+                                                          .bodySmall
+                                                          ?.copyWith(
+                                                            fontWeight:
+                                                                isSelected
+                                                                    ? FontWeight
+                                                                        .bold
+                                                                    : FontWeight
+                                                                        .normal,
+                                                            color:
+                                                                _getTextColor(
+                                                                  context,
+                                                                  cat,
+                                                                  isSelected,
+                                                                ),
+                                                            fontSize: 15,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }),
+                                      );
+                                    },
+                                  ),
                                 ),
                               );
                             }),
@@ -625,50 +624,46 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                   SliverPadding(
                     padding: EdgeInsets.symmetric(horizontal: padding),
                     sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, rowIndex) {
-                          final chunk = chunkedProjects[rowIndex];
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              bottom:
-                                  rowIndex < chunkedProjects.length - 1
-                                      ? 16.0
-                                      : 0.0,
+                      delegate: SliverChildBuilderDelegate((context, rowIndex) {
+                        final chunk = chunkedProjects[rowIndex];
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom:
+                                rowIndex < chunkedProjects.length - 1
+                                    ? 16.0
+                                    : 0.0,
+                          ),
+                          child: IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: List.generate(crossAxisCount * 2 - 1, (
+                                index,
+                              ) {
+                                if (index.isOdd) {
+                                  return const SizedBox(
+                                    width: 16,
+                                  ); // Horizontal space between cards
+                                }
+                                final colIndex = index ~/ 2;
+                                if (colIndex < chunk.length) {
+                                  return Expanded(
+                                    child: ProjectGridCard(
+                                      app: chunk[colIndex],
+                                      index:
+                                          rowIndex * crossAxisCount + colIndex,
+                                    ),
+                                  );
+                                } else {
+                                  // Dummy card widget space container to balance layout width
+                                  return const Expanded(
+                                    child: SizedBox.shrink(),
+                                  );
+                                }
+                              }),
                             ),
-                            child: IntrinsicHeight(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: List.generate(crossAxisCount * 2 - 1, (
-                                  index,
-                                ) {
-                                  if (index.isOdd) {
-                                    return const SizedBox(
-                                      width: 16,
-                                    ); // Horizontal space between cards
-                                  }
-                                  final colIndex = index ~/ 2;
-                                  if (colIndex < chunk.length) {
-                                    return Expanded(
-                                      child: ProjectGridCard(
-                                        app: chunk[colIndex],
-                                        index:
-                                            rowIndex * crossAxisCount +
-                                            colIndex,
-                                      ),
-                                    );
-                                  } else {
-                                    // Dummy card widget space container to balance layout width
-                                    return const Expanded(
-                                      child: SizedBox.shrink(),
-                                    );
-                                  }
-                                }),
-                              ),
-                            ),
-                          );
-                        },
-                        childCount: chunkedProjects.length,
-                      ),
+                          ),
+                        );
+                      }, childCount: chunkedProjects.length),
                     ),
                   ),
                 SliverPadding(
@@ -953,11 +948,11 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                           maxLines: 3, // Allow wrapping up to 3 lines
                           overflow: TextOverflow.ellipsis,
                         ),
-  
+
                         // Spacer expands to align bottom content of equal-height cards
                         const Spacer(),
                         const SizedBox(height: 8),
-  
+
                         // Tech Tags
                         Wrap(
                           spacing: 4,
@@ -979,10 +974,11 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                                   ),
                                   child: Text(
                                     tag.trim(),
-                                    style: context.textTheme.bodySmall?.copyWith(
-                                      fontSize: 9.5,
-                                      color: theme.textColor,
-                                    ),
+                                    style: context.textTheme.bodySmall
+                                        ?.copyWith(
+                                          fontSize: 9.5,
+                                          color: theme.textColor,
+                                        ),
                                   ),
                                 );
                               }).toList(),

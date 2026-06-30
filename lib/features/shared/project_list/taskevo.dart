@@ -16,6 +16,7 @@ AppModel taskevo = AppModel(
 
   gitLink: "https://github.com/aswin-asokan/taskevo",
   subtitle: "Boost Productivity, Stay Organized.",
+  homeSummary: "A task manager that actually helps you get things done, instead of just reminding you that you're procrastinating.",
   releaseLink: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
   type: "download",
   devices: AppAvailability.androidWeb,

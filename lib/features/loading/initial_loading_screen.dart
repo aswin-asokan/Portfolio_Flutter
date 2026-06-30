@@ -4,8 +4,6 @@ import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
 import 'package:portfolio/features/shared/widgets/striped_loading_bar.dart';
-import 'package:portfolio/features/shared/project_list/project_list.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class InitialLoadingScreen extends StatefulWidget {
   const InitialLoadingScreen({super.key, required this.child});

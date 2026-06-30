@@ -14,6 +14,7 @@ AppModel snackfit = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/snackfit_logo.png",
   gitLink: "https://github.com/aswin-asokan/snackfit",
   subtitle: "Serve us your look! Because you're what you eat!",
+  homeSummary: "Counting calories so you can feel slightly less guilty about that midnight pizza slice.",
   releaseLink: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
   type: "download",
   devices: AppAvailability.android,

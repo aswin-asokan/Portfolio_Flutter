@@ -80,6 +80,10 @@ flutter:
     - assets/images/about/fuel.webp
     - assets/images/about/hobbies.webp
     - assets/images/about/personality.webp
+    - assets/images/exp/dev.webp
+    - assets/images/exp/instructor.webp
+    - assets/images/exp/intern.webp
+    - assets/images/exp/lead.webp
     - assets/images/pinterest/pin_img.webp
     - assets/images/others/loading_image.webp
     - assets/images/others/theme_loading_light.webp

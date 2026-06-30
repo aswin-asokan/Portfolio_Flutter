@@ -37,5 +37,9 @@ class AppAssets {
     AssetPreload('assets/images/others/projects_hero.webp', cacheWidth: 800),
     AssetPreload('assets/images/logo/dark_logo.png'),
     AssetPreload('assets/icons/char_icon.webp'),
+    AssetPreload('assets/images/exp/intern.webp', cacheWidth: 200),
+    AssetPreload('assets/images/exp/dev.webp', cacheWidth: 200),
+    AssetPreload('assets/images/exp/instructor.webp', cacheWidth: 200),
+    AssetPreload('assets/images/exp/lead.webp', cacheWidth: 200),
   ];
 }

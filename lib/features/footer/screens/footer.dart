@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
+import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,36 +20,11 @@ class Footer extends StatelessWidget {
   }
 
   Widget _buildBuyMeACoffeeButton(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => _launch("https://buymeacoffee.com/aswin_asokan"),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: BoxDecoration(
-            color: AppColors.coffeeBg,
-            borderRadius: BorderRadius.circular(AppConstants.radiusM),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8,
-            children: [
-              Text(
-                "Buy me a coffee",
-                style: context.textTheme.displayMedium?.copyWith(
-                  color: AppColors.coffeeText,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Icon(
-                SimpleIcons.buymeacoffee,
-                color: AppColors.coffeeText,
-                size: 20,
-              ),
-            ],
-          ),
-        ),
-      ),
+    return CustomButton.filled(
+      label: "Buy me a coffee",
+      onPress: () => _launch("https://buymeacoffee.com/aswin_asokan"),
+      color: AppColors.coffeeBg,
+      suffixIcon: Icon(SimpleIcons.buymeacoffee, color: AppColors.coffeeText),
     );
   }
 
@@ -143,7 +119,9 @@ class Footer extends StatelessWidget {
                           WidgetSpan(
                             alignment: PlaceholderAlignment.middle,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 2,
+                              ),
                               child: Icon(
                                 Icons.favorite,
                                 size: 16,
@@ -216,7 +194,9 @@ class Footer extends StatelessWidget {
                                 WidgetSpan(
                                   alignment: PlaceholderAlignment.middle,
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 2,
+                                    ),
                                     child: Icon(
                                       Icons.favorite,
                                       size: 16,
@@ -289,7 +269,9 @@ class Footer extends StatelessWidget {
                           WidgetSpan(
                             alignment: PlaceholderAlignment.middle,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 2,
+                              ),
                               child: Icon(
                                 Icons.favorite,
                                 size: 16,

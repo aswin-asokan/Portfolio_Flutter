@@ -15,6 +15,7 @@ AppModel peekpub = AppModel(
       "assets/files/projects/icons/PeekPub_logo.webp",
   gitLink: "https://github.com/aswin-asokan/peekpub",
   subtitle: "Browse, Search, and Explore.",
+  homeSummary: "Spill the tea securely. Anonymous polling that keeps your secrets safer than the CIA.",
   type: "download",
   releaseLink: "https://github.com/aswin-asokan/peekpub/releases/tag/v1.0.0",
   devices: AppAvailability.android,

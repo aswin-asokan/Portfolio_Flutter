@@ -214,8 +214,8 @@ class _NavbarState extends State<Navbar> {
                       },
                       icon: Icon(
                         Theme.of(context).brightness == Brightness.dark
-                            ? Symbols.light_mode
-                            : Symbols.dark_mode,
+                            ? Symbols.wb_sunny
+                            : Symbols.moon_stars,
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),

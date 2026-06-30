@@ -14,6 +14,7 @@ AppModel keralaiot = AppModel(
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/iot_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
   subtitle: "IoT Projects with Demos.",
+  homeSummary: "Connecting things to the internet before it was cool. Award-winning IoT wizardry.",
   releaseLink: "https://aswin-asokan.github.io/Kerala-IoT-Challenge/",
   type: "website",
   devices: AppAvailability.website,

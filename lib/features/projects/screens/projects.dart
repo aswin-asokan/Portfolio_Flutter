@@ -96,18 +96,15 @@ class _ProjectsState extends State<Projects> {
                 ],
               ),
               // Interactive View All text button
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    context.push('/projects');
-                  },
-                  child: Text(
-                    "View All →",
-                    style: context.textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.getSubtitleText(context),
-                    ),
+              TextButton(
+                onPressed: () {
+                  context.push('/projects');
+                },
+                child: Text(
+                  "View All →",
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.getSubtitleText(context),
                   ),
                 ),
               ),
@@ -129,7 +126,7 @@ class _ProjectsState extends State<Projects> {
 
   Widget _buildCardsRow(BuildContext context, double availableWidth) {
     final double spacing = 16.0;
-    final double cardWidth = 260.0;
+    final double cardWidth = 250.0;
 
     int fitCount = (availableWidth / (cardWidth + spacing)).ceil() + 1;
     fitCount = fitCount.clamp(1, projects.length);
@@ -232,7 +229,7 @@ class _ProjectCard extends StatelessWidget {
         },
         child: Container(
           width: width,
-          height: 400,
+          height: 380,
           decoration: BoxDecoration(
             color: theme.bgColor,
             borderRadius: BorderRadius.circular(12),
@@ -250,10 +247,7 @@ class _ProjectCard extends StatelessWidget {
                     topRight: Radius.circular(11),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl:
-                        app.screenshots.isNotEmpty
-                            ? app.screenshots[0]
-                            : app.bannerPath,
+                    imageUrl: app.bannerPath,
                     memCacheWidth: 800,
                     fit: BoxFit.cover,
                     alignment: Alignment.topCenter,
@@ -292,7 +286,7 @@ class _ProjectCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       // Description
                       Text(
-                        app.caption,
+                        app.homeSummary,
                         style: context.textTheme.bodySmall?.copyWith(
                           color: AppColors.getDescriptionText(context),
                           fontSize: 13,
