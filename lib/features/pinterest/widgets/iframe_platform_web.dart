@@ -4,7 +4,12 @@ import 'package:web/web.dart' as web;
 
 final Set<String> _registeredViews = {};
 
-Widget createIFrameWidget({required String viewId, required String url}) {
+Widget createIFrameWidget({
+  required String viewId,
+  required String url,
+  Widget? placeholder,
+  bool preventInteraction = false,
+}) {
   if (!_registeredViews.contains(viewId)) {
     ui_web.platformViewRegistry.registerViewFactory(viewId, (int id) {
       final div =
@@ -13,6 +18,10 @@ Widget createIFrameWidget({required String viewId, required String url}) {
             ..style.height = '100%'
             ..style.overflow = 'hidden'
             ..style.setProperty('-webkit-overflow-scrolling', 'touch');
+
+      if (preventInteraction) {
+        div.style.setProperty('pointer-events', 'none');
+      }
 
       final iframe =
           web.HTMLIFrameElement()

@@ -41,6 +41,8 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<GlobalKey> _sectionKeys = List.generate(1, (_) => GlobalKey());
 
+
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -134,19 +136,27 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   }
 
   Color _getSelectedTextColor(Color lightColor, bool isDark) {
-    if (!isDark) return lightColor;
-    if (lightColor == AppColors.primaryPurple)
+    if (!isDark) {
+      return lightColor;
+    }
+    if (lightColor == AppColors.primaryPurple) {
       return AppColors.primaryPurpleDark; // Purple
-    if (lightColor == AppColors.filterBlueLight)
+    }
+    if (lightColor == AppColors.filterBlueLight) {
       return AppColors.filterBlueDark; // Blue
-    if (lightColor == AppColors.filterTealLight)
+    }
+    if (lightColor == AppColors.filterTealLight) {
       return AppColors.filterTealDark; // Teal
-    if (lightColor == AppColors.filterOrangeLight)
+    }
+    if (lightColor == AppColors.filterOrangeLight) {
       return AppColors.filterOrangeDark; // Orange
-    if (lightColor == AppColors.filterAiLight)
+    }
+    if (lightColor == AppColors.filterAiLight) {
       return AppColors.filterAiDark; // Purple/Pink
-    if (lightColor == AppColors.filterGreyLight)
+    }
+    if (lightColor == AppColors.filterGreyLight) {
       return AppColors.filterGreyDark; // Grey
+    }
     return lightColor;
   }
 
@@ -191,9 +201,18 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                 text: "Built ",
                 style: TextStyle(color: context.colorScheme.primary),
               ),
-              TextSpan(
-                text: "🚀",
-                style: TextStyle(fontSize: baseFontSize * 0.85),
+              WidgetSpan(
+                alignment: PlaceholderAlignment.baseline,
+                baseline: TextBaseline.alphabetic,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Icon(
+                    Symbols.rocket_launch,
+                    size: baseFontSize * 0.85,
+                    color: context.colorScheme.primary,
+                    fill: 1,
+                  ),
+                ),
               ),
             ],
           ),
@@ -390,202 +409,206 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
         child: Stack(
           children: [
             // Scrollable Content
-            SingleChildScrollView(
+            CustomScrollView(
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: padding,
-                  vertical: 20,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Spacing for navbar
-                    SizedBox(
-                      height: (isMobile || isSmallTablet) ? 85 : 70,
-                      key: _sectionKeys[0],
-                    ),
-                    const SizedBox(height: 20),
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: padding,
+                    vertical: 20,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      // Spacing for navbar
+                      SizedBox(
+                        height: (isMobile || isSmallTablet) ? 85 : 70,
+                        key: _sectionKeys[0],
+                      ),
+                      const SizedBox(height: 20),
 
-                    // Top responsive section (Row/Column) matching hero layout exactly
-                    if (!isMobile)
-                      ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: isSmallTablet ? 0.0 : 450.0,
-                        ),
-                        child: IntrinsicHeight(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                child: _buildHeaderLeft(context, baseFontSize),
-                              ),
-                              const SizedBox(width: 40),
-                              const Expanded(
-                                child: HeroImage(
-                                  lightImagePath:
-                                      "assets/images/others/projects_hero.webp",
-                                  darkImagePath:
-                                      "assets/images/others/projects_hero.webp",
+                      // Top responsive section (Row/Column) matching hero layout exactly
+                      if (!isMobile)
+                        ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: isSmallTablet ? 0.0 : 450.0,
+                          ),
+                          child: IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Expanded(
+                                  child: _buildHeaderLeft(context, baseFontSize),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 40),
+                                const Expanded(
+                                  child: HeroImage(
+                                    lightImagePath:
+                                        "assets/images/others/projects_hero.webp",
+                                    darkImagePath:
+                                        "assets/images/others/projects_hero.webp",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      else
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildHeaderLeft(context, baseFontSize),
+                            const SizedBox(height: 20),
+                            const HeroImage(
+                              lightImagePath:
+                                  "assets/images/others/projects_hero.webp",
+                              darkImagePath:
+                                  "assets/images/others/projects_hero.webp",
+                            ),
+                          ],
+                        ),
+
+                      const SizedBox(height: 40),
+
+                      // Filter Bar: Segmented control style that stretches dynamically (removes empty space)
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: context.colorScheme.surface,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: AppColors.getBorder(context),
+                            width: 1.5,
                           ),
                         ),
-                      )
-                    else
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildHeaderLeft(context, baseFontSize),
-                          const SizedBox(height: 20),
-                          const HeroImage(
-                            lightImagePath:
-                                "assets/images/others/projects_hero.webp",
-                            darkImagePath:
-                                "assets/images/others/projects_hero.webp",
-                          ),
-                        ],
-                      ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(13.5),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(chunkedCats.length * 2 - 1, (
+                              index,
+                            ) {
+                              if (index.isOdd) {
+                                // Horizontal separator between wrapped filter rows (does not reach outer container edges)
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                  ),
+                                  child: Container(
+                                    height: 1.5,
+                                    color: AppColors.getBorder(context),
+                                  ),
+                                );
+                              }
 
-                    const SizedBox(height: 40),
+                              final rowIndex = index ~/ 2;
+                              final rowChunk = chunkedCats[rowIndex];
 
-                    // Filter Bar: Segmented control style that stretches dynamically (removes empty space)
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.surface,
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: AppColors.getBorder(context),
-                          width: 1.5,
-                        ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(13.5),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(chunkedCats.length * 2 - 1, (
-                            index,
-                          ) {
-                            if (index.isOdd) {
-                              // Horizontal separator between wrapped filter rows (does not reach outer container edges)
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                ),
-                                child: Container(
-                                  height: 1.5,
-                                  color: AppColors.getBorder(context),
-                                ),
-                              );
-                            }
+                              return IntrinsicHeight(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: List.generate(rowChunk.length * 2 - 1, (
+                                    colIndex,
+                                  ) {
+                                    if (colIndex.isOdd) {
+                                      // Vertical separator line (has vertical margins, does not touch top/bottom edges)
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8,
+                                        ),
+                                        child: Container(
+                                          width: 1.5,
+                                          color: AppColors.getBorder(context),
+                                        ),
+                                      );
+                                    }
 
-                            final rowIndex = index ~/ 2;
-                            final rowChunk = chunkedCats[rowIndex];
+                                    final itemIndex = colIndex ~/ 2;
+                                    final cat = rowChunk[itemIndex];
+                                    final isSelected =
+                                        _selectedCategory == cat.name;
 
-                            return IntrinsicHeight(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: List.generate(rowChunk.length * 2 - 1, (
-                                  colIndex,
-                                ) {
-                                  if (colIndex.isOdd) {
-                                    // Vertical separator line (has vertical margins, does not touch top/bottom edges)
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 8,
-                                      ),
-                                      child: Container(
-                                        width: 1.5,
-                                        color: AppColors.getBorder(context),
-                                      ),
-                                    );
-                                  }
-
-                                  final itemIndex = colIndex ~/ 2;
-                                  final cat = rowChunk[itemIndex];
-                                  final isSelected =
-                                      _selectedCategory == cat.name;
-
-                                  return Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(
-                                        4,
-                                      ), // Floating pill effect padding
-                                      child: MouseRegion(
-                                        cursor: SystemMouseCursors.click,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              _selectedCategory = cat.name;
-                                            });
-                                          },
-                                          child: AnimatedContainer(
-                                            duration: const Duration(
-                                              milliseconds: 200,
-                                            ),
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 10,
-                                            ),
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              color: _getBgColor(
-                                                context,
-                                                cat,
-                                                isSelected,
+                                    return Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(
+                                          4,
+                                        ), // Floating pill effect padding
+                                        child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                _selectedCategory = cat.name;
+                                              });
+                                            },
+                                            child: AnimatedContainer(
+                                              duration: const Duration(
+                                                milliseconds: 200,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                cat.icon,
-                                                const SizedBox(width: 8),
-                                                Text(
-                                                  cat.name,
-                                                  style: context
-                                                      .textTheme
-                                                      .bodySmall
-                                                      ?.copyWith(
-                                                        fontWeight:
-                                                            isSelected
-                                                                ? FontWeight
-                                                                    .bold
-                                                                : FontWeight
-                                                                    .normal,
-                                                        color: _getTextColor(
-                                                          context,
-                                                          cat,
-                                                          isSelected,
-                                                        ),
-                                                        fontSize: 15,
-                                                      ),
+                                              padding: const EdgeInsets.symmetric(
+                                                vertical: 10,
+                                              ),
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: _getBgColor(
+                                                  context,
+                                                  cat,
+                                                  isSelected,
                                                 ),
-                                              ],
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  cat.icon,
+                                                  const SizedBox(width: 8),
+                                                  Text(
+                                                    cat.name,
+                                                    style: context
+                                                        .textTheme
+                                                        .bodySmall
+                                                        ?.copyWith(
+                                                          fontWeight:
+                                                              isSelected
+                                                                  ? FontWeight
+                                                                      .bold
+                                                                  : FontWeight
+                                                                      .normal,
+                                                          color: _getTextColor(
+                                                            context,
+                                                            cat,
+                                                            isSelected,
+                                                          ),
+                                                          fontSize: 15,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                }),
-                              ),
-                            );
-                          }),
+                                    );
+                                  }),
+                                ),
+                              );
+                            }),
+                          ),
                         ),
                       ),
-                    ),
 
-                    const SizedBox(height: 24),
-
-                    // Grid of filtered projects (Equal height rows using IntrinsicHeight)
-                    if (filteredProjects.isEmpty)
-                      Center(
+                      const SizedBox(height: 24),
+                    ]),
+                  ),
+                ),
+                if (filteredProjects.isEmpty)
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(horizontal: padding),
+                    sliver: SliverToBoxAdapter(
+                      child: Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 60),
                           child: Text(
@@ -595,13 +618,15 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                             ),
                           ),
                         ),
-                      )
-                    else
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: List.generate(chunkedProjects.length, (
-                          rowIndex,
-                        ) {
+                      ),
+                    ),
+                  )
+                else
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(horizontal: padding),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, rowIndex) {
                           final chunk = chunkedProjects[rowIndex];
                           return Padding(
                             padding: EdgeInsets.only(
@@ -641,25 +666,38 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                               ),
                             ),
                           );
-                        }),
+                        },
+                        childCount: chunkedProjects.length,
                       ),
-
-                    const SizedBox(height: 50),
-                    const Footer(),
-                  ],
+                    ),
+                  ),
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                    left: padding,
+                    right: padding,
+                    bottom: 20,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      const SizedBox(height: 50),
+                      const Footer(),
+                    ]),
+                  ),
                 ),
-              ),
+              ],
             ),
             // Floating Top Navbar
             Positioned(
               top: 20,
               left: padding,
               right: padding,
-              child: Navbar(
-                sectionKeys: _sectionKeys,
-                scrollController: _scrollController,
-                isBackEnabled: true,
-                sections: const ["Projects"],
+              child: RepaintBoundary(
+                child: Navbar(
+                  sectionKeys: _sectionKeys,
+                  scrollController: _scrollController,
+                  isBackEnabled: true,
+                  sections: const ["Projects"],
+                ),
               ),
             ),
           ],
@@ -787,191 +825,194 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
     // Tech stack chip background color (theme-aware)
     final chipBg = isDark ? context.colorScheme.surface : Colors.white;
 
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: () {
-          context.push('/app/${widget.app.id}');
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 255),
-          curve: Curves.easeOutCubic,
-          decoration: BoxDecoration(
-            color: theme.bgColor,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color:
+    return RepaintBoundary(
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTap: () {
+            context.push('/app/${widget.app.id}');
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 255),
+            curve: Curves.easeOutCubic,
+            decoration: BoxDecoration(
+              color: theme.bgColor,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color:
+                    _isHovered
+                        ? theme.textColor.withValues(alpha: 0.8)
+                        : theme.borderColor,
+                width: 1.5,
+              ),
+              boxShadow:
                   _isHovered
-                      ? theme.textColor.withValues(alpha: 0.8)
-                      : theme.borderColor,
-              width: 1.5,
+                      ? [
+                        BoxShadow(
+                          color: theme.textColor.withValues(alpha: 0.15),
+                          blurRadius: 16,
+                          offset: const Offset(0, 8),
+                        ),
+                      ]
+                      : [],
             ),
-            boxShadow:
-                _isHovered
-                    ? [
-                      BoxShadow(
-                        color: theme.textColor.withValues(alpha: 0.15),
-                        blurRadius: 16,
-                        offset: const Offset(0, 8),
-                      ),
-                    ]
-                    : [],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Banner Image not meeting edges and having rounded corners
-              Padding(
-                padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
-                child: AspectRatio(
-                  aspectRatio: 2.1, // Aspect ratio of image remains fixed
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: CachedNetworkImage(
-                            imageUrl:
-                                widget.app.screenshots.isNotEmpty
-                                    ? widget.app.screenshots[0]
-                                    : widget.app.bannerPath,
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topCenter,
-                            placeholder:
-                                (context, url) => const ShimmerPlaceholder(),
-                            errorWidget:
-                                (context, url, error) => Container(
-                                  color: Colors.grey.shade200,
-                                  alignment: Alignment.center,
-                                  child: const Icon(
-                                    Symbols.broken_image,
-                                    color: Colors.grey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Banner Image not meeting edges and having rounded corners
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+                  child: AspectRatio(
+                    aspectRatio: 2.1, // Aspect ratio of image remains fixed
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  widget.app.screenshots.isNotEmpty
+                                      ? widget.app.screenshots[0]
+                                      : widget.app.bannerPath,
+                              memCacheWidth: 800,
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                              placeholder:
+                                  (context, url) => const ShimmerPlaceholder(),
+                              errorWidget:
+                                  (context, url, error) => Container(
+                                    color: Colors.grey.shade200,
+                                    alignment: Alignment.center,
+                                    child: const Icon(
+                                      Symbols.broken_image,
+                                      color: Colors.grey,
+                                    ),
                                   ),
-                                ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 8,
-                        left: 8,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: theme.bgColor, // same color as card!
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: theme.borderColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Text(
-                            primaryTech,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 10,
-                              color: theme.textColor,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          top: 8,
+                          left: 8,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: theme.bgColor, // same color as card!
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: theme.borderColor,
+                                width: 1,
+                              ),
+                            ),
+                            child: Text(
+                              primaryTech,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10,
+                                color: theme.textColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              // Card Details: Expands naturally to fit content dynamically
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      Text(
-                        cleanTitle,
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: context.colorScheme.onSurface,
-                        ),
-                        maxLines: 2, // Allow wrapping
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      // Description
-                      Text(
-                        widget.app.caption,
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColors.getDescriptionText(context),
-                          fontSize: 11.5,
-                          height: 1.25,
-                        ),
-                        maxLines: 3, // Allow wrapping up to 3 lines
-                        overflow: TextOverflow.ellipsis,
-                      ),
-
-                      // Spacer expands to align bottom content of equal-height cards
-                      const Spacer(),
-                      const SizedBox(height: 8),
-
-                      // Tech Tags
-                      Wrap(
-                        spacing: 4,
-                        runSpacing: 4,
-                        children:
-                            tags.take(3).map((tag) {
-                              return Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 6,
-                                  vertical: 3,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: chipBg,
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(
-                                    color: theme.borderColor,
-                                    width: 0.8,
-                                  ),
-                                ),
-                                child: Text(
-                                  tag.trim(),
-                                  style: context.textTheme.bodySmall?.copyWith(
-                                    fontSize: 9.5,
-                                    color: theme.textColor,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                      ),
-                      const SizedBox(height: 8),
-                      // View link
-                      Row(
-                        children: [
-                          Text(
-                            "View Project",
-                            style: context.textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 11,
-                              color: context.colorScheme.onSurface,
-                            ),
-                          ),
-                          const SizedBox(width: 4),
-                          Icon(
-                            Symbols.arrow_forward,
-                            size: 12,
+                // Card Details: Expands naturally to fit content dynamically
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Title
+                        Text(
+                          cleanTitle,
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                             color: context.colorScheme.onSurface,
                           ),
-                        ],
-                      ),
-                    ],
+                          maxLines: 2, // Allow wrapping
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4),
+                        // Description
+                        Text(
+                          widget.app.caption,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: AppColors.getDescriptionText(context),
+                            fontSize: 11.5,
+                            height: 1.25,
+                          ),
+                          maxLines: 3, // Allow wrapping up to 3 lines
+                          overflow: TextOverflow.ellipsis,
+                        ),
+  
+                        // Spacer expands to align bottom content of equal-height cards
+                        const Spacer(),
+                        const SizedBox(height: 8),
+  
+                        // Tech Tags
+                        Wrap(
+                          spacing: 4,
+                          runSpacing: 4,
+                          children:
+                              tags.take(3).map((tag) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 6,
+                                    vertical: 3,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: chipBg,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: theme.borderColor,
+                                      width: 0.8,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    tag.trim(),
+                                    style: context.textTheme.bodySmall?.copyWith(
+                                      fontSize: 9.5,
+                                      color: theme.textColor,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                        ),
+                        const SizedBox(height: 8),
+                        // View link
+                        Row(
+                          children: [
+                            Text(
+                              "View Project",
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11,
+                                color: context.colorScheme.onSurface,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Icon(
+                              Symbols.arrow_forward,
+                              size: 12,
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

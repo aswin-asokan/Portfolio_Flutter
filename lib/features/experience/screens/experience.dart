@@ -264,6 +264,7 @@ class _ExperienceState extends State<Experience> {
                     width: illSize,
                     height: illSize,
                     fit: BoxFit.contain,
+                    gaplessPlayback: true,
                   ),
                 ],
               ),
@@ -470,7 +471,7 @@ class _ExperienceState extends State<Experience> {
                         const SizedBox(height: 24),
                         // Collapsed content Stack
                         SizedBox(
-                          height: 381.0, // 490 - 48 (vertical padding) - 34 (header) - 24 (spacing) - 3 (border) = 381
+                          height: 411.0, // 520 - 48 (vertical padding) - 34 (header) - 24 (spacing) - 3 (border) = 411
                           child: Stack(
                             children: [
                               Positioned.fill(

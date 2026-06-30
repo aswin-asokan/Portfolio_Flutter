@@ -136,9 +136,24 @@ class Footer extends StatelessWidget {
                       ],
                     ),
 
-                    // Built with
-                    Text(
-                      "Built with 💙 Flutter",
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          const TextSpan(text: "Built with "),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              child: Icon(
+                                Icons.favorite,
+                                size: 16,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                          const TextSpan(text: " Flutter"),
+                        ],
+                      ),
                       style: context.textTheme.displayMedium,
                     ),
 
@@ -194,8 +209,24 @@ class Footer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         spacing: 16,
                         children: [
-                          Text(
-                            "Built with 💙 Flutter",
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(text: "Built with "),
+                                WidgetSpan(
+                                  alignment: PlaceholderAlignment.middle,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                                    child: Icon(
+                                      Icons.favorite,
+                                      size: 16,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                                const TextSpan(text: " Flutter"),
+                              ],
+                            ),
                             style: context.textTheme.displayMedium,
                           ),
                           _buildBuyMeACoffeeButton(context),
@@ -251,8 +282,24 @@ class Footer extends StatelessWidget {
                     ),
 
                     // Center: Built with 💙 Flutter (mathematically centered via two equal expanded side elements)
-                    Text(
-                      "Built with 💙 Flutter",
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          const TextSpan(text: "Built with "),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              child: Icon(
+                                Icons.favorite,
+                                size: 16,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                          const TextSpan(text: " Flutter"),
+                        ],
+                      ),
                       style: context.textTheme.displayMedium,
                     ),
 

@@ -86,12 +86,18 @@ class _HomeState extends State<Home> {
                       height: 90,
                       key: sectionKeys[0],
                     ), // Space for navbar
-                    HeroSection(
-                      onViewWorkPressed: () => scrollTo(sectionKeys[3]),
+                    RepaintBoundary(
+                      child: HeroSection(
+                        onViewWorkPressed: () => scrollTo(sectionKeys[3]),
+                      ),
                     ),
                     SizedBox(height: AppConstants.spaceM, key: sectionKeys[1]),
-                    AboutMe(onNavigate: scrollTo, contactKey: sectionKeys[4]),
-                    const TechIUse(),
+                    RepaintBoundary(
+                      child: AboutMe(onNavigate: scrollTo, contactKey: sectionKeys[4]),
+                    ),
+                    const RepaintBoundary(
+                      child: TechIUse(),
+                    ),
                     if (MediaQuery.sizeOf(context).width >= 1024) ...[
                       Builder(
                         builder: (context) {
@@ -105,7 +111,7 @@ class _HomeState extends State<Home> {
                           
                           final double expHeight;
                           if (!_isExperienceExpanded) {
-                            expHeight = 490.0;
+                            expHeight = 520.0;
                           } else {
                             expHeight = _experienceExpandedHeight ??
                                 (contentWidth < 1100
@@ -118,11 +124,11 @@ class _HomeState extends State<Home> {
                           final double projLeft = _isExperienceExpanded ? 0 : (contentWidth - 20) / 2 + 20;
                           final double projTop = _isExperienceExpanded ? expHeight + 20 : 0;
                           final double projWidth = _isExperienceExpanded ? contentWidth : (contentWidth - 20) / 2;
-                          final double projHeight = _isExperienceExpanded ? 490.0 : 490.0;
+                          final double projHeight = _isExperienceExpanded ? 520.0 : 520.0;
 
                           final double totalHeight = _isExperienceExpanded
                               ? expHeight + projHeight + 20
-                              : 490.0;
+                              : 520.0;
 
                           return AnimatedContainer(
                             duration: const Duration(milliseconds: 500),
@@ -186,58 +192,72 @@ class _HomeState extends State<Home> {
                           );
                         },
                       ),
-                      Education(),
+                      const RepaintBoundary(
+                        child: Education(),
+                      ),
                     ] else ...[
                       AnimatedSize(
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,
                         alignment: Alignment.topCenter,
-                        child: Experience(
-                          key: sectionKeys[2],
-                          isExpanded: _isExperienceExpanded,
-                          onToggleExpand: () {
-                            setState(() {
-                              _isExperienceExpanded = !_isExperienceExpanded;
-                            });
-                          },
+                        child: RepaintBoundary(
+                          child: Experience(
+                            key: sectionKeys[2],
+                            isExpanded: _isExperienceExpanded,
+                            onToggleExpand: () {
+                              setState(() {
+                                _isExperienceExpanded = !_isExperienceExpanded;
+                              });
+                            },
+                          ),
                         ),
                       ),
-                      Projects(
-                        key: sectionKeys[3],
+                      RepaintBoundary(
+                        child: Projects(
+                          key: sectionKeys[3],
+                        ),
                       ),
-                      Education(),
+                      const RepaintBoundary(
+                        child: Education(),
+                      ),
                     ],
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: _isAnilistVisible ? 20 : 0,
-                      children: [
-                        PinterestSection(
-                          onEasterEggPressed: () {
-                            setState(() {
-                              _isAnilistVisible = !_isAnilistVisible;
-                            });
-                          },
-                        ),
-                        AnimatedSize(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                          alignment: Alignment.topCenter,
-                          child:
-                              _isAnilistVisible
-                                  ? AnilistSection(
-                                    onClosePressed: () {
-                                      setState(() {
-                                        _isAnilistVisible = false;
-                                      });
-                                    },
-                                  )
-                                  : const SizedBox.shrink(),
-                        ),
-                      ],
+                    RepaintBoundary(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: _isAnilistVisible ? 20 : 0,
+                        children: [
+                          PinterestSection(
+                            onEasterEggPressed: () {
+                              setState(() {
+                                _isAnilistVisible = !_isAnilistVisible;
+                              });
+                            },
+                          ),
+                          AnimatedSize(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                            alignment: Alignment.topCenter,
+                            child:
+                                _isAnilistVisible
+                                    ? AnilistSection(
+                                      onClosePressed: () {
+                                        setState(() {
+                                          _isAnilistVisible = false;
+                                        });
+                                      },
+                                    )
+                                    : const SizedBox.shrink(),
+                          ),
+                        ],
+                      ),
                     ),
-                    ContactMe(key: sectionKeys[4]),
-                    Footer(),
+                    RepaintBoundary(
+                      child: ContactMe(key: sectionKeys[4]),
+                    ),
+                    const RepaintBoundary(
+                      child: Footer(),
+                    ),
                   ],
                 ),
               ),
@@ -247,16 +267,18 @@ class _HomeState extends State<Home> {
               top: 20,
               left: padding,
               right: padding,
-              child: Navbar(
-                sectionKeys: sectionKeys,
-                scrollController: scrollController,
-                sections: [
-                  "Home",
-                  "About",
-                  "Experience",
-                  "Projects",
-                  "Contact",
-                ],
+              child: RepaintBoundary(
+                child: Navbar(
+                  sectionKeys: sectionKeys,
+                  scrollController: scrollController,
+                  sections: [
+                    "Home",
+                    "About",
+                    "Experience",
+                    "Projects",
+                    "Contact",
+                  ],
+                ),
               ),
             ),
           ],

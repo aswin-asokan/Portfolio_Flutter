@@ -202,7 +202,9 @@ class _MapPreview extends StatelessWidget {
           "assets/images/maps/map.webp",
           height: height,
           width: double.infinity,
+          cacheWidth: 800,
           fit: BoxFit.cover,
+          gaplessPlayback: true,
         ),
       ),
     );

@@ -4,6 +4,8 @@ import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
 import 'package:portfolio/features/shared/widgets/striped_loading_bar.dart';
+import 'package:portfolio/features/shared/project_list/project_list.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class InitialLoadingScreen extends StatefulWidget {
   const InitialLoadingScreen({super.key, required this.child});
@@ -20,7 +22,7 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
   Object? _loadError;
   double _progress = 0;
 
-  int get _assetCount => AppAssets.rasterImages.length;
+  int get _assetCount => AppAssets.criticalImages.length;
 
   @override
   void didChangeDependencies() {
@@ -43,8 +45,12 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
     }
 
     try {
-      for (final asset in AppAssets.rasterImages) {
-        await precacheImage(AssetImage(asset), context);
+      for (final asset in AppAssets.criticalImages) {
+        final ImageProvider provider = asset.cacheWidth != null
+            ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
+            : AssetImage(asset.path);
+            
+        await precacheImage(provider, context);
         updateProgress();
       }
 
@@ -53,6 +59,8 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
         _progress = 1;
         _isLoaded = true;
       });
+      
+      _loadSecondaryAssets();
     } catch (error, stackTrace) {
       FlutterError.reportError(
         FlutterErrorDetails(
@@ -66,6 +74,17 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
       setState(() {
         _loadError = error;
       });
+    }
+  }
+  
+  Future<void> _loadSecondaryAssets() async {
+    for (final asset in AppAssets.secondaryImages) {
+      if (!mounted) return;
+      final ImageProvider provider = asset.cacheWidth != null
+          ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
+          : AssetImage(asset.path);
+          
+      precacheImage(provider, context).catchError((_) {});
     }
   }
 
@@ -122,11 +141,17 @@ class _LoadingView extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(AppAssets.logoLight, height: 60, fit: BoxFit.contain),
+              Image.asset(
+                AppAssets.logoLight,
+                height: 60,
+                fit: BoxFit.contain,
+                gaplessPlayback: true,
+              ),
               const SizedBox(height: AppConstants.spaceM),
               Image.asset(
                 AppAssets.loadingImage,
                 width: imageSize,
+                cacheWidth: 800,
                 fit: BoxFit.contain,
                 gaplessPlayback: true,
               ),

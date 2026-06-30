@@ -135,6 +135,7 @@ class _NavbarState extends State<Navbar> {
                       ? "assets/images/logo/dark_logo.png"
                       : "assets/images/logo/light_logo.png",
                   height: 30,
+                  gaplessPlayback: true,
                 ),
               ),
             );

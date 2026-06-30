@@ -261,9 +261,11 @@ class PinterestSection extends StatelessWidget {
                         height: 270,
                         child: Image.asset(
                           "assets/images/pinterest/pin_img.webp",
+                          cacheWidth: 800,
                           fit: BoxFit.contain,
                           alignment: Alignment.bottomRight,
                           filterQuality: FilterQuality.high,
+                          gaplessPlayback: true,
                         ),
                       ),
                       // Layer 2: Phone Mockup (On top of character)
@@ -449,6 +451,7 @@ class PinterestSection extends StatelessWidget {
                     child: IFrameWidget(
                       viewId: "pinterest-profile-view",
                       url: _getPinterestDataUrl(isDark),
+                      placeholder: _buildPinterestPlaceholder(context, isDark),
                     ),
                   ),
                   Positioned(
@@ -528,6 +531,122 @@ class PinterestSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(4),
+      ),
+    );
+  }
+
+  Widget _buildPinterestPlaceholder(BuildContext context, bool isDark) {
+    return Container(
+      color: isDark ? const Color(0xFF13131A) : const Color(0xFFFAFAFA),
+      padding: const EdgeInsets.all(12),
+      child: Stack(
+        children: [
+          // Masonry skeleton grid representation
+          Positioned.fill(
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Opacity(
+                opacity: isDark ? 0.08 : 0.12,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          _skeletonCard(height: 80),
+                          const SizedBox(height: 8),
+                          _skeletonCard(height: 120),
+                          const SizedBox(height: 8),
+                          _skeletonCard(height: 70),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          _skeletonCard(height: 110),
+                          const SizedBox(height: 8),
+                          _skeletonCard(height: 70),
+                          const SizedBox(height: 8),
+                          _skeletonCard(height: 100),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Central interactive prompt
+          Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: isDark
+                    ? Colors.black.withValues(alpha: 0.75)
+                    : Colors.white.withValues(alpha: 0.95),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.05),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFE60023),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      SimpleIcons.pinterest,
+                      color: Colors.white,
+                      size: 22,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Art & Crafts",
+                    style: context.textTheme.bodySmall!.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.getTitleText(context),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Pinterest Feed",
+                    style: context.textTheme.bodySmall!.copyWith(
+                      fontSize: 9,
+                      color: AppColors.getDescriptionText(context).withValues(alpha: 0.8),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _skeletonCard({required double height}) {
+    return Container(
+      height: height,
+      decoration: BoxDecoration(
+        color: Colors.grey.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(8),
       ),
     );
   }

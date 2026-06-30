@@ -54,26 +54,29 @@ class _AppScreenshotCardState extends State<AppScreenshotCard> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => _showLightbox(context),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: CachedNetworkImage(
-            imageUrl: widget.imagePath,
-            height: widget.height,
-            fit: BoxFit.fitHeight,
-            fadeInDuration: const Duration(milliseconds: 1500),
-            fadeOutDuration: const Duration(milliseconds: 1000),
-            placeholder: (context, url) => const ShimmerPlaceholder(),
-            errorWidget: (context, url, error) => Container(
-              color: Colors.grey.shade300,
-              alignment: Alignment.center,
-              child: const Icon(
-                Icons.broken_image,
-                size: 40,
-                color: Colors.grey,
+    return RepaintBoundary(
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => _showLightbox(context),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: CachedNetworkImage(
+              imageUrl: widget.imagePath,
+              memCacheWidth: 800,
+              height: widget.height,
+              fit: BoxFit.fitHeight,
+              fadeInDuration: const Duration(milliseconds: 1500),
+              fadeOutDuration: const Duration(milliseconds: 1000),
+              placeholder: (context, url) => const ShimmerPlaceholder(),
+              errorWidget: (context, url, error) => Container(
+                color: Colors.grey.shade300,
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.broken_image,
+                  size: 40,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
@@ -145,6 +148,7 @@ class _LightboxDialogState extends State<_LightboxDialog> {
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
                 imageUrl: widget.images[_currentIndex],
+                memCacheWidth: 1200,
                 fit: BoxFit.contain,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(color: Colors.white),

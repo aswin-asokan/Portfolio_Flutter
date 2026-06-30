@@ -135,6 +135,7 @@ class _ThemeTransitionOverlayState extends State<ThemeTransitionOverlay>
                           width: MediaQuery.sizeOf(
                             context,
                           ).width.clamp(240.0, 750.0),
+                          cacheWidth: 800,
                           fit: BoxFit.contain,
                           gaplessPlayback: true,
                         ),

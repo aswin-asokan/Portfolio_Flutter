@@ -57,6 +57,7 @@ class _EduCardState extends State<EduCard> {
                 width: fullWidth ? double.infinity : null,
                 fit: fullWidth ? BoxFit.cover : BoxFit.contain,
                 filterQuality: FilterQuality.high,
+                gaplessPlayback: true,
               ),
             ),
           ),
