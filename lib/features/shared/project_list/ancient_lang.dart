@@ -10,8 +10,8 @@ AppModel ancientLang = AppModel(
   title: "Ancient Text Preservation",
   caption: "IndicBERT Model that Predict and Reconstruct Missing Words.",
   techStack: ["BERT", "GCP"],
-    mainTech: "• Python",
-    projectType: ProjectType.aiMl,
+  mainTech: "• Python",
+  projectType: ProjectType.aiMl,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_lang%2Fancient_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel ancientLang = AppModel(
   gitLink: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
   subtitle: "Filling in the Blanks, Intelligently",
   homeSummary:
-      "Teaching AI to read ancient Malayalam so you don't have to squint at palm leaves anymore. Vattezhuthu meets neural networks!",
+      "Ancient manuscripts lost words over time. Scan them with OCR, mark the missing parts, and let IndicBERT suggest the most likely Sanskrit restorations.",
   releaseLink: "",
   type: AppButtonType.github,
   devices: AppAvailability.codeOnly,
@@ -43,7 +43,12 @@ AppModel ancientLang = AppModel(
     productType: "AI for Humanities",
     size: "NIL",
     languages: "English, Sanskrit",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/Najiya-Nazrin/ancient-language-preservation")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
+      ),
+    ],
   ),
   aboutProject:
       "This was a collaborative project I worked on during Hacktopia, a 24-hour hackathon. The inspiration came from a research paper titled Ancient Chinese Poetry Collation Based on BERT, which sparked the idea: “Why not use similar NLP techniques to preserve our ancient Indian scriptures?”\nWe decided to explore the use of IndicBERT for Sanskrit text restoration. This project was especially meaningful for me because it combined technology, linguistics, and cultural preservation. Our team was selected as a finalist, and we received a special mention, which validated our concept and execution.",
@@ -60,8 +65,22 @@ AppModel ancientLang = AppModel(
     "Earned finalist recognition and special mention, reinforcing the project’s impact",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flask"), IconLabelModel(label: "Google Vision API"), IconLabelModel(label: "Fine-tuned IndicBERT"), IconLabelModel(label: "Deep Translator")],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github"), IconLabelModel(label: "Notion")],
-    skills: [IconLabelModel(label: "Research-Driven Innovation"), IconLabelModel(label: "Time Management"), IconLabelModel(label: "Team Collaboration"), IconLabelModel(label: "Presentation & Pitching")],
+    techStack: [
+      IconLabelModel(label: "Flask"),
+      IconLabelModel(label: "Google Vision API"),
+      IconLabelModel(label: "Fine-tuned IndicBERT"),
+      IconLabelModel(label: "Deep Translator"),
+    ],
+    tools: [
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "Github"),
+      IconLabelModel(label: "Notion"),
+    ],
+    skills: [
+      IconLabelModel(label: "Research-Driven Innovation"),
+      IconLabelModel(label: "Time Management"),
+      IconLabelModel(label: "Team Collaboration"),
+      IconLabelModel(label: "Presentation & Pitching"),
+    ],
   ),
 );

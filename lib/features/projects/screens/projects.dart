@@ -293,7 +293,7 @@ class _ProjectCard extends StatelessWidget {
                           fontSize: 13,
                           height: 1.3,
                         ),
-                        maxLines: 3,
+                        maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const Spacer(),

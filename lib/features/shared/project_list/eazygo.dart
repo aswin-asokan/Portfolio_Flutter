@@ -10,8 +10,8 @@ AppModel eazygo = AppModel(
   title: "EazyGo",
   caption: "Efficiently Report Infrastructural Damages on Map.",
   techStack: ["Flutter", "Firebase", "GCP"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.flutter,
+  mainTech: "• Flutter",
+  projectType: ProjectType.flutter,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel eazygo = AppModel(
   gitLink: "https://github.com/aswin-asokan/EazyGo-MAp",
   subtitle: "Map & Report Infrastructural Damage.",
   homeSummary:
-      "Skip the line and book bus tickets from your couch. Because running after a moving bus is so last decade.",
+      "See it. Pin it. Report it. EazyGo makes reporting public infrastructure issues simple with map-based reporting, live updates, and community-driven accountability.",
   releaseLink: "https://github.com/aswin-asokan/EazyGo-MAp/releases/tag/v1.0.0",
   type: AppButtonType.download,
   devices: AppAvailability.android,
@@ -48,7 +48,12 @@ AppModel eazygo = AppModel(
     productType: "Civic Tech",
     size: "29.1MB",
     languages: "English",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/EazyGo-MAp")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/EazyGo-MAp",
+      ),
+    ],
   ),
   aboutProject:
       "EazyGo was the core idea for our Diploma main project, and it was built collaboratively as a team effort. The goal was to create a civic-tech solution that helps citizens report infrastructure problems with ease.\nAs the team lead, I was responsible not only for development but also for coordinating efforts across the group. This project taught me the fundamentals of app architecture, Firebase integration, and multi-user data flow. It was also my first time building a live-updating app using cloud services.",
@@ -64,8 +69,20 @@ AppModel eazygo = AppModel(
     "Gained experience in app design, feature delegation, and cloud integration",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Firebase"), IconLabelModel(label: "GCP")],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "GIthub"), IconLabelModel(label: "Notion")],
-    skills: [IconLabelModel(label: "Team Leadership"), IconLabelModel(label: "Presentation"), IconLabelModel(label: "Idea Structuring")],
+    techStack: [
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "Firebase"),
+      IconLabelModel(label: "GCP"),
+    ],
+    tools: [
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "GIthub"),
+      IconLabelModel(label: "Notion"),
+    ],
+    skills: [
+      IconLabelModel(label: "Team Leadership"),
+      IconLabelModel(label: "Presentation"),
+      IconLabelModel(label: "Idea Structuring"),
+    ],
   ),
 );

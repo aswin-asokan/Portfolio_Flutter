@@ -1,90 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
-import 'package:portfolio/features/pinterest/widgets/iframe_widget.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/corner_star.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:portfolio/features/pinterest/widgets/anime_easter_egg.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:dio/dio.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class PinterestSection extends StatelessWidget {
+class PinterestPin {
+  final String title;
+  final String link;
+  final String imageUrl;
+  final String pubDate;
+
+  PinterestPin({
+    required this.title,
+    required this.link,
+    required this.imageUrl,
+    required this.pubDate,
+  });
+
+  factory PinterestPin.fromJson(Map<String, dynamic> json) {
+    return PinterestPin(
+      title: json['title'] ?? '',
+      link: json['link'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      pubDate: json['pubDate'] ?? '',
+    );
+  }
+}
+
+class PinterestSection extends StatefulWidget {
   final VoidCallback? onEasterEggPressed;
   const PinterestSection({super.key, this.onEasterEggPressed});
 
-  final String _pinterestUrl = "https://pin.it/416Oj6Tmc";
+  @override
+  State<PinterestSection> createState() => _PinterestSectionState();
+}
 
-  String _getPinterestDataUrl(bool isDark) {
-    final scrollbarColor =
-        isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
-    final htmlContent = '''
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background-color: transparent;
-      overflow: hidden;
+class _PinterestSectionState extends State<PinterestSection> {
+  final String _pinterestUrl = "https://pin.it/416Oj6Tmc";
+  final Dio _dio = Dio();
+  List<PinterestPin> _pins = [];
+  bool _isLoading = true;
+  String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPins();
+  }
+
+  Future<void> _fetchPins() async {
+    try {
+      setState(() {
+        _isLoading = true;
+        _errorMessage = null;
+      });
+      final response = await _dio.get('https://cors-anywhere-azure.vercel.app/api/pinterest');
+      if (response.statusCode == 200) {
+        final List<dynamic> data = response.data;
+        if (mounted) {
+          setState(() {
+            _pins = data.map((json) => PinterestPin.fromJson(json)).toList();
+            _isLoading = false;
+          });
+        }
+      } else {
+        throw Exception('Failed to load pins');
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.toString();
+        });
+      }
     }
-    /* Hide scrollbars or make them sleek */
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: $scrollbarColor;
-      border-radius: 2px;
-    }
-    .pinterest-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
-    /* Target only the top-level span and iframe created by pinit.js to make it full screen and remove card styles */
-    .PIN_embed_grid,
-    .PIN_embed_grid > iframe {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: 100% !important;
-      max-height: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      background: transparent !important;
-    }
-  </style>
-</head>
-<body>
-  <div class="pinterest-container">
-    <a data-pin-do="embedUser" data-pin-board-width="300" data-pin-scale-width="240" data-pin-scale-height="320" href="https://www.pinterest.com/ArtMyDay/"></a>
-  </div>
-  <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
-</body>
-</html>
-''';
-    return "data:text/html;charset=utf-8,${Uri.encodeComponent(htmlContent)}";
   }
 
   Future<void> _launchPinterest() async {
     final url = Uri.parse(_pinterestUrl);
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
+    }
+  }
+
+  Future<void> _launchPin(String urlString) async {
+    if (urlString.isEmpty) return;
+    final url = Uri.parse(urlString);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     }
   }
 
@@ -178,7 +188,7 @@ class PinterestSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       AnimeEasterEgg(
-                        onTap: onEasterEggPressed,
+                        onTap: widget.onEasterEggPressed,
                         height: AppConstants.iconSize68,
                       ),
                       CornerStars(
@@ -318,7 +328,7 @@ class PinterestSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               AnimeEasterEgg(
-                onTap: onEasterEggPressed,
+                onTap: widget.onEasterEggPressed,
                 height: AppConstants.iconSize68,
               ),
               CornerStars(
@@ -449,11 +459,11 @@ class PinterestSection extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: IFrameWidget(
-                      viewId: "pinterest-profile-view",
-                      url: _getPinterestDataUrl(isDark),
-                      placeholder: _buildPinterestPlaceholder(context, isDark),
-                    ),
+                    child: _isLoading
+                        ? _buildPinterestPlaceholder(context, isDark)
+                        : _errorMessage != null
+                            ? _buildErrorWidget(context, isDark, _errorMessage!, _fetchPins)
+                            : _buildPinterestFeed(context, isDark),
                   ),
                   Positioned(
                     bottom: 0,
@@ -642,6 +652,183 @@ class PinterestSection extends StatelessWidget {
     );
   }
 
+  Widget _buildPinterestFeed(BuildContext context, bool isDark) {
+    if (_pins.isEmpty) {
+      return Center(
+        child: Text(
+          "No pins found",
+          style: context.textTheme.bodySmall!.copyWith(
+            color: AppColors.getDescriptionText(context),
+            fontSize: 11,
+          ),
+        ),
+      );
+    }
+
+    final displayPins = _pins.take(10).toList();
+    final List<PinterestPin> leftColumn = [];
+    final List<PinterestPin> middleColumn = [];
+    final List<PinterestPin> rightColumn = [];
+    for (int i = 0; i < displayPins.length; i++) {
+      if (i % 3 == 0) {
+        leftColumn.add(displayPins[i]);
+      } else if (i % 3 == 1) {
+        middleColumn.add(displayPins[i]);
+      } else {
+        rightColumn.add(displayPins[i]);
+      }
+    }
+
+    return Container(
+      color: isDark ? const Color(0xFF13131A) : const Color(0xFFFAFAFA),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Profile Header
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 8.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: isDark ? Colors.white12 : Colors.black12,
+                      width: 1.0,
+                    ),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: const Image(
+                    image: AssetImage("assets/icons/char_icon.webp"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  "ArtMyDay",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : const Color(0xFF1A1A1A),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Pins Grid
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 80.0), // Padding-bottom to avoid overlap with bottom overlay
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: leftColumn.map((pin) => _buildPinCard(context, pin, isDark)).toList(),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Column(
+                      children: middleColumn.map((pin) => _buildPinCard(context, pin, isDark)).toList(),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Column(
+                      children: rightColumn.map((pin) => _buildPinCard(context, pin, isDark)).toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPinCard(BuildContext context, PinterestPin pin, bool isDark) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => _launchPin(pin.link),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 6.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: CachedNetworkImage(
+            imageUrl: kIsWeb && pin.imageUrl.isNotEmpty
+                ? "https://cors-anywhere-azure.vercel.app/api/image?url=${Uri.encodeComponent(pin.imageUrl)}"
+                : pin.imageUrl,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => _skeletonCard(height: 80),
+            errorWidget: (context, url, error) => Container(
+              height: 80,
+              color: isDark ? const Color(0xFF22222E) : const Color(0xFFEEEEEE),
+              child: const Icon(Icons.broken_image, size: 16, color: Colors.grey),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildErrorWidget(
+    BuildContext context,
+    bool isDark,
+    String message,
+    VoidCallback onRetry,
+  ) {
+    return Container(
+      color: isDark ? const Color(0xFF13131A) : const Color(0xFFFAFAFA),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.error_outline_rounded,
+              color: isDark ? Colors.red[300] : Colors.red[600],
+              size: 28,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Failed to load pins",
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+                color: AppColors.getTitleText(context),
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: onRetry,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFE60023),
+                foregroundColor: Colors.white,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: const Text("Retry", style: TextStyle(fontSize: 8.5, fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _skeletonCard({required double height}) {
     return Container(
       height: height,
@@ -652,3 +839,4 @@ class PinterestSection extends StatelessWidget {
     );
   }
 }
+
