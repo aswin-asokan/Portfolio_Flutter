@@ -25,7 +25,7 @@ class AppModel {
   final List<String> _screenshots;
   final List<String> techStack;
   final String mainTech;
-  final ProjectType projectType;
+  final List<ProjectType> projectTypes;
   final String gitLink;
   final AppButtonType type;
   final String releaseLink;
@@ -45,7 +45,7 @@ class AppModel {
     required this.caption,
     required this.techStack,
     required this.mainTech,
-    required this.projectType,
+    required this.projectTypes,
     required String bannerPath,
     required String iconPath,
     required this.gitLink,

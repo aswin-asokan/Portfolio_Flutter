@@ -11,7 +11,7 @@ AppModel eazygoauth = AppModel(
   caption: "Designed for Authorities to Manage eazyGo Reports.",
   techStack: ["Flutter", "Firebase", "OSM"],
   mainTech: "• Flutter",
-  projectType: ProjectType.flutter,
+  projectTypes: [ProjectType.flutter, ProjectType.web],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2FeazygoAuth_banner.webp?alt=media",
   iconPath:

@@ -11,7 +11,7 @@ AppModel dairyManagement = AppModel(
   caption: "A Simple Java App for Managing Sales, Purchases and Staffs.",
   techStack: ["Java", "MySQL"],
   mainTech: "• Java",
-  projectType: ProjectType.tools,
+  projectTypes: [ProjectType.tools],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymanagement_banner.webp?alt=media",
   iconPath:

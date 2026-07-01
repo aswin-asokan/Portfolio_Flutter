@@ -14,7 +14,7 @@ AppModel ancientLang = AppModel(
   caption: "IndicBERT Model that Predict and Reconstruct Missing Words.",
   techStack: ["BERT", "GCP"],
   mainTech: "• Python",
-  projectType: ProjectType.aiMl,
+  projectTypes: [ProjectType.aiMl],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_lang%2Fancient_banner.webp?alt=media",
   iconPath:

@@ -11,7 +11,7 @@ AppModel eazygo = AppModel(
   caption: "Efficiently Report Infrastructural Damages on Map.",
   techStack: ["Flutter", "Firebase", "GCP"],
   mainTech: "• Flutter",
-  projectType: ProjectType.flutter,
+  projectTypes: [ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo_banner.webp?alt=media",
   iconPath:

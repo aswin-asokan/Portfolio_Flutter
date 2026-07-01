@@ -11,7 +11,7 @@ AppModel systemMonitor = AppModel(
   caption: "Keep an Eye on Your Server’s Performance Effortlessly.",
   techStack: ["Flutter", "API call"],
   mainTech: "• Flutter",
-  projectType: ProjectType.tools,
+  projectTypes: [ProjectType.tools, ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsystem_monitor_banner.webp?alt=media",
   iconPath:

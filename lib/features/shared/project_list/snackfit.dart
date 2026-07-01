@@ -11,7 +11,7 @@ AppModel snackfit = AppModel(
   caption: "Serve us your look! Because you're what you eat!",
   techStack: ["Flutter", "Gemini", "CLIP"],
   mainTech: "• Flutter",
-  projectType: ProjectType.aiMl,
+  projectTypes: [ProjectType.aiMl, ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit_banner.webp?alt=media",
   iconPath:

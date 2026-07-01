@@ -799,9 +799,9 @@ class _AnilistSectionState extends State<AnilistSection> {
                           width: 32,
                           height: 32,
                           fit: BoxFit.cover,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(color: Colors.grey[800]);
+                          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                            if (wasSynchronouslyLoaded) return child;
+                            return frame != null ? child : Container(color: Colors.grey[800]);
                           },
                           errorBuilder: (context, error, stackTrace) => Container(
                             color: Colors.grey[800],
@@ -936,9 +936,9 @@ class _AnilistSectionState extends State<AnilistSection> {
                     width: 30,
                     height: 42,
                     fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(color: const Color(0xFF0B1622));
+                    frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                      if (wasSynchronouslyLoaded) return child;
+                      return frame != null ? child : Container(color: const Color(0xFF0B1622));
                     },
                     errorBuilder: (context, error, stackTrace) => Container(
                       color: const Color(0xFF0B1622),
