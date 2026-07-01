@@ -11,7 +11,7 @@ AppModel keralaiot = AppModel(
   caption: "20 IoT Projects with Explanations and Working Videos.",
   techStack: ["Arduino", "ESP32"],
   mainTech: "• Arduino",
-  projectType: ProjectType.other,
+  projectTypes: [ProjectType.other],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot_banner.webp?alt=media",
   iconPath:

@@ -11,7 +11,7 @@ AppModel nyaytra = AppModel(
   caption: "BERT Powered Indian Legal Document Summarizer & Assistant.",
   techStack: ["BERT", "T5", "Gemini Api"],
   mainTech: "• Python",
-  projectType: ProjectType.aiMl,
+  projectTypes: [ProjectType.aiMl, ProjectType.web],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnyaytra_banner.webp?alt=media",
   iconPath:

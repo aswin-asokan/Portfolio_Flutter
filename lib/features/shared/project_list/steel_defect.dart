@@ -11,7 +11,7 @@ AppModel steelDefectDetection = AppModel(
   caption: "Few-Shot Defect Segmentation using SAM",
   techStack: ["SAM", "LoRA", "Python", "Flutter"],
   mainTech: "• Python",
-  projectType: ProjectType.aiMl,
+  projectTypes: [ProjectType.aiMl, ProjectType.flutter],
   // Assuming Figure_1.png is the main visualization
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel_defect.webp?alt=media",

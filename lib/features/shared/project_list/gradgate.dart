@@ -12,7 +12,7 @@ AppModel gradgate = AppModel(
       "Minimal Interface that allows Students to Apply for Jobs and Internships.",
   techStack: ["Flutter", "SQLite", "sqflite"],
   mainTech: "• Flutter",
-  projectType: ProjectType.flutter,
+  projectTypes: [ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/gradgate%2Fgradgate_banner.webp?alt=media",
   iconPath:

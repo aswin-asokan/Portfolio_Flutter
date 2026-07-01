@@ -67,9 +67,9 @@ class _AppScreenshotCardState extends State<AppScreenshotCard> {
                     widget.imagePath,
                     height: widget.height,
                     fit: BoxFit.fitHeight,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const ShimmerPlaceholder();
+                    frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                      if (wasSynchronouslyLoaded) return child;
+                      return frame != null ? child : const ShimmerPlaceholder();
                     },
                     errorBuilder: (context, error, stackTrace) => Container(
                       color: Colors.grey.shade300,
@@ -170,11 +170,13 @@ class _LightboxDialogState extends State<_LightboxDialog> {
                   ? Image.network(
                       widget.images[_currentIndex],
                       fit: BoxFit.contain,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return const Center(
-                          child: CircularProgressIndicator(color: Colors.white),
-                        );
+                      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                        if (wasSynchronouslyLoaded) return child;
+                        return frame != null
+                            ? child
+                            : const Center(
+                                child: CircularProgressIndicator(color: Colors.white),
+                              );
                       },
                     )
                   : CachedNetworkImage(

@@ -352,9 +352,9 @@ class _ProjectCard extends StatelessWidget {
                           app.bannerPath,
                           fit: BoxFit.cover,
                           alignment: Alignment.topCenter,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return const ShimmerPlaceholder();
+                          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                            if (wasSynchronouslyLoaded) return child;
+                            return frame != null ? child : const ShimmerPlaceholder();
                           },
                           errorBuilder: (context, error, stackTrace) => Container(
                             color: Colors.grey.shade200,

@@ -23,13 +23,15 @@ class AppIcon extends StatelessWidget {
               height: height,
               width: height,
               fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return ShimmerPlaceholder(
-                  width: height,
-                  height: height,
-                  borderRadius: radius,
-                );
+              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                if (wasSynchronouslyLoaded) return child;
+                return frame != null
+                    ? child
+                    : ShimmerPlaceholder(
+                        width: height,
+                        height: height,
+                        borderRadius: radius,
+                      );
               },
               errorBuilder: (context, error, stackTrace) => Container(
                 color: Colors.grey.shade300,

@@ -50,11 +50,11 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   bool _matchesCategory(AppModel app, String category) {
     if (category == "All") return true;
 
-    if (category == "Flutter") return app.projectType == ProjectType.flutter;
-    if (category == "Web") return app.projectType == ProjectType.web;
-    if (category == "Tools") return app.projectType == ProjectType.tools;
-    if (category == "AI / ML") return app.projectType == ProjectType.aiMl;
-    if (category == "Other") return app.projectType == ProjectType.other;
+    if (category == "Flutter") return app.projectTypes.contains(ProjectType.flutter);
+    if (category == "Web") return app.projectTypes.contains(ProjectType.web);
+    if (category == "Tools") return app.projectTypes.contains(ProjectType.tools);
+    if (category == "AI / ML") return app.projectTypes.contains(ProjectType.aiMl);
+    if (category == "Other") return app.projectTypes.contains(ProjectType.other);
 
     return false;
   }
@@ -803,9 +803,9 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                                     widget.app.bannerPath,
                                     fit: BoxFit.cover,
                                     alignment: Alignment.topCenter,
-                                    loadingBuilder: (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return const ShimmerPlaceholder();
+                                    frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                                      if (wasSynchronouslyLoaded) return child;
+                                      return frame != null ? child : const ShimmerPlaceholder();
                                     },
                                     errorBuilder: (context, error, stackTrace) => Container(
                                       color: Colors.grey.shade200,

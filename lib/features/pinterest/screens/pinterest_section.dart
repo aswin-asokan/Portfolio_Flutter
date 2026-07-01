@@ -768,9 +768,9 @@ class _PinterestSectionState extends State<PinterestSection> {
                       ? "https://cors-anywhere-azure.vercel.app/api/image?url=${Uri.encodeComponent(pin.imageUrl)}"
                       : "",
                   fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return _skeletonCard(height: 80);
+                  frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                    if (wasSynchronouslyLoaded) return child;
+                    return frame != null ? child : _skeletonCard(height: 80);
                   },
                   errorBuilder: (context, error, stackTrace) => Container(
                     height: 80,

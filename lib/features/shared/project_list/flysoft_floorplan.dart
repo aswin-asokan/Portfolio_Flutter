@@ -11,7 +11,7 @@ AppModel flysoftFloorplan = AppModel(
   caption: "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
   techStack: ["Internship", "Flutter", "JSON"],
   mainTech: "• Flutter",
-  projectType: ProjectType.flutter,
+  projectTypes: [ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Ffloorplan_banner.webp?alt=media",
   iconPath:

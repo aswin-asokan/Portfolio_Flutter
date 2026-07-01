@@ -11,7 +11,7 @@ AppModel taskevo = AppModel(
   caption: "Supercharge your Productivity and Stay Organized.",
   techStack: ["Flutter", "Hive", "Flutter Quill"],
   mainTech: "• Flutter",
-  projectType: ProjectType.tools,
+  projectTypes: [ProjectType.tools, ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo1_banner.webp?alt=media",
 

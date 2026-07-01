@@ -11,7 +11,7 @@ AppModel pocketDresses = AppModel(
   caption: "Charming Shopping App that Offers a Curated Selection of Dresses.",
   techStack: ["Flutter", "Hive"],
   mainTech: "• Flutter",
-  projectType: ProjectType.flutter,
+  projectTypes: [ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocket_dress_banner.webp?alt=media",
 

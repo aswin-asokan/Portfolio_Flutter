@@ -12,7 +12,7 @@ AppModel peekpub = AppModel(
       "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
   techStack: ["Flutter", "Pub.dev API"],
   mainTech: "• Flutter",
-  projectType: ProjectType.tools,
+  projectTypes: [ProjectType.flutter, ProjectType.tools],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub_banner.webp?alt=media",
   iconPath: "assets/files/projects/icons/PeekPub_logo.webp",
