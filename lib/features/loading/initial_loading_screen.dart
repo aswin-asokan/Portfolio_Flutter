@@ -53,6 +53,9 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
         updateProgress();
       }
 
+      // Allow time for the striped loading bar to animate to 100% (animation is 250ms)
+      await Future.delayed(const Duration(milliseconds: 400));
+
       if (!mounted) return;
       setState(() {
         _progress = 1;

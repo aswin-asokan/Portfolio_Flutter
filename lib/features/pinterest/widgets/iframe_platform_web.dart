@@ -27,6 +27,7 @@ Widget createIFrameWidget({
           web.HTMLIFrameElement()
             ..src = url
             ..setAttribute('scrolling', 'no')
+            ..setAttribute('loading', 'lazy')
             ..style.border = 'none'
             ..style.width = '100%'
             ..style.height = '100%'

@@ -626,7 +626,7 @@ class PinterestSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "Pinterest Feed",
+                    "Feed Loading",
                     style: context.textTheme.bodySmall!.copyWith(
                       fontSize: 9,
                       color: AppColors.getDescriptionText(context).withValues(alpha: 0.8),
