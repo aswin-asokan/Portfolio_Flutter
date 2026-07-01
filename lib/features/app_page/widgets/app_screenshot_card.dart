@@ -62,24 +62,43 @@ class _AppScreenshotCardState extends State<AppScreenshotCard> {
           onTap: () => _showLightbox(context),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: CachedNetworkImage(
-              imageUrl: widget.imagePath,
-              memCacheWidth: kIsWeb ? null : 800,
-              height: widget.height,
-              fit: BoxFit.fitHeight,
-              fadeInDuration: const Duration(milliseconds: 1500),
-              fadeOutDuration: const Duration(milliseconds: 1000),
-              placeholder: (context, url) => const ShimmerPlaceholder(),
-              errorWidget: (context, url, error) => Container(
-                color: Colors.grey.shade300,
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.broken_image,
-                  size: 40,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
+            child: kIsWeb
+                ? Image.network(
+                    widget.imagePath,
+                    height: widget.height,
+                    fit: BoxFit.fitHeight,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const ShimmerPlaceholder();
+                    },
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: Colors.grey.shade300,
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.broken_image,
+                        size: 40,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  )
+                : CachedNetworkImage(
+                    imageUrl: widget.imagePath,
+                    memCacheWidth: kIsWeb ? null : 800,
+                    height: widget.height,
+                    fit: BoxFit.fitHeight,
+                    fadeInDuration: const Duration(milliseconds: 1500),
+                    fadeOutDuration: const Duration(milliseconds: 1000),
+                    placeholder: (context, url) => const ShimmerPlaceholder(),
+                    errorWidget: (context, url, error) => Container(
+                      color: Colors.grey.shade300,
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.broken_image,
+                        size: 40,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
           ),
         ),
       ),
@@ -147,14 +166,25 @@ class _LightboxDialogState extends State<_LightboxDialog> {
             maxScale: 4.0,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: CachedNetworkImage(
-                imageUrl: widget.images[_currentIndex],
-                memCacheWidth: kIsWeb ? null : 1200,
-                fit: BoxFit.contain,
-                placeholder: (context, url) => const Center(
-                  child: CircularProgressIndicator(color: Colors.white),
-                ),
-              ),
+              child: kIsWeb
+                  ? Image.network(
+                      widget.images[_currentIndex],
+                      fit: BoxFit.contain,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const Center(
+                          child: CircularProgressIndicator(color: Colors.white),
+                        );
+                      },
+                    )
+                  : CachedNetworkImage(
+                      imageUrl: widget.images[_currentIndex],
+                      memCacheWidth: kIsWeb ? null : 1200,
+                      fit: BoxFit.contain,
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(color: Colors.white),
+                      ),
+                    ),
             ),
           ),
         ),

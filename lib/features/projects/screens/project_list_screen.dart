@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -798,23 +798,41 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                         Positioned.fill(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: CachedNetworkImage(
-                              imageUrl: widget.app.bannerPath,
-                              memCacheWidth: 800,
-                              fit: BoxFit.cover,
-                              alignment: Alignment.topCenter,
-                              placeholder:
-                                  (context, url) => const ShimmerPlaceholder(),
-                              errorWidget:
-                                  (context, url, error) => Container(
-                                    color: Colors.grey.shade200,
-                                    alignment: Alignment.center,
-                                    child: const Icon(
-                                      Symbols.broken_image,
-                                      color: Colors.grey,
+                            child: kIsWeb
+                                ? Image.network(
+                                    widget.app.bannerPath,
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.topCenter,
+                                    loadingBuilder: (context, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return const ShimmerPlaceholder();
+                                    },
+                                    errorBuilder: (context, error, stackTrace) => Container(
+                                      color: Colors.grey.shade200,
+                                      alignment: Alignment.center,
+                                      child: const Icon(
+                                        Symbols.broken_image,
+                                        color: Colors.grey,
+                                      ),
                                     ),
+                                  )
+                                : CachedNetworkImage(
+                                    imageUrl: widget.app.bannerPath,
+                                    memCacheWidth: kIsWeb ? null : 800,
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.topCenter,
+                                    placeholder:
+                                        (context, url) => const ShimmerPlaceholder(),
+                                    errorWidget:
+                                        (context, url, error) => Container(
+                                          color: Colors.grey.shade200,
+                                          alignment: Alignment.center,
+                                          child: const Icon(
+                                            Symbols.broken_image,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
                                   ),
-                            ),
                           ),
                         ),
                         Positioned(

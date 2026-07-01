@@ -793,13 +793,32 @@ class _AnilistSectionState extends State<AnilistSection> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: CachedNetworkImage(
-                    imageUrl: "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6924046-dfZfSooyG2pO.jpg",
-                    width: 32,
-                    height: 32,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(color: Colors.grey[800]),
-                  ),
+                  child: kIsWeb
+                      ? Image.network(
+                          "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6924046-dfZfSooyG2pO.jpg",
+                          width: 32,
+                          height: 32,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Container(color: Colors.grey[800]);
+                          },
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            color: Colors.grey[800],
+                            child: const Icon(Icons.person, size: 16, color: Colors.grey),
+                          ),
+                        )
+                      : CachedNetworkImage(
+                          imageUrl: "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6924046-dfZfSooyG2pO.jpg",
+                          width: 32,
+                          height: 32,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(color: Colors.grey[800]),
+                          errorWidget: (context, url, error) => Container(
+                            color: Colors.grey[800],
+                            child: const Icon(Icons.person, size: 16, color: Colors.grey),
+                          ),
+                        ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -911,17 +930,32 @@ class _AnilistSectionState extends State<AnilistSection> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(3),
-            child: CachedNetworkImage(
-              imageUrl: entry.coverImage,
-              width: 30,
-              height: 42,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Container(color: const Color(0xFF0B1622)),
-              errorWidget: (context, url, error) => Container(
-                color: const Color(0xFF0B1622),
-                child: const Icon(Icons.broken_image, size: 12, color: Colors.grey),
-              ),
-            ),
+            child: kIsWeb
+                ? Image.network(
+                    entry.coverImage,
+                    width: 30,
+                    height: 42,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(color: const Color(0xFF0B1622));
+                    },
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: const Color(0xFF0B1622),
+                      child: const Icon(Icons.broken_image, size: 12, color: Colors.grey),
+                    ),
+                  )
+                : CachedNetworkImage(
+                    imageUrl: entry.coverImage,
+                    width: 30,
+                    height: 42,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(color: const Color(0xFF0B1622)),
+                    errorWidget: (context, url, error) => Container(
+                      color: const Color(0xFF0B1622),
+                      child: const Icon(Icons.broken_image, size: 12, color: Colors.grey),
+                    ),
+                  ),
           ),
           const SizedBox(width: 8),
           Expanded(

@@ -1,9 +1,12 @@
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 AppModel ancientLang = AppModel(
   id: "ancientlang",
@@ -47,6 +50,8 @@ AppModel ancientLang = AppModel(
       IconLabelModel(
         label: "Link",
         link: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
+        icon: SimpleIcons.github,
+        color: AppColors.brandGithubAlt,
       ),
     ],
   ),
@@ -66,21 +71,52 @@ AppModel ancientLang = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flask"),
-      IconLabelModel(label: "Google Vision API"),
-      IconLabelModel(label: "Fine-tuned IndicBERT"),
-      IconLabelModel(label: "Deep Translator"),
+      IconLabelModel(
+        label: "Flask",
+        icon: SimpleIcons.flask,
+        color: SimpleIconColors.flask,
+      ),
+      IconLabelModel(
+        label: "Google Vision API",
+        icon: Symbols.camera,
+        color: SimpleIconColors.googlecardboard,
+      ),
+      IconLabelModel(
+        label: "Fine-tuned IndicBERT",
+        icon: Symbols.short_text,
+        color: SimpleIconColors.acode,
+      ),
+      IconLabelModel(
+        label: "Deep Translator",
+        icon: SimpleIcons.googletranslate,
+        color: SimpleIconColors.googletranslate,
+      ),
     ],
     tools: [
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Github"),
-      IconLabelModel(label: "Notion"),
+      IconLabelModel(
+        label: "Git",
+        icon: SimpleIcons.git,
+        color: SimpleIconColors.git,
+      ),
+      IconLabelModel(
+        label: "Github",
+        icon: SimpleIcons.github,
+        color: AppColors.brandGithubAlt,
+      ),
+      IconLabelModel(
+        label: "Notion",
+        icon: SimpleIcons.notion,
+        color: SimpleIconColors.claude,
+      ),
     ],
     skills: [
-      IconLabelModel(label: "Research-Driven Innovation"),
-      IconLabelModel(label: "Time Management"),
-      IconLabelModel(label: "Team Collaboration"),
-      IconLabelModel(label: "Presentation & Pitching"),
+      IconLabelModel(label: "Research & Innovation", icon: Symbols.lightbulb),
+      IconLabelModel(label: "Time Management", icon: Symbols.access_time),
+      IconLabelModel(label: "Team Collaboration", icon: Symbols.people),
+      IconLabelModel(
+        label: "Presentation & Pitching",
+        icon: Symbols.co_present,
+      ),
     ],
   ),
 );
