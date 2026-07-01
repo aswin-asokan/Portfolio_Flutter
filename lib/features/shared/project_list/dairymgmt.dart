@@ -1,9 +1,12 @@
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 AppModel dairyManagement = AppModel(
   id: "dairymanagement",
@@ -15,7 +18,7 @@ AppModel dairyManagement = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymanagement_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/dairy_logo.jpeg",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairy_logo.webp?alt=media",
   gitLink: "https://github.com/aswin-asokan/DairyManagement-App",
   subtitle: "Streamlined Sales, Purchases, Staff.",
   homeSummary:
@@ -25,13 +28,10 @@ AppModel dairyManagement = AppModel(
   type: AppButtonType.download,
   devices: AppAvailability.desktop,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt4.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt5.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt6.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt7.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymgmt1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymgmt2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymgmt3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymgmt4.webp?alt=media",
   ],
   aboutApp:
       "The Dairy Management App is a desktop application built in Java using NetBeans, designed to streamline daily operations in a dairy business. From tracking sales and purchases to managing staff and printing bills, the app offers a centralized dashboard for complete oversight. Its clean design and focused functionality make it a practical solution for small business owners.",
@@ -53,6 +53,8 @@ AppModel dairyManagement = AppModel(
       IconLabelModel(
         label: "Link",
         link: "https://github.com/aswin-asokan/DairyManagement-App",
+        icon: SimpleIcons.github,
+        color: AppColors.brandGithubAlt,
       ),
     ],
   ),
@@ -68,16 +70,42 @@ AppModel dairyManagement = AppModel(
     "Gained practical experience in building, debugging, and maintaining a desktop app",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Java"), IconLabelModel(label: "MySQL")],
+    techStack: [
+      IconLabelModel(
+        label: "Java",
+        icon: Symbols.coffee,
+        color: AppColors.brandJava,
+      ),
+      IconLabelModel(
+        label: "MySQL",
+        icon: SimpleIcons.mysql,
+        color: SimpleIconColors.mysql,
+      ),
+    ],
     tools: [
-      IconLabelModel(label: "Netbeans"),
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Github"),
+      IconLabelModel(
+        label: "Netbeans",
+        icon: SimpleIcons.apachenetbeanside,
+        color: SimpleIconColors.apachenetbeanside,
+      ),
+      IconLabelModel(
+        label: "Git",
+        icon: SimpleIcons.git,
+        color: SimpleIconColors.git,
+      ),
+      IconLabelModel(
+        label: "Github",
+        icon: SimpleIcons.github,
+        color: AppColors.brandGithubAlt,
+      ),
     ],
     skills: [
-      IconLabelModel(label: "Independent Problem Solving"),
-      IconLabelModel(label: "Persistence"),
-      IconLabelModel(label: "Tool Familiarity"),
+      IconLabelModel(label: "Problem Solving", icon: Symbols.lightbulb),
+      IconLabelModel(label: "Persistence", icon: Symbols.mountain_flag),
+      IconLabelModel(
+        label: "Tool Familiarity",
+        icon: Symbols.tools_pliers_wire_stripper,
+      ),
     ],
   ),
 );
