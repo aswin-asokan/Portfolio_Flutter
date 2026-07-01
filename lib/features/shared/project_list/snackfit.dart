@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,16 +9,19 @@ AppModel snackfit = AppModel(
   id: "sncakfit",
   title: "SnackFit",
   caption: "Serve us your look! Because you're what you eat!",
-  techStack: "Flutter | Gemini | CLIP",
+  techStack: ["Flutter", "Gemini", "CLIP"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.aiMl,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/snackfit_banner.jpeg",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/snackfit_logo.png",
   gitLink: "https://github.com/aswin-asokan/snackfit",
   subtitle: "Serve us your look! Because you're what you eat!",
-  homeSummary: "Counting calories so you can feel slightly less guilty about that midnight pizza slice.",
+  homeSummary:
+      "Counting calories so you can feel slightly less guilty about that midnight pizza slice.",
   releaseLink: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
-  type: "download",
+  type: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit1.jpeg",
@@ -50,7 +55,7 @@ AppModel snackfit = AppModel(
     productType: "Life style",
     size: "22.6MB",
     languages: "English",
-    link: "https://github.com/aswin-asokan/snackfit",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/snackfit")],
   ),
   aboutProject:
       "This app was created as part of TinkerHub Useless Projects 2.0 — a hackathon for building delightfully pointless yet technically challenging creations. The team included:\n- Najiya Nazrin CN – AI Developer\n- Aswin Asokan – App Developer\nThe core idea was to combine fashion recognition with food image matching, wrap it in humor, and still make it technically solid enough to deploy and expand in the future.",
@@ -64,9 +69,8 @@ AppModel snackfit = AppModel(
     "Gained experience in working within tight hackathon timelines and constraints.",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter, Python, SQLite",
-    tools: "Gemini AI API, Git, Github",
-    skills:
-        "AI Model Integration in Mobile Apps, Machine Learning Dataset Preparation, Collaboration & Communication, Time Management",
+    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Python"), IconLabelModel(label: "SQLite")],
+    tools: [IconLabelModel(label: "Gemini AI API"), IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    skills: [IconLabelModel(label: "AI Model Integration in Mobile Apps"), IconLabelModel(label: "Machine Learning Dataset Preparation"), IconLabelModel(label: "Collaboration & Communication"), IconLabelModel(label: "Time Management")],
   ),
 );

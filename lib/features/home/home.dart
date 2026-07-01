@@ -50,11 +50,26 @@ class _HomeState extends State<Home> {
   void scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
-      Scrollable.ensureVisible(
-        context,
-        duration: const Duration(seconds: 1),
-        curve: Curves.easeInOut,
-      );
+      final box = context.findRenderObject() as RenderBox?;
+      if (box != null && scrollController.hasClients) {
+        final position = box.localToGlobal(Offset.zero);
+        const double navbarOffset = 100.0; // Navbar height + margin padding
+        final targetOffset = (scrollController.offset + position.dy - navbarOffset).clamp(
+          0.0,
+          scrollController.position.maxScrollExtent,
+        );
+        scrollController.animateTo(
+          targetOffset,
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeInOut,
+        );
+      } else {
+        Scrollable.ensureVisible(
+          context,
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeInOut,
+        );
+      }
     }
   }
 
@@ -72,7 +87,6 @@ class _HomeState extends State<Home> {
             // Scrollable content
             SingleChildScrollView(
               controller: scrollController,
-              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: padding,

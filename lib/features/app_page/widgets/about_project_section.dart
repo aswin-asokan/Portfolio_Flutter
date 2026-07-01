@@ -91,13 +91,13 @@ class AboutProjectSection extends StatelessWidget {
                     spacing: 20,
                     children: [
                       Expanded(
-                        child: _buildTechStackCard(context, techStackItem.content),
+                        child: _buildTechStackCard(context, techStackItem.iconLabels),
                       ),
                       Expanded(
-                        child: _buildToolsCard(context, toolsItem.content),
+                        child: _buildToolsCard(context, toolsItem.iconLabels),
                       ),
                       Expanded(
-                        child: _buildSkillsCard(context, skillsItem.content),
+                        child: _buildSkillsCard(context, skillsItem.iconLabels),
                       ),
                     ],
                   ),
@@ -137,15 +137,15 @@ class AboutProjectSection extends StatelessWidget {
                     spacing: 20,
                     children: [
                       Expanded(
-                        child: _buildTechStackCard(context, techStackItem.content),
+                        child: _buildTechStackCard(context, techStackItem.iconLabels),
                       ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           spacing: 20,
                           children: [
-                            _buildToolsCard(context, toolsItem.content),
-                            Expanded(child: _buildSkillsCard(context, skillsItem.content)),
+                            _buildToolsCard(context, toolsItem.iconLabels),
+                            Expanded(child: _buildSkillsCard(context, skillsItem.iconLabels)),
                           ],
                         ),
                       ),
@@ -161,9 +161,9 @@ class AboutProjectSection extends StatelessWidget {
                 _buildWhyIBuiltCard(context),
                 _buildChallengesCard(context),
                 _buildLearningCard(context),
-                _buildTechStackCard(context, techStackItem.content),
-                _buildToolsCard(context, toolsItem.content),
-                _buildSkillsCard(context, skillsItem.content),
+                _buildTechStackCard(context, techStackItem.iconLabels),
+                _buildToolsCard(context, toolsItem.iconLabels),
+                _buildSkillsCard(context, skillsItem.iconLabels),
               ],
             ),
         ],
@@ -206,30 +206,30 @@ class AboutProjectSection extends StatelessWidget {
     );
   }
 
-  Widget _buildTechStackCard(BuildContext context, String content) {
+  Widget _buildTechStackCard(BuildContext context, List<IconLabelModel>? iconLabels) {
     return _ProjectDetailsCard(
       title: "Tech Stack",
       icon: Symbols.construction,
       iconColor: context.colorScheme.primary,
-      child: _TechIconGrid(content: content),
+      child: _TechIconGrid(iconLabels: iconLabels),
     );
   }
 
-  Widget _buildToolsCard(BuildContext context, String content) {
+  Widget _buildToolsCard(BuildContext context, List<IconLabelModel>? iconLabels) {
     return _ProjectDetailsCard(
       title: "Tools & Services",
       icon: Symbols.handyman,
       iconColor: context.colorScheme.primary,
-      child: _TechIconGrid(content: content),
+      child: _TechIconGrid(iconLabels: iconLabels),
     );
   }
 
-  Widget _buildSkillsCard(BuildContext context, String content) {
+  Widget _buildSkillsCard(BuildContext context, List<IconLabelModel>? iconLabels) {
     return _ProjectDetailsCard(
       title: "Skills",
       icon: Symbols.star,
       iconColor: context.colorScheme.primary,
-      child: _TechIconGrid(content: content),
+      child: _TechIconGrid(iconLabels: iconLabels),
     );
   }
 }
@@ -326,24 +326,22 @@ class _BulletList extends StatelessWidget {
 }
 
 class _TechIconGrid extends StatelessWidget {
-  final String content;
-  const _TechIconGrid({required this.content});
+  final List<IconLabelModel>? iconLabels;
+  const _TechIconGrid({this.iconLabels});
 
   @override
   Widget build(BuildContext context) {
-    final items = content
-        .split(',')
-        .map((e) => e.trim())
-        .where((e) => e.isNotEmpty)
-        .toList();
+    if (iconLabels == null || iconLabels!.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return Wrap(
       spacing: 16,
       runSpacing: 16,
       alignment: WrapAlignment.start,
-      children: items.map((item) {
-        final icon = getTechIcon(item);
-        final color = getTechColor(item) ?? context.colorScheme.primary;
+      children: iconLabels!.map((item) {
+        final icon = item.icon ?? getTechIcon(item.label);
+        final color = getTechColor(item.label) ?? context.colorScheme.primary;
         return SizedBox(
           width: 70,
           child: Column(
@@ -355,7 +353,7 @@ class _TechIconGrid extends StatelessWidget {
                 Icon(Symbols.code, size: 24, color: color),
               const SizedBox(height: 6),
               Text(
-                item,
+                item.label,
                 style: context.textTheme.displaySmall!.copyWith(
                   fontSize: 11,
                   fontWeight: FontWeight.w400,

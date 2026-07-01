@@ -100,28 +100,12 @@ class _NavbarState extends State<Navbar> {
     // Logo / Back button Widget
     final Widget logoSection =
         widget.isBackEnabled
-            ? MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 16,
-                      color: context.colorScheme.primary,
-                    ),
-                    if (!Responsive.isMobile(context)) const SizedBox(width: 8),
-                    if (!Responsive.isMobile(context))
-                      Text(
-                        "Go back",
-                        style: context.textTheme.labelMedium?.copyWith(
-                          fontSize: 16,
-                        ),
-                      ),
-                  ],
-                ),
+            ? IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(
+                Icons.arrow_back_ios_new_outlined,
+                size: 16,
+                color: context.colorScheme.primary,
               ),
             )
             : MouseRegion(

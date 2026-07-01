@@ -1,6 +1,18 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+
+enum ProjectType {
+  flutter("Flutter"),
+  web("Web"),
+  tools("Tools"),
+  aiMl("AI / ML"),
+  other("Other");
+
+  final String label;
+  const ProjectType(this.label);
+}
 
 class AppModel {
   final String id;
@@ -11,9 +23,11 @@ class AppModel {
   final String _bannerPath;
   final String _iconPath;
   final List<String> _screenshots;
-  final String techStack;
+  final List<String> techStack;
+  final String mainTech;
+  final ProjectType projectType;
   final String gitLink;
-  final String type;
+  final AppButtonType type;
   final String releaseLink;
   final String aboutApp;
   final List<String> features;
@@ -30,6 +44,8 @@ class AppModel {
     required this.title,
     required this.caption,
     required this.techStack,
+    required this.mainTech,
+    required this.projectType,
     required String bannerPath,
     required String iconPath,
     required this.gitLink,

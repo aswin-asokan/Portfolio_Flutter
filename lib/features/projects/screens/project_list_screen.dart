@@ -50,65 +50,12 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   bool _matchesCategory(AppModel app, String category) {
     if (category == "All") return true;
 
-    final String techStackLower = app.techStack.toLowerCase();
+    if (category == "Flutter") return app.projectType == ProjectType.flutter;
+    if (category == "Web") return app.projectType == ProjectType.web;
+    if (category == "Tools") return app.projectType == ProjectType.tools;
+    if (category == "AI / ML") return app.projectType == ProjectType.aiMl;
+    if (category == "Other") return app.projectType == ProjectType.other;
 
-    if (category == "Flutter") {
-      return techStackLower.contains("flutter");
-    }
-    if (category == "Web") {
-      return techStackLower.contains("web") ||
-          techStackLower.contains("react") ||
-          techStackLower.contains("html") ||
-          techStackLower.contains("css");
-    }
-    if (category == "Tools") {
-      return techStackLower.contains("api") ||
-          techStackLower.contains("sql") ||
-          techStackLower.contains("hive") ||
-          techStackLower.contains("json") ||
-          techStackLower.contains("sqlite") ||
-          app.id == "peekpub" ||
-          app.id == "system_monitor" ||
-          app.id == "dairy_management" ||
-          app.id == "taskevo";
-    }
-    if (category == "AI / ML") {
-      return techStackLower.contains("ai") ||
-          techStackLower.contains("ml") ||
-          techStackLower.contains("gemini") ||
-          techStackLower.contains("bert") ||
-          techStackLower.contains("t5") ||
-          techStackLower.contains("clip") ||
-          techStackLower.contains("sam") ||
-          techStackLower.contains("lora") ||
-          app.id == "steel_defect";
-    }
-    if (category == "Other") {
-      final bool isFlutter = techStackLower.contains("flutter");
-      final bool isWeb =
-          techStackLower.contains("web") || techStackLower.contains("react");
-      final bool isTools =
-          techStackLower.contains("api") ||
-          techStackLower.contains("sql") ||
-          techStackLower.contains("hive") ||
-          techStackLower.contains("json") ||
-          techStackLower.contains("sqlite") ||
-          app.id == "peekpub" ||
-          app.id == "system_monitor" ||
-          app.id == "dairy_management" ||
-          app.id == "taskevo";
-      final bool isAI =
-          techStackLower.contains("ai") ||
-          techStackLower.contains("ml") ||
-          techStackLower.contains("gemini") ||
-          techStackLower.contains("bert") ||
-          techStackLower.contains("t5") ||
-          techStackLower.contains("clip") ||
-          techStackLower.contains("sam") ||
-          techStackLower.contains("lora") ||
-          app.id == "steel_defect";
-      return !isFlutter && !isWeb && !isTools && !isAI;
-    }
     return false;
   }
 
@@ -634,34 +581,32 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                                     ? 16.0
                                     : 0.0,
                           ),
-                          child: IntrinsicHeight(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: List.generate(crossAxisCount * 2 - 1, (
-                                index,
-                              ) {
-                                if (index.isOdd) {
-                                  return const SizedBox(
-                                    width: 16,
-                                  ); // Horizontal space between cards
-                                }
-                                final colIndex = index ~/ 2;
-                                if (colIndex < chunk.length) {
-                                  return Expanded(
-                                    child: ProjectGridCard(
-                                      app: chunk[colIndex],
-                                      index:
-                                          rowIndex * crossAxisCount + colIndex,
-                                    ),
-                                  );
-                                } else {
-                                  // Dummy card widget space container to balance layout width
-                                  return const Expanded(
-                                    child: SizedBox.shrink(),
-                                  );
-                                }
-                              }),
-                            ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: List.generate(crossAxisCount * 2 - 1, (
+                              index,
+                            ) {
+                              if (index.isOdd) {
+                                return const SizedBox(
+                                  width: 16,
+                                ); // Horizontal space between cards
+                              }
+                              final colIndex = index ~/ 2;
+                              if (colIndex < chunk.length) {
+                                return Expanded(
+                                  child: ProjectGridCard(
+                                    app: chunk[colIndex],
+                                    index:
+                                        rowIndex * crossAxisCount + colIndex,
+                                  ),
+                                );
+                              } else {
+                                // Dummy card widget space container to balance layout width
+                                return const Expanded(
+                                  child: SizedBox.shrink(),
+                                );
+                              }
+                            }),
                           ),
                         );
                       }, childCount: chunkedProjects.length),
@@ -796,26 +741,12 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
     }
   }
 
-  String _getPrimaryTech(AppModel app) {
-    final tech = app.techStack.toLowerCase();
-    if (tech.contains("flutter")) return "• Flutter";
-    if (tech.contains("react") || tech.contains("web")) return "• Web";
-    if (tech.contains("python")) return "• Python";
-    if (tech.contains("java")) return "• Java";
-    if (tech.contains("arduino")) return "• Arduino";
-    return "• Other";
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = _getCardTheme(context, widget.index);
-    final primaryTech = _getPrimaryTech(widget.app);
+    final primaryTech = widget.app.mainTech;
     final String cleanTitle = widget.app.title.replaceAll("Trelza ", "");
-    final List<String> tags =
-        widget.app.techStack
-            .split(RegExp(r'\s*\|\s*|\s*,\s*'))
-            .where((t) => t.trim().isNotEmpty)
-            .toList();
+    final List<String> tags = widget.app.techStack;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Tech stack chip background color (theme-aware)
@@ -868,10 +799,7 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  widget.app.screenshots.isNotEmpty
-                                      ? widget.app.screenshots[0]
-                                      : widget.app.bannerPath,
+                              imageUrl: widget.app.bannerPath,
                               memCacheWidth: 800,
                               fit: BoxFit.cover,
                               alignment: Alignment.topCenter,
@@ -919,40 +847,37 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                     ),
                   ),
                 ),
-                // Card Details: Expands naturally to fit content dynamically
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Title
-                        Text(
-                          cleanTitle,
-                          style: context.textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: context.colorScheme.onSurface,
-                          ),
-                          maxLines: 2, // Allow wrapping
-                          overflow: TextOverflow.ellipsis,
+                // Card Details: Fits content naturally
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Title
+                      Text(
+                        cleanTitle,
+                        style: context.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: context.colorScheme.onSurface,
                         ),
-                        const SizedBox(height: 4),
-                        // Description
-                        Text(
-                          widget.app.caption,
-                          style: context.textTheme.bodySmall?.copyWith(
-                            color: AppColors.getDescriptionText(context),
-                            fontSize: 11.5,
-                            height: 1.25,
-                          ),
-                          maxLines: 3, // Allow wrapping up to 3 lines
-                          overflow: TextOverflow.ellipsis,
+                        maxLines: 2, // Allow wrapping
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      // Description
+                      Text(
+                        widget.app.caption,
+                        style: context.textTheme.bodySmall?.copyWith(
+                          color: AppColors.getDescriptionText(context),
+                          fontSize: 11.5,
+                          height: 1.25,
                         ),
+                        maxLines: 3, // Allow wrapping up to 3 lines
+                        overflow: TextOverflow.ellipsis,
+                      ),
 
-                        // Spacer expands to align bottom content of equal-height cards
-                        const Spacer(),
-                        const SizedBox(height: 8),
+                      const SizedBox(height: 16),
 
                         // Tech Tags
                         Wrap(
@@ -1007,7 +932,6 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                       ],
                     ),
                   ),
-                ),
               ],
             ),
           ),

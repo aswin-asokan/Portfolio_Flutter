@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
 import 'package:portfolio/features/app_page/widgets/app_button.dart';
 import 'package:portfolio/features/app_page/widgets/app_icon.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
@@ -10,7 +11,7 @@ class AppPageHeader extends StatelessWidget {
     super.key,
     required this.title,
     required this.subTitle,
-    required this.buttonText,
+    required this.buttonType,
     required this.gitLink,
     required this.releaseLink,
     required this.device,
@@ -18,7 +19,7 @@ class AppPageHeader extends StatelessWidget {
   });
   final String title;
   final String subTitle;
-  final String buttonText;
+  final AppButtonType buttonType;
   final String gitLink;
   final String releaseLink;
   final AppAvailability device;
@@ -75,7 +76,7 @@ class AppPageHeader extends StatelessWidget {
               ],
             ),
             AppButton(
-              text: buttonText,
+              type: buttonType,
               gitLink: gitLink,
               releaseLink: releaseLink,
               path: imgPath,

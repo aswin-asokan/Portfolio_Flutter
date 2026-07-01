@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -8,16 +10,19 @@ AppModel gradgate = AppModel(
   title: "Gradgate",
   caption:
       "Minimal Interface that allows Students to Apply for Jobs and Internships.",
-  techStack: "Flutter | SQLite | sqflite",
+  techStack: ["Flutter", "SQLite", "sqflite"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.flutter,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/gradgate_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/gradgate%2Fgradgate_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/gradgate_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/GradGate",
   subtitle: "Easy Job & Internship Applications",
-  homeSummary: "Digitizing college gate passes. No more forging signatures to get out of campus early!",
+  homeSummary:
+      "Digitizing college gate passes. No more forging signatures to get out of campus early!",
   releaseLink: "https://github.com/aswin-asokan/GradGate/releases/tag/v1.5.0",
-  type: "download",
+  type: AppButtonType.download,
   devices: AppAvailability.androidDesktop,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/gradgate/gradgate1.png",
@@ -55,7 +60,7 @@ AppModel gradgate = AppModel(
     productType: "Campus Utilities",
     size: "Android: 56.8MB\nLinux: 20.2MB\nWindows: 14.7MB",
     languages: "English",
-    link: "https://github.com/aswin-asokan/GradGate",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/GradGate")],
   ),
   aboutProject:
       "GradGate originally started as an offline-capable app using a local MySQL server setup. While it worked, the architecture wasn't ideal for mobile-first platforms — requiring external servers or dependencies to function fully offline. During my internship period, I realized the need to simplify this and make it truly platform-native.\nThat's when I decided to migrate the entire backend to SQLite using sqflite, making it lightweight, self-contained, and Flutter-optimized. However, this shift exposed another layer of issues — the project’s old codebase lacked modular structure and clean practices, making migration more difficult than expected.\nThis challenge pushed me to refactor the entire codebase, structure models cleanly, separate logic from UI, and adopt better coding standards. The experience significantly improved my understanding of scalable Flutter development and the importance of maintainable architecture.",
@@ -74,9 +79,8 @@ AppModel gradgate = AppModel(
     "Used Github actions to generate a working Windows build without relying on Windows system",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter, SQLite",
-    tools: "Git, Github",
-    skills:
-        "Code Review Mindset, Self-Guided Refactoring, Learning Agility, Resilience",
+    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "SQLite")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    skills: [IconLabelModel(label: "Code Review Mindset"), IconLabelModel(label: "Self-Guided Refactoring"), IconLabelModel(label: "Learning Agility"), IconLabelModel(label: "Resilience")],
   ),
 );

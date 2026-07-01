@@ -1,280 +1,165 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
-import 'package:portfolio/features/pinterest/widgets/iframe_widget.dart';
 import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
 import 'package:portfolio/features/shared/widgets/corner_star.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
 import 'package:portfolio/features/shared/widgets/pixel_tooltip_bubble.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:dio/dio.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class AnilistSection extends StatelessWidget {
+class AnilistEntry {
+  final String title;
+  final String coverImage;
+  final int progress;
+  final int totalEpisodes;
+  final double? score;
+
+  AnilistEntry({
+    required this.title,
+    required this.coverImage,
+    required this.progress,
+    required this.totalEpisodes,
+    this.score,
+  });
+
+  factory AnilistEntry.fromJson(Map<String, dynamic> json) {
+    final media = json['media'] ?? {};
+    final titleObj = media['title'] ?? {};
+    final title = titleObj['english'] ?? titleObj['romaji'] ?? 'Unknown Anime';
+    final coverImage = media['coverImage']?['large'] ?? '';
+    final progress = json['progress'] ?? 0;
+    final totalEpisodes = media['episodes'] ?? 0;
+    final scoreValue = json['score'] != null ? (json['score'] as num).toDouble() : null;
+
+    return AnilistEntry(
+      title: title,
+      coverImage: coverImage,
+      progress: progress,
+      totalEpisodes: totalEpisodes,
+      score: scoreValue,
+    );
+  }
+}
+
+class AnilistList {
+  final String name;
+  final String status;
+  final List<AnilistEntry> entries;
+
+  AnilistList({
+    required this.name,
+    required this.status,
+    required this.entries,
+  });
+
+  factory AnilistList.fromJson(Map<String, dynamic> json) {
+    final entriesJson = json['entries'] as List? ?? [];
+    final entries = entriesJson.map((e) => AnilistEntry.fromJson(e)).toList();
+    return AnilistList(
+      name: json['name'] ?? '',
+      status: json['status'] ?? '',
+      entries: entries,
+    );
+  }
+}
+
+class AnilistSection extends StatefulWidget {
   final VoidCallback? onClosePressed;
   const AnilistSection({super.key, this.onClosePressed});
 
+  @override
+  State<AnilistSection> createState() => _AnilistSectionState();
+}
+
+class _AnilistSectionState extends State<AnilistSection> {
   final String _anilistUrl = "https://anilist.co/user/alphaknight29/animelist";
+  final Dio _dio = Dio();
+  List<AnilistList> _lists = [];
+  bool _isLoading = true;
+  String? _errorMessage;
 
-  String _getAnilistDataUrl() {
-    final htmlContent = '''
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #0b1622; /* AniList dark background */
-      color: #f0f3f6;
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-    }
-    /* Sleek custom scrollbars */
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 2px;
-    }
-    .header {
-      padding: 12px;
-      background: #152232;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1.5px solid #3db4f2;
-      object-fit: cover;
-    }
-    .user-info {
-      flex: 1;
-      min-width: 0;
-    }
-    .username {
-      font-size: 12px;
-      font-weight: 700;
-      margin: 0;
-      color: #3db4f2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .sub {
-      font-size: 9px;
-      color: #8596a5;
-      margin: 0;
-    }
-    .content {
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .section-title {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #8596a5;
-      margin-bottom: 6px;
-      border-left: 2.5px solid #3db4f2;
-      padding-left: 6px;
-    }
-    .list-container {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .anime-card {
-      display: flex;
-      gap: 8px;
-      background: #152232;
-      border-radius: 6px;
-      padding: 6px;
-      align-items: center;
-    }
-    .cover-img {
-      width: 30px;
-      height: 42px;
-      border-radius: 3px;
-      object-fit: cover;
-      background-color: #0b1622;
-    }
-    .anime-details {
-      flex: 1;
-      min-width: 0;
-    }
-    .anime-title {
-      font-size: 10px;
-      font-weight: 600;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #f0f3f6;
-    }
-    .progress-bar {
-      height: 3px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 1.5px;
-      margin-top: 5px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: #3db4f2;
-      border-radius: 1.5px;
-    }
-    .progress-text {
-      font-size: 8px;
-      color: #8596a5;
-      margin-top: 3px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .score {
-      color: #10b981;
-      font-weight: bold;
-    }
-    .loading {
-      text-align: center;
-      padding: 30px;
-      color: #8596a5;
-      font-size: 11px;
-    }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <img id="avatar" class="avatar" src="https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6924046-dfZfSooyG2pO.jpg" alt="Avatar">
-    <div class="user-info">
-      <h3 class="username">alphaknight29</h3>
-      <p class="sub">AniList Anime List</p>
-    </div>
-  </div>
-  
-  <div class="content" id="content">
-    <div class="loading">Loading list...</div>
-  </div>
+  @override
+  void initState() {
+    super.initState();
+    _fetchAnilistData();
+  }
 
-  <script>
-    const query = `
-      query (\$userName: String) {
-        MediaListCollection(userName: \$userName, type: ANIME) {
-          lists {
-            name
-            isCustomList
-            status
-            entries {
-              progress
-              score(format: POINT_10)
-              media {
-                title {
-                  english
-                  romaji
+  Future<void> _fetchAnilistData() async {
+    try {
+      setState(() {
+        _isLoading = true;
+        _errorMessage = null;
+      });
+
+      const query = r'''
+        query ($userName: String) {
+          MediaListCollection(userName: $userName, type: ANIME) {
+            lists {
+              name
+              isCustomList
+              status
+              entries {
+                progress
+                score(format: POINT_10)
+                media {
+                  title {
+                    english
+                    romaji
+                  }
+                  coverImage {
+                    large
+                  }
+                  episodes
                 }
-                coverImage {
-                  large
-                }
-                episodes
               }
             }
           }
         }
-      }
-    `;
+      ''';
 
-    fetch('https://graphql.anilist.co', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query: query,
-        variables: { userName: 'alphaknight29' }
-      })
-    })
-    .then(r => r.json())
-    .then(data => {
-      const collection = data.data.MediaListCollection;
-      if (!collection || !collection.lists) {
-        document.getElementById('content').innerHTML = '<div class="loading">Failed to load list.</div>';
-        return;
-      }
-      
-      let html = '';
-      const order = ['CURRENT', 'COMPLETED', 'PAUSED', 'DROPPED', 'PLANNING'];
-      const sortedLists = [...collection.lists].sort((a, b) => {
-        return order.indexOf(a.status) - order.indexOf(b.status);
-      });
-      
-      sortedLists.forEach(list => {
-        if (!list.entries || list.entries.length === 0) return;
-        
-        let listName = list.name;
-        if (list.status === 'CURRENT') listName = 'Watching';
-        
-        html += '<div class="list-container">';
-        html += '  <div class="section-title">' + listName + ' (' + list.entries.length + ')</div>';
-        
-        list.entries.slice(0, 15).forEach(entry => {
-          const title = entry.media.title.english || entry.media.title.romaji;
-          const cover = entry.media.coverImage.large;
-          const episodes = entry.media.episodes || '?';
-          const progress = entry.progress || 0;
-          const percent = episodes !== '?' ? (progress / episodes) * 100 : 0;
-          const scoreText = entry.score ? '<span class="score">' + entry.score + '/10</span>' : '';
-          
-          html += '  <div class="anime-card">';
-          html += '    <img class="cover-img" src="' + cover + '" alt="Cover">';
-          html += '    <div class="anime-details">';
-          html += '      <div class="anime-title">' + title + '</div>';
-          html += '      <div class="progress-bar">';
-          html += '        <div class="progress-fill" style="width: ' + percent + '%"></div>';
-          html += '      </div>';
-          html += '      <div class="progress-text">';
-          html += '        <span>Ep ' + progress + ' / ' + episodes + '</span>';
-          html += '        ' + scoreText;
-          html += '      </div>';
-          html += '    </div>';
-          html += '  </div>';
+      final response = await _dio.post(
+        'https://graphql.anilist.co',
+        data: {
+          'query': query,
+          'variables': {'userName': 'alphaknight29'},
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final collection = response.data['data']['MediaListCollection'];
+        final List<dynamic> listsJson = collection['lists'] ?? [];
+        final parsedLists = listsJson.map((l) => AnilistList.fromJson(l)).toList();
+
+        // Sort lists according to priority order
+        final order = ['CURRENT', 'COMPLETED', 'PAUSED', 'DROPPED', 'PLANNING'];
+        parsedLists.sort((a, b) {
+          final aIdx = order.indexOf(a.status);
+          final bIdx = order.indexOf(b.status);
+          final aVal = aIdx == -1 ? 99 : aIdx;
+          final bVal = bIdx == -1 ? 99 : bIdx;
+          return aVal.compareTo(bVal);
         });
-        
-        if (list.entries.length > 15) {
-          html += '  <div style="text-align:center;font-size:9px;color:#8596a5;padding:6px 0;">+ ' + (list.entries.length - 15) + ' more. Click button to view all.</div>';
+
+        if (mounted) {
+          setState(() {
+            _lists = parsedLists;
+            _isLoading = false;
+          });
         }
-        
-        html += '</div>';
-      });
-      
-      document.getElementById('content').innerHTML = html;
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById('content').innerHTML = '<div class="loading">Error loading list from AniList.</div>';
-    });
-  </script>
-</body>
-</html>
-''';
-    return "data:text/html;charset=utf-8,${Uri.encodeComponent(htmlContent)}";
+      } else {
+        throw Exception('Failed to load AniList data');
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.toString();
+        });
+      }
+    }
   }
 
   Future<void> _launchAnilist() async {
@@ -327,12 +212,12 @@ class AnilistSection extends StatelessWidget {
               }
             },
           ),
-          if (onClosePressed != null)
+          if (widget.onClosePressed != null)
             Positioned(
               top: 16,
               right: 16,
               child: IconButton(
-                onPressed: onClosePressed,
+                onPressed: widget.onClosePressed,
                 icon: const Icon(
                   Icons.close_rounded,
                   color: Colors.white,
@@ -632,11 +517,12 @@ class AnilistSection extends StatelessWidget {
               width: AppConstants.pinterestMockupBorderWidth,
             ),
             boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
+              if (MediaQuery.sizeOf(context).width >= AppConstants.pinterestMobileBreakpoint)
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
             ],
           ),
           clipBehavior: Clip.antiAlias,
@@ -646,10 +532,73 @@ class AnilistSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                 AppConstants.pinterestMockupInnerRadius,
               ),
-              child: IFrameWidget(
-                viewId: "anilist-profile-view",
-                url: _getAnilistDataUrl(),
-                placeholder: _buildAnilistPlaceholder(context),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: _isLoading
+                        ? _buildAnilistPlaceholder(context)
+                        : _errorMessage != null
+                            ? _buildErrorWidget(context, isDark, _errorMessage!, _fetchAnilistData)
+                            : _buildAnilistFeed(context),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            deviceBg.withValues(alpha: 0.0),
+                            deviceBg.withValues(alpha: 0.85),
+                            deviceBg,
+                          ],
+                          stops: const [0.0, 0.35, 1.0],
+                        ),
+                      ),
+                      padding: const EdgeInsets.only(
+                        top: AppConstants.spaceM,
+                        bottom: AppConstants.spaceS + 20.0,
+                      ),
+                      child: Center(
+                        child: InkWell(
+                          onTap: _launchAnilist,
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusS,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppConstants.spaceM,
+                              vertical: AppConstants.spaceXS + 2.0,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text(
+                                  "Visit Profile, View All",
+                                  style: TextStyle(
+                                    color: Color(0xFF3DB4F2),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: AppConstants.fontS,
+                                    letterSpacing: 0.3,
+                                  ),
+                                ),
+                                const SizedBox(width: AppConstants.spaceXS),
+                                const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Color(0xFF3DB4F2),
+                                  size: AppConstants.fontXS,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -802,6 +751,289 @@ class AnilistSection extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildAnilistFeed(BuildContext context) {
+    const darkBg = Color(0xFF0B1622);
+    const cardBg = Color(0xFF152232);
+    const primaryBlue = Color(0xFF3DB4F2);
+
+    final watchingLists = _lists.where((l) => l.status == 'CURRENT').toList();
+    if (watchingLists.isEmpty) {
+      return Container(
+        color: darkBg,
+        child: const Center(
+          child: Text(
+            "No active watching list found",
+            style: TextStyle(color: Color(0xFF8596A5), fontSize: 10),
+          ),
+        ),
+      );
+    }
+
+    final list = watchingLists.first;
+
+    return Container(
+      color: darkBg,
+      child: Column(
+        children: [
+          // Header (Avatar + Username + Subtitle)
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              color: cardBg,
+              border: Border(
+                bottom: BorderSide(color: Colors.white10, width: 0.5),
+              ),
+            ),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: CachedNetworkImage(
+                    imageUrl: "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6924046-dfZfSooyG2pO.jpg",
+                    width: 32,
+                    height: 32,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(color: Colors.grey[800]),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "alphaknight29",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: primaryBlue,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      const Text(
+                        "AniList Anime List",
+                        style: TextStyle(
+                          fontSize: 9,
+                          color: Color(0xFF8596A5),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          // List content
+          Expanded(
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 80), // Padding-bottom to prevent cover by bottom overlays
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                if (list.entries.isEmpty) return const SizedBox();
+                
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Section Title
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 6.0, top: 4.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 2.5,
+                            height: 12,
+                            color: primaryBlue,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            "Watching (${list.entries.length})",
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF8596A5),
+                              letterSpacing: 0.8,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                    // List items (up to 15 entries)
+                    ...list.entries.take(15).map((entry) => _buildAnimeCard(entry)),
+                    
+                    // "+ X more" message
+                    if (list.entries.length > 15)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6.0),
+                        child: Center(
+                          child: Text(
+                            "+ ${list.entries.length - 15} more. Click button to view all.",
+                            style: const TextStyle(
+                              fontSize: 9,
+                              color: Color(0xFF8596A5),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnimeCard(AnilistEntry entry) {
+    const cardBg = Color(0xFF152232);
+    const primaryBlue = Color(0xFF3DB4F2);
+    
+    final episodes = entry.totalEpisodes > 0 ? entry.totalEpisodes.toString() : '?';
+    final progress = entry.progress;
+    final double percent = entry.totalEpisodes > 0 ? (progress / entry.totalEpisodes) : 0.0;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 6.0),
+      padding: const EdgeInsets.all(6.0),
+      decoration: BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(3),
+            child: CachedNetworkImage(
+              imageUrl: entry.coverImage,
+              width: 30,
+              height: 42,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => Container(color: const Color(0xFF0B1622)),
+              errorWidget: (context, url, error) => Container(
+                color: const Color(0xFF0B1622),
+                child: const Icon(Icons.broken_image, size: 12, color: Colors.grey),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  entry.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFF0F3F6),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                // Progress bar
+                Container(
+                  height: 3,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(1.5),
+                  ),
+                  child: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: percent.clamp(0.0, 1.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: primaryBlue,
+                        borderRadius: BorderRadius.circular(1.5),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Ep $progress / $episodes",
+                      style: const TextStyle(
+                        fontSize: 8,
+                        color: Color(0xFF8596A5),
+                      ),
+                    ),
+                    if (entry.score != null && entry.score! > 0)
+                      Text(
+                        "${entry.score!.toStringAsFixed(0)}/10",
+                        style: const TextStyle(
+                          fontSize: 8,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF10B981),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorWidget(
+    BuildContext context,
+    bool isDark,
+    String message,
+    VoidCallback onRetry,
+  ) {
+    const primaryBlue = Color(0xFF3DB4F2);
+    return Container(
+      color: const Color(0xFF0B1622),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.error_outline_rounded,
+              color: Colors.redAccent,
+              size: 28,
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Failed to load anime list",
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: onRetry,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primaryBlue,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: const Text("Retry", style: TextStyle(fontSize: 8.5, fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ),
       ),
     );
   }

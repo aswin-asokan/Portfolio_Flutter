@@ -3,40 +3,9 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/features/app_page/widgets/share_builder.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/widgets/custom_button.dart';
-import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum AppButtonEnum {
-  download(icon: Symbols.download, text: "Download"),
-  website(icon: SimpleIcons.googlechrome, text: "Website"),
-  github(icon: SimpleIcons.github, text: "GitHub"),
-  playstore(icon: SimpleIcons.googleplay, text: "Play Store"),
-  appstore(icon: SimpleIcons.appstore, text: "App Store");
-
-  const AppButtonEnum({required this.icon, required this.text});
-
-  final IconData icon;
-  final String text;
-
-  static AppButtonEnum? fromText(String text) {
-    final lower = text.toLowerCase().trim();
-    if (lower == 'web' || lower == 'website') return AppButtonEnum.website;
-    if (lower == 'github' || lower == 'git') return AppButtonEnum.github;
-    if (lower == 'playstore' ||
-        lower == 'play store' ||
-        lower == 'google play' ||
-        lower == 'googleplay') {
-      return AppButtonEnum.playstore;
-    }
-    if (lower == 'appstore' ||
-        lower == 'app store' ||
-        lower == 'apple app store' ||
-        lower == 'apple') {
-      return AppButtonEnum.appstore;
-    }
-    return AppButtonEnum.download;
-  }
-}
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
 
 void _launch(String urlString) async {
   final url = Uri.parse(urlString);
@@ -50,29 +19,28 @@ void _launch(String urlString) async {
 class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
-    required this.text,
+    required this.type,
     required this.gitLink,
     required this.releaseLink,
     required this.path,
     required this.title,
   });
-  final String text;
+  final AppButtonType type;
   final String gitLink;
   final String releaseLink;
   final String path;
   final String title;
   @override
   Widget build(BuildContext context) {
-    final appButton = AppButtonEnum.fromText(text.toLowerCase());
     return Row(
       spacing: 8,
       children: [
         CustomButton.outline(
-          label: (appButton?.text) ?? "Download",
+          label: type.text,
           onPress: () {
             _launch(releaseLink.isEmpty ? gitLink : releaseLink);
           },
-          prefixIcon: Icon((appButton?.icon) ?? Symbols.download),
+          prefixIcon: Icon(type.icon),
         ),
         TextButton(
           onPressed: () {

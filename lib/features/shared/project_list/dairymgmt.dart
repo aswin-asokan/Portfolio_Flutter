@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,17 +9,20 @@ AppModel dairyManagement = AppModel(
   id: "dairymanagement",
   title: "Dairy Management",
   caption: "A Simple Java App for Managing Sales, Purchases and Staffs.",
-  techStack: "Java | MySQL",
+  techStack: ["Java", "MySQL"],
+  mainTech: "• Java",
+  projectType: ProjectType.tools,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/dairymanagement_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymanagement_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/dairy_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/DairyManagement-App",
   subtitle: "Streamlined Sales, Purchases, Staff.",
-  homeSummary: "Moo-ving dairy farming into the digital age. Less time on paperwork, more time for the cows.",
+  homeSummary:
+      "Because milk may spoil, but your records shouldn't. Manage sales, purchases, staff, reports, and bill printing from one simple Java desktop dashboard.",
   releaseLink:
       "https://github.com/aswin-asokan/DairyManagement-App/releases/tag/v1.0.0",
-  type: "download",
+  type: AppButtonType.download,
   devices: AppAvailability.desktop,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/dairymgmt/dairymgmt1.png",
@@ -44,7 +49,12 @@ AppModel dairyManagement = AppModel(
     productType: "Business Tools",
     size: "2.76MB",
     languages: "English",
-    link: "https://github.com/aswin-asokan/DairyManagement-App",
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/DairyManagement-App",
+      ),
+    ],
   ),
   aboutProject:
       "This project was developed during my second-year internship as part of my Diploma in Computer Science. It was my first real exposure to Java, MySQL, and the NetBeans IDE. As a solo project, I was responsible for everything—from database design to UI and business logic.\nBuilding this app was not just a technical exercise but a defining moment in my journey. It gave me confidence and laid the foundation for my future projects in app development.",
@@ -58,8 +68,16 @@ AppModel dairyManagement = AppModel(
     "Gained practical experience in building, debugging, and maintaining a desktop app",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Java, MySQL",
-    tools: "Netbeans, Git, Github",
-    skills: "Independent Problem Solving, Persistence, Tool Familiarity",
+    techStack: [IconLabelModel(label: "Java"), IconLabelModel(label: "MySQL")],
+    tools: [
+      IconLabelModel(label: "Netbeans"),
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "Github"),
+    ],
+    skills: [
+      IconLabelModel(label: "Independent Problem Solving"),
+      IconLabelModel(label: "Persistence"),
+      IconLabelModel(label: "Tool Familiarity"),
+    ],
   ),
 );

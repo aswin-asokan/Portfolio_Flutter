@@ -4,12 +4,12 @@ class ProjectInfo {
   final List<InfoModel> items;
 
   ProjectInfo({
-    required String techStack,
-    required String tools,
-    required String skills,
+    required List<IconLabelModel> techStack,
+    required List<IconLabelModel> tools,
+    required List<IconLabelModel> skills,
   }) : items = [
-         InfoModel(title: "Tech Stack", content: techStack),
-         InfoModel(title: "Tools & Services", content: tools),
-         InfoModel(title: "Skills", content: skills),
+         InfoModel(title: "Tech Stack", iconLabels: techStack),
+         InfoModel(title: "Tools & Services", iconLabels: tools),
+         InfoModel(title: "Skills", iconLabels: skills),
        ];
 }

@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,16 +9,19 @@ AppModel flysoftFloorplan = AppModel(
   id: "floorplan",
   title: "Flysoft Floor Plan",
   caption: "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
-  techStack: "Internship | Flutter | JSON",
+  techStack: ["Internship", "Flutter", "JSON"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.flutter,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/floorplan_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Ffloorplan_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/internship_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
   subtitle: "Restaurant Layouts, Simplified",
-  homeSummary: "Playing The Sims, but for restaurant seating. Drag, drop, and optimize those tables!",
+  homeSummary:
+      "Playing The Sims, but for restaurant seating. Drag, drop, and optimize those tables!",
   releaseLink: "",
-  type: "github",
+  type: AppButtonType.github,
   devices: AppAvailability.all,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/floorplan/flysoft_floorplan1.png",
@@ -41,7 +46,7 @@ AppModel flysoftFloorplan = AppModel(
     productType: "Business Tools",
     size: "NIL",
     languages: "English, German, Chinese",
-    link: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/Flysoft_Floorplan/")],
   ),
   aboutProject:
       "During my internship at Flysoft, I worked on the Floor Plan Builder project where I focused on developing critical UI and interaction components like the boundary wall canvas and table customization system. These features were challenging but crucial, as they involved custom widget creation and deep understanding of Flutter’s rendering system.\nThis was my first real-world exposure to working within a structured software team using Jira, Bitbucket, and Confluence. I handled both frontend logic and user experience improvements, and helped deliver version 1.0.6. It was a great hands-on experience in building a scalable, cross-platform Flutter application from the ground up.",
@@ -64,9 +69,8 @@ AppModel flysoftFloorplan = AppModel(
     "Applied unit testing, logging, and clean code principles for a production-grade build",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter, JSON",
-    tools: "Confluence, Jira, Bitbucket, Git, Genymotion",
-    skills:
-        "Project Planning, Problem Solving, Collaboration & Communication, Time Management, Tool Familiarity, Clean code",
+    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "JSON")],
+    tools: [IconLabelModel(label: "Confluence"), IconLabelModel(label: "Jira"), IconLabelModel(label: "Bitbucket"), IconLabelModel(label: "Git"), IconLabelModel(label: "Genymotion")],
+    skills: [IconLabelModel(label: "Project Planning"), IconLabelModel(label: "Problem Solving"), IconLabelModel(label: "Collaboration & Communication"), IconLabelModel(label: "Time Management"), IconLabelModel(label: "Tool Familiarity"), IconLabelModel(label: "Clean code")],
   ),
 );

@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,17 +9,20 @@ AppModel nyaytra = AppModel(
   id: "nyaytra",
   title: "Nyaytra",
   caption: "BERT Powered Indian Legal Document Summarizer & Assistant.",
-  techStack: "BERT | T5 | Gemini Api",
+  techStack: ["BERT", "T5", "Gemini Api"],
+    mainTech: "• Python",
+    projectType: ProjectType.aiMl,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/nyaytra_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnyaytra_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/nayaytra_logo.jpeg",
   gitLink:
       "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
   subtitle: "BERT-driven Legal Insights for India",
-  homeSummary: "An extra pair of AI eyes for the visually impaired. It's like a smart superpower in your pocket!",
+  homeSummary:
+      "An extra pair of AI eyes for the visually impaired. It's like a smart superpower in your pocket!",
   releaseLink: "",
-  type: "github",
+  type: AppButtonType.github,
   devices: AppAvailability.codeOnly,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/nyaytra/nyaytra1.png",
@@ -42,8 +47,7 @@ AppModel nyaytra = AppModel(
     productType: "AI Assistant",
     size: "NIL",
     languages: "English",
-    link:
-        "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer")],
   ),
   aboutProject:
       "Nyaytra was inspired by a personal experience—when I lost my phone and felt overwhelmed trying to understand the legal steps to report and protect myself. I realized how hard it is for an average person to interpret legal documents. That insight led to the creation of Nyaytra.\nAs a part of our mini project during BTech CSE, I worked with a team where I handled the project management—assigning tasks, ensuring clear communication, and driving progress. My goal was to build something that genuinely helps people interact with law in a simple, tech-driven way.",
@@ -58,9 +62,8 @@ AppModel nyaytra = AppModel(
     "Built an end-to-end NLP pipeline from document input to chatbot output",
   ],
   projectInfo: ProjectInfo(
-    techStack: "React, BERT, T5, Gemini Api",
-    tools: "Git, Github, Hugging face, Overleaf",
-    skills:
-        "Problem Identification & Ideation, Project Management, Communication, Time Management",
+    techStack: [IconLabelModel(label: "React"), IconLabelModel(label: "BERT"), IconLabelModel(label: "T5"), IconLabelModel(label: "Gemini Api")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github"), IconLabelModel(label: "Hugging face"), IconLabelModel(label: "Overleaf")],
+    skills: [IconLabelModel(label: "Problem Identification & Ideation"), IconLabelModel(label: "Project Management"), IconLabelModel(label: "Communication"), IconLabelModel(label: "Time Management")],
   ),
 );

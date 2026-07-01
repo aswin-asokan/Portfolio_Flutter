@@ -146,7 +146,9 @@ class _LoadingView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  AppAssets.logoLight,
+                  Theme.of(context).brightness == Brightness.dark
+                      ? "assets/images/logo/dark_logo.png"
+                      : "assets/images/logo/light_logo.png",
                   height: 60,
                   cacheWidth: 200,
                   fit: BoxFit.contain,

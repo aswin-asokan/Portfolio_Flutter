@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,18 +9,21 @@ AppModel pocketDresses = AppModel(
   id: "pocketdress",
   title: "Pocket Dresses",
   caption: "Charming Shopping App that Offers a Curated Selection of Dresses.",
-  techStack: "Flutter | Hive",
+  techStack: ["Flutter", "Hive"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.flutter,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/pocket_dress_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocket_dress_banner.webp?alt=media",
 
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/pocketdress_logo.png",
 
   gitLink: "https://github.com/aswin-asokan/FlutterFly/",
   subtitle: "Your Perfect Dress, Curated.",
-  homeSummary: "Window shopping, but in your pocket. Because your closet definitely needs one more dress.",
+  homeSummary:
+      "Window shopping, but in your pocket. Because your closet definitely needs one more dress.",
   releaseLink: "https://github.com/aswin-asokan/FlutterFly/releases/tag/v1.0.1",
-  type: "download",
+  type: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress1.png",
@@ -50,7 +55,7 @@ AppModel pocketDresses = AppModel(
     productType: "Fashion & Lifestyle",
     size: "22.8MB",
     languages: "English",
-    link: "https://github.com/aswin-asokan/FlutterFly/",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/FlutterFly/")],
   ),
   aboutProject:
       "Pocket Dresses was my submission for the Flutter Fly Bootcamp, where participants were asked to build a real-world style app using Flutter. I chose to develop a minimalist shopping app focused on women’s dresses, combining design, logic, and local storage techniques.\nI’m proud that this project helped me become one of the top 10 participants in the workshop. The experience pushed me out of my comfort zone and gave me hands-on insight into what it takes to build production-like apps using Flutter.",
@@ -64,8 +69,8 @@ AppModel pocketDresses = AppModel(
     "Made it to the top 10 finalists of Flutter Fly Bootcamp",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter, Hive",
-    tools: "Git, Github",
-    skills: "UI/UX Awareness, Goal-Oriented Execution",
+    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Hive")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    skills: [IconLabelModel(label: "UI/UX Awareness"), IconLabelModel(label: "Goal-Oriented Execution")],
   ),
 );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
@@ -37,7 +38,7 @@ class AppPage extends StatefulWidget {
   final String iconPath;
   final List<String> screenshots;
   final String gitLink;
-  final String type;
+  final AppButtonType type;
   final String releaseLink;
   final String aboutApp;
   final List<String> features;
@@ -130,7 +131,7 @@ class _AppPageState extends State<AppPage> {
                       child: AppPageHeader(
                         title: widget.title,
                         subTitle: widget.subtitle,
-                        buttonText: widget.type,
+                        buttonType: widget.type,
                         gitLink: widget.gitLink,
                         releaseLink: widget.releaseLink,
                         device: widget.devices,
