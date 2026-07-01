@@ -10,8 +10,8 @@ AppModel taskevo = AppModel(
   title: "TasksEVO",
   caption: "Supercharge your Productivity and Stay Organized.",
   techStack: ["Flutter", "Hive", "Flutter Quill"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.tools,
+  mainTech: "• Flutter",
+  projectType: ProjectType.tools,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo1_banner.webp?alt=media",
 
@@ -20,7 +20,7 @@ AppModel taskevo = AppModel(
   gitLink: "https://github.com/aswin-asokan/taskevo",
   subtitle: "Boost Productivity, Stay Organized.",
   homeSummary:
-      "A task manager that actually helps you get things done, instead of just reminding you that you're procrastinating.",
+      "A productivity app that works even when your Wi-Fi doesn't. Manage tasks, take rich notes, and stay organized—all without creating an account.",
   releaseLink: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
   type: AppButtonType.download,
   devices: AppAvailability.androidWeb,
@@ -52,7 +52,12 @@ AppModel taskevo = AppModel(
     productType: "productType",
     size: "21.9MB",
     languages: "Englsih",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/taskevo")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/taskevo",
+      ),
+    ],
   ),
   aboutProject:
       "I started TasksEVO during a 1-week internship at LaxmiInfotek, where I was first introduced to Flutter. Back then, the app was basic, focusing only on adding tasks. However, it laid the foundation for my journey into Flutter development.\nOver time, I transformed TasksEVO into a multi-functional productivity app by adding subtasks, due dates, notes, and theme support. A major turning point came when Flutter Quill broke after an update. This taught me the importance of tracking dependencies and led to my decision to rebuild the app from scratch, which eventually helped inspire the PeekPub project.",
@@ -68,8 +73,15 @@ AppModel taskevo = AppModel(
         "Gained confidence to take a simple task list app and evolve it into a scalable productivity tool",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Hive"), IconLabelModel(label: "Flutter Quill")],
+    techStack: [
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "Hive"),
+      IconLabelModel(label: "Flutter Quill"),
+    ],
     tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
-    skills: [IconLabelModel(label: "Iteration & Refactoring"), IconLabelModel(label: "Growth Mindset")],
+    skills: [
+      IconLabelModel(label: "Iteration & Refactoring"),
+      IconLabelModel(label: "Growth Mindset"),
+    ],
   ),
 );

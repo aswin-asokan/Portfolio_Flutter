@@ -10,8 +10,8 @@ AppModel eazygoauth = AppModel(
   title: "EazyGo Authority",
   caption: "Designed for Authorities to Manage eazyGo Reports.",
   techStack: ["Flutter", "Firebase", "OSM"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.flutter,
+  mainTech: "• Flutter",
+  projectType: ProjectType.flutter,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2FeazygoAuth_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel eazygoauth = AppModel(
   gitLink: "https://github.com/aswin-asokan/eazyGo_Auth",
   subtitle: "Streamlined eazyGo Report Management",
   homeSummary:
-      "The conductor's best friend. Validate tickets with a tap instead of a hole puncher!",
+      "A dashboard built for action, not paperwork. View citizen reports on a live map, resolve issues, and keep users updated—all from one streamlined interface.",
   releaseLink: "https://eazygo-375211.web.app/#/",
   type: AppButtonType.website,
   devices: AppAvailability.website,
@@ -46,7 +46,12 @@ AppModel eazygoauth = AppModel(
     productType: "Civic Tech / Governance",
     size: "NIL",
     languages: "English",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/eazyGo_Auth")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/eazyGo_Auth",
+      ),
+    ],
   ),
   aboutProject:
       "EazyGo-Authority was developed as the main project for my Diploma in Computer Science. While EazyGo mobile was a team-based initiative, I chose to build the authority-side system entirely on my own to expand the project’s scope and integrate additional functionality.\nThis gave me the opportunity to explore Flutter Web, build a system that complements a mobile counterpart, and experience full-stack coordination between two independently developed applications.",
@@ -62,8 +67,19 @@ AppModel eazygoauth = AppModel(
     "Understood the nuances of cross-platform design and rendering issues",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Firebase"), IconLabelModel(label: "OSM")],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github"), IconLabelModel(label: "Notion")],
-    skills: [IconLabelModel(label: "Independence & Ownership"), IconLabelModel(label: "Learning by Doing")],
+    techStack: [
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "Firebase"),
+      IconLabelModel(label: "OSM"),
+    ],
+    tools: [
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "Github"),
+      IconLabelModel(label: "Notion"),
+    ],
+    skills: [
+      IconLabelModel(label: "Independence & Ownership"),
+      IconLabelModel(label: "Learning by Doing"),
+    ],
   ),
 );

@@ -6,8 +6,9 @@ import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
-import 'package:portfolio/features/shared/project_list/project_list.dart';
+import 'package:portfolio/features/shared/project_list/featured_projects.dart';
 import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
+import 'package:portfolio/responsive/responsive.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class Projects extends StatefulWidget {
@@ -19,18 +20,53 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
+  late final ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _precacheProjectImages();
     });
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollLeft() {
+    if (!_scrollController.hasClients) return;
+    final double target = (_scrollController.offset - 266.0).clamp(
+      0.0,
+      _scrollController.position.maxScrollExtent,
+    );
+    _scrollController.animateTo(
+      target,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _scrollRight() {
+    if (!_scrollController.hasClients) return;
+    final double target = (_scrollController.offset + 266.0).clamp(
+      0.0,
+      _scrollController.position.maxScrollExtent,
+    );
+    _scrollController.animateTo(
+      target,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   Future<void> _precacheProjectImages() async {
     try {
       final List<String> imageUrls = [];
-      for (final app in projects) {
+      for (final app in featuredProjects) {
         if (app.screenshots.isNotEmpty) {
           imageUrls.add(app.screenshots[0]);
         }
@@ -113,39 +149,37 @@ class _ProjectsState extends State<Projects> {
           ),
           const SizedBox(height: 24),
           if (widget.forcedWidth != null)
-            Expanded(child: _buildCardsRow(context, widget.forcedWidth!))
+            Expanded(child: _buildCardsContainer(context))
           else
-            LayoutBuilder(
-              builder:
-                  (context, constraints) =>
-                      _buildCardsRow(context, constraints.maxWidth),
-            ),
+            _buildCardsContainer(context),
         ],
       ),
     );
   }
 
-  Widget _buildCardsRow(BuildContext context, double availableWidth) {
-    final double spacing = 16.0;
-    final double cardWidth = 250.0;
-
-    int fitCount = (availableWidth / (cardWidth + spacing)).ceil() + 1;
-    fitCount = fitCount.clamp(1, projects.length);
+  Widget _buildCardsContainer(BuildContext context) {
+    final Widget content =
+        widget.forcedWidth != null
+            ? _buildCardsRow(context, widget.forcedWidth!)
+            : LayoutBuilder(
+              builder:
+                  (context, constraints) =>
+                      _buildCardsRow(context, constraints.maxWidth),
+            );
 
     return Stack(
+      fit: StackFit.passthrough,
       children: [
-        ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: const NeverScrollableScrollPhysics(),
-            child: Row(
-              spacing: spacing,
-              children: [
-                for (int i = 0; i < fitCount; i++)
-                  _ProjectCard(app: projects[i], index: i, width: cardWidth),
-                SizedBox(width: spacing),
-              ],
+        content,
+
+        Positioned(
+          left: 0,
+          top: 0,
+          bottom: 0,
+          child: Center(
+            child: _ScrollButton(
+              icon: Icons.chevron_left,
+              onPressed: _scrollLeft,
             ),
           ),
         ),
@@ -153,24 +187,89 @@ class _ProjectsState extends State<Projects> {
           right: 0,
           top: 0,
           bottom: 0,
-          width: 40,
-          child: IgnorePointer(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    context.colorScheme.surface.withValues(alpha: 0.0),
-                    context.colorScheme.surface.withValues(alpha: 0.85),
-                    context.colorScheme.surface,
-                  ],
-                ),
-              ),
+          child: Center(
+            child: _ScrollButton(
+              icon: Icons.chevron_right,
+              onPressed: _scrollRight,
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildCardsRow(BuildContext context, double availableWidth) {
+    final double spacing = 16.0;
+    final double cardWidth = 250.0;
+
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          spacing: spacing,
+          children: [
+            for (int i = 0; i < featuredProjects.length; i++)
+              _ProjectCard(
+                app: featuredProjects[i],
+                index: i,
+                width: cardWidth,
+              ),
+            SizedBox(width: spacing),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ScrollButton extends StatefulWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const _ScrollButton({required this.icon, required this.onPressed});
+
+  @override
+  State<_ScrollButton> createState() => _ScrollButtonState();
+}
+
+class _ScrollButtonState extends State<_ScrollButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          color:
+              _isHovered
+                  ? context.colorScheme.primaryContainer
+                  : context.colorScheme.surface.withValues(alpha: 0.8),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: IconButton(
+          onPressed: widget.onPressed,
+          icon: Icon(
+            widget.icon,
+            color:
+                _isHovered
+                    ? context.colorScheme.onPrimaryContainer
+                    : context.colorScheme.onSurface,
+          ),
+          iconSize: 24,
+        ),
+      ),
     );
   }
 }

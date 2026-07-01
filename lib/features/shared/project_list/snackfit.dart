@@ -10,8 +10,8 @@ AppModel snackfit = AppModel(
   title: "SnackFit",
   caption: "Serve us your look! Because you're what you eat!",
   techStack: ["Flutter", "Gemini", "CLIP"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.aiMl,
+  mainTech: "• Flutter",
+  projectType: ProjectType.aiMl,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel snackfit = AppModel(
   gitLink: "https://github.com/aswin-asokan/snackfit",
   subtitle: "Serve us your look! Because you're what you eat!",
   homeSummary:
-      "Counting calories so you can feel slightly less guilty about that midnight pizza slice.",
+      "Because choosing dinner is hard—but your outfit already made the decision. Snap a photo, get roasted by AI, discover your edible twin, and find where to eat it nearby.",
   releaseLink: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
   type: AppButtonType.download,
   devices: AppAvailability.android,
@@ -55,7 +55,12 @@ AppModel snackfit = AppModel(
     productType: "Life style",
     size: "22.6MB",
     languages: "English",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/snackfit")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/snackfit",
+      ),
+    ],
   ),
   aboutProject:
       "This app was created as part of TinkerHub Useless Projects 2.0 — a hackathon for building delightfully pointless yet technically challenging creations. The team included:\n- Najiya Nazrin CN – AI Developer\n- Aswin Asokan – App Developer\nThe core idea was to combine fashion recognition with food image matching, wrap it in humor, and still make it technically solid enough to deploy and expand in the future.",
@@ -69,8 +74,21 @@ AppModel snackfit = AppModel(
     "Gained experience in working within tight hackathon timelines and constraints.",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Python"), IconLabelModel(label: "SQLite")],
-    tools: [IconLabelModel(label: "Gemini AI API"), IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
-    skills: [IconLabelModel(label: "AI Model Integration in Mobile Apps"), IconLabelModel(label: "Machine Learning Dataset Preparation"), IconLabelModel(label: "Collaboration & Communication"), IconLabelModel(label: "Time Management")],
+    techStack: [
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "Python"),
+      IconLabelModel(label: "SQLite"),
+    ],
+    tools: [
+      IconLabelModel(label: "Gemini AI API"),
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "Github"),
+    ],
+    skills: [
+      IconLabelModel(label: "AI Model Integration in Mobile Apps"),
+      IconLabelModel(label: "Machine Learning Dataset Preparation"),
+      IconLabelModel(label: "Collaboration & Communication"),
+      IconLabelModel(label: "Time Management"),
+    ],
   ),
 );

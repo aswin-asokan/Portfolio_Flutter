@@ -10,8 +10,8 @@ AppModel systemMonitor = AppModel(
   title: "System Monitor",
   caption: "Keep an Eye on Your Server’s Performance Effortlessly.",
   techStack: ["Flutter", "API call"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.tools,
+  mainTech: "• Flutter",
+  projectType: ProjectType.tools,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsystem_monitor_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel systemMonitor = AppModel(
   gitLink: "https://github.com/aswin-asokan/System-Monitor",
   subtitle: "Effortless Server Monitoring.",
   homeSummary:
-      "Obsessively tracking your PC's CPU temperature from your phone. Nerd out in style.",
+      "Your server's health, without the clutter. Connect to any JSON API and monitor live system metrics through clean, interactive visualizations.",
   releaseLink:
       "https://github.com/aswin-asokan/System-Monitor/releases/tag/v1.0.0",
   type: AppButtonType.download,
@@ -50,7 +50,12 @@ AppModel systemMonitor = AppModel(
     productType: "System Utilities",
     size: "21.4MB",
     languages: "English",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/System-Monitor")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/System-Monitor",
+      ),
+    ],
   ),
   aboutProject:
       "This app was built as part of my internship selection task at Flysoft. The company provided a live API link that exposed server system stats, and the task was to create a Flutter app that could read and display the data.\nEven though it was a small project, it became a pivotal moment in my journey—I got selected, and that internship turned into one of the best learning experiences of my academic career. The task helped me understand practical API integration and how to visualize live data effectively.",
@@ -67,6 +72,10 @@ AppModel systemMonitor = AppModel(
   projectInfo: ProjectInfo(
     techStack: [IconLabelModel(label: "Flutter")],
     tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
-    skills: [IconLabelModel(label: "Quick Learning"), IconLabelModel(label: "Deadline Focused"), IconLabelModel(label: "Self-Confidence")],
+    skills: [
+      IconLabelModel(label: "Quick Learning"),
+      IconLabelModel(label: "Deadline Focused"),
+      IconLabelModel(label: "Self-Confidence"),
+    ],
   ),
 );

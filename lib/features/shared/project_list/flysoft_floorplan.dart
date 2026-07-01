@@ -10,8 +10,8 @@ AppModel flysoftFloorplan = AppModel(
   title: "Flysoft Floor Plan",
   caption: "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
   techStack: ["Internship", "Flutter", "JSON"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.flutter,
+  mainTech: "• Flutter",
+  projectType: ProjectType.flutter,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Ffloorplan_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel flysoftFloorplan = AppModel(
   gitLink: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
   subtitle: "Restaurant Layouts, Simplified",
   homeSummary:
-      "Playing The Sims, but for restaurant seating. Drag, drop, and optimize those tables!",
+      "Sketch it before you shift it. Create interactive restaurant floor plans, customize tables, and manage multiple layouts with an intuitive drag-and-drop interface.",
   releaseLink: "",
   type: AppButtonType.github,
   devices: AppAvailability.all,
@@ -46,7 +46,12 @@ AppModel flysoftFloorplan = AppModel(
     productType: "Business Tools",
     size: "NIL",
     languages: "English, German, Chinese",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/Flysoft_Floorplan/")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
+      ),
+    ],
   ),
   aboutProject:
       "During my internship at Flysoft, I worked on the Floor Plan Builder project where I focused on developing critical UI and interaction components like the boundary wall canvas and table customization system. These features were challenging but crucial, as they involved custom widget creation and deep understanding of Flutter’s rendering system.\nThis was my first real-world exposure to working within a structured software team using Jira, Bitbucket, and Confluence. I handled both frontend logic and user experience improvements, and helped deliver version 1.0.6. It was a great hands-on experience in building a scalable, cross-platform Flutter application from the ground up.",
@@ -69,8 +74,24 @@ AppModel flysoftFloorplan = AppModel(
     "Applied unit testing, logging, and clean code principles for a production-grade build",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "JSON")],
-    tools: [IconLabelModel(label: "Confluence"), IconLabelModel(label: "Jira"), IconLabelModel(label: "Bitbucket"), IconLabelModel(label: "Git"), IconLabelModel(label: "Genymotion")],
-    skills: [IconLabelModel(label: "Project Planning"), IconLabelModel(label: "Problem Solving"), IconLabelModel(label: "Collaboration & Communication"), IconLabelModel(label: "Time Management"), IconLabelModel(label: "Tool Familiarity"), IconLabelModel(label: "Clean code")],
+    techStack: [
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "JSON"),
+    ],
+    tools: [
+      IconLabelModel(label: "Confluence"),
+      IconLabelModel(label: "Jira"),
+      IconLabelModel(label: "Bitbucket"),
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "Genymotion"),
+    ],
+    skills: [
+      IconLabelModel(label: "Project Planning"),
+      IconLabelModel(label: "Problem Solving"),
+      IconLabelModel(label: "Collaboration & Communication"),
+      IconLabelModel(label: "Time Management"),
+      IconLabelModel(label: "Tool Familiarity"),
+      IconLabelModel(label: "Clean code"),
+    ],
   ),
 );

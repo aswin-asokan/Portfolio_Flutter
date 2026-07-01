@@ -10,8 +10,8 @@ AppModel steelDefectDetection = AppModel(
   title: "Steel Defect Detection",
   caption: "Few-Shot Defect Segmentation using SAM",
   techStack: ["SAM", "LoRA", "Python", "Flutter"],
-    mainTech: "• Python",
-    projectType: ProjectType.aiMl,
+  mainTech: "• Python",
+  projectType: ProjectType.aiMl,
   // Assuming Figure_1.png is the main visualization
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel_defect.webp?alt=media",
@@ -20,7 +20,7 @@ AppModel steelDefectDetection = AppModel(
   gitLink: "https://github.com/aswin-asokan/steel_defect_detection",
   subtitle: "Accurate Surface Defect Segmentation for Manufacturing",
   homeSummary:
-      "Teaching AI to spot scratches on steel better than a highly caffeinated inspector.",
+      "Because even tiny steel defects can become expensive mistakes. This project combines AI-powered segmentation with a Flutter interface to make industrial defect inspection faster and more reliable.",
   releaseLink: "",
   type: AppButtonType.github,
   devices: AppAvailability.codeOnly,
@@ -45,7 +45,12 @@ AppModel steelDefectDetection = AppModel(
     productType: "Computer Vision / AI",
     size: "NIL",
     languages: "Python, Dart",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/steel_defect_detection")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/steel_defect_detection",
+      ),
+    ],
   ),
   aboutProject:
       "This mini-project was driven by the critical need for automation in industrial quality control, where manual defect inspection is slow and prone to human error. It was developed as part of the Final Year Project (Phase 1) of BTech CSE. I was fascinated by the zero-shot capabilities of SAM and aimed to explore how efficiently it could be adapted to a highly specific domain like steel inspection using LoRA.\n\nMy primary contributions involved setting up the frontend and backend connection. The core AI Model Training (fine-tuning SAM-LoRA) was expertly executed by Bineesha.\n\nThis project was a major learning curve in merging cutting-edge foundation models with practical, deployable applications.",
@@ -61,8 +66,26 @@ AppModel steelDefectDetection = AppModel(
     "Successfully managed a collaborative development effort, clearly defining and integrating the ML training (done by Bineesha) and the application development (frontend/backend connection).",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Python"), IconLabelModel(label: "PyTorch"), IconLabelModel(label: "SAM"), IconLabelModel(label: "LoRA"), IconLabelModel(label: "Flutter"), IconLabelModel(label: "Dart")],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Hugging Face"), IconLabelModel(label: "VS Code"), IconLabelModel(label: "Anaconda")],
-    skills: [IconLabelModel(label: "Computer Vision"), IconLabelModel(label: "Deep Learning Fine-Tuning (PEFT)"), IconLabelModel(label: "Full-Stack Development"), IconLabelModel(label: "Industrial Automation Concept"), IconLabelModel(label: "Team Collaboration")],
+    techStack: [
+      IconLabelModel(label: "Python"),
+      IconLabelModel(label: "PyTorch"),
+      IconLabelModel(label: "SAM"),
+      IconLabelModel(label: "LoRA"),
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "Dart"),
+    ],
+    tools: [
+      IconLabelModel(label: "Git"),
+      IconLabelModel(label: "Hugging Face"),
+      IconLabelModel(label: "VS Code"),
+      IconLabelModel(label: "Anaconda"),
+    ],
+    skills: [
+      IconLabelModel(label: "Computer Vision"),
+      IconLabelModel(label: "Deep Learning Fine-Tuning (PEFT)"),
+      IconLabelModel(label: "Full-Stack Development"),
+      IconLabelModel(label: "Industrial Automation Concept"),
+      IconLabelModel(label: "Team Collaboration"),
+    ],
   ),
 );
