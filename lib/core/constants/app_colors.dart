@@ -167,6 +167,7 @@ class AppColors {
   static const Color brandArduino = Color(0xFF00979D);
   static const Color brandGithub = Color(0xFF181717);
   static const Color brandGithubAlt = Color(0xFF4183C4);
+  static const Color brandJava = Color(0xFFE76F00);
   static const Color brandGit = Color(0xFFF05032);
   static const Color brandBitbucket = Color(0xFF0052CC);
   static const Color brandDbeaver = Color(0xFF382923);
