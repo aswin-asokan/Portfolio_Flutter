@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
@@ -73,7 +74,7 @@ class _AppPageState extends State<AppPage> {
     try {
       if (mounted && widget.iconPath.isNotEmpty) {
         await precacheImage(
-          CachedNetworkImageProvider(widget.iconPath, maxWidth: 300),
+          CachedNetworkImageProvider(widget.iconPath, maxWidth: kIsWeb ? null : 300),
           context,
           onError: (exception, stackTrace) {},
         ).catchError((_) {});

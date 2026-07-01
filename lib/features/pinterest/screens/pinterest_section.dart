@@ -271,7 +271,7 @@ class _PinterestSectionState extends State<PinterestSection> {
                         height: 270,
                         child: Image.asset(
                           "assets/images/pinterest/pin_img.webp",
-                          cacheWidth: 800,
+                          cacheWidth: kIsWeb ? null : 800,
                           fit: BoxFit.contain,
                           alignment: Alignment.bottomRight,
                           filterQuality: FilterQuality.high,

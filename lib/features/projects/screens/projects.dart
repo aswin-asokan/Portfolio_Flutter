@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -8,7 +9,6 @@ import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
 import 'package:portfolio/features/shared/project_list/featured_projects.dart';
 import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
-import 'package:portfolio/responsive/responsive.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class Projects extends StatefulWidget {
@@ -76,7 +76,7 @@ class _ProjectsState extends State<Projects> {
       for (final url in imageUrls) {
         if (!mounted) return;
         await precacheImage(
-          CachedNetworkImageProvider(url, maxWidth: 800),
+          CachedNetworkImageProvider(url, maxWidth: kIsWeb ? null : 800),
           context,
           onError: (exception, stackTrace) {},
         ).catchError((_) {});
@@ -348,7 +348,7 @@ class _ProjectCard extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: app.bannerPath,
-                    memCacheWidth: 800,
+                    memCacheWidth: kIsWeb ? null : 800,
                     fit: BoxFit.cover,
                     alignment: Alignment.topCenter,
                     placeholder: (context, url) => const ShimmerPlaceholder(),
