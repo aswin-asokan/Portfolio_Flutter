@@ -341,7 +341,7 @@ class _TechIconGrid extends StatelessWidget {
       alignment: WrapAlignment.start,
       children: iconLabels!.map((item) {
         final icon = item.icon ?? getTechIcon(item.label);
-        final color = getTechColor(item.label) ?? context.colorScheme.primary;
+        final color = item.color ?? getTechColor(item.label) ?? context.colorScheme.primary;
         return SizedBox(
           width: 70,
           child: Column(

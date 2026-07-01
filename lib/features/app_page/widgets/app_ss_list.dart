@@ -74,7 +74,9 @@ class _AppSsListState extends State<AppSsList> {
     for (int i = 0; i < widget.images.length; i++) {
       final url = widget.images[i];
       try {
-        final provider = CachedNetworkImageProvider(url, maxWidth: kIsWeb ? null : 800);
+        final ImageProvider provider = kIsWeb
+            ? NetworkImage(url)
+            : CachedNetworkImageProvider(url, maxWidth: 800);
         if (!kIsWeb) {
           await precacheImage(provider, context);
         }

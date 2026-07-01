@@ -290,7 +290,7 @@ class _AppInfoTable extends StatelessWidget {
                                   child: Icon(
                                     iconLabel.icon ?? _getLinkIcon(iconLabel.link ?? ''),
                                     size: 20,
-                                    color: context.colorScheme.primary,
+                                    color: iconLabel.color ?? context.colorScheme.primary,
                                   ),
                                 ),
                               );

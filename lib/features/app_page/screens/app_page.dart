@@ -71,6 +71,7 @@ class _AppPageState extends State<AppPage> {
   }
 
   Future<void> _precacheIcon() async {
+    if (kIsWeb) return;
     try {
       if (mounted && widget.iconPath.isNotEmpty) {
         await precacheImage(

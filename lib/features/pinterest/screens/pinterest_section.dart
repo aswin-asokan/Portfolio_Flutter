@@ -762,18 +762,32 @@ class _PinterestSectionState extends State<PinterestSection> {
             borderRadius: BorderRadius.circular(8),
           ),
           clipBehavior: Clip.antiAlias,
-          child: CachedNetworkImage(
-            imageUrl: kIsWeb && pin.imageUrl.isNotEmpty
-                ? "https://cors-anywhere-azure.vercel.app/api/image?url=${Uri.encodeComponent(pin.imageUrl)}"
-                : pin.imageUrl,
-            fit: BoxFit.cover,
-            placeholder: (context, url) => _skeletonCard(height: 80),
-            errorWidget: (context, url, error) => Container(
-              height: 80,
-              color: isDark ? const Color(0xFF22222E) : const Color(0xFFEEEEEE),
-              child: const Icon(Icons.broken_image, size: 16, color: Colors.grey),
-            ),
-          ),
+          child: kIsWeb
+              ? Image.network(
+                  pin.imageUrl.isNotEmpty
+                      ? "https://cors-anywhere-azure.vercel.app/api/image?url=${Uri.encodeComponent(pin.imageUrl)}"
+                      : "",
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return _skeletonCard(height: 80);
+                  },
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 80,
+                    color: isDark ? const Color(0xFF22222E) : const Color(0xFFEEEEEE),
+                    child: const Icon(Icons.broken_image, size: 16, color: Colors.grey),
+                  ),
+                )
+              : CachedNetworkImage(
+                  imageUrl: pin.imageUrl,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => _skeletonCard(height: 80),
+                  errorWidget: (context, url, error) => Container(
+                    height: 80,
+                    color: isDark ? const Color(0xFF22222E) : const Color(0xFFEEEEEE),
+                    child: const Icon(Icons.broken_image, size: 16, color: Colors.grey),
+                  ),
+                ),
         ),
       ),
     );

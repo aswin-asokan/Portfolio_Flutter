@@ -4,11 +4,13 @@ class IconLabelModel {
   final IconData? icon;
   final String label;
   final String? link;
+  final Color? color;
 
   const IconLabelModel({
     this.icon,
     required this.label,
     this.link,
+    this.color,
   });
 }
 
