@@ -10,8 +10,8 @@ AppModel pocketDresses = AppModel(
   title: "Pocket Dresses",
   caption: "Charming Shopping App that Offers a Curated Selection of Dresses.",
   techStack: ["Flutter", "Hive"],
-    mainTech: "• Flutter",
-    projectType: ProjectType.flutter,
+  mainTech: "• Flutter",
+  projectType: ProjectType.flutter,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocket_dress_banner.webp?alt=media",
 
@@ -21,7 +21,7 @@ AppModel pocketDresses = AppModel(
   gitLink: "https://github.com/aswin-asokan/FlutterFly/",
   subtitle: "Your Perfect Dress, Curated.",
   homeSummary:
-      "Window shopping, but in your pocket. Because your closet definitely needs one more dress.",
+      "A simple shopping app with everything you need—minus the endless scrolling. Search, wishlist, and checkout with a clean, modern Flutter experience.",
   releaseLink: "https://github.com/aswin-asokan/FlutterFly/releases/tag/v1.0.1",
   type: AppButtonType.download,
   devices: AppAvailability.android,
@@ -55,7 +55,12 @@ AppModel pocketDresses = AppModel(
     productType: "Fashion & Lifestyle",
     size: "22.8MB",
     languages: "English",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/FlutterFly/")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/FlutterFly/",
+      ),
+    ],
   ),
   aboutProject:
       "Pocket Dresses was my submission for the Flutter Fly Bootcamp, where participants were asked to build a real-world style app using Flutter. I chose to develop a minimalist shopping app focused on women’s dresses, combining design, logic, and local storage techniques.\nI’m proud that this project helped me become one of the top 10 participants in the workshop. The experience pushed me out of my comfort zone and gave me hands-on insight into what it takes to build production-like apps using Flutter.",
@@ -69,8 +74,14 @@ AppModel pocketDresses = AppModel(
     "Made it to the top 10 finalists of Flutter Fly Bootcamp",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Hive")],
+    techStack: [
+      IconLabelModel(label: "Flutter"),
+      IconLabelModel(label: "Hive"),
+    ],
     tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
-    skills: [IconLabelModel(label: "UI/UX Awareness"), IconLabelModel(label: "Goal-Oriented Execution")],
+    skills: [
+      IconLabelModel(label: "UI/UX Awareness"),
+      IconLabelModel(label: "Goal-Oriented Execution"),
+    ],
   ),
 );

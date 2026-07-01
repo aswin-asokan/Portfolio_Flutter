@@ -10,8 +10,8 @@ AppModel keralaiot = AppModel(
   title: "Kerala IOT Challenge",
   caption: "20 IoT Projects with Explanations and Working Videos.",
   techStack: ["Arduino", "ESP32"],
-    mainTech: "• Arduino",
-    projectType: ProjectType.other,
+  mainTech: "• Arduino",
+  projectType: ProjectType.other,
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot_banner.webp?alt=media",
   iconPath:
@@ -19,7 +19,7 @@ AppModel keralaiot = AppModel(
   gitLink: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
   subtitle: "IoT Projects with Demos.",
   homeSummary:
-      "Connecting things to the internet before it was cool. Award-winning IoT wizardry.",
+      "An IoT journey powered by curiosity—and a lot of jumper wires. Completed 20+ embedded projects using Arduino and ESP32, documenting every build from circuit to code.",
   releaseLink: "https://aswin-asokan.github.io/Kerala-IoT-Challenge/",
   type: AppButtonType.website,
   devices: AppAvailability.website,
@@ -47,7 +47,12 @@ AppModel keralaiot = AppModel(
     productType: "Hardware Education",
     size: "NIL",
     languages: "English",
-    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/Kerala-IoT-Challenge")],
+    links: [
+      IconLabelModel(
+        label: "Link",
+        link: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
+      ),
+    ],
   ),
   aboutProject:
       "As part of the Kerala IoT Challenge, I embarked on a comprehensive learning program hosted on µLearn to explore Hardware and Embedded systems through Arduino and ESP32. The challenge spans 4 levels of guided exercises followed by a hackathon to nurture IoT development skills across 5,000 students in Kerala. Over the course of this program, I completed 20+ hands-on projects, documented each with code, circuit diagrams, and working videos—covering topics from LED effects and traffic light systems to sensors, displays, and control modules.",
@@ -61,8 +66,21 @@ AppModel keralaiot = AppModel(
     "Strengthened foundation in embedded systems, electronics interfacing, and project-based learning",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Arduino"), IconLabelModel(label: "ESP32"), IconLabelModel(label: "C/C++ for Arduino"), IconLabelModel(label: "Firebase")],
-    tools: [IconLabelModel(label: "Arduino IDE"), IconLabelModel(label: "MIT App Inventor"), IconLabelModel(label: "Fritzing")],
-    skills: [IconLabelModel(label: "Technical Proficiency"), IconLabelModel(label: "Structured Learning & Execution"), IconLabelModel(label: "Documentation & Presentation")],
+    techStack: [
+      IconLabelModel(label: "Arduino"),
+      IconLabelModel(label: "ESP32"),
+      IconLabelModel(label: "C/C++ for Arduino"),
+      IconLabelModel(label: "Firebase"),
+    ],
+    tools: [
+      IconLabelModel(label: "Arduino IDE"),
+      IconLabelModel(label: "MIT App Inventor"),
+      IconLabelModel(label: "Fritzing"),
+    ],
+    skills: [
+      IconLabelModel(label: "Technical Proficiency"),
+      IconLabelModel(label: "Structured Learning & Execution"),
+      IconLabelModel(label: "Documentation & Presentation"),
+    ],
   ),
 );
