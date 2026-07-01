@@ -791,7 +791,7 @@ class AnilistSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   const Text(
-                    "AniList Feed",
+                    "Feed Loading",
                     style: TextStyle(
                       fontSize: 9,
                       color: Colors.white70,
