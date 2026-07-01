@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
 
@@ -63,7 +64,7 @@ class _AppScreenshotCardState extends State<AppScreenshotCard> {
             borderRadius: BorderRadius.circular(15),
             child: CachedNetworkImage(
               imageUrl: widget.imagePath,
-              memCacheWidth: 800,
+              memCacheWidth: kIsWeb ? null : 800,
               height: widget.height,
               fit: BoxFit.fitHeight,
               fadeInDuration: const Duration(milliseconds: 1500),
@@ -148,7 +149,7 @@ class _LightboxDialogState extends State<_LightboxDialog> {
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
                 imageUrl: widget.images[_currentIndex],
-                memCacheWidth: 1200,
+                memCacheWidth: kIsWeb ? null : 1200,
                 fit: BoxFit.contain,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(color: Colors.white),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/shared/widgets/corner_highlight.dart';
@@ -1200,7 +1201,7 @@ class _AnilistHoverImageState extends State<_AnilistHoverImage> {
         _isHovered
             ? "assets/images/pinterest/anime_image_2.webp"
             : "assets/images/pinterest/anime_image_1.webp",
-        cacheWidth: 800,
+        cacheWidth: kIsWeb ? null : 800,
         fit: BoxFit.contain,
         alignment: Alignment.bottomRight,
         filterQuality: FilterQuality.high,
