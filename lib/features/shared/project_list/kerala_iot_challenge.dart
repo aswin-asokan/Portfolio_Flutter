@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,16 +9,19 @@ AppModel keralaiot = AppModel(
   id: "keralaiot",
   title: "Kerala IOT Challenge",
   caption: "20 IoT Projects with Explanations and Working Videos.",
-  techStack: "Arduino | ESP32",
+  techStack: ["Arduino", "ESP32"],
+    mainTech: "• Arduino",
+    projectType: ProjectType.other,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/iot_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/iot_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
   subtitle: "IoT Projects with Demos.",
-  homeSummary: "Connecting things to the internet before it was cool. Award-winning IoT wizardry.",
+  homeSummary:
+      "Connecting things to the internet before it was cool. Award-winning IoT wizardry.",
   releaseLink: "https://aswin-asokan.github.io/Kerala-IoT-Challenge/",
-  type: "website",
+  type: AppButtonType.website,
   devices: AppAvailability.website,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/iotchallenge/iotchallege1.png",
@@ -42,7 +47,7 @@ AppModel keralaiot = AppModel(
     productType: "Hardware Education",
     size: "NIL",
     languages: "English",
-    link: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/Kerala-IoT-Challenge")],
   ),
   aboutProject:
       "As part of the Kerala IoT Challenge, I embarked on a comprehensive learning program hosted on µLearn to explore Hardware and Embedded systems through Arduino and ESP32. The challenge spans 4 levels of guided exercises followed by a hackathon to nurture IoT development skills across 5,000 students in Kerala. Over the course of this program, I completed 20+ hands-on projects, documented each with code, circuit diagrams, and working videos—covering topics from LED effects and traffic light systems to sensors, displays, and control modules.",
@@ -56,9 +61,8 @@ AppModel keralaiot = AppModel(
     "Strengthened foundation in embedded systems, electronics interfacing, and project-based learning",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Arduino, ESP32, C/C++ for Arduino, Firebase",
-    tools: "Arduino IDE, MIT App Inventor, Fritzing",
-    skills:
-        "Technical Proficiency, Structured Learning & Execution, Documentation & Presentation",
+    techStack: [IconLabelModel(label: "Arduino"), IconLabelModel(label: "ESP32"), IconLabelModel(label: "C/C++ for Arduino"), IconLabelModel(label: "Firebase")],
+    tools: [IconLabelModel(label: "Arduino IDE"), IconLabelModel(label: "MIT App Inventor"), IconLabelModel(label: "Fritzing")],
+    skills: [IconLabelModel(label: "Technical Proficiency"), IconLabelModel(label: "Structured Learning & Execution"), IconLabelModel(label: "Documentation & Presentation")],
   ),
 );

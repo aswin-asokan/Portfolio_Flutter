@@ -9,19 +9,18 @@ class AppInfo {
     required String productType,
     required String size,
     required String languages,
-    required String link,
-    String linkText = "GitHub",
+    List<IconLabelModel>? links,
   }) : items = [
          InfoModel(title: "Version", content: version),
          InfoModel(title: "Updated on", content: updatedOn),
          InfoModel(title: "Product type", content: productType),
          InfoModel(title: "Size", content: size),
          InfoModel(title: "Languages", content: languages),
-         InfoModel(
-           title: "Links",
-           content: link,
-           isLink: true,
-           linkText: linkText,
-         ),
+         if (links != null && links.isNotEmpty)
+           InfoModel(
+             title: "Links",
+             isLink: true,
+             iconLabels: links,
+           ),
        ];
 }

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 
@@ -52,14 +51,10 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 24),
-          width: double.infinity,
-          decoration: BoxDecoration(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 24),
+      width: double.infinity,
+      decoration: BoxDecoration(
             color:
                 isDark
                     ? Colors.black26.withAlpha(50)
@@ -304,8 +299,6 @@ class Footer extends StatelessWidget {
               }
             },
           ),
-        ),
-      ),
     );
   }
 }

@@ -23,6 +23,7 @@ class AppAssets {
     AssetPreload('assets/images/about/personality.webp'),
     AssetPreload('assets/images/others/theme_loading_light.webp', cacheWidth: 800),
     AssetPreload('assets/images/others/theme_loading_dark.webp', cacheWidth: 800),
+    AssetPreload('assets/images/logo/dark_logo.png'),
   ];
 
   // These images can be loaded asynchronously in the background.
@@ -35,7 +36,6 @@ class AppAssets {
     AssetPreload('assets/images/pinterest/anime_easter_egg.webp'),
     AssetPreload('assets/images/maps/map.webp', cacheWidth: 800),
     AssetPreload('assets/images/others/projects_hero.webp', cacheWidth: 800),
-    AssetPreload('assets/images/logo/dark_logo.png'),
     AssetPreload('assets/icons/char_icon.webp'),
     AssetPreload('assets/images/exp/intern.webp', cacheWidth: 200),
     AssetPreload('assets/images/exp/dev.webp', cacheWidth: 200),

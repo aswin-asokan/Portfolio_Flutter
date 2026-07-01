@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,20 +9,24 @@ AppModel steelDefectDetection = AppModel(
   id: "steel_defect_detection",
   title: "Steel Defect Detection",
   caption: "Few-Shot Defect Segmentation using SAM",
-  techStack: "SAM | LoRA | Python | Flutter",
+  techStack: ["SAM", "LoRA", "Python", "Flutter"],
+    mainTech: "• Python",
+    projectType: ProjectType.aiMl,
   // Assuming Figure_1.png is the main visualization
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/steel_defect.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel_defect.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/steel_icon.png", // Placeholder icon
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel_icon.webp?alt=media", // Placeholder icon
   gitLink: "https://github.com/aswin-asokan/steel_defect_detection",
   subtitle: "Accurate Surface Defect Segmentation for Manufacturing",
-  homeSummary: "Teaching AI to spot scratches on steel better than a highly caffeinated inspector.",
+  homeSummary:
+      "Teaching AI to spot scratches on steel better than a highly caffeinated inspector.",
   releaseLink: "",
-  type: "github",
+  type: AppButtonType.github,
   devices: AppAvailability.codeOnly,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/steel_defect/steel1.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel2.webp?alt=media",
   ],
   aboutApp:
       "This project automates quality control in manufacturing by precisely detecting and segmenting defects on steel surfaces. It leverages the Segment Anything Model (SAM), fine-tuned using Parameter-Efficient Fine-Tuning (PEFT) with LoRA, enabling high-precision segmentation with minimal training data (few-shot learning). The system integrates a Python machine learning backend with a cross-platform Flutter frontend, providing a robust, deployable solution for real-time industrial inspection and quality assurance.",
@@ -39,7 +45,7 @@ AppModel steelDefectDetection = AppModel(
     productType: "Computer Vision / AI",
     size: "NIL",
     languages: "Python, Dart",
-    link: "https://github.com/aswin-asokan/steel_defect_detection",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/steel_defect_detection")],
   ),
   aboutProject:
       "This mini-project was driven by the critical need for automation in industrial quality control, where manual defect inspection is slow and prone to human error. It was developed as part of the Final Year Project (Phase 1) of BTech CSE. I was fascinated by the zero-shot capabilities of SAM and aimed to explore how efficiently it could be adapted to a highly specific domain like steel inspection using LoRA.\n\nMy primary contributions involved setting up the frontend and backend connection. The core AI Model Training (fine-tuning SAM-LoRA) was expertly executed by Bineesha.\n\nThis project was a major learning curve in merging cutting-edge foundation models with practical, deployable applications.",
@@ -55,9 +61,8 @@ AppModel steelDefectDetection = AppModel(
     "Successfully managed a collaborative development effort, clearly defining and integrating the ML training (done by Bineesha) and the application development (frontend/backend connection).",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Python, PyTorch, SAM, LoRA, Flutter, Dart",
-    tools: "Git, Hugging Face, VS Code, Anaconda",
-    skills:
-        "Computer Vision, Deep Learning Fine-Tuning (PEFT), Full-Stack Development, Industrial Automation Concept, Team Collaboration.",
+    techStack: [IconLabelModel(label: "Python"), IconLabelModel(label: "PyTorch"), IconLabelModel(label: "SAM"), IconLabelModel(label: "LoRA"), IconLabelModel(label: "Flutter"), IconLabelModel(label: "Dart")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Hugging Face"), IconLabelModel(label: "VS Code"), IconLabelModel(label: "Anaconda")],
+    skills: [IconLabelModel(label: "Computer Vision"), IconLabelModel(label: "Deep Learning Fine-Tuning (PEFT)"), IconLabelModel(label: "Full-Stack Development"), IconLabelModel(label: "Industrial Automation Concept"), IconLabelModel(label: "Team Collaboration")],
   ),
 );

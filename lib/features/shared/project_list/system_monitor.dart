@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,17 +9,20 @@ AppModel systemMonitor = AppModel(
   id: "systemmonitor",
   title: "System Monitor",
   caption: "Keep an Eye on Your Server’s Performance Effortlessly.",
-  techStack: "Flutter | API call",
+  techStack: ["Flutter", "API call"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.tools,
   bannerPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/banner/system_monitor_banner.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsystem_monitor_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/sysmonitor_logo.jpeg",
   gitLink: "https://github.com/aswin-asokan/System-Monitor",
   subtitle: "Effortless Server Monitoring.",
-  homeSummary: "Obsessively tracking your PC's CPU temperature from your phone. Nerd out in style.",
+  homeSummary:
+      "Obsessively tracking your PC's CPU temperature from your phone. Nerd out in style.",
   releaseLink:
       "https://github.com/aswin-asokan/System-Monitor/releases/tag/v1.0.0",
-  type: "download",
+  type: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor1.png",
@@ -45,7 +50,7 @@ AppModel systemMonitor = AppModel(
     productType: "System Utilities",
     size: "21.4MB",
     languages: "English",
-    link: "https://github.com/aswin-asokan/System-Monitor",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/System-Monitor")],
   ),
   aboutProject:
       "This app was built as part of my internship selection task at Flysoft. The company provided a live API link that exposed server system stats, and the task was to create a Flutter app that could read and display the data.\nEven though it was a small project, it became a pivotal moment in my journey—I got selected, and that internship turned into one of the best learning experiences of my academic career. The task helped me understand practical API integration and how to visualize live data effectively.",
@@ -60,8 +65,8 @@ AppModel systemMonitor = AppModel(
     "Gained confidence working on fast-paced, goal-driven development tasks",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter",
-    tools: "Git, Github",
-    skills: "Quick Learning, Deadline Focused, Self-Confidence",
+    techStack: [IconLabelModel(label: "Flutter")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    skills: [IconLabelModel(label: "Quick Learning"), IconLabelModel(label: "Deadline Focused"), IconLabelModel(label: "Self-Confidence")],
   ),
 );

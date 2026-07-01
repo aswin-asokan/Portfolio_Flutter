@@ -632,11 +632,12 @@ class AnilistSection extends StatelessWidget {
               width: AppConstants.pinterestMockupBorderWidth,
             ),
             boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
+              if (MediaQuery.sizeOf(context).width >= AppConstants.pinterestMobileBreakpoint)
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
             ],
           ),
           clipBehavior: Clip.antiAlias,

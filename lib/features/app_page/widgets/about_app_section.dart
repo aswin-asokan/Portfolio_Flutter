@@ -275,36 +275,29 @@ class _AppInfoTable extends StatelessWidget {
                   Expanded(
                     flex: 6,
                     child: item.isLink
-                        ? MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () => _launch(item.content),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                spacing: 6,
-                                children: [
-                                  Icon(
-                                    _getLinkIcon(item.content),
-                                    size: 14,
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 12,
+                            children: (item.iconLabels ?? []).map((iconLabel) {
+                              return MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (iconLabel.link != null) {
+                                      _launch(iconLabel.link!);
+                                    }
+                                  },
+                                  child: Icon(
+                                    iconLabel.icon ?? _getLinkIcon(iconLabel.link ?? ''),
+                                    size: 20,
                                     color: context.colorScheme.primary,
                                   ),
-                                  Flexible(
-                                    child: Text(
-                                      item.linkText ?? "Link",
-                                      style: context.textTheme.displaySmall!.copyWith(
-                                        fontSize: 13,
-                                        color: context.colorScheme.primary,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                ),
+                              );
+                            }).toList(),
                           )
                         : Text(
-                            item.content,
+                            item.content ?? '',
                             style: context.textTheme.displaySmall!.copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.normal,

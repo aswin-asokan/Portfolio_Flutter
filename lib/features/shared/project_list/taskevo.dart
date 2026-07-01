@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -7,18 +9,20 @@ AppModel taskevo = AppModel(
   id: "taskevo",
   title: "TasksEVO",
   caption: "Supercharge your Productivity and Stay Organized.",
-  techStack: "Flutter | Hive | Flutter Quill",
+  techStack: ["Flutter", "Hive", "Flutter Quill"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.tools,
   bannerPath:
-      "assets/files/projects/banner/taskevo1_banner.webp",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo1_banner.webp?alt=media",
 
-  iconPath:
-      "assets/files/projects/icons/taskevo1_logo.webp",
+  iconPath: "assets/files/projects/icons/taskevo1_logo.webp",
 
   gitLink: "https://github.com/aswin-asokan/taskevo",
   subtitle: "Boost Productivity, Stay Organized.",
-  homeSummary: "A task manager that actually helps you get things done, instead of just reminding you that you're procrastinating.",
+  homeSummary:
+      "A task manager that actually helps you get things done, instead of just reminding you that you're procrastinating.",
   releaseLink: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
-  type: "download",
+  type: AppButtonType.download,
   devices: AppAvailability.androidWeb,
   screenshots: [
     "assets/files/projects/screenshots/taskevo/taskevo1.webp",
@@ -48,7 +52,7 @@ AppModel taskevo = AppModel(
     productType: "productType",
     size: "21.9MB",
     languages: "Englsih",
-    link: "https://github.com/aswin-asokan/taskevo",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/taskevo")],
   ),
   aboutProject:
       "I started TasksEVO during a 1-week internship at LaxmiInfotek, where I was first introduced to Flutter. Back then, the app was basic, focusing only on adding tasks. However, it laid the foundation for my journey into Flutter development.\nOver time, I transformed TasksEVO into a multi-functional productivity app by adding subtasks, due dates, notes, and theme support. A major turning point came when Flutter Quill broke after an update. This taught me the importance of tracking dependencies and led to my decision to rebuild the app from scratch, which eventually helped inspire the PeekPub project.",
@@ -64,8 +68,8 @@ AppModel taskevo = AppModel(
         "Gained confidence to take a simple task list app and evolve it into a scalable productivity tool",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter, Hive, Flutter Quill",
-    tools: "Git, Github",
-    skills: "Iteration & Refactoring, Growth Mindset",
+    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Hive"), IconLabelModel(label: "Flutter Quill")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    skills: [IconLabelModel(label: "Iteration & Refactoring"), IconLabelModel(label: "Growth Mindset")],
   ),
 );

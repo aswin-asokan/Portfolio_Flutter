@@ -1,5 +1,7 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
+import 'package:portfolio/features/app_page/models/app_button_type.dart';
+import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -8,15 +10,17 @@ AppModel peekpub = AppModel(
   title: "Trelza PeekPub",
   caption:
       "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
-  techStack: "Flutter | Pub.dev API",
+  techStack: ["Flutter", "Pub.dev API"],
+    mainTech: "• Flutter",
+    projectType: ProjectType.tools,
   bannerPath:
-      "assets/files/projects/banner/peekpub_banner.webp",
-  iconPath:
-      "assets/files/projects/icons/PeekPub_logo.webp",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub_banner.webp?alt=media",
+  iconPath: "assets/files/projects/icons/PeekPub_logo.webp",
   gitLink: "https://github.com/aswin-asokan/peekpub",
   subtitle: "Browse, Search, and Explore.",
-  homeSummary: "Spill the tea securely. Anonymous polling that keeps your secrets safer than the CIA.",
-  type: "download",
+  homeSummary:
+      "Spill the tea securely. Anonymous polling that keeps your secrets safer than the CIA.",
+  type: AppButtonType.download,
   releaseLink: "https://github.com/aswin-asokan/peekpub/releases/tag/v1.0.0",
   devices: AppAvailability.android,
   screenshots: [
@@ -47,7 +51,7 @@ AppModel peekpub = AppModel(
     productType: "Developer Tools",
     size: "48.7 MB",
     languages: "English, Spanish, Hindi, Malayalam",
-    link: "https://github.com/aswin-asokan/peekpub",
+    links: [IconLabelModel(label: "Link", link: "https://github.com/aswin-asokan/peekpub")],
   ),
   aboutProject:
       "Trelza PeekPub was born out of a personal pain point I faced while working on multiple Flutter projects. I often found that some packages I had relied on were either discontinued or had breaking changes due to updates—like modified parameters or removed functions. This lack of visibility made my code unreliable and hard to maintain. That's when I decided to build something that could help not just me, but other developers too.\nPeekPub is my attempt at solving this problem by building a simple yet powerful tracker for pub.dev packages. It fetches real-time data from pub.dev and presents it in a clean UI, making it easier to stay informed and avoid broken dependencies. This project was not just about solving a problem, but also about challenging myself to build something meaningful and developer-friendly.",
@@ -62,9 +66,8 @@ AppModel peekpub = AppModel(
     "Developed a practical tool to improve development workflows for the entire Flutter community",
   ],
   projectInfo: ProjectInfo(
-    techStack: "Flutter, Pub.dev API",
-    tools: "Git, GitHub",
-    skills:
-        "Problem Solving, Project Management, Continuous Learning, User-Centric Thinking",
+    techStack: [IconLabelModel(label: "Flutter"), IconLabelModel(label: "Pub.dev API")],
+    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "GitHub")],
+    skills: [IconLabelModel(label: "Problem Solving"), IconLabelModel(label: "Project Management"), IconLabelModel(label: "Continuous Learning"), IconLabelModel(label: "User-Centric Thinking")],
   ),
 );
