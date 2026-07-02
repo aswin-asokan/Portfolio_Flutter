@@ -9,6 +9,13 @@ import 'package:flutter/material.dart';
 
 final GoRouter goRouter = GoRouter(
   initialLocation: '/home',
+  redirect: (context, state) {
+    final path = state.uri.path;
+    if (path != '/home' && path != '/') {
+      InitialLoadingScreen.avoidLoadingScreen = true;
+    }
+    return null;
+  },
   routes: [
     GoRoute(
       path: '/',

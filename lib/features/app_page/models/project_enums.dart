@@ -185,7 +185,7 @@ enum Skills {
   resilience(label: "Resilience"),
   selfConfidence(label: "Self-Confidence"),
   selfGuidedRefactoring(label: "Self-Guided Refactoring"),
-  structuredLearningExecution(label: "Structured Learning & Execution"),
+  structuredLearningExecution(label: "Learning & Execution"),
   teamCollaboration(
     label: "Team Collaboration",
     icon: Symbols.people,
