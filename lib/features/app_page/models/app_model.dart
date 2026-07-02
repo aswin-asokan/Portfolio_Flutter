@@ -26,9 +26,12 @@ class AppModel {
   final List<String> techStack;
   final String mainTech;
   final List<ProjectType> projectTypes;
-  final String gitLink;
-  final AppButtonType type;
-  final String releaseLink;
+  
+  // Link management params
+  final String githubUrl;
+  final String liveUrl;
+  final AppButtonType buttonType;
+
   final String aboutApp;
   final List<String> features;
   final List<String> futurePlan;
@@ -48,11 +51,11 @@ class AppModel {
     required this.projectTypes,
     required String bannerPath,
     required String iconPath,
-    required this.gitLink,
+    required this.githubUrl,
+    required this.liveUrl,
+    required this.buttonType,
     required this.subtitle,
     required this.homeSummary,
-    required this.releaseLink,
-    required this.type,
     required this.devices,
     required List<String> screenshots,
     required this.aboutApp,
@@ -66,6 +69,8 @@ class AppModel {
   })  : _bannerPath = bannerPath,
         _iconPath = iconPath,
         _screenshots = screenshots;
+
+  String get shareLink => "https://aswinasokan.vercel.app/home/projects/$id";
 
   String get bannerPath => _resolvePath(_bannerPath);
   String get iconPath => _resolvePath(_iconPath);

@@ -10,20 +10,20 @@ AppModel dairyManagement = AppModel(
   id: "dairymanagement",
   title: "Dairy Management",
   caption: "A Simple Java App for Managing Sales, Purchases and Staffs.",
-  techStack: ["Java", "MySQL"],
+  techStack: ["MySQL", "NetBeans"],
   mainTech: "• Java",
   projectTypes: [ProjectType.tools],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymanagement_banner.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairy_logo.webp?alt=media",
-  gitLink: "https://github.com/aswin-asokan/DairyManagement-App",
+  githubUrl: "https://github.com/aswin-asokan/DairyManagement-App",
   subtitle: "Streamlined Sales, Purchases, Staff.",
   homeSummary:
       "Because milk may spoil, but your records shouldn't. Manage sales, purchases, staff, reports, and bill printing from one simple Java desktop dashboard.",
-  releaseLink:
+  liveUrl:
       "https://github.com/aswin-asokan/DairyManagement-App/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  buttonType: AppButtonType.download,
   devices: AppAvailability.desktop,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymgmt1.webp?alt=media",
@@ -66,19 +66,8 @@ AppModel dairyManagement = AppModel(
     "Gained practical experience in building, debugging, and maintaining a desktop app",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.java,
-      TechStack.mysql,
-    ],
-    tools: [
-      Tools.netbeans,
-      Tools.git,
-      Tools.github,
-    ],
-    skills: [
-      Skills.problemSolving,
-      Skills.persistence,
-      Skills.toolFamiliarity,
-    ],
+    techStack: [TechStack.java, TechStack.mysql],
+    tools: [Tools.netbeans, Tools.git, Tools.github],
+    skills: [Skills.problemSolving, Skills.persistenceAndResilience, Skills.technicalProficiency],
   ),
 );

@@ -12,16 +12,22 @@ class AppPageHeader extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.buttonType,
-    required this.gitLink,
-    required this.releaseLink,
+    required this.githubUrl,
+    required this.liveUrl,
+    required this.shareLink,
     required this.device,
     required this.imgPath,
   });
+
   final String title;
   final String subTitle;
+
+  // Link management params
   final AppButtonType buttonType;
-  final String gitLink;
-  final String releaseLink;
+  final String githubUrl;
+  final String liveUrl;
+  final String shareLink;
+
   final AppAvailability device;
   final String imgPath;
   @override
@@ -76,9 +82,10 @@ class AppPageHeader extends StatelessWidget {
               ],
             ),
             AppButton(
-              type: buttonType,
-              gitLink: gitLink,
-              releaseLink: releaseLink,
+              buttonType: buttonType,
+              githubUrl: githubUrl,
+              liveUrl: liveUrl,
+              shareLink: shareLink,
               path: imgPath,
               title: title,
             ),

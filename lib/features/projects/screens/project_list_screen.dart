@@ -62,11 +62,19 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   bool _matchesCategory(AppModel app, String category) {
     if (category == "All") return true;
 
-    if (category == "Flutter") return app.projectTypes.contains(ProjectType.flutter);
+    if (category == "Flutter") {
+      return app.projectTypes.contains(ProjectType.flutter);
+    }
     if (category == "Web") return app.projectTypes.contains(ProjectType.web);
-    if (category == "Tools") return app.projectTypes.contains(ProjectType.tools);
-    if (category == "AI / ML") return app.projectTypes.contains(ProjectType.aiMl);
-    if (category == "Other") return app.projectTypes.contains(ProjectType.other);
+    if (category == "Tools") {
+      return app.projectTypes.contains(ProjectType.tools);
+    }
+    if (category == "AI / ML") {
+      return app.projectTypes.contains(ProjectType.aiMl);
+    }
+    if (category == "Other") {
+      return app.projectTypes.contains(ProjectType.other);
+    }
 
     return false;
   }
@@ -358,281 +366,267 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
-          children: [
-            // Scrollable Content
-            CustomScrollView(
-              controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: padding,
-                    vertical: 20,
-                  ),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                      // Spacing for navbar
-                      SizedBox(
-                        height: (isMobile || isSmallTablet) ? 85 : 70,
-                        key: _sectionKeys[0],
+        children: [
+          // Scrollable Content
+          CustomScrollView(
+            controller: _scrollController,
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverPadding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: padding,
+                  vertical: 20,
+                ),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    // Spacing for navbar
+                    SizedBox(
+                      height: (isMobile || isSmallTablet) ? 85 : 70,
+                      key: _sectionKeys[0],
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Top responsive section (Row/Column) matching hero layout exactly
+                    if (!isMobile)
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: isSmallTablet ? 0.0 : 450.0,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: _buildHeaderLeft(context, baseFontSize),
+                              ),
+                              const SizedBox(width: 40),
+                              const Expanded(
+                                child: HeroImage(
+                                  lightImagePath:
+                                      "assets/images/others/projects_hero.webp",
+                                  darkImagePath:
+                                      "assets/images/others/projects_hero.webp",
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    else
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildHeaderLeft(context, baseFontSize),
+                          const SizedBox(height: 20),
+                          const HeroImage(
+                            lightImagePath:
+                                "assets/images/others/projects_hero.webp",
+                            darkImagePath:
+                                "assets/images/others/projects_hero.webp",
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 20),
 
-                      // Top responsive section (Row/Column) matching hero layout exactly
-                      if (!isMobile)
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: isSmallTablet ? 0.0 : 450.0,
-                          ),
-                          child: IntrinsicHeight(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Expanded(
-                                  child: _buildHeaderLeft(
-                                    context,
-                                    baseFontSize,
-                                  ),
-                                ),
-                                const SizedBox(width: 40),
-                                const Expanded(
-                                  child: HeroImage(
-                                    lightImagePath:
-                                        "assets/images/others/projects_hero.webp",
-                                    darkImagePath:
-                                        "assets/images/others/projects_hero.webp",
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      else
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildHeaderLeft(context, baseFontSize),
-                            const SizedBox(height: 20),
-                            const HeroImage(
-                              lightImagePath:
-                                  "assets/images/others/projects_hero.webp",
-                              darkImagePath:
-                                  "assets/images/others/projects_hero.webp",
-                            ),
-                          ],
+                    const SizedBox(height: 40),
+
+                    // Filter Bar: Segmented control style that stretches dynamically (removes empty space)
+                    Container(
+                      key: _sectionKeys[1],
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.surface,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: AppColors.getBorder(context),
+                          width: 1.5,
                         ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13.5),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(chunkedCats.length * 2 - 1, (
+                            index,
+                          ) {
+                            if (index.isOdd) {
+                              // Horizontal separator between wrapped filter rows (does not reach outer container edges)
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
+                                child: Container(
+                                  height: 1.5,
+                                  color: AppColors.getBorder(context),
+                                ),
+                              );
+                            }
 
-                      const SizedBox(height: 40),
+                            final rowIndex = index ~/ 2;
+                            final rowChunk = chunkedCats[rowIndex];
 
-                      // Filter Bar: Segmented control style that stretches dynamically (removes empty space)
-                      Container(
-                        key: _sectionKeys[1],
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: context.colorScheme.surface,
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: AppColors.getBorder(context),
-                            width: 1.5,
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(13.5),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: List.generate(chunkedCats.length * 2 - 1, (
-                              index,
-                            ) {
-                              if (index.isOdd) {
-                                // Horizontal separator between wrapped filter rows (does not reach outer container edges)
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                  ),
-                                  child: Container(
-                                    height: 1.5,
-                                    color: AppColors.getBorder(context),
-                                  ),
-                                );
-                              }
+                            return IntrinsicHeight(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: List.generate(rowChunk.length * 2 - 1, (
+                                  colIndex,
+                                ) {
+                                  if (colIndex.isOdd) {
+                                    // Vertical separator line (has vertical margins, does not touch top/bottom edges)
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 8,
+                                      ),
+                                      child: Container(
+                                        width: 1.5,
+                                        color: AppColors.getBorder(context),
+                                      ),
+                                    );
+                                  }
 
-                              final rowIndex = index ~/ 2;
-                              final rowChunk = chunkedCats[rowIndex];
+                                  final itemIndex = colIndex ~/ 2;
+                                  final cat = rowChunk[itemIndex];
+                                  final isSelected =
+                                      _selectedCategory == cat.name;
 
-                              return IntrinsicHeight(
-                                child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: List.generate(
-                                    rowChunk.length * 2 - 1,
-                                    (colIndex) {
-                                      if (colIndex.isOdd) {
-                                        // Vertical separator line (has vertical margins, does not touch top/bottom edges)
-                                        return Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 8,
-                                          ),
+                                  return Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(
+                                        4,
+                                      ), // Floating pill effect padding
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              _selectedCategory = cat.name;
+                                            });
+                                          },
                                           child: Container(
-                                            width: 1.5,
-                                            color: AppColors.getBorder(context),
-                                          ),
-                                        );
-                                      }
-
-                                      final itemIndex = colIndex ~/ 2;
-                                      final cat = rowChunk[itemIndex];
-                                      final isSelected =
-                                          _selectedCategory == cat.name;
-
-                                      return Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(
-                                            4,
-                                          ), // Floating pill effect padding
-                                          child: MouseRegion(
-                                            cursor: SystemMouseCursors.click,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  _selectedCategory = cat.name;
-                                                });
-                                              },
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                      vertical: 10,
-                                                    ),
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  color: _getBgColor(
-                                                    context,
-                                                    cat,
-                                                    isSelected,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    cat.icon,
-                                                    const SizedBox(width: 8),
-                                                    Text(
-                                                      cat.name,
-                                                      style: context
-                                                          .textTheme
-                                                          .bodySmall
-                                                          ?.copyWith(
-                                                            fontWeight:
-                                                                isSelected
-                                                                    ? FontWeight
-                                                                        .bold
-                                                                    : FontWeight
-                                                                        .normal,
-                                                            color:
-                                                                _getTextColor(
-                                                                  context,
-                                                                  cat,
-                                                                  isSelected,
-                                                                ),
-                                                            fontSize: 15,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 10,
+                                            ),
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              color: _getBgColor(
+                                                context,
+                                                cat,
+                                                isSelected,
                                               ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                cat.icon,
+                                                const SizedBox(width: 8),
+                                                Text(
+                                                  cat.name,
+                                                  style: context
+                                                      .textTheme
+                                                      .bodySmall
+                                                      ?.copyWith(
+                                                        fontWeight:
+                                                            isSelected
+                                                                ? FontWeight
+                                                                    .bold
+                                                                : FontWeight
+                                                                    .normal,
+                                                        color: _getTextColor(
+                                                          context,
+                                                          cat,
+                                                          isSelected,
+                                                        ),
+                                                        fontSize: 15,
+                                                      ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              );
-                            }),
-                          ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ),
+                            );
+                          }),
                         ),
                       ),
+                    ),
 
-                      const SizedBox(height: 24),
-                    ]),
-                  ),
-                ),
-                if (filteredProjects.isEmpty)
-                  SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: padding),
-                    sliver: SliverToBoxAdapter(
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 60),
-                          child: Text(
-                            "No projects found in this category.",
-                            style: context.textTheme.bodyMedium?.copyWith(
-                              color: AppColors.getDescriptionText(context),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: padding),
-                    sliver: SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        mainAxisSpacing: 16.0,
-                        crossAxisSpacing: 16.0,
-                        childAspectRatio: childAspectRatio,
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, cardIndex) {
-                          return ProjectGridCard(
-                            app: filteredProjects[cardIndex],
-                            index: cardIndex,
-                          );
-                        },
-                        childCount: filteredProjects.length,
-                      ),
-                    ),
-                  ),
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: padding,
-                      right: padding,
-                      bottom: 20,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const SizedBox(height: 50),
-                        const Footer(),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            // Floating Top Navbar
-            Positioned(
-              top: 20,
-              left: padding,
-              right: padding,
-              child: RepaintBoundary(
-                child: Navbar(
-                  sectionKeys: _sectionKeys,
-                  scrollController: _scrollController,
-                  sections: const ["Projects"],
+                    const SizedBox(height: 24),
+                  ]),
                 ),
               ),
+              if (filteredProjects.isEmpty)
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: padding),
+                  sliver: SliverToBoxAdapter(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 60),
+                        child: Text(
+                          "No projects found in this category.",
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            color: AppColors.getDescriptionText(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: padding),
+                  sliver: SliverGrid(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      mainAxisSpacing: 16.0,
+                      crossAxisSpacing: 16.0,
+                      childAspectRatio: childAspectRatio,
+                    ),
+                    delegate: SliverChildBuilderDelegate((context, cardIndex) {
+                      return ProjectGridCard(
+                        app: filteredProjects[cardIndex],
+                        index: cardIndex,
+                      );
+                    }, childCount: filteredProjects.length),
+                  ),
+                ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: padding,
+                    right: padding,
+                    bottom: 20,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [const SizedBox(height: 50), const Footer()],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // Floating Top Navbar
+          Positioned(
+            top: 20,
+            left: padding,
+            right: padding,
+            child: RepaintBoundary(
+              child: Navbar(
+                sectionKeys: _sectionKeys,
+                scrollController: _scrollController,
+                sections: const ["Projects"],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -787,41 +781,54 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                         Positioned.fill(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: kIsWeb
-                                ? Image.network(
-                                    widget.app.bannerPath,
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment.topCenter,
-                                    frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                                      if (wasSynchronouslyLoaded) return child;
-                                      return frame != null ? child : const ShimmerPlaceholder();
-                                    },
-                                    errorBuilder: (context, error, stackTrace) => Container(
-                                      color: Colors.grey.shade200,
-                                      alignment: Alignment.center,
-                                      child: const Icon(
-                                        Symbols.broken_image,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  )
-                                : CachedNetworkImage(
-                                    imageUrl: widget.app.bannerPath,
-                                    memCacheWidth: kIsWeb ? null : 400,
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment.topCenter,
-                                    placeholder:
-                                        (context, url) => const ShimmerPlaceholder(),
-                                    errorWidget:
-                                        (context, url, error) => Container(
-                                          color: Colors.grey.shade200,
-                                          alignment: Alignment.center,
-                                          child: const Icon(
-                                            Symbols.broken_image,
-                                            color: Colors.grey,
+                            child:
+                                kIsWeb
+                                    ? Image.network(
+                                      widget.app.bannerPath,
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment.topCenter,
+                                      frameBuilder: (
+                                        context,
+                                        child,
+                                        frame,
+                                        wasSynchronouslyLoaded,
+                                      ) {
+                                        if (wasSynchronouslyLoaded) {
+                                          return child;
+                                        }
+                                        return frame != null
+                                            ? child
+                                            : const ShimmerPlaceholder();
+                                      },
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Container(
+                                                color: Colors.grey.shade200,
+                                                alignment: Alignment.center,
+                                                child: const Icon(
+                                                  Symbols.broken_image,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                    )
+                                    : CachedNetworkImage(
+                                      imageUrl: widget.app.bannerPath,
+                                      memCacheWidth: kIsWeb ? null : 400,
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment.topCenter,
+                                      placeholder:
+                                          (context, url) =>
+                                              const ShimmerPlaceholder(),
+                                      errorWidget:
+                                          (context, url, error) => Container(
+                                            color: Colors.grey.shade200,
+                                            alignment: Alignment.center,
+                                            child: const Icon(
+                                              Symbols.broken_image,
+                                              color: Colors.grey,
+                                            ),
                                           ),
-                                        ),
-                                  ),
+                                    ),
                           ),
                         ),
                         Positioned(
@@ -858,7 +865,8 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
                   child: SizedBox(
-                    height: MediaQuery.sizeOf(context).width < 600 ? 145.0 : 155.0,
+                    height:
+                        MediaQuery.sizeOf(context).width < 600 ? 145.0 : 155.0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -876,22 +884,24 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                         const SizedBox(height: 4),
                         // Description
                         Text(
-                          widget.app.caption,
+                          widget.app.homeSummary,
                           style: context.textTheme.bodySmall?.copyWith(
                             color: AppColors.getDescriptionText(context),
                             fontSize: 11.5,
                             height: 1.25,
                           ),
-                          maxLines: 2, // Allow wrapping up to 2 lines
+                          maxLines: 4, // Allow wrapping up to 2 lines
                           overflow: TextOverflow.ellipsis,
                         ),
 
-                        const SizedBox(height: 16),
+                        const Spacer(),
 
-                          // Tech Tags
-                          Wrap(
+                        // Tech Tags
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          child: Row(
                             spacing: 4,
-                            runSpacing: 4,
                             children:
                                 tags.take(3).map((tag) {
                                   return Container(
@@ -918,30 +928,31 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                                   );
                                 }).toList(),
                           ),
-                          const SizedBox(height: 8),
-                          // View link
-                          Row(
-                            children: [
-                              Text(
-                                "View Project",
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 11,
-                                  color: context.colorScheme.onSurface,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Icon(
-                                Symbols.arrow_forward,
-                                size: 12,
+                        ),
+                        const SizedBox(height: 8),
+                        // View link
+                        Row(
+                          children: [
+                            Text(
+                              "View Project",
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11,
                                 color: context.colorScheme.onSurface,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            const SizedBox(width: 4),
+                            Icon(
+                              Symbols.arrow_forward,
+                              size: 12,
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
+                ),
               ],
             ),
           ),

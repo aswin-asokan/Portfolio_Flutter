@@ -16,23 +16,20 @@ AppModel snackfit = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/snackfit_logo.png",
-  gitLink: "https://github.com/aswin-asokan/snackfit",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit_logo.webp?alt=media",
+  githubUrl: "https://github.com/aswin-asokan/snackfit",
   subtitle: "Serve us your look! Because you're what you eat!",
   homeSummary:
       "Because choosing dinner is hard—but your outfit already made the decision. Snap a photo, get roasted by AI, discover your edible twin, and find where to eat it nearby.",
-  releaseLink: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit1.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit2.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit3.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit4.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit5.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit6.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit7.jpeg",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit8.jpeg",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit4.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit5.webp?alt=media",
   ],
   aboutApp:
       "This is an AI-powered outfit-to-food suggestion app that turns your daily style into a delicious dining recommendation. Just snap or upload a picture of your outfit, and the app identifies the food you most resemble, roasts you for it, and shows you where to eat that dish nearby — whether you’re at home or traveling. Built with speed, humor, and absurdity in mind, it’s proof that technology can solve problems no one actually has.",
@@ -75,21 +72,13 @@ AppModel snackfit = AppModel(
     "Gained experience in working within tight hackathon timelines and constraints.",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.python,
-      TechStack.sqlite,
-    ],
-    tools: [
-      Tools.geminiAiApi,
-      Tools.git,
-      Tools.github,
-    ],
+    techStack: [TechStack.flutter, TechStack.python, TechStack.sqlite],
+    tools: [Tools.geminiAiApi, Tools.git, Tools.github],
     skills: [
       Skills.aiModelIntegration,
       Skills.machineLearningDatasetPreparation,
-      Skills.collaborationCommunication,
-      Skills.timeManagement,
+      Skills.teamCollaboration,
+      Skills.projectManagement,
     ],
   ),
 );

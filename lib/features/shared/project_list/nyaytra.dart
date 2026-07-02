@@ -16,20 +16,18 @@ AppModel nyaytra = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnyaytra_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/nayaytra_logo.jpeg",
-  gitLink:
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnayaytra_logo.webp?alt=media",
+  githubUrl:
       "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
   subtitle: "BERT-driven Legal Insights for India",
   homeSummary:
       "Justice may be blind, but your documents don't have to be confusing. Nyaytra classifies, summarizes, and explains Indian legal texts with the help of AI.",
-  releaseLink: "",
-  type: AppButtonType.github,
+  liveUrl: "",
+  buttonType: AppButtonType.github,
   devices: AppAvailability.codeOnly,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/nyaytra/nyaytra1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/nyaytra/nyaytra2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/nyaytra/nyaytra3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/nyaytra/nyaytra4.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnyaytra1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnyaytra2.webp?alt=media",
   ],
   aboutApp:
       "Nyaytra (न्याय + यंत्र) means Machine of Justice. It is an intelligent legal assistant designed to simplify the interpretation of complex Indian legal documents. Tailored for legal professionals, students, and the curious mind, it uses advanced NLP techniques to provide section-wise summaries and conversational access to legal insights. With features like document upload, automated classification, summarization, and a chatbot powered by Gemini, Nyaytra bridges the gap between raw legal text and accessible understanding—making legal knowledge less intimidating and more actionable.",
@@ -51,7 +49,8 @@ AppModel nyaytra = AppModel(
     links: [
       AppInfoIconModel(
         platform: AppInfoLink.github,
-        link: "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
+        link:
+            "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
       ),
     ],
   ),
@@ -74,17 +73,11 @@ AppModel nyaytra = AppModel(
       TechStack.t5,
       TechStack.geminiApi,
     ],
-    tools: [
-      Tools.git,
-      Tools.github,
-      Tools.huggingFace,
-      Tools.overleaf,
-    ],
+    tools: [Tools.git, Tools.github, Tools.huggingFace, Tools.overleaf],
     skills: [
-      Skills.problemIdentificationIdeation,
+      Skills.problemSolving,
       Skills.projectManagement,
-      Skills.communication,
-      Skills.timeManagement,
+      Skills.teamCollaboration,
     ],
   ),
 );

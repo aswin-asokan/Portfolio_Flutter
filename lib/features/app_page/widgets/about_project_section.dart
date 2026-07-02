@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/widgets/tech_icon_helper.dart';
 import 'package:portfolio/features/shared/extension/theme_extension.dart';
@@ -23,7 +24,8 @@ class AboutProjectSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isMobile = Responsive.isMobile(context);
-    final bool isTablet = Responsive.isTablet(context) || Responsive.isSmallTablet(context);
+    final bool isTablet =
+        Responsive.isTablet(context) || Responsive.isSmallTablet(context);
     final bool isDesktop = !isMobile && !isTablet;
 
     // Find the items dynamically by title to ensure robust mapping
@@ -32,7 +34,9 @@ class AboutProjectSection extends StatelessWidget {
       orElse: () => InfoModel(title: "Tech Stack", content: ""),
     );
     final toolsItem = infoItems.firstWhere(
-      (e) => e.title.toLowerCase().contains('tool') || e.title.toLowerCase().contains('services'),
+      (e) =>
+          e.title.toLowerCase().contains('tool') ||
+          e.title.toLowerCase().contains('services'),
       orElse: () => InfoModel(title: "Tools & Services", content: ""),
     );
     final skillsItem = infoItems.firstWhere(
@@ -45,22 +49,32 @@ class AboutProjectSection extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppColors.getLavenderBg(context),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.getBorder(context),
-          width: 1.5,
-        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.getBorder(context), width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 20,
         children: [
-          Text(
-            "About this project",
-            style: context.textTheme.titleMedium!.copyWith(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            spacing: AppConstants.spaceM,
+            children: [
+              Icon(
+                Symbols.code_xml,
+                color: AppColors.aboutProjectColor(context),
+                size: AppConstants.iconSizeXL,
+                weight: 500,
+                fill: 1,
+              ),
+              Text(
+                "About this project",
+                style: context.textTheme.titleMedium!.copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
           if (isDesktop)
             Column(
@@ -72,15 +86,9 @@ class AboutProjectSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: 20,
                     children: [
-                      Expanded(
-                        child: _buildWhyIBuiltCard(context),
-                      ),
-                      Expanded(
-                        child: _buildChallengesCard(context),
-                      ),
-                      Expanded(
-                        child: _buildLearningCard(context),
-                      ),
+                      Expanded(child: _buildWhyIBuiltCard(context)),
+                      Expanded(child: _buildChallengesCard(context)),
+                      Expanded(child: _buildLearningCard(context)),
                     ],
                   ),
                 ),
@@ -91,7 +99,10 @@ class AboutProjectSection extends StatelessWidget {
                     spacing: 20,
                     children: [
                       Expanded(
-                        child: _buildTechStackCard(context, techStackItem.iconLabels),
+                        child: _buildTechStackCard(
+                          context,
+                          techStackItem.iconLabels,
+                        ),
                       ),
                       Expanded(
                         child: _buildToolsCard(context, toolsItem.iconLabels),
@@ -114,16 +125,16 @@ class AboutProjectSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: 20,
                     children: [
-                      Expanded(
-                        child: _buildWhyIBuiltCard(context),
-                      ),
+                      Expanded(child: _buildWhyIBuiltCard(context)),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           spacing: 20,
                           children: [
                             _buildChallengesCard(context),
-                            Expanded(child: _buildLearningCard(context)), // Expanded to fill remaining intrinsic height if needed
+                            Expanded(
+                              child: _buildLearningCard(context),
+                            ), // Expanded to fill remaining intrinsic height if needed
                           ],
                         ),
                       ),
@@ -137,7 +148,10 @@ class AboutProjectSection extends StatelessWidget {
                     spacing: 20,
                     children: [
                       Expanded(
-                        child: _buildTechStackCard(context, techStackItem.iconLabels),
+                        child: _buildTechStackCard(
+                          context,
+                          techStackItem.iconLabels,
+                        ),
                       ),
                       Expanded(
                         child: Column(
@@ -145,7 +159,12 @@ class AboutProjectSection extends StatelessWidget {
                           spacing: 20,
                           children: [
                             _buildToolsCard(context, toolsItem.iconLabels),
-                            Expanded(child: _buildSkillsCard(context, skillsItem.iconLabels)),
+                            Expanded(
+                              child: _buildSkillsCard(
+                                context,
+                                skillsItem.iconLabels,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -175,7 +194,6 @@ class AboutProjectSection extends StatelessWidget {
     return _ProjectDetailsCard(
       title: "Why I built this",
       icon: Symbols.lightbulb,
-      iconColor: context.colorScheme.primary,
       child: Text(
         about,
         style: context.textTheme.displaySmall!.copyWith(
@@ -183,7 +201,6 @@ class AboutProjectSection extends StatelessWidget {
           fontWeight: FontWeight.w300,
           height: 1.5,
         ),
-        textAlign: TextAlign.justify,
       ),
     );
   }
@@ -191,8 +208,7 @@ class AboutProjectSection extends StatelessWidget {
   Widget _buildChallengesCard(BuildContext context) {
     return _ProjectDetailsCard(
       title: "Challenges faced",
-      icon: Symbols.warning,
-      iconColor: context.colorScheme.primary,
+      icon: Symbols.mountain_flag,
       child: _BulletList(items: challenges),
     );
   }
@@ -201,34 +217,39 @@ class AboutProjectSection extends StatelessWidget {
     return _ProjectDetailsCard(
       title: "Learning / Outcome",
       icon: Symbols.school,
-      iconColor: context.colorScheme.primary,
       child: _BulletList(items: outcomes),
     );
   }
 
-  Widget _buildTechStackCard(BuildContext context, List<IconLabelModel>? iconLabels) {
+  Widget _buildTechStackCard(
+    BuildContext context,
+    List<IconLabelModel>? iconLabels,
+  ) {
     return _ProjectDetailsCard(
       title: "Tech Stack",
       icon: Symbols.construction,
-      iconColor: context.colorScheme.primary,
       child: _TechIconGrid(iconLabels: iconLabels),
     );
   }
 
-  Widget _buildToolsCard(BuildContext context, List<IconLabelModel>? iconLabels) {
+  Widget _buildToolsCard(
+    BuildContext context,
+    List<IconLabelModel>? iconLabels,
+  ) {
     return _ProjectDetailsCard(
       title: "Tools & Services",
       icon: Symbols.handyman,
-      iconColor: context.colorScheme.primary,
       child: _TechIconGrid(iconLabels: iconLabels),
     );
   }
 
-  Widget _buildSkillsCard(BuildContext context, List<IconLabelModel>? iconLabels) {
+  Widget _buildSkillsCard(
+    BuildContext context,
+    List<IconLabelModel>? iconLabels,
+  ) {
     return _ProjectDetailsCard(
       title: "Skills",
-      icon: Symbols.star,
-      iconColor: context.colorScheme.primary,
+      icon: Symbols.star_rounded,
       child: _TechIconGrid(iconLabels: iconLabels),
     );
   }
@@ -237,13 +258,11 @@ class AboutProjectSection extends StatelessWidget {
 class _ProjectDetailsCard extends StatelessWidget {
   final String title;
   final IconData icon;
-  final Color iconColor;
   final Widget child;
 
   const _ProjectDetailsCard({
     required this.title,
     required this.icon,
-    required this.iconColor,
     required this.child,
   });
 
@@ -254,20 +273,24 @@ class _ProjectDetailsCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.getCardBg(context),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppColors.getBorder(context),
-          width: 1.5,
-        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.getBorder(context), width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 12,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 8,
             children: [
-              Icon(icon, color: iconColor, size: 20),
+              Icon(
+                icon,
+                color: AppColors.aboutProjectColor(context),
+                size: 22,
+                weight: 500,
+                fill: 1,
+              ),
               Expanded(
                 child: Text(
                   title,
@@ -294,33 +317,34 @@ class _BulletList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: items.map((item) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "• ",
-                style: context.textTheme.displaySmall!.copyWith(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: context.colorScheme.primary,
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  item,
-                  style: context.textTheme.displaySmall!.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w300,
+      children:
+          items.map((item) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "• ",
+                    style: context.textTheme.displaySmall!.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: context.colorScheme.primary,
+                    ),
                   ),
-                ),
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: context.textTheme.displaySmall!.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        );
-      }).toList(),
+            );
+          }).toList(),
     );
   }
 }
@@ -339,33 +363,37 @@ class _TechIconGrid extends StatelessWidget {
       spacing: 16,
       runSpacing: 16,
       alignment: WrapAlignment.start,
-      children: iconLabels!.map((item) {
-        final icon = item.icon ?? getTechIcon(item.label);
-        final color = item.color ?? getTechColor(item.label) ?? context.colorScheme.primary;
-        return SizedBox(
-          width: 70,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (icon != null)
-                Icon(icon, size: 24, color: color)
-              else
-                Icon(Symbols.code, size: 24, color: color),
-              const SizedBox(height: 6),
-              Text(
-                item.label,
-                style: context.textTheme.displaySmall!.copyWith(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+      children:
+          iconLabels!.map((item) {
+            final icon = item.icon ?? getTechIcon(item.label);
+            final color =
+                item.color ??
+                getTechColor(item.label) ??
+                context.colorScheme.primary;
+            return SizedBox(
+              width: 70,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (icon != null)
+                    Icon(icon, size: 24, color: color)
+                  else
+                    Icon(Symbols.code, size: 24, color: color),
+                  const SizedBox(height: 6),
+                  Text(
+                    item.label,
+                    style: context.textTheme.displaySmall!.copyWith(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
-            ],
-          ),
-        );
-      }).toList(),
+            );
+          }).toList(),
     );
   }
 }

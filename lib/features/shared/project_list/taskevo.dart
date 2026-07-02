@@ -16,22 +16,23 @@ AppModel taskevo = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo1_banner.webp?alt=media",
 
-  iconPath: "assets/files/projects/icons/taskevo1_logo.webp",
+  iconPath:
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo1_logo.webp?alt=media",
 
-  gitLink: "https://github.com/aswin-asokan/taskevo",
+  githubUrl: "https://github.com/aswin-asokan/taskevo",
   subtitle: "Boost Productivity, Stay Organized.",
   homeSummary:
       "A productivity app that works even when your Wi-Fi doesn't. Manage tasks, take rich notes, and stay organized—all without creating an account.",
-  releaseLink: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.androidWeb,
   screenshots: [
-    "assets/files/projects/screenshots/taskevo/taskevo1.webp",
-    "assets/files/projects/screenshots/taskevo/taskevo2.webp",
-    "assets/files/projects/screenshots/taskevo/taskevo3.webp",
-    "assets/files/projects/screenshots/taskevo/taskevo4.webp",
-    "assets/files/projects/screenshots/taskevo/taskevo5.webp",
-    "assets/files/projects/screenshots/taskevo/taskevo6.webp",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo1_logo.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo4.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo5.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/taskevo%2Ftaskevo6.webp?alt=media",
   ],
   aboutApp:
       "TasksEVO is a Flutter-based productivity app that combines a to-do list and rich note-taking experience in one place. Designed with minimalism in mind, it enables users to manage tasks and related notes seamlessly—without requiring login or internet access. It stores everything locally, ensuring both privacy and performance.\nWhether you're planning a project, managing daily goals, or jotting down quick thoughts, TasksEVO offers a focused environment with advanced features like subtasks, formatting tools, due dates, and theme customization.",
@@ -74,15 +75,8 @@ AppModel taskevo = AppModel(
         "Gained confidence to take a simple task list app and evolve it into a scalable productivity tool",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.hive,
-      TechStack.flutterQuill,
-    ],
+    techStack: [TechStack.flutter, TechStack.hive, TechStack.flutterQuill],
     tools: [Tools.git, Tools.github],
-    skills: [
-      Skills.iterationRefactoring,
-      Skills.growthMindset,
-    ],
+    skills: [Skills.cleanCodeAndRefactoring, Skills.continuousLearning],
   ),
 );

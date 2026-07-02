@@ -17,12 +17,12 @@ AppModel ancientLang = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_lang%2Fancient_banner.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_lang%2Fancient_logo.webp?alt=media",
-  gitLink: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
+  githubUrl: "https://github.com/Najiya-Nazrin/ancient-language-preservation",
   subtitle: "Filling in the Blanks, Intelligently",
   homeSummary:
       "Ancient manuscripts lost words over time. Scan them with OCR, mark the missing parts, and let IndicBERT suggest the most likely Sanskrit restorations.",
-  releaseLink: "",
-  type: AppButtonType.github,
+  liveUrl: "",
+  buttonType: AppButtonType.github,
   devices: AppAvailability.codeOnly,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/ancient_lang%2Fancient.webp?alt=media",
@@ -78,10 +78,10 @@ AppModel ancientLang = AppModel(
       Tools.notion,
     ],
     skills: [
-      Skills.researchInnovation,
-      Skills.timeManagement,
+      Skills.problemSolving,
+      Skills.projectManagement,
       Skills.teamCollaboration,
-      Skills.presentationPitching,
+      Skills.presentationAndPitching,
     ],
   ),
 );

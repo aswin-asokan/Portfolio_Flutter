@@ -61,6 +61,13 @@ class AppColors {
           ? borderDark
           : borderLight;
 
+  static Color aboutAppColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? lightGreen : darkGreen;
+  static Color aboutProjectColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? lavenderBadgeBgLight
+          : lavenderBorderDark;
+
   // Green border and splash colors for About section
   static const Color greenBorderLight = Color(0xFFCEEBDC);
   static const Color greenSplashLight = Color(0xFFE6F5EC);

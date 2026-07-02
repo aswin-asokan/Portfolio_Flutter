@@ -10,25 +10,25 @@ AppModel flysoftFloorplan = AppModel(
   id: "floorplan",
   title: "Flysoft Floor Plan",
   caption: "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
-  techStack: ["Internship", "Flutter", "JSON"],
+  techStack: ["Internship", "JSON", "Confluence", "Jira"],
   mainTech: "• Flutter",
   projectTypes: [ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Ffloorplan_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/internship_logo.jpeg",
-  gitLink: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Finternship_logo.webp?alt=media",
+  githubUrl: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
   subtitle: "Restaurant Layouts, Simplified",
   homeSummary:
       "Sketch it before you shift it. Create interactive restaurant floor plans, customize tables, and manage multiple layouts with an intuitive drag-and-drop interface.",
-  releaseLink: "",
-  type: AppButtonType.github,
+  liveUrl: "",
+  buttonType: AppButtonType.github,
   devices: AppAvailability.all,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/floorplan/flysoft_floorplan1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/floorplan/flysoft_floorplan2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/floorplan/flysoft_floorplan3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/floorplan/flysoft_floorplan4.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Fflysoft_floorplan1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Fflysoft_floorplan2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Fflysoft_floorplan3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/floorplan%2Fflysoft_floorplan4.webp?alt=media",
   ],
   aboutApp:
       "The Flysoft Floor Plan Application is a cross-platform desktop and Android app that allows users—especially restaurant owners and managers—to design custom floor layouts using a user-friendly drag-and-drop interface. With support for multi-floor layouts, interactive table management, export/import functionality, and localization in multiple languages, the app delivers a powerful yet accessible solution for visual space planning.\nUsers can draw floor boundaries, add tables, customize their properties, and export layouts in JSON format for cross-device usage. The interface is intuitive and lightweight, with precise control made possible through grid snapping and custom UI components.",
@@ -75,10 +75,7 @@ AppModel flysoftFloorplan = AppModel(
     "Applied unit testing, logging, and clean code principles for a production-grade build",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.json,
-    ],
+    techStack: [TechStack.flutter, TechStack.json],
     tools: [
       Tools.confluence,
       Tools.jira,
@@ -87,12 +84,11 @@ AppModel flysoftFloorplan = AppModel(
       Tools.genymotion,
     ],
     skills: [
-      Skills.projectPlanning,
+      Skills.projectManagement,
       Skills.problemSolving,
-      Skills.collaborationCommunication,
-      Skills.timeManagement,
-      Skills.toolFamiliarity,
-      Skills.cleanCode,
+      Skills.teamCollaboration,
+      Skills.technicalProficiency,
+      Skills.cleanCodeAndRefactoring,
     ],
   ),
 );

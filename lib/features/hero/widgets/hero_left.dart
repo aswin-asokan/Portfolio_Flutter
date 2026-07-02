@@ -17,13 +17,13 @@ class HeroLeft extends StatelessWidget {
   });
 
   void _downloadCV() async {
-    final Uri url = Uri.parse("assets/assets/files/resume.pdf");
+    final Uri url = Uri.parse(
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/files%2Fresume.pdf?alt=media",
+    );
     try {
       await launchUrl(url);
     } catch (e) {
-      debugPrint("Could not launch relative asset: $e");
-      final Uri fallbackUrl = Uri.parse("https://aswinasokan.vercel.app/assets/assets/files/resume.pdf");
-      await launchUrl(fallbackUrl);
+      debugPrint("Could not launch resume link: $e");
     }
   }
 

@@ -10,19 +10,19 @@ AppModel eazygo = AppModel(
   id: "eazygo",
   title: "EazyGo",
   caption: "Efficiently Report Infrastructural Damages on Map.",
-  techStack: ["Flutter", "Firebase", "GCP"],
+  techStack: ["Firebase", "GCP"],
   mainTech: "• Flutter",
   projectTypes: [ProjectType.flutter],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo_banner.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo_logo.webp?alt=media",
-  gitLink: "https://github.com/aswin-asokan/EazyGo-MAp",
+  githubUrl: "https://github.com/aswin-asokan/EazyGo-MAp",
   subtitle: "Map & Report Infrastructural Damage.",
   homeSummary:
       "See it. Pin it. Report it. EazyGo makes reporting public infrastructure issues simple with map-based reporting, live updates, and community-driven accountability.",
-  releaseLink: "https://github.com/aswin-asokan/EazyGo-MAp/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/EazyGo-MAp/releases/tag/v1.0.0",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo1.webp?alt=media",
@@ -70,20 +70,12 @@ AppModel eazygo = AppModel(
     "Gained experience in app design, feature delegation, and cloud integration",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.firebase,
-      TechStack.gcp,
-    ],
-    tools: [
-      Tools.git,
-      Tools.github,
-      Tools.notion,
-    ],
+    techStack: [TechStack.flutter, TechStack.firebase, TechStack.gcp],
+    tools: [Tools.git, Tools.github, Tools.notion],
     skills: [
       Skills.teamLeadership,
-      Skills.presentation,
-      Skills.ideaStructuring,
+      Skills.presentationAndPitching,
+      Skills.problemSolving,
     ],
   ),
 );

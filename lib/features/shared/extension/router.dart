@@ -54,11 +54,12 @@ final GoRouter goRouter = GoRouter(
                 
                 return AppPage(
                   title: app.title,
-                  iconPath: app.iconPath,
-                  gitLink: app.gitLink,
-                  releaseLink: app.releaseLink,
                   subtitle: app.subtitle,
-                  type: app.type,
+                  iconPath: app.iconPath,
+                  githubUrl: app.githubUrl,
+                  liveUrl: app.liveUrl,
+                  shareLink: app.shareLink,
+                  buttonType: app.buttonType,
                   devices: app.devices,
                   screenshots: app.screenshots,
                   aboutApp: app.aboutApp,

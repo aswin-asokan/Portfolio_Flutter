@@ -16,21 +16,18 @@ AppModel systemMonitor = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsystem_monitor_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/sysmonitor_logo.jpeg",
-  gitLink: "https://github.com/aswin-asokan/System-Monitor",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsysmonitor_logo.webp?alt=media",
+  githubUrl: "https://github.com/aswin-asokan/System-Monitor",
   subtitle: "Effortless Server Monitoring.",
   homeSummary:
       "Your server's health, without the clutter. Connect to any JSON API and monitor live system metrics through clean, interactive visualizations.",
-  releaseLink:
-      "https://github.com/aswin-asokan/System-Monitor/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/System-Monitor/releases/tag/v1.0.0",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor4.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor5.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsysmonitor1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsysmonitor3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsysmonitor4.webp?alt=media",
   ],
   aboutApp:
       "System Monitor App is a lightweight, Flutter-based tool designed to let you monitor server performance in real-time. With a focus on simplicity and privacy, the app fetches system statistics via a JSON API and presents them through intuitive visualizations—without requiring login or uploading your data. It’s perfect for developers, sysadmins, or anyone who wants a fast, no-frills overview of server health.",
@@ -71,12 +68,12 @@ AppModel systemMonitor = AppModel(
     "Gained confidence working on fast-paced, goal-driven development tasks",
   ],
   projectInfo: ProjectInfo(
-    techStack: [TechStack.flutter],
+    techStack: [TechStack.flutter, TechStack.json],
     tools: [Tools.git, Tools.github],
     skills: [
-      Skills.quickLearning,
-      Skills.deadlineFocused,
-      Skills.selfConfidence,
+      Skills.continuousLearning,
+      Skills.projectManagement,
+      Skills.persistenceAndResilience,
     ],
   ),
 );
