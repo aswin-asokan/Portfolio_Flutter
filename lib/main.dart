@@ -6,12 +6,14 @@ import 'package:portfolio/core/themes/lightmode.dart';
 import 'package:portfolio/core/themes/theme_provider.dart';
 import 'package:portfolio/core/themes/theme_transition_overlay.dart';
 import 'package:portfolio/features/shared/extension/router.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
   // Resize the lifecycle channel buffer to prevent "message discarded" warnings on startup
   channelBuffers.resize('flutter/lifecycle', 100);
   
   WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
   // Limit image cache to prevent high memory usage on Web
   PaintingBinding.instance.imageCache.maximumSize = 100;
   PaintingBinding.instance.imageCache.maximumSizeBytes = 50 << 20; // 50 MB

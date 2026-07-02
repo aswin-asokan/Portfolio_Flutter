@@ -34,19 +34,27 @@ class _AppSsListState extends State<AppSsList> {
 
   void _onScroll() {
     if (!mounted) return;
+    if (!_scrollController.hasClients) return;
     final double currentOffset = _scrollController.offset;
-    
-    // Find the index whose starting offset is closest to the current scroll offset
+    final double maxScroll = _scrollController.position.maxScrollExtent;
+
     int closestIndex = 0;
-    double minDiff = double.infinity;
-    for (int i = 0; i < widget.images.length; i++) {
-      final double itemOffset = _getScrollOffset(i);
-      final double diff = (currentOffset - itemOffset).abs();
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIndex = i;
+
+    if (maxScroll > 0 && currentOffset >= maxScroll - 15) {
+      closestIndex = widget.images.length - 1;
+    } else {
+      // Find the index whose starting offset is closest to the current scroll offset
+      double minDiff = double.infinity;
+      for (int i = 0; i < widget.images.length; i++) {
+        final double itemOffset = _getScrollOffset(i);
+        final double diff = (currentOffset - itemOffset).abs();
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIndex = i;
+        }
       }
     }
+
     if (closestIndex != _currentIndex && closestIndex >= 0 && closestIndex < widget.images.length) {
       setState(() {
         _currentIndex = closestIndex;
@@ -130,27 +138,7 @@ class _AppSsListState extends State<AppSsList> {
     super.dispose();
   }
 
-  Widget _buildArrowButton({required IconData icon, required VoidCallback onTap}) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            color: Colors.black.withAlpha(200),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            icon,
-            color: Colors.white,
-            size: 20,
-          ),
-        ),
-      ),
-    );
-  }
+
 
   Widget _buildIndicatorDots() {
     return Row(
@@ -202,13 +190,11 @@ class _AppSsListState extends State<AppSsList> {
           ),
           Row(
             children: [
-              if (!Responsive.isMobile(context)) ...[
-                _buildArrowButton(
-                  icon: Icons.chevron_left,
-                  onTap: () => _scrollToIndex(_currentIndex - 1),
-                ),
-                const SizedBox(width: 12),
-              ],
+              _ScrollButton(
+                icon: Icons.chevron_left,
+                onPressed: () => _scrollToIndex(_currentIndex - 1),
+              ),
+              const SizedBox(width: 12),
               Expanded(
                 child: SizedBox(
                   height: cardHeight,
@@ -244,18 +230,66 @@ class _AppSsListState extends State<AppSsList> {
                   ),
                 ),
               ),
-              if (!Responsive.isMobile(context)) ...[
-                const SizedBox(width: 12),
-                _buildArrowButton(
-                  icon: Icons.chevron_right,
-                  onTap: () => _scrollToIndex(_currentIndex + 1),
-                ),
-              ],
+              const SizedBox(width: 12),
+              _ScrollButton(
+                icon: Icons.chevron_right,
+                onPressed: () => _scrollToIndex(_currentIndex + 1),
+              ),
             ],
           ),
           const SizedBox(height: 8),
           _buildIndicatorDots(),
         ],
+      ),
+    );
+  }
+}
+
+class _ScrollButton extends StatefulWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const _ScrollButton({required this.icon, required this.onPressed});
+
+  @override
+  State<_ScrollButton> createState() => _ScrollButtonState();
+}
+
+class _ScrollButtonState extends State<_ScrollButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          color: _isHovered
+              ? context.colorScheme.primaryContainer
+              : context.colorScheme.surface.withValues(alpha: 0.8),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: IconButton(
+          onPressed: widget.onPressed,
+          icon: Icon(
+            widget.icon,
+            color: _isHovered
+                ? context.colorScheme.onPrimaryContainer
+                : context.colorScheme.onSurface,
+          ),
+          iconSize: 20,
+          constraints: const BoxConstraints(),
+          padding: const EdgeInsets.all(8),
+        ),
       ),
     );
   }
