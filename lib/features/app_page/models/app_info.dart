@@ -1,4 +1,5 @@
 import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
 
 class AppInfo {
   final List<InfoModel> items;
@@ -9,7 +10,7 @@ class AppInfo {
     required String productType,
     required String size,
     required String languages,
-    List<IconLabelModel>? links,
+    List<AppInfoIconModel>? links,
   }) : items = [
          InfoModel(title: "Version", content: version),
          InfoModel(title: "Updated on", content: updatedOn),

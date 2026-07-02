@@ -10,24 +10,60 @@ class InitialLoadingScreen extends StatefulWidget {
 
   final Widget child;
 
+  static bool avoidLoadingScreen = false;
+
   @override
   State<InitialLoadingScreen> createState() => _InitialLoadingScreenState();
 }
 
 class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
   bool _startedLoading = false;
-  bool _isLoaded = false;
+  late bool _isLoaded;
   Object? _loadError;
   double _progress = 0;
 
   int get _assetCount => AppAssets.criticalImages.length;
 
   @override
+  void initState() {
+    super.initState();
+    _isLoaded = InitialLoadingScreen.avoidLoadingScreen;
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_startedLoading) {
       _startedLoading = true;
-      _loadAssets();
+      if (_isLoaded) {
+        _loadAssetsInBackground();
+      } else {
+        _loadAssets();
+      }
+    }
+  }
+
+  Future<void> _loadAssetsInBackground() async {
+    try {
+      for (final asset in AppAssets.criticalImages) {
+        if (!mounted) return;
+        final ImageProvider provider =
+            asset.cacheWidth != null
+                ? ResizeImage(AssetImage(asset.path), width: asset.cacheWidth)
+                : AssetImage(asset.path);
+
+        await precacheImage(provider, context);
+      }
+      InitialLoadingScreen.avoidLoadingScreen = true;
+      _loadSecondaryAssets();
+    } catch (error, stackTrace) {
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          exception: error,
+          stack: stackTrace,
+          library: 'initial asset preload background',
+        ),
+      );
     }
   }
 
@@ -61,6 +97,8 @@ class _InitialLoadingScreenState extends State<InitialLoadingScreen> {
         _progress = 1;
         _isLoaded = true;
       });
+
+      InitialLoadingScreen.avoidLoadingScreen = true;
 
       _loadSecondaryAssets();
     } catch (error, stackTrace) {

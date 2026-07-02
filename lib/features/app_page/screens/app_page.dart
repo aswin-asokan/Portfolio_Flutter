@@ -75,7 +75,10 @@ class _AppPageState extends State<AppPage> {
     try {
       if (mounted && widget.iconPath.isNotEmpty) {
         await precacheImage(
-          CachedNetworkImageProvider(widget.iconPath, maxWidth: kIsWeb ? null : 300),
+          CachedNetworkImageProvider(
+            widget.iconPath,
+            maxWidth: kIsWeb ? null : 300,
+          ),
           context,
           onError: (exception, stackTrace) {},
         ).catchError((_) {});
@@ -107,88 +110,83 @@ class _AppPageState extends State<AppPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
-          children: [
-            SingleChildScrollView(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: padding,
-                  vertical: 20,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 15,
-                  children: [
-                    SizedBox(
-                      height:
-                          Responsive.isMobile(context) ||
-                                  Responsive.isSmallTablet(context)
-                              ? 85
-                              : 70,
-                      key: sectionKeys[0],
+        children: [
+          SingleChildScrollView(
+            controller: scrollController,
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: padding, vertical: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 30,
+                children: [
+                  SizedBox(
+                    height:
+                        Responsive.isMobile(context) ||
+                                Responsive.isSmallTablet(context)
+                            ? 85
+                            : 70,
+                    key: sectionKeys[0],
+                  ),
+                  RepaintBoundary(
+                    child: AppPageHeader(
+                      title: widget.title,
+                      subTitle: widget.subtitle,
+                      buttonType: widget.type,
+                      gitLink: widget.gitLink,
+                      releaseLink: widget.releaseLink,
+                      device: widget.devices,
+                      imgPath: widget.iconPath,
                     ),
-                    RepaintBoundary(
-                      child: AppPageHeader(
-                        title: widget.title,
-                        subTitle: widget.subtitle,
-                        buttonType: widget.type,
-                        gitLink: widget.gitLink,
-                        releaseLink: widget.releaseLink,
-                        device: widget.devices,
-                        imgPath: widget.iconPath,
-                      ),
+                  ),
+                  RepaintBoundary(
+                    child: AppSsList(
+                      key: sectionKeys[1],
+                      images: widget.screenshots,
                     ),
-                    RepaintBoundary(
-                      child: AppSsList(
-                        key: sectionKeys[1],
-                        images: widget.screenshots,
-                      ),
+                  ),
+                  RepaintBoundary(
+                    child: AboutAppSection(
+                      key: sectionKeys[2],
+                      about: widget.aboutApp,
+                      features: widget.features,
+                      futurePlans: widget.futurePlan,
+                      infoItems: appInfoItems,
                     ),
-                    RepaintBoundary(
-                      child: AboutAppSection(
-                        key: sectionKeys[2],
-                        about: widget.aboutApp,
-                        features: widget.features,
-                        futurePlans: widget.futurePlan,
-                        infoItems: appInfoItems,
-                      ),
+                  ),
+                  RepaintBoundary(
+                    child: AboutProjectSection(
+                      key: sectionKeys[3],
+                      about: widget.aboutProject,
+                      challenges: widget.challeges,
+                      outcomes: widget.outcomes,
+                      infoItems: pjtinfoItems,
                     ),
-                    RepaintBoundary(
-                      child: AboutProjectSection(
-                        key: sectionKeys[3],
-                        about: widget.aboutProject,
-                        challenges: widget.challeges,
-                        outcomes: widget.outcomes,
-                        infoItems: pjtinfoItems,
-                      ),
-                    ),
-                    const RepaintBoundary(
-                      child: Footer(),
-                    ),
-                  ],
-                ),
+                  ),
+                  const RepaintBoundary(child: Footer()),
+                ],
               ),
             ),
-            Positioned(
-              top: 20,
-              left: padding,
-              right: padding,
-              child: RepaintBoundary(
-                child: Navbar(
-                  sectionKeys: sectionKeys,
-                  scrollController: scrollController,
-                  sections: [
-                    "Header",
-                    "Screenshots",
-                    "About App",
-                    "About Project",
-                  ],
-                ),
+          ),
+          Positioned(
+            top: 20,
+            left: padding,
+            right: padding,
+            child: RepaintBoundary(
+              child: Navbar(
+                sectionKeys: sectionKeys,
+                scrollController: scrollController,
+                sections: [
+                  "Header",
+                  "Screenshots",
+                  "About App",
+                  "About Project",
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 }

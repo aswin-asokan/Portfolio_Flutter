@@ -1,11 +1,10 @@
-import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
-import 'package:simple_icons/simple_icons.dart';
 
 AppModel eazygoauth = AppModel(
   id: "eazygoauth",
@@ -49,11 +48,9 @@ AppModel eazygoauth = AppModel(
     size: "NIL",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/eazyGo_Auth",
-        icon: SimpleIcons.github,
-        color: AppColors.brandGithubAlt,
       ),
     ],
   ),
@@ -72,18 +69,18 @@ AppModel eazygoauth = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "Firebase"),
-      IconLabelModel(label: "OSM"),
+      TechStack.flutter,
+      TechStack.firebase,
+      TechStack.osm,
     ],
     tools: [
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Github"),
-      IconLabelModel(label: "Notion"),
+      Tools.git,
+      Tools.github,
+      Tools.notion,
     ],
     skills: [
-      IconLabelModel(label: "Independence & Ownership"),
-      IconLabelModel(label: "Learning by Doing"),
+      Skills.independenceOwnership,
+      Skills.learningByDoing,
     ],
   ),
 );

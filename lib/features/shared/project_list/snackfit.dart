@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -56,8 +57,8 @@ AppModel snackfit = AppModel(
     size: "22.6MB",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/snackfit",
       ),
     ],
@@ -75,20 +76,20 @@ AppModel snackfit = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "Python"),
-      IconLabelModel(label: "SQLite"),
+      TechStack.flutter,
+      TechStack.python,
+      TechStack.sqlite,
     ],
     tools: [
-      IconLabelModel(label: "Gemini AI API"),
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Github"),
+      Tools.geminiAiApi,
+      Tools.git,
+      Tools.github,
     ],
     skills: [
-      IconLabelModel(label: "AI Model Integration in Mobile Apps"),
-      IconLabelModel(label: "Machine Learning Dataset Preparation"),
-      IconLabelModel(label: "Collaboration & Communication"),
-      IconLabelModel(label: "Time Management"),
+      Skills.aiModelIntegration,
+      Skills.machineLearningDatasetPreparation,
+      Skills.collaborationCommunication,
+      Skills.timeManagement,
     ],
   ),
 );
