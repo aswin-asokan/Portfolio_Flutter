@@ -1,9 +1,11 @@
+import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
 import 'package:portfolio/features/app_page/models/info_model.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 AppModel eazygoauth = AppModel(
   id: "eazygoauth",
@@ -15,18 +17,18 @@ AppModel eazygoauth = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2FeazygoAuth_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/eazygoauth_logo.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygoauth_logo.webp?alt=media",
   gitLink: "https://github.com/aswin-asokan/eazyGo_Auth",
   subtitle: "Streamlined eazyGo Report Management",
   homeSummary:
       "A dashboard built for action, not paperwork. View citizen reports on a live map, resolve issues, and keep users updated—all from one streamlined interface.",
-  releaseLink: "https://eazygo-375211.web.app/#/",
-  type: AppButtonType.website,
+  releaseLink: "https://github.com/aswin-asokan/eazyGo_Auth",
+  type: AppButtonType.github,
   devices: AppAvailability.website,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/eazygoauth/eazygoauth1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/eazygoauth/eazygoauth2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/eazygoauth/eazygoauth3.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygoauth1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygoauth2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygoauth3.webp?alt=media",
   ],
   aboutApp:
       "EazyGo-Authority is a Flutter Web application built to assist government bodies or local authorities in managing real-time reports submitted by users through the EazyGo mobile app. It features a clean, minimal UI with a map-based interface that auto-focuses on the user’s jurisdiction, enabling effortless issue tracking and resolution management.\nAuthorities can monitor reported problems in real time, remove resolved cases, and notify users—all from a unified dashboard that simplifies civic engagement and digital governance.\n\nUse username: pwdaluva@gmail.com and password: password to login",
@@ -50,6 +52,8 @@ AppModel eazygoauth = AppModel(
       IconLabelModel(
         label: "Link",
         link: "https://github.com/aswin-asokan/eazyGo_Auth",
+        icon: SimpleIcons.github,
+        color: AppColors.brandGithubAlt,
       ),
     ],
   ),
