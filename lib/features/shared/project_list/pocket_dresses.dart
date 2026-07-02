@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -56,8 +57,8 @@ AppModel pocketDresses = AppModel(
     size: "22.8MB",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/FlutterFly/",
       ),
     ],
@@ -75,13 +76,13 @@ AppModel pocketDresses = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "Hive"),
+      TechStack.flutter,
+      TechStack.hive,
     ],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    tools: [Tools.git, Tools.github],
     skills: [
-      IconLabelModel(label: "UI/UX Awareness"),
-      IconLabelModel(label: "Goal-Oriented Execution"),
+      Skills.uiUxAwareness,
+      Skills.goalOrientedExecution,
     ],
   ),
 );

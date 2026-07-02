@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -47,8 +48,8 @@ AppModel flysoftFloorplan = AppModel(
     size: "NIL",
     languages: "English, German, Chinese",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/Flysoft_Floorplan/",
       ),
     ],
@@ -75,23 +76,23 @@ AppModel flysoftFloorplan = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "JSON"),
+      TechStack.flutter,
+      TechStack.json,
     ],
     tools: [
-      IconLabelModel(label: "Confluence"),
-      IconLabelModel(label: "Jira"),
-      IconLabelModel(label: "Bitbucket"),
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Genymotion"),
+      Tools.confluence,
+      Tools.jira,
+      Tools.bitbucket,
+      Tools.git,
+      Tools.genymotion,
     ],
     skills: [
-      IconLabelModel(label: "Project Planning"),
-      IconLabelModel(label: "Problem Solving"),
-      IconLabelModel(label: "Collaboration & Communication"),
-      IconLabelModel(label: "Time Management"),
-      IconLabelModel(label: "Tool Familiarity"),
-      IconLabelModel(label: "Clean code"),
+      Skills.projectPlanning,
+      Skills.problemSolving,
+      Skills.collaborationCommunication,
+      Skills.timeManagement,
+      Skills.toolFamiliarity,
+      Skills.cleanCode,
     ],
   ),
 );

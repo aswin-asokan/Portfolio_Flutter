@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -51,8 +52,8 @@ AppModel systemMonitor = AppModel(
     size: "21.4MB",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/System-Monitor",
       ),
     ],
@@ -70,12 +71,12 @@ AppModel systemMonitor = AppModel(
     "Gained confidence working on fast-paced, goal-driven development tasks",
   ],
   projectInfo: ProjectInfo(
-    techStack: [IconLabelModel(label: "Flutter")],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    techStack: [TechStack.flutter],
+    tools: [Tools.git, Tools.github],
     skills: [
-      IconLabelModel(label: "Quick Learning"),
-      IconLabelModel(label: "Deadline Focused"),
-      IconLabelModel(label: "Self-Confidence"),
+      Skills.quickLearning,
+      Skills.deadlineFocused,
+      Skills.selfConfidence,
     ],
   ),
 );

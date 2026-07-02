@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -48,8 +49,8 @@ AppModel keralaiot = AppModel(
     size: "NIL",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
       ),
     ],
@@ -67,20 +68,20 @@ AppModel keralaiot = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Arduino"),
-      IconLabelModel(label: "ESP32"),
-      IconLabelModel(label: "C/C++ for Arduino"),
-      IconLabelModel(label: "Firebase"),
+      TechStack.arduino,
+      TechStack.esp32,
+      TechStack.cCppForArduino,
+      TechStack.firebase,
     ],
     tools: [
-      IconLabelModel(label: "Arduino IDE"),
-      IconLabelModel(label: "MIT App Inventor"),
-      IconLabelModel(label: "Fritzing"),
+      Tools.arduinoIde,
+      Tools.mitAppInventor,
+      Tools.fritzing,
     ],
     skills: [
-      IconLabelModel(label: "Technical Proficiency"),
-      IconLabelModel(label: "Structured Learning & Execution"),
-      IconLabelModel(label: "Documentation & Presentation"),
+      Skills.technicalProficiency,
+      Skills.structuredLearningExecution,
+      Skills.documentationPresentation,
     ],
   ),
 );

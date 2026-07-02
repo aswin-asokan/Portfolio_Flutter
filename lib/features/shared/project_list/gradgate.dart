@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -61,8 +62,8 @@ AppModel gradgate = AppModel(
     size: "Android: 56.8MB\nLinux: 20.2MB\nWindows: 14.7MB",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/GradGate",
       ),
     ],
@@ -85,15 +86,15 @@ AppModel gradgate = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "SQLite"),
+      TechStack.flutter,
+      TechStack.sqlite,
     ],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    tools: [Tools.git, Tools.github],
     skills: [
-      IconLabelModel(label: "Code Review Mindset"),
-      IconLabelModel(label: "Self-Guided Refactoring"),
-      IconLabelModel(label: "Learning Agility"),
-      IconLabelModel(label: "Resilience"),
+      Skills.codeReviewMindset,
+      Skills.selfGuidedRefactoring,
+      Skills.learningAgility,
+      Skills.resilience,
     ],
   ),
 );

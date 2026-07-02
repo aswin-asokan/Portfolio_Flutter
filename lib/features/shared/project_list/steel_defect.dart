@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -46,8 +47,8 @@ AppModel steelDefectDetection = AppModel(
     size: "NIL",
     languages: "Python, Dart",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/steel_defect_detection",
       ),
     ],
@@ -67,25 +68,25 @@ AppModel steelDefectDetection = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Python"),
-      IconLabelModel(label: "PyTorch"),
-      IconLabelModel(label: "SAM"),
-      IconLabelModel(label: "LoRA"),
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "Dart"),
+      TechStack.python,
+      TechStack.pytorch,
+      TechStack.sam,
+      TechStack.lora,
+      TechStack.flutter,
+      TechStack.dart,
     ],
     tools: [
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Hugging Face"),
-      IconLabelModel(label: "VS Code"),
-      IconLabelModel(label: "Anaconda"),
+      Tools.git,
+      Tools.huggingFace,
+      Tools.vsCode,
+      Tools.anaconda,
     ],
     skills: [
-      IconLabelModel(label: "Computer Vision"),
-      IconLabelModel(label: "Deep Learning Fine-Tuning (PEFT)"),
-      IconLabelModel(label: "Full-Stack Development"),
-      IconLabelModel(label: "Industrial Automation Concept"),
-      IconLabelModel(label: "Team Collaboration"),
+      Skills.computerVision,
+      Skills.deepLearningFineTuningPeft,
+      Skills.fullStackDevelopment,
+      Skills.industrialAutomationConcept,
+      Skills.teamCollaboration,
     ],
   ),
 );

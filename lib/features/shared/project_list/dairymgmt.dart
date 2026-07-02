@@ -1,12 +1,10 @@
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
-import 'package:simple_icons/simple_icons.dart';
 
 AppModel dairyManagement = AppModel(
   id: "dairymanagement",
@@ -50,11 +48,9 @@ AppModel dairyManagement = AppModel(
     size: "2.76MB",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/DairyManagement-App",
-        icon: SimpleIcons.github,
-        color: AppColors.brandGithubAlt,
       ),
     ],
   ),
@@ -71,41 +67,18 @@ AppModel dairyManagement = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(
-        label: "Java",
-        icon: Symbols.coffee,
-        color: AppColors.brandJava,
-      ),
-      IconLabelModel(
-        label: "MySQL",
-        icon: SimpleIcons.mysql,
-        color: SimpleIconColors.mysql,
-      ),
+      TechStack.java,
+      TechStack.mysql,
     ],
     tools: [
-      IconLabelModel(
-        label: "Netbeans",
-        icon: SimpleIcons.apachenetbeanside,
-        color: SimpleIconColors.apachenetbeanside,
-      ),
-      IconLabelModel(
-        label: "Git",
-        icon: SimpleIcons.git,
-        color: SimpleIconColors.git,
-      ),
-      IconLabelModel(
-        label: "Github",
-        icon: SimpleIcons.github,
-        color: AppColors.brandGithubAlt,
-      ),
+      Tools.netbeans,
+      Tools.git,
+      Tools.github,
     ],
     skills: [
-      IconLabelModel(label: "Problem Solving", icon: Symbols.lightbulb),
-      IconLabelModel(label: "Persistence", icon: Symbols.mountain_flag),
-      IconLabelModel(
-        label: "Tool Familiarity",
-        icon: Symbols.tools_pliers_wire_stripper,
-      ),
+      Skills.problemSolving,
+      Skills.persistence,
+      Skills.toolFamiliarity,
     ],
   ),
 );

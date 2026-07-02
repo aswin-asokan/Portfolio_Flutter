@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -52,8 +53,8 @@ AppModel peekpub = AppModel(
     size: "48.7 MB",
     languages: "English, Spanish, Hindi, Malayalam",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/peekpub",
       ),
     ],
@@ -72,15 +73,15 @@ AppModel peekpub = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "Pub.dev API"),
+      TechStack.flutter,
+      TechStack.pubDevApi,
     ],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "GitHub")],
+    tools: [Tools.git, Tools.github],
     skills: [
-      IconLabelModel(label: "Problem Solving"),
-      IconLabelModel(label: "Project Management"),
-      IconLabelModel(label: "Continuous Learning"),
-      IconLabelModel(label: "User-Centric Thinking"),
+      Skills.problemSolving,
+      Skills.projectManagement,
+      Skills.continuousLearning,
+      Skills.userCentricThinking,
     ],
   ),
 );

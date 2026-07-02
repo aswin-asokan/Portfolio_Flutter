@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -48,10 +49,9 @@ AppModel nyaytra = AppModel(
     size: "NIL",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
-        link:
-            "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
+        link: "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
       ),
     ],
   ),
@@ -69,22 +69,22 @@ AppModel nyaytra = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "React"),
-      IconLabelModel(label: "BERT"),
-      IconLabelModel(label: "T5"),
-      IconLabelModel(label: "Gemini Api"),
+      TechStack.react,
+      TechStack.bert,
+      TechStack.t5,
+      TechStack.geminiApi,
     ],
     tools: [
-      IconLabelModel(label: "Git"),
-      IconLabelModel(label: "Github"),
-      IconLabelModel(label: "Hugging face"),
-      IconLabelModel(label: "Overleaf"),
+      Tools.git,
+      Tools.github,
+      Tools.huggingFace,
+      Tools.overleaf,
     ],
     skills: [
-      IconLabelModel(label: "Problem Identification & Ideation"),
-      IconLabelModel(label: "Project Management"),
-      IconLabelModel(label: "Communication"),
-      IconLabelModel(label: "Time Management"),
+      Skills.problemIdentificationIdeation,
+      Skills.projectManagement,
+      Skills.communication,
+      Skills.timeManagement,
     ],
   ),
 );

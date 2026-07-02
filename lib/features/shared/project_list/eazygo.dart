@@ -1,12 +1,10 @@
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
-import 'package:simple_icons/simple_icons.dart';
 
 AppModel eazygo = AppModel(
   id: "eazygo",
@@ -52,11 +50,9 @@ AppModel eazygo = AppModel(
     size: "29.1MB",
     languages: "English",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/EazyGo-MAp",
-        icon: SimpleIcons.github,
-        color: AppColors.brandGithubAlt,
       ),
     ],
   ),
@@ -75,46 +71,19 @@ AppModel eazygo = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(
-        label: "Flutter",
-        icon: SimpleIcons.flutter,
-        color: SimpleIconColors.flutter,
-      ),
-      IconLabelModel(
-        label: "Firebase",
-        icon: SimpleIcons.firebase,
-        color: SimpleIconColors.firebase,
-      ),
-      IconLabelModel(
-        label: "GCP",
-        icon: SimpleIcons.googlecloud,
-        color: SimpleIconColors.googlecloud,
-      ),
+      TechStack.flutter,
+      TechStack.firebase,
+      TechStack.gcp,
     ],
     tools: [
-      IconLabelModel(
-        label: "Git",
-        icon: SimpleIcons.git,
-        color: SimpleIconColors.git,
-      ),
-      IconLabelModel(
-        label: "Github",
-        icon: SimpleIcons.github,
-        color: AppColors.brandGithubAlt,
-      ),
-      IconLabelModel(
-        label: "Notion",
-        icon: SimpleIcons.notion,
-        color: SimpleIconColors.claude,
-      ),
+      Tools.git,
+      Tools.github,
+      Tools.notion,
     ],
     skills: [
-      IconLabelModel(
-        label: "Team Leadership",
-        icon: Symbols.social_leaderboard,
-      ),
-      IconLabelModel(label: "Presentation", icon: Symbols.co_present),
-      IconLabelModel(label: "Idea Structuring", icon: Symbols.lightbulb),
+      Skills.teamLeadership,
+      Skills.presentation,
+      Skills.ideaStructuring,
     ],
   ),
 );

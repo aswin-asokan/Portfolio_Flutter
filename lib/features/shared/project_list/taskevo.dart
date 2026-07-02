@@ -1,7 +1,8 @@
 import 'package:portfolio/features/app_page/models/app_info.dart';
 import 'package:portfolio/features/app_page/models/app_model.dart';
 import 'package:portfolio/features/app_page/models/app_button_type.dart';
-import 'package:portfolio/features/app_page/models/info_model.dart';
+import 'package:portfolio/features/app_page/models/icon_models.dart';
+import 'package:portfolio/features/app_page/models/project_enums.dart';
 import 'package:portfolio/features/app_page/models/project_info.dart';
 import 'package:portfolio/features/app_page/widgets/supported_device.dart';
 
@@ -53,8 +54,8 @@ AppModel taskevo = AppModel(
     size: "21.9MB",
     languages: "Englsih",
     links: [
-      IconLabelModel(
-        label: "Link",
+      AppInfoIconModel(
+        platform: AppInfoLink.github,
         link: "https://github.com/aswin-asokan/taskevo",
       ),
     ],
@@ -74,14 +75,14 @@ AppModel taskevo = AppModel(
   ],
   projectInfo: ProjectInfo(
     techStack: [
-      IconLabelModel(label: "Flutter"),
-      IconLabelModel(label: "Hive"),
-      IconLabelModel(label: "Flutter Quill"),
+      TechStack.flutter,
+      TechStack.hive,
+      TechStack.flutterQuill,
     ],
-    tools: [IconLabelModel(label: "Git"), IconLabelModel(label: "Github")],
+    tools: [Tools.git, Tools.github],
     skills: [
-      IconLabelModel(label: "Iteration & Refactoring"),
-      IconLabelModel(label: "Growth Mindset"),
+      Skills.iterationRefactoring,
+      Skills.growthMindset,
     ],
   ),
 );
