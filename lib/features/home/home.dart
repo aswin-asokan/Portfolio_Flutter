@@ -81,8 +81,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SelectionArea(
-        child: Stack(
+      body: Stack(
           children: [
             // Scrollable content
             SingleChildScrollView(
@@ -297,7 +296,6 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-      ),
     );
   }
 }

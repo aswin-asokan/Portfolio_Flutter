@@ -106,8 +106,7 @@ class _AppPageState extends State<AppPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SelectionArea(
-        child: Stack(
+      body: Stack(
           children: [
             SingleChildScrollView(
               controller: scrollController,
@@ -179,7 +178,6 @@ class _AppPageState extends State<AppPage> {
                 child: Navbar(
                   sectionKeys: sectionKeys,
                   scrollController: scrollController,
-                  isBackEnabled: true,
                   sections: [
                     "Header",
                     "Screenshots",
@@ -191,7 +189,6 @@ class _AppPageState extends State<AppPage> {
             ),
           ],
         ),
-      ),
     );
   }
 }

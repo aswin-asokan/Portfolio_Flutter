@@ -136,7 +136,7 @@ class _ProjectsState extends State<Projects> {
               // Interactive View All text button
               TextButton(
                 onPressed: () {
-                  context.push('/projects');
+                  context.go('/home/projects');
                 },
                 child: Text(
                   "View All →",
@@ -326,7 +326,7 @@ class _ProjectCard extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          context.push('/app/${app.id}');
+          context.go('/home/projects/${app.id}');
         },
         child: Container(
           width: width,

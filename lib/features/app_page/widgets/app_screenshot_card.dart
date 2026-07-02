@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:portfolio/features/shared/widgets/shimmer_placeholder.dart';
+import 'package:portfolio/responsive/responsive.dart';
 
 class AppScreenshotCard extends StatefulWidget {
   const AppScreenshotCard({
@@ -160,10 +161,14 @@ class _LightboxDialogState extends State<_LightboxDialog> {
         ),
         // The image itself
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 40),
+          padding: EdgeInsets.symmetric(
+            horizontal: Responsive.isMobile(context) || Responsive.isSmallTablet(context) ? 16 : 80,
+            vertical: Responsive.isMobile(context) || Responsive.isSmallTablet(context) ? 20 : 40,
+          ),
           child: InteractiveViewer(
             key: ValueKey(_currentIndex),
             maxScale: 4.0,
+            clipBehavior: Clip.none,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: kIsWeb
@@ -194,39 +199,89 @@ class _LightboxDialogState extends State<_LightboxDialog> {
         Positioned(
           top: 20,
           right: 20,
-          child: Material(
-            color: Colors.transparent,
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 36),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
+          child: _LightboxButton(
+            icon: Icons.close,
+            onPressed: () => Navigator.of(context).pop(),
+            iconSize: 24,
           ),
         ),
         // Prev button on the left
         if (_currentIndex > 0)
           Positioned(
             left: 20,
-            child: Material(
-              color: Colors.transparent,
-              child: IconButton(
-                icon: const Icon(Icons.chevron_left, color: Colors.white, size: 48),
-                onPressed: _prev,
-              ),
+            child: _LightboxButton(
+              icon: Icons.chevron_left,
+              onPressed: _prev,
+              iconSize: 32,
             ),
           ),
         // Next button on the right
         if (_currentIndex < widget.images.length - 1)
           Positioned(
             right: 20,
-            child: Material(
-              color: Colors.transparent,
-              child: IconButton(
-                icon: const Icon(Icons.chevron_right, color: Colors.white, size: 48),
-                onPressed: _next,
-              ),
+            child: _LightboxButton(
+              icon: Icons.chevron_right,
+              onPressed: _next,
+              iconSize: 32,
             ),
           ),
       ],
+    );
+  }
+}
+
+class _LightboxButton extends StatefulWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+  final double iconSize;
+
+  const _LightboxButton({
+    required this.icon,
+    required this.onPressed,
+    this.iconSize = 28,
+  });
+
+  @override
+  State<_LightboxButton> createState() => _LightboxButtonState();
+}
+
+class _LightboxButtonState extends State<_LightboxButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          color: _isHovered
+              ? Colors.black.withValues(alpha: 0.8)
+              : Colors.black.withValues(alpha: 0.5),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.3),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: IconButton(
+            onPressed: widget.onPressed,
+            icon: Icon(
+              widget.icon,
+              color: Colors.white,
+            ),
+            iconSize: widget.iconSize,
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.all(8),
+          ),
+        ),
+      ),
     );
   }
 }

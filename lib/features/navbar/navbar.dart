@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
@@ -16,12 +17,14 @@ class Navbar extends StatefulWidget {
     required this.scrollController,
     required this.sections,
     this.isBackEnabled = false,
+    this.backUrl,
   });
 
   final List<GlobalKey> sectionKeys;
   final List<String> sections;
   final ScrollController scrollController;
   final bool isBackEnabled;
+  final String? backUrl;
   @override
   State<Navbar> createState() => _NavbarState();
 }
@@ -30,18 +33,26 @@ class _NavbarState extends State<Navbar> {
   int? selectedIndex;
 
   void _scrollToSection(int index, {bool updateSelection = true}) {
-    final keyContext = widget.sectionKeys[index].currentContext;
-    if (keyContext != null) {
-      final box = keyContext.findRenderObject() as RenderBox;
-      final position = box.localToGlobal(Offset.zero).dy;
-      final offset =
-          widget.scrollController.offset + position - kToolbarHeight - 30;
-
+    if (index == 0) {
       widget.scrollController.animateTo(
-        offset,
+        0.0,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
+    } else {
+      final keyContext = widget.sectionKeys[index].currentContext;
+      if (keyContext != null) {
+        final box = keyContext.findRenderObject() as RenderBox;
+        final position = box.localToGlobal(Offset.zero).dy;
+        final offset =
+            widget.scrollController.offset + position - kToolbarHeight - 30;
+
+        widget.scrollController.animateTo(
+          offset,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
     }
 
     if (updateSelection) {
@@ -101,7 +112,25 @@ class _NavbarState extends State<Navbar> {
     final Widget logoSection =
         widget.isBackEnabled
             ? IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                // Use pop to return to the previous route, preserving history order.
+                if (widget.backUrl != null) {
+                  // If a specific backUrl is provided, attempt to pop to it.
+                  // GoRouter's pop will navigate back; if it cannot, fallback to go.
+                  if (GoRouter.of(context).canPop()) {
+                    GoRouter.of(context).pop();
+                  } else {
+                    context.go(widget.backUrl!);
+                  }
+                } else {
+                  // Default back to home.
+                  if (GoRouter.of(context).canPop()) {
+                    GoRouter.of(context).pop();
+                  } else {
+                    context.go('/');
+                  }
+                }
+              },
               icon: Icon(
                 Icons.arrow_back_ios_new_outlined,
                 size: 16,
@@ -112,7 +141,7 @@ class _NavbarState extends State<Navbar> {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () {
-                  _scrollToSection(0);
+                  _scrollToSection(0, updateSelection: false);
                 },
                 child: Image.asset(
                   Theme.of(context).brightness == Brightness.dark

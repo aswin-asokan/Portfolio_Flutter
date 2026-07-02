@@ -39,7 +39,19 @@ class ProjectListScreen extends StatefulWidget {
 class _ProjectListScreenState extends State<ProjectListScreen> {
   String _selectedCategory = "All";
   final ScrollController _scrollController = ScrollController();
-  final List<GlobalKey> _sectionKeys = List.generate(1, (_) => GlobalKey());
+  final List<GlobalKey> _sectionKeys = List.generate(2, (_) => GlobalKey());
+
+  void _scrollToFilter() {
+    final keyContext = _sectionKeys[1].currentContext;
+    if (keyContext != null) {
+      Scrollable.ensureVisible(
+        keyContext,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+        alignment: 0.1,
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -175,14 +187,14 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           ),
         ),
         const SizedBox(height: 24),
-        // Back to home button
+        // Scroll to projects button
         CustomButton.outline(
-          label: "Back to Home",
-          onPress: () => context.go('/'),
+          label: "View Projects",
+          onPress: _scrollToFilter,
           colorSide: AppColors.getBlackBorder(context),
           textColor: AppColors.getBlackBorder(context),
           prefixIcon: Icon(
-            Symbols.arrow_back,
+            Symbols.arrow_downward,
             color: AppColors.getBlackBorder(context),
           ),
         ),
@@ -224,15 +236,13 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
             ? 4
             : 5;
 
-    // Chunk projects list into rows of size crossAxisCount
-    final List<List<AppModel>> chunkedProjects = [];
-    for (int i = 0; i < filteredProjects.length; i += crossAxisCount) {
-      final end =
-          (i + crossAxisCount < filteredProjects.length)
-              ? i + crossAxisCount
-              : filteredProjects.length;
-      chunkedProjects.add(filteredProjects.sublist(i, end));
-    }
+    // Calculate aspect ratio dynamically for highly performant, fixed-height grids
+    final double gridWidth = screenWidth - (padding * 2);
+    final double totalSpacing = 16.0 * (crossAxisCount - 1);
+    final double cardWidth = (gridWidth - totalSpacing) / crossAxisCount;
+    final double detailsHeight = screenWidth < 600 ? 145.0 : 155.0;
+    final double cardHeight = ((cardWidth - 20) / 2.1) + detailsHeight + 34.0;
+    final double childAspectRatio = cardWidth / cardHeight;
 
     // Note: To add more filter options from code, simply add a new FilterCategory to this list!
     // Increased Icon Size to 22 for filter chips
@@ -347,8 +357,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SelectionArea(
-        child: Stack(
+      body: Stack(
           children: [
             // Scrollable Content
             CustomScrollView(
@@ -417,6 +426,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
 
                       // Filter Bar: Segmented control style that stretches dynamically (removes empty space)
                       Container(
+                        key: _sectionKeys[1],
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: context.colorScheme.surface,
@@ -571,58 +581,39 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                 else
                   SliverPadding(
                     padding: EdgeInsets.symmetric(horizontal: padding),
-                    sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate((context, rowIndex) {
-                        final chunk = chunkedProjects[rowIndex];
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            bottom:
-                                rowIndex < chunkedProjects.length - 1
-                                    ? 16.0
-                                    : 0.0,
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: List.generate(crossAxisCount * 2 - 1, (
-                              index,
-                            ) {
-                              if (index.isOdd) {
-                                return const SizedBox(
-                                  width: 16,
-                                ); // Horizontal space between cards
-                              }
-                              final colIndex = index ~/ 2;
-                              if (colIndex < chunk.length) {
-                                return Expanded(
-                                  child: ProjectGridCard(
-                                    app: chunk[colIndex],
-                                    index:
-                                        rowIndex * crossAxisCount + colIndex,
-                                  ),
-                                );
-                              } else {
-                                // Dummy card widget space container to balance layout width
-                                return const Expanded(
-                                  child: SizedBox.shrink(),
-                                );
-                              }
-                            }),
-                          ),
-                        );
-                      }, childCount: chunkedProjects.length),
+                    sliver: SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        mainAxisSpacing: 16.0,
+                        crossAxisSpacing: 16.0,
+                        childAspectRatio: childAspectRatio,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, cardIndex) {
+                          return ProjectGridCard(
+                            app: filteredProjects[cardIndex],
+                            index: cardIndex,
+                          );
+                        },
+                        childCount: filteredProjects.length,
+                      ),
                     ),
                   ),
-                SliverPadding(
-                  padding: EdgeInsets.only(
-                    left: padding,
-                    right: padding,
-                    bottom: 20,
-                  ),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                      const SizedBox(height: 50),
-                      const Footer(),
-                    ]),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: padding,
+                      right: padding,
+                      bottom: 20,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const SizedBox(height: 50),
+                        const Footer(),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -636,14 +627,12 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                 child: Navbar(
                   sectionKeys: _sectionKeys,
                   scrollController: _scrollController,
-                  isBackEnabled: true,
                   sections: const ["Projects"],
                 ),
               ),
             ),
           ],
         ),
-      ),
     );
   }
 }
@@ -759,7 +748,7 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
         onExit: (_) => setState(() => _isHovered = false),
         child: GestureDetector(
           onTap: () {
-            context.push('/app/${widget.app.id}');
+            context.go('/home/projects/${widget.app.id}');
           },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 255),
@@ -818,7 +807,7 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                                   )
                                 : CachedNetworkImage(
                                     imageUrl: widget.app.bannerPath,
-                                    memCacheWidth: kIsWeb ? null : 800,
+                                    memCacheWidth: kIsWeb ? null : 400,
                                     fit: BoxFit.cover,
                                     alignment: Alignment.topCenter,
                                     placeholder:
@@ -865,89 +854,92 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                     ),
                   ),
                 ),
-                // Card Details: Fits content naturally
+                // Card Details: Fixed height based on screen width to prevent ugly layout
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      Text(
-                        cleanTitle,
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: context.colorScheme.onSurface,
+                  child: SizedBox(
+                    height: MediaQuery.sizeOf(context).width < 600 ? 145.0 : 155.0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Title
+                        Text(
+                          cleanTitle,
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: context.colorScheme.onSurface,
+                          ),
+                          maxLines: 2, // Allow wrapping
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 2, // Allow wrapping
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      // Description
-                      Text(
-                        widget.app.caption,
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColors.getDescriptionText(context),
-                          fontSize: 11.5,
-                          height: 1.25,
+                        const SizedBox(height: 4),
+                        // Description
+                        Text(
+                          widget.app.caption,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: AppColors.getDescriptionText(context),
+                            fontSize: 11.5,
+                            height: 1.25,
+                          ),
+                          maxLines: 2, // Allow wrapping up to 2 lines
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 3, // Allow wrapping up to 3 lines
-                        overflow: TextOverflow.ellipsis,
-                      ),
 
-                      const SizedBox(height: 16),
+                        const SizedBox(height: 16),
 
-                        // Tech Tags
-                        Wrap(
-                          spacing: 4,
-                          runSpacing: 4,
-                          children:
-                              tags.take(3).map((tag) {
-                                return Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 6,
-                                    vertical: 3,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: chipBg,
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
-                                      color: theme.borderColor,
-                                      width: 0.8,
+                          // Tech Tags
+                          Wrap(
+                            spacing: 4,
+                            runSpacing: 4,
+                            children:
+                                tags.take(3).map((tag) {
+                                  return Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 6,
+                                      vertical: 3,
                                     ),
-                                  ),
-                                  child: Text(
-                                    tag.trim(),
-                                    style: context.textTheme.bodySmall
-                                        ?.copyWith(
-                                          fontSize: 9.5,
-                                          color: theme.textColor,
-                                        ),
-                                  ),
-                                );
-                              }).toList(),
-                        ),
-                        const SizedBox(height: 8),
-                        // View link
-                        Row(
-                          children: [
-                            Text(
-                              "View Project",
-                              style: context.textTheme.bodySmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 11,
+                                    decoration: BoxDecoration(
+                                      color: chipBg,
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: theme.borderColor,
+                                        width: 0.8,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      tag.trim(),
+                                      style: context.textTheme.bodySmall
+                                          ?.copyWith(
+                                            fontSize: 9.5,
+                                            color: theme.textColor,
+                                          ),
+                                    ),
+                                  );
+                                }).toList(),
+                          ),
+                          const SizedBox(height: 8),
+                          // View link
+                          Row(
+                            children: [
+                              Text(
+                                "View Project",
+                                style: context.textTheme.bodySmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 11,
+                                  color: context.colorScheme.onSurface,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Icon(
+                                Symbols.arrow_forward,
+                                size: 12,
                                 color: context.colorScheme.onSurface,
                               ),
-                            ),
-                            const SizedBox(width: 4),
-                            Icon(
-                              Symbols.arrow_forward,
-                              size: 12,
-                              color: context.colorScheme.onSurface,
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
               ],

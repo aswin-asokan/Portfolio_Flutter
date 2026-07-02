@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
+  static const String _themePrefKey = 'theme_preference';
   ThemeMode _themeMode = ThemeMode.system;
   bool _isSwitchingTheme = false;
+
+  ThemeProvider() {
+    _loadTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedTheme = prefs.getString(_themePrefKey);
+    
+    if (savedTheme != null) {
+      _themeMode = savedTheme == 'dark' ? ThemeMode.dark : ThemeMode.light;
+      notifyListeners();
+    }
+  }
 
   ThemeMode get themeMode => _themeMode;
   bool get isDarkMode => _themeMode == ThemeMode.dark;
@@ -20,6 +36,11 @@ class ThemeProvider extends ChangeNotifier {
     await Future.delayed(const Duration(milliseconds: 300));
 
     _themeMode = currentIsDark ? ThemeMode.light : ThemeMode.dark;
+    
+    // Save to SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_themePrefKey, _themeMode == ThemeMode.dark ? 'dark' : 'light');
+
     notifyListeners();
 
     // Allow the widget tree to rebuild and paint with the new theme
