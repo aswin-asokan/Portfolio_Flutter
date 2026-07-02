@@ -19,12 +19,12 @@ AppModel pocketDresses = AppModel(
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/pocketdress_logo.png",
 
-  gitLink: "https://github.com/aswin-asokan/FlutterFly/",
+  githubUrl: "https://github.com/aswin-asokan/FlutterFly/",
   subtitle: "Your Perfect Dress, Curated.",
   homeSummary:
       "A simple shopping app with everything you need—minus the endless scrolling. Search, wishlist, and checkout with a clean, modern Flutter experience.",
-  releaseLink: "https://github.com/aswin-asokan/FlutterFly/releases/tag/v1.0.1",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/FlutterFly/releases/tag/v1.0.1",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress1.png",

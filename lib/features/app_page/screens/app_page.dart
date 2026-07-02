@@ -18,11 +18,12 @@ class AppPage extends StatefulWidget {
   const AppPage({
     super.key,
     required this.title,
-    required this.iconPath,
-    required this.gitLink,
     required this.subtitle,
-    required this.releaseLink,
-    required this.type,
+    required this.iconPath,
+    required this.githubUrl,
+    required this.liveUrl,
+    required this.shareLink,
+    required this.buttonType,
     required this.devices,
     required this.screenshots,
     required this.aboutApp,
@@ -34,13 +35,18 @@ class AppPage extends StatefulWidget {
     required this.outcomes,
     required this.projectInfo,
   });
+
   final String title;
   final String subtitle;
   final String iconPath;
   final List<String> screenshots;
-  final String gitLink;
-  final AppButtonType type;
-  final String releaseLink;
+
+  // Link management params
+  final String githubUrl;
+  final String liveUrl;
+  final String shareLink;
+  final AppButtonType buttonType;
+
   final String aboutApp;
   final List<String> features;
   final List<String> futurePlan;
@@ -115,7 +121,7 @@ class _AppPageState extends State<AppPage> {
             controller: scrollController,
             physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: padding, vertical: 40),
+              padding: EdgeInsets.symmetric(horizontal: padding, vertical: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 30,
@@ -132,9 +138,10 @@ class _AppPageState extends State<AppPage> {
                     child: AppPageHeader(
                       title: widget.title,
                       subTitle: widget.subtitle,
-                      buttonType: widget.type,
-                      gitLink: widget.gitLink,
-                      releaseLink: widget.releaseLink,
+                      buttonType: widget.buttonType,
+                      githubUrl: widget.githubUrl,
+                      liveUrl: widget.liveUrl,
+                      shareLink: widget.shareLink,
                       device: widget.devices,
                       imgPath: widget.iconPath,
                     ),

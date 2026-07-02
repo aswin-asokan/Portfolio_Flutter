@@ -17,13 +17,13 @@ AppModel systemMonitor = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/sys_mgmt%2Fsystem_monitor_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/sysmonitor_logo.jpeg",
-  gitLink: "https://github.com/aswin-asokan/System-Monitor",
+  githubUrl: "https://github.com/aswin-asokan/System-Monitor",
   subtitle: "Effortless Server Monitoring.",
   homeSummary:
       "Your server's health, without the clutter. Connect to any JSON API and monitor live system metrics through clean, interactive visualizations.",
-  releaseLink:
+  liveUrl:
       "https://github.com/aswin-asokan/System-Monitor/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/sysmonitor/sysmonitor1.png",

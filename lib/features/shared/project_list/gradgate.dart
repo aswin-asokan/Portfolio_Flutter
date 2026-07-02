@@ -18,12 +18,12 @@ AppModel gradgate = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/gradgate%2Fgradgate_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/gradgate_logo.jpeg",
-  gitLink: "https://github.com/aswin-asokan/GradGate",
+  githubUrl: "https://github.com/aswin-asokan/GradGate",
   subtitle: "Easy Job & Internship Applications",
   homeSummary:
       "One app. Three users. Zero internet required. GradGate connects students, colleges, and employers with offline-first access to jobs, records, and analytics.",
-  releaseLink: "https://github.com/aswin-asokan/GradGate/releases/tag/v1.5.0",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/GradGate/releases/tag/v1.5.0",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.androidDesktop,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/gradgate/gradgate1.png",

@@ -18,12 +18,12 @@ AppModel taskevo = AppModel(
 
   iconPath: "assets/files/projects/icons/taskevo1_logo.webp",
 
-  gitLink: "https://github.com/aswin-asokan/taskevo",
+  githubUrl: "https://github.com/aswin-asokan/taskevo",
   subtitle: "Boost Productivity, Stay Organized.",
   homeSummary:
       "A productivity app that works even when your Wi-Fi doesn't. Manage tasks, take rich notes, and stay organized—all without creating an account.",
-  releaseLink: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/taskevo/releases/tag/v1.1.7",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.androidWeb,
   screenshots: [
     "assets/files/projects/screenshots/taskevo/taskevo1.webp",

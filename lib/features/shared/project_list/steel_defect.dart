@@ -18,12 +18,12 @@ AppModel steelDefectDetection = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel_defect.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel_icon.webp?alt=media", // Placeholder icon
-  gitLink: "https://github.com/aswin-asokan/steel_defect_detection",
+  githubUrl: "https://github.com/aswin-asokan/steel_defect_detection",
   subtitle: "Accurate Surface Defect Segmentation for Manufacturing",
   homeSummary:
       "Because even tiny steel defects can become expensive mistakes. This project combines AI-powered segmentation with a Flutter interface to make industrial defect inspection faster and more reliable.",
-  releaseLink: "",
-  type: AppButtonType.github,
+  liveUrl: "",
+  buttonType: AppButtonType.github,
   devices: AppAvailability.codeOnly,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/steel%2Fsteel1.webp?alt=media",

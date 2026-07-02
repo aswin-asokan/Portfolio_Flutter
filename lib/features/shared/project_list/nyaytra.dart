@@ -17,13 +17,13 @@ AppModel nyaytra = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/nyaytra%2Fnyaytra_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/nayaytra_logo.jpeg",
-  gitLink:
+  githubUrl:
       "https://github.com/aswin-asokan/Nyaytra_Indian_Legal_Document_Summarizer",
   subtitle: "BERT-driven Legal Insights for India",
   homeSummary:
       "Justice may be blind, but your documents don't have to be confusing. Nyaytra classifies, summarizes, and explains Indian legal texts with the help of AI.",
-  releaseLink: "",
-  type: AppButtonType.github,
+  liveUrl: "",
+  buttonType: AppButtonType.github,
   devices: AppAvailability.codeOnly,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/nyaytra/nyaytra1.png",

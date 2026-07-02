@@ -17,12 +17,12 @@ AppModel eazygoauth = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2FeazygoAuth_banner.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygoauth_logo.webp?alt=media",
-  gitLink: "https://github.com/aswin-asokan/eazyGo_Auth",
+  githubUrl: "https://github.com/aswin-asokan/eazyGo_Auth",
   subtitle: "Streamlined eazyGo Report Management",
   homeSummary:
       "A dashboard built for action, not paperwork. View citizen reports on a live map, resolve issues, and keep users updated—all from one streamlined interface.",
-  releaseLink: "https://github.com/aswin-asokan/eazyGo_Auth",
-  type: AppButtonType.github,
+  liveUrl: "https://github.com/aswin-asokan/eazyGo_Auth",
+  buttonType: AppButtonType.github,
   devices: AppAvailability.website,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygoauth1.webp?alt=media",

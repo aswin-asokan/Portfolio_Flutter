@@ -17,12 +17,12 @@ AppModel eazygo = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo_banner.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo_logo.webp?alt=media",
-  gitLink: "https://github.com/aswin-asokan/EazyGo-MAp",
+  githubUrl: "https://github.com/aswin-asokan/EazyGo-MAp",
   subtitle: "Map & Report Infrastructural Damage.",
   homeSummary:
       "See it. Pin it. Report it. EazyGo makes reporting public infrastructure issues simple with map-based reporting, live updates, and community-driven accountability.",
-  releaseLink: "https://github.com/aswin-asokan/EazyGo-MAp/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/EazyGo-MAp/releases/tag/v1.0.0",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/eazygo%2Feazygo1.webp?alt=media",

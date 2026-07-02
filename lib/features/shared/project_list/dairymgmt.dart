@@ -17,13 +17,13 @@ AppModel dairyManagement = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymanagement_banner.webp?alt=media",
   iconPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairy_logo.webp?alt=media",
-  gitLink: "https://github.com/aswin-asokan/DairyManagement-App",
+  githubUrl: "https://github.com/aswin-asokan/DairyManagement-App",
   subtitle: "Streamlined Sales, Purchases, Staff.",
   homeSummary:
       "Because milk may spoil, but your records shouldn't. Manage sales, purchases, staff, reports, and bill printing from one simple Java desktop dashboard.",
-  releaseLink:
+  liveUrl:
       "https://github.com/aswin-asokan/DairyManagement-App/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  buttonType: AppButtonType.download,
   devices: AppAvailability.desktop,
   screenshots: [
     "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/dairy_mgmt%2Fdairymgmt1.webp?alt=media",

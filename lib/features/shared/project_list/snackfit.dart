@@ -17,12 +17,12 @@ AppModel snackfit = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/snackfit%2Fsnackfit_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/snackfit_logo.png",
-  gitLink: "https://github.com/aswin-asokan/snackfit",
+  githubUrl: "https://github.com/aswin-asokan/snackfit",
   subtitle: "Serve us your look! Because you're what you eat!",
   homeSummary:
       "Because choosing dinner is hard—but your outfit already made the decision. Snap a photo, get roasted by AI, discover your edible twin, and find where to eat it nearby.",
-  releaseLink: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
-  type: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/snackfit/releases/tag/v1.0.0",
+  buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/snackfit/snackfit1.jpeg",

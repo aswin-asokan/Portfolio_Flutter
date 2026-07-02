@@ -24,11 +24,7 @@ enum TechStack {
     icon: SimpleIcons.firebase,
     color: SimpleIconColors.firebase,
   ),
-  flask(
-    label: "Flask",
-    icon: SimpleIcons.flask,
-    color: SimpleIconColors.flask,
-  ),
+  flask(label: "Flask", icon: SimpleIcons.flask, color: SimpleIconColors.flask),
   flutter(
     label: "Flutter",
     icon: SimpleIcons.flutter,
@@ -47,18 +43,14 @@ enum TechStack {
     color: SimpleIconColors.googlecardboard,
   ),
   hive(label: "Hive"),
-  json(label: "JSON"),
-  java(
-    label: "Java",
-    icon: Symbols.coffee,
-    color: AppColors.brandJava,
+  json(
+    label: "JSON",
+    icon: SimpleIcons.json,
+    color: SimpleIconColors.javascript,
   ),
+  java(label: "Java", icon: Symbols.coffee, color: AppColors.brandJava),
   lora(label: "LoRA"),
-  mysql(
-    label: "MySQL",
-    icon: SimpleIcons.mysql,
-    color: SimpleIconColors.mysql,
-  ),
+  mysql(label: "MySQL", icon: SimpleIcons.mysql, color: SimpleIconColors.mysql),
   osm(
     label: "OSM",
     icon: SimpleIcons.openstreetmap,
@@ -76,11 +68,7 @@ enum TechStack {
   final IconData? icon;
   final Color? color;
 
-  const TechStack({
-    required this.label,
-    this.icon,
-    this.color,
-  });
+  const TechStack({required this.label, this.icon, this.color});
 }
 
 enum Tools {
@@ -91,11 +79,7 @@ enum Tools {
   fritzing(label: "Fritzing"),
   geminiAiApi(label: "Gemini AI API"),
   genymotion(label: "Genymotion"),
-  git(
-    label: "Git",
-    icon: SimpleIcons.git,
-    color: SimpleIconColors.git,
-  ),
+  git(label: "Git", icon: SimpleIcons.git, color: SimpleIconColors.git),
   github(
     label: "Github",
     icon: SimpleIcons.github,
@@ -121,11 +105,7 @@ enum Tools {
   final IconData? icon;
   final Color? color;
 
-  const Tools({
-    required this.label,
-    this.icon,
-    this.color,
-  });
+  const Tools({required this.label, this.icon, this.color});
 }
 
 enum Skills {
@@ -142,10 +122,7 @@ enum Skills {
   fullStackDevelopment(label: "Full-Stack Development"),
   goalOrientedExecution(label: "Goal-Oriented Execution"),
   growthMindset(label: "Growth Mindset"),
-  ideaStructuring(
-    label: "Idea Structuring",
-    icon: Symbols.lightbulb,
-  ),
+  ideaStructuring(label: "Idea Structuring", icon: Symbols.lightbulb),
   independenceOwnership(
     label: "Independence & Ownership",
     icon: Symbols.shield,
@@ -153,52 +130,30 @@ enum Skills {
   industrialAutomationConcept(label: "Industrial Automation Concept"),
   iterationRefactoring(label: "Iteration & Refactoring"),
   learningAgility(label: "Learning Agility"),
-  learningByDoing(
-    label: "Learning by Doing",
-    icon: Symbols.book_2,
+  learningByDoing(label: "Learning by Doing", icon: Symbols.book_2),
+  machineLearningDatasetPreparation(
+    label: "Machine Learning Dataset Preparation",
   ),
-  machineLearningDatasetPreparation(label: "Machine Learning Dataset Preparation"),
-  persistence(
-    label: "Persistence",
-    icon: Symbols.mountain_flag,
-  ),
-  presentation(
-    label: "Presentation",
-    icon: Symbols.co_present,
-  ),
+  persistence(label: "Persistence", icon: Symbols.mountain_flag),
+  presentation(label: "Presentation", icon: Symbols.co_present),
   presentationPitching(
     label: "Presentation & Pitching",
     icon: Symbols.co_present,
   ),
   problemIdentificationIdeation(label: "Problem Identification & Ideation"),
-  problemSolving(
-    label: "Problem Solving",
-    icon: Symbols.lightbulb,
-  ),
+  problemSolving(label: "Problem Solving", icon: Symbols.lightbulb),
   projectManagement(label: "Project Management"),
   projectPlanning(label: "Project Planning"),
   quickLearning(label: "Quick Learning"),
-  researchInnovation(
-    label: "Research & Innovation",
-    icon: Symbols.lightbulb,
-  ),
+  researchInnovation(label: "Research & Innovation", icon: Symbols.lightbulb),
   resilience(label: "Resilience"),
   selfConfidence(label: "Self-Confidence"),
   selfGuidedRefactoring(label: "Self-Guided Refactoring"),
   structuredLearningExecution(label: "Learning & Execution"),
-  teamCollaboration(
-    label: "Team Collaboration",
-    icon: Symbols.people,
-  ),
-  teamLeadership(
-    label: "Team Leadership",
-    icon: Symbols.social_leaderboard,
-  ),
+  teamCollaboration(label: "Team Collaboration", icon: Symbols.people),
+  teamLeadership(label: "Team Leadership", icon: Symbols.social_leaderboard),
   technicalProficiency(label: "Technical Proficiency"),
-  timeManagement(
-    label: "Time Management",
-    icon: Symbols.access_time,
-  ),
+  timeManagement(label: "Time Management", icon: Symbols.access_time),
   toolFamiliarity(
     label: "Tool Familiarity",
     icon: Symbols.tools_pliers_wire_stripper,
@@ -210,10 +165,7 @@ enum Skills {
   final IconData? icon;
   Color? get color => null;
 
-  const Skills({
-    required this.label,
-    this.icon,
-  });
+  const Skills({required this.label, this.icon});
 }
 
 enum AppInfoLink {
@@ -227,9 +179,5 @@ enum AppInfoLink {
   final IconData? icon;
   final Color? color;
 
-  const AppInfoLink({
-    required this.label,
-    this.icon,
-    this.color,
-  });
+  const AppInfoLink({required this.label, this.icon, this.color});
 }

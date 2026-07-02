@@ -347,42 +347,52 @@ class _ProjectCard extends StatelessWidget {
                     topLeft: Radius.circular(11),
                     topRight: Radius.circular(11),
                   ),
-                  child: kIsWeb
-                      ? Image.network(
-                          app.bannerPath,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.topCenter,
-                          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                            if (wasSynchronouslyLoaded) return child;
-                            return frame != null ? child : const ShimmerPlaceholder();
-                          },
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: Colors.grey.shade200,
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Symbols.phone_iphone,
-                              color: Colors.grey,
-                              size: 24,
-                            ),
-                          ),
-                        )
-                      : CachedNetworkImage(
-                          imageUrl: app.bannerPath,
-                          memCacheWidth: kIsWeb ? null : 800,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.topCenter,
-                          placeholder: (context, url) => const ShimmerPlaceholder(),
-                          errorWidget:
-                              (context, url, error) => Container(
-                                color: Colors.grey.shade200,
-                                alignment: Alignment.center,
-                                child: const Icon(
-                                  Symbols.phone_iphone,
-                                  color: Colors.grey,
-                                  size: 24,
+                  child:
+                      kIsWeb
+                          ? Image.network(
+                            app.bannerPath,
+                            fit: BoxFit.cover,
+                            alignment: Alignment.topCenter,
+                            frameBuilder: (
+                              context,
+                              child,
+                              frame,
+                              wasSynchronouslyLoaded,
+                            ) {
+                              if (wasSynchronouslyLoaded) return child;
+                              return frame != null
+                                  ? child
+                                  : const ShimmerPlaceholder();
+                            },
+                            errorBuilder:
+                                (context, error, stackTrace) => Container(
+                                  color: Colors.grey.shade200,
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Symbols.phone_iphone,
+                                    color: Colors.grey,
+                                    size: 24,
+                                  ),
                                 ),
-                              ),
-                        ),
+                          )
+                          : CachedNetworkImage(
+                            imageUrl: app.bannerPath,
+                            memCacheWidth: kIsWeb ? null : 800,
+                            fit: BoxFit.cover,
+                            alignment: Alignment.topCenter,
+                            placeholder:
+                                (context, url) => const ShimmerPlaceholder(),
+                            errorWidget:
+                                (context, url, error) => Container(
+                                  color: Colors.grey.shade200,
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Symbols.phone_iphone,
+                                    color: Colors.grey,
+                                    size: 24,
+                                  ),
+                                ),
+                          ),
                 ),
               ),
               // 2. Padding wrapper for text and arrow

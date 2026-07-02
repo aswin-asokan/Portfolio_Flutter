@@ -17,12 +17,12 @@ AppModel keralaiot = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot_banner.webp?alt=media",
   iconPath:
       "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/iot_logo.jpeg",
-  gitLink: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
+  githubUrl: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
   subtitle: "IoT Projects with Demos.",
   homeSummary:
       "An IoT journey powered by curiosity—and a lot of jumper wires. Completed 20+ embedded projects using Arduino and ESP32, documenting every build from circuit to code.",
-  releaseLink: "https://aswin-asokan.github.io/Kerala-IoT-Challenge/",
-  type: AppButtonType.website,
+  liveUrl: "https://aswin-asokan.github.io/Kerala-IoT-Challenge/",
+  buttonType: AppButtonType.website,
   devices: AppAvailability.website,
   screenshots: [
     "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/iotchallenge/iotchallege1.png",

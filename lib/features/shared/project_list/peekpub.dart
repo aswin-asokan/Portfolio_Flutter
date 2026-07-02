@@ -17,12 +17,12 @@ AppModel peekpub = AppModel(
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub_banner.webp?alt=media",
   iconPath: "assets/files/projects/icons/PeekPub_logo.webp",
-  gitLink: "https://github.com/aswin-asokan/peekpub",
+  githubUrl: "https://github.com/aswin-asokan/peekpub",
   subtitle: "Browse, Search, and Explore.",
   homeSummary:
       "Find packages faster, build apps smarter. PeekPub brings package discovery, compatibility checks, and documentation together in one clean Flutter app.",
-  type: AppButtonType.download,
-  releaseLink: "https://github.com/aswin-asokan/peekpub/releases/tag/v1.0.0",
+  buttonType: AppButtonType.download,
+  liveUrl: "https://github.com/aswin-asokan/peekpub/releases/tag/v1.0.0",
   devices: AppAvailability.android,
   screenshots: [
     "assets/files/projects/screenshots/peekpub/peekpub1.webp",

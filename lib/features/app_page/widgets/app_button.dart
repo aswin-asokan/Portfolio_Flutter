@@ -19,32 +19,38 @@ void _launch(String urlString) async {
 class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
-    required this.type,
-    required this.gitLink,
-    required this.releaseLink,
+    required this.buttonType,
+    required this.githubUrl,
+    required this.liveUrl,
+    required this.shareLink,
     required this.path,
     required this.title,
   });
-  final AppButtonType type;
-  final String gitLink;
-  final String releaseLink;
+
+  // Link management params
+  final AppButtonType buttonType;
+  final String githubUrl;
+  final String liveUrl;
+  final String shareLink;
+
   final String path;
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       spacing: 8,
       children: [
         CustomButton.outline(
-          label: type.text,
+          label: buttonType.text,
           onPress: () {
-            _launch(releaseLink.isEmpty ? gitLink : releaseLink);
+            _launch(liveUrl.isEmpty ? githubUrl : liveUrl);
           },
-          prefixIcon: Icon(type.icon),
+          prefixIcon: Icon(buttonType.icon),
         ),
         TextButton(
           onPressed: () {
-            dialogBuilder(context, title, path, gitLink);
+            dialogBuilder(context, title, path, shareLink);
           },
           child: Row(
             spacing: 8,

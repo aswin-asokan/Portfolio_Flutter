@@ -886,12 +886,14 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                           overflow: TextOverflow.ellipsis,
                         ),
 
-                        const SizedBox(height: 16),
+                        const Spacer(),
 
-                          // Tech Tags
-                          Wrap(
+                        // Tech Tags
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          child: Row(
                             spacing: 4,
-                            runSpacing: 4,
                             children:
                                 tags.take(3).map((tag) {
                                   return Container(
@@ -918,26 +920,27 @@ class _ProjectGridCardState extends State<ProjectGridCard> {
                                   );
                                 }).toList(),
                           ),
-                          const SizedBox(height: 8),
-                          // View link
-                          Row(
-                            children: [
-                              Text(
-                                "View Project",
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 11,
-                                  color: context.colorScheme.onSurface,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Icon(
-                                Symbols.arrow_forward,
-                                size: 12,
+                        ),
+                        const SizedBox(height: 8),
+                        // View link
+                        Row(
+                          children: [
+                            Text(
+                              "View Project",
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11,
                                 color: context.colorScheme.onSurface,
                               ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(width: 4),
+                            Icon(
+                              Symbols.arrow_forward,
+                              size: 12,
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ],
+                        ),
                         ],
                       ),
                     ),
