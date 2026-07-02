@@ -55,7 +55,8 @@ class _ExperienceState extends State<Experience> {
       "summary":
           "Contributed to the development of a Flutter application for restaurants, enabling users to create customized multi-floor layouts with interactive tools for arranging tables and optimizing floor plans through an intuitive user experience.",
       "hasFile": true,
-      "file": "https://aswinasokan.vercel.app/assets/assets/files/flysoft.pdf",
+      "file":
+          "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/files%2Fflysoft.pdf?alt=media",
       "filename": "Flysoft_internship_report.pdf",
       "position": Position.intern,
     },
@@ -75,7 +76,7 @@ class _ExperienceState extends State<Experience> {
           "Successfully completed an internship program where I developed a Flutter-based To-Do application, applying core UI design and state management concepts while implementing Firebase integration for backend connectivity.",
       "hasFile": true,
       "file":
-          "https://aswinasokan.vercel.app/assets/assets/files/laxmiinfotek.jpeg",
+          "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/files%2Flaxmiinfotek.jpeg?alt=media",
       "filename": "Laxmiinfotek_internship_certificate.jpeg",
       "position": Position.intern,
     },

@@ -98,9 +98,6 @@ flutter:
     - assets/images/others/projects_hero.webp
     - assets/images/logo/dark_logo.png
     - assets/images/logo/light_logo.png
-    - assets/files/flysoft.pdf
-    - assets/files/laxmiinfotek.jpeg
-    - assets/files/resume.pdf
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
