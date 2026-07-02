@@ -9,9 +9,9 @@ import 'package:portfolio/features/shared/project_list/steel_defect.dart';
 import 'package:portfolio/features/shared/project_list/system_monitor.dart';
 
 final List<AppModel> featuredProjects = [
+  peekpub,
   steelDefectDetection,
   snackfit,
-  peekpub,
   nyaytra,
   ancientLang,
   flysoftFloorplan,

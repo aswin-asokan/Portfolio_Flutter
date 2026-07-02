@@ -4,16 +4,28 @@ import 'package:simple_icons/simple_icons.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 
 enum TechStack {
-  arduino(label: "Arduino"),
-  bert(label: "BERT"),
-  cCppForArduino(label: "C/C++ for Arduino"),
-  dart(label: "Dart"),
+  arduino(
+    label: "Arduino",
+    icon: SimpleIcons.arduino,
+    color: SimpleIconColors.arduino,
+  ),
+  bert(label: "BERT", icon: SimpleIcons.google, color: SimpleIconColors.google),
+  cCppForArduino(
+    label: "C/C++ for Arduino",
+    icon: SimpleIcons.cplusplus,
+    color: SimpleIconColors.cplusplus,
+  ),
+  dart(label: "Dart", icon: SimpleIcons.dart, color: SimpleIconColors.dart),
   deepTranslator(
     label: "Deep Translator",
     icon: SimpleIcons.googletranslate,
     color: SimpleIconColors.googletranslate,
   ),
-  esp32(label: "ESP32"),
+  esp32(
+    label: "ESP32",
+    icon: Symbols.developer_board,
+    color: SimpleIconColors.arduino,
+  ),
   fineTunedIndicBERT(
     label: "Fine-tuned IndicBERT",
     icon: Symbols.short_text,
@@ -30,39 +42,64 @@ enum TechStack {
     icon: SimpleIcons.flutter,
     color: SimpleIconColors.flutter,
   ),
-  flutterQuill(label: "Flutter Quill"),
+  flutterQuill(
+    label: "Flutter Quill",
+    icon: Symbols.stylus_fountain_pen,
+    color: SimpleIconColors.flutter,
+  ),
   gcp(
     label: "GCP",
     icon: SimpleIcons.googlecloud,
     color: SimpleIconColors.googlecloud,
   ),
-  geminiApi(label: "Gemini Api"),
+  geminiApi(
+    label: "Gemini Api",
+    icon: SimpleIcons.googlegemini,
+    color: SimpleIconColors.googlegemini,
+  ),
   googleVisionApi(
     label: "Google Vision API",
     icon: Symbols.camera,
     color: SimpleIconColors.googlecardboard,
   ),
-  hive(label: "Hive"),
+  hive(label: "Hive", icon: SimpleIcons.hive, color: SimpleIconColors.hive),
   json(
     label: "JSON",
     icon: SimpleIcons.json,
     color: SimpleIconColors.javascript,
   ),
   java(label: "Java", icon: Symbols.coffee, color: AppColors.brandJava),
-  lora(label: "LoRA"),
+  lora(label: "LoRA", icon: Symbols.layers, color: SimpleIconColors.phpmyadmin),
   mysql(label: "MySQL", icon: SimpleIcons.mysql, color: SimpleIconColors.mysql),
   osm(
     label: "OSM",
     icon: SimpleIcons.openstreetmap,
     color: SimpleIconColors.openstreetmap,
   ),
-  pubDevApi(label: "Pub.dev API"),
-  pytorch(label: "PyTorch"),
-  python(label: "Python"),
-  react(label: "React"),
-  sam(label: "SAM"),
-  sqlite(label: "SQLite"),
-  t5(label: "T5");
+  pubDevApi(
+    label: "Pub.dev API",
+    icon: SimpleIcons.flutter,
+    color: SimpleIconColors.flutter,
+  ),
+  pytorch(
+    label: "PyTorch",
+    icon: SimpleIcons.python,
+    color: SimpleIconColors.python,
+  ),
+  python(
+    label: "Python",
+    icon: SimpleIcons.python,
+    color: SimpleIconColors.python,
+  ),
+  react(label: "React", icon: SimpleIcons.react, color: SimpleIconColors.react),
+  sam(label: "SAM", icon: SimpleIcons.meta, color: SimpleIconColors.meta),
+  sqlite(
+    label: "SQLite",
+    icon: SimpleIcons.sqlite,
+    color: SimpleIconColors.sqlite,
+  ),
+  t5(label: "T5", icon: SimpleIcons.google, color: SimpleIconColors.google),
+  yolo(label: "T5", icon: SimpleIcons.yolo, color: SimpleIconColors.yolo);
 
   final String label;
   final IconData? icon;
@@ -72,22 +109,58 @@ enum TechStack {
 }
 
 enum Tools {
-  anaconda(label: "Anaconda"),
-  arduinoIde(label: "Arduino IDE"),
-  bitbucket(label: "Bitbucket"),
-  confluence(label: "Confluence"),
-  fritzing(label: "Fritzing"),
-  geminiAiApi(label: "Gemini AI API"),
-  genymotion(label: "Genymotion"),
+  anaconda(
+    label: "Anaconda",
+    icon: SimpleIcons.anaconda,
+    color: SimpleIconColors.anaconda,
+  ),
+  arduinoIde(
+    label: "Arduino IDE",
+    icon: SimpleIcons.arduino,
+    color: SimpleIconColors.arduino,
+  ),
+  bitbucket(
+    label: "Bitbucket",
+    icon: SimpleIcons.bitbucket,
+    color: SimpleIconColors.bitbucket,
+  ),
+  confluence(
+    label: "Confluence",
+    icon: SimpleIcons.confluence,
+    color: SimpleIconColors.confluence,
+  ),
+  fritzing(
+    label: "Fritzing",
+    icon: Symbols.developer_board,
+    color: AppColors.brandpinterest,
+  ),
+  geminiAiApi(
+    label: "Gemini AI API",
+    icon: SimpleIcons.googlegemini,
+    color: SimpleIconColors.googlegemini,
+  ),
+  genymotion(
+    label: "Genymotion",
+    icon: SimpleIcons.android,
+    color: SimpleIconColors.android,
+  ),
   git(label: "Git", icon: SimpleIcons.git, color: SimpleIconColors.git),
   github(
     label: "Github",
     icon: SimpleIcons.github,
     color: AppColors.brandGithubAlt,
   ),
-  huggingFace(label: "Hugging Face"),
-  jira(label: "Jira"),
-  mitAppInventor(label: "MIT App Inventor"),
+  huggingFace(
+    label: "Hugging Face",
+    icon: SimpleIcons.huggingface,
+    color: SimpleIconColors.huggingface,
+  ),
+  jira(label: "Jira", icon: SimpleIcons.jira, color: SimpleIconColors.jira),
+  mitAppInventor(
+    label: "MIT App Inventor",
+    icon: Symbols.empty_dashboard,
+    color: AppColors.themeSwitchYellow,
+  ),
   netbeans(
     label: "Netbeans",
     icon: SimpleIcons.apachenetbeanside,
@@ -98,8 +171,16 @@ enum Tools {
     icon: SimpleIcons.notion,
     color: SimpleIconColors.claude,
   ),
-  overleaf(label: "Overleaf"),
-  vsCode(label: "VS Code");
+  overleaf(
+    label: "Overleaf",
+    icon: SimpleIcons.overleaf,
+    color: SimpleIconColors.overleaf,
+  ),
+  vsCode(
+    label: "VS Code",
+    icon: SimpleIcons.vscodium,
+    color: SimpleIconColors.vscodium,
+  );
 
   final String label;
   final IconData? icon;
@@ -109,57 +190,43 @@ enum Tools {
 }
 
 enum Skills {
-  aiModelIntegration(label: "AI Model Integration in Mobile Apps"),
-  cleanCode(label: "Clean code"),
-  codeReviewMindset(label: "Code Review Mindset"),
-  collaborationCommunication(label: "Collaboration & Communication"),
-  communication(label: "Communication"),
-  computerVision(label: "Computer Vision"),
-  continuousLearning(label: "Continuous Learning"),
-  deadlineFocused(label: "Deadline Focused"),
-  deepLearningFineTuningPeft(label: "Deep Learning Fine-Tuning (PEFT)"),
-  documentationPresentation(label: "Documentation & Presentation"),
-  fullStackDevelopment(label: "Full-Stack Development"),
-  goalOrientedExecution(label: "Goal-Oriented Execution"),
-  growthMindset(label: "Growth Mindset"),
-  ideaStructuring(label: "Idea Structuring", icon: Symbols.lightbulb),
-  independenceOwnership(
-    label: "Independence & Ownership",
-    icon: Symbols.shield,
+  aiModelIntegration(label: "AIML", icon: Symbols.robot),
+  cleanCodeAndRefactoring(
+    label: "Clean Code & Refactoring",
+    icon: Symbols.code_xml,
   ),
-  industrialAutomationConcept(label: "Industrial Automation Concept"),
-  iterationRefactoring(label: "Iteration & Refactoring"),
-  learningAgility(label: "Learning Agility"),
-  learningByDoing(label: "Learning by Doing", icon: Symbols.book_2),
-  machineLearningDatasetPreparation(
-    label: "Machine Learning Dataset Preparation",
+  teamCollaboration(label: "Team Collaboration", icon: Symbols.people),
+  computerVision(label: "Computer Vision", icon: Symbols.camera),
+  continuousLearning(label: "Continuous Learning", icon: Symbols.book_2),
+  deepLearningFineTuningPeft(
+    label: "Deep Learning Fine-Tuning",
+    icon: Symbols.robot_2,
   ),
-  persistence(label: "Persistence", icon: Symbols.mountain_flag),
-  presentation(label: "Presentation", icon: Symbols.co_present),
-  presentationPitching(
+  presentationAndPitching(
     label: "Presentation & Pitching",
     icon: Symbols.co_present,
   ),
-  problemIdentificationIdeation(label: "Problem Identification & Ideation"),
   problemSolving(label: "Problem Solving", icon: Symbols.lightbulb),
-  projectManagement(label: "Project Management"),
-  projectPlanning(label: "Project Planning"),
-  quickLearning(label: "Quick Learning"),
-  researchInnovation(label: "Research & Innovation", icon: Symbols.lightbulb),
-  resilience(label: "Resilience"),
-  selfConfidence(label: "Self-Confidence"),
-  selfGuidedRefactoring(label: "Self-Guided Refactoring"),
-  structuredLearningExecution(label: "Learning & Execution"),
-  teamCollaboration(label: "Team Collaboration", icon: Symbols.people),
-  teamLeadership(label: "Team Leadership", icon: Symbols.social_leaderboard),
-  technicalProficiency(label: "Technical Proficiency"),
-  timeManagement(label: "Time Management", icon: Symbols.access_time),
-  toolFamiliarity(
-    label: "Tool Familiarity",
-    icon: Symbols.tools_pliers_wire_stripper,
+  projectManagement(label: "Project Management", icon: Symbols.potted_plant),
+  persistenceAndResilience(
+    label: "Persistence & Resilience",
+    icon: Symbols.mountain_flag,
   ),
-  uiUxAwareness(label: "UI/UX Awareness"),
-  userCentricThinking(label: "User-Centric Thinking");
+  stewardship(label: "Stewardship", icon: Symbols.shield),
+  teamLeadership(label: "Team Leadership", icon: Symbols.social_leaderboard),
+  technicalProficiency(
+    label: "Technical Proficiency",
+    icon: Symbols.engineering,
+  ),
+  uiUxDesign(label: "UI/UX Design", icon: Symbols.palette),
+  fullStackDevelopment(label: "Full-Stack Development", icon: Symbols.devices),
+  automationConcept(label: "Automation", icon: Symbols.autorenew),
+  machineLearningDatasetPreparation(
+    label: "ML Dataset Preparation",
+    icon: Symbols.database,
+  ),
+  restApiDevelopment(label: "ML Dataset Preparation", icon: Symbols.api),
+  realTimeSystems(label: "ML Dataset Preparation", icon: Symbols.auto_timer);
 
   final String label;
   final IconData? icon;

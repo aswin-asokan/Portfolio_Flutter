@@ -17,7 +17,7 @@ AppModel pocketDresses = AppModel(
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocket_dress_banner.webp?alt=media",
 
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/pocketdress_logo.png",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocketdress_logo.webp?alt=media",
 
   githubUrl: "https://github.com/aswin-asokan/FlutterFly/",
   subtitle: "Your Perfect Dress, Curated.",
@@ -27,15 +27,10 @@ AppModel pocketDresses = AppModel(
   buttonType: AppButtonType.download,
   devices: AppAvailability.android,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress4.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress5.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress6.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress7.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress8.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/pocketdress/pocketdress9.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocketdress1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocketdress2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocketdress3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/pocketdress%2Fpocketdress4.webp?alt=media",
   ],
   aboutApp:
       "Pocket Dresses is a charming and modern shopping app built during the Flutter Fly Bootcamp. With a clean UI and smooth navigation, the app offers a curated selection of stylish dresses for every occasion. The goal was to simulate a real-world e-commerce experience — from browsing to checkout — using Flutter and local storage tools. Designed for simplicity and user delight, Pocket Dresses lets you explore products, manage your account, and make purchases with ease.",
@@ -75,14 +70,8 @@ AppModel pocketDresses = AppModel(
     "Made it to the top 10 finalists of Flutter Fly Bootcamp",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.hive,
-    ],
+    techStack: [TechStack.flutter, TechStack.hive],
     tools: [Tools.git, Tools.github],
-    skills: [
-      Skills.uiUxAwareness,
-      Skills.goalOrientedExecution,
-    ],
+    skills: [Skills.uiUxDesign, Skills.projectManagement],
   ),
 );

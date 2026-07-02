@@ -10,7 +10,7 @@ AppModel flysoftFloorplan = AppModel(
   id: "floorplan",
   title: "Flysoft Floor Plan",
   caption: "Create, Modify, and Manage Restaurant Layouts Effortlessly.",
-  techStack: ["Internship", "Flutter", "JSON"],
+  techStack: ["Internship", "JSON", "Confluence", "Jira"],
   mainTech: "• Flutter",
   projectTypes: [ProjectType.flutter],
   bannerPath:
@@ -84,12 +84,11 @@ AppModel flysoftFloorplan = AppModel(
       Tools.genymotion,
     ],
     skills: [
-      Skills.projectPlanning,
+      Skills.projectManagement,
       Skills.problemSolving,
-      Skills.collaborationCommunication,
-      Skills.timeManagement,
-      Skills.toolFamiliarity,
-      Skills.cleanCode,
+      Skills.teamCollaboration,
+      Skills.technicalProficiency,
+      Skills.cleanCodeAndRefactoring,
     ],
   ),
 );

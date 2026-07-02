@@ -10,7 +10,7 @@ AppModel dairyManagement = AppModel(
   id: "dairymanagement",
   title: "Dairy Management",
   caption: "A Simple Java App for Managing Sales, Purchases and Staffs.",
-  techStack: ["Java", "MySQL"],
+  techStack: ["MySQL", "NetBeans"],
   mainTech: "• Java",
   projectTypes: [ProjectType.tools],
   bannerPath:
@@ -66,19 +66,8 @@ AppModel dairyManagement = AppModel(
     "Gained practical experience in building, debugging, and maintaining a desktop app",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.java,
-      TechStack.mysql,
-    ],
-    tools: [
-      Tools.netbeans,
-      Tools.git,
-      Tools.github,
-    ],
-    skills: [
-      Skills.problemSolving,
-      Skills.persistence,
-      Skills.toolFamiliarity,
-    ],
+    techStack: [TechStack.java, TechStack.mysql],
+    tools: [Tools.netbeans, Tools.git, Tools.github],
+    skills: [Skills.problemSolving, Skills.persistenceAndResilience, Skills.technicalProficiency],
   ),
 );

@@ -11,12 +11,13 @@ AppModel peekpub = AppModel(
   title: "Trelza PeekPub",
   caption:
       "Clean and Lightweight Pub.dev Tracker. Browse, Search, and Explore.",
-  techStack: ["Flutter", "Pub.dev API"],
+  techStack: ["Pub.dev API"],
   mainTech: "• Flutter",
   projectTypes: [ProjectType.flutter, ProjectType.tools],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub_banner.webp?alt=media",
-  iconPath: "assets/files/projects/icons/PeekPub_logo.webp",
+  iconPath:
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2FPeekPub_logo.webp?alt=media",
   githubUrl: "https://github.com/aswin-asokan/peekpub",
   subtitle: "Browse, Search, and Explore.",
   homeSummary:
@@ -25,11 +26,10 @@ AppModel peekpub = AppModel(
   liveUrl: "https://github.com/aswin-asokan/peekpub/releases/tag/v1.0.0",
   devices: AppAvailability.android,
   screenshots: [
-    "assets/files/projects/screenshots/peekpub/peekpub1.webp",
-    "assets/files/projects/screenshots/peekpub/peekpub2.webp",
-    "assets/files/projects/screenshots/peekpub/peekpub3.webp",
-    "assets/files/projects/screenshots/peekpub/peekpub4.webp",
-    "assets/files/projects/screenshots/peekpub/peekpub5.webp",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub2.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub3.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/peekpub%2Fpeekpub4.webp?alt=media",
   ],
   aboutApp:
       "Trelza PeekPub is a clean and lightweight Flutter/Dart package tracker designed to simplify the lives of developers who rely on pub.dev. With an intuitive interface and real-time access to package metadata, PeekPub enables effortless browsing, searching, and exploration of open-source packages. It provides key information such as the latest version, supported platforms, SDK compatibility, and direct links to the package’s pub.dev page, documentation, and GitHub repository. With multilingual support and a system-adaptive theme, the app offers a smooth, accessible experience for developers worldwide.",
@@ -72,16 +72,13 @@ AppModel peekpub = AppModel(
     "Developed a practical tool to improve development workflows for the entire Flutter community",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.pubDevApi,
-    ],
+    techStack: [TechStack.flutter, TechStack.pubDevApi],
     tools: [Tools.git, Tools.github],
     skills: [
       Skills.problemSolving,
       Skills.projectManagement,
       Skills.continuousLearning,
-      Skills.userCentricThinking,
+      Skills.uiUxDesign,
     ],
   ),
 );

@@ -10,13 +10,13 @@ AppModel keralaiot = AppModel(
   id: "keralaiot",
   title: "Kerala IOT Challenge",
   caption: "20 IoT Projects with Explanations and Working Videos.",
-  techStack: ["Arduino", "ESP32"],
+  techStack: ["Arduino", "ESP32", "MIT App Inventor", "Github Pages"],
   mainTech: "• Arduino",
   projectTypes: [ProjectType.other],
   bannerPath:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot_banner.webp?alt=media",
   iconPath:
-      "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/icons/iot_logo.jpeg",
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot_logo.webp?alt=media",
   githubUrl: "https://github.com/aswin-asokan/Kerala-IoT-Challenge",
   subtitle: "IoT Projects with Demos.",
   homeSummary:
@@ -25,10 +25,8 @@ AppModel keralaiot = AppModel(
   buttonType: AppButtonType.website,
   devices: AppAvailability.website,
   screenshots: [
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/iotchallenge/iotchallege1.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/iotchallenge/iotchallege2.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/iotchallenge/iotchallege3.png",
-    "https://raw.githubusercontent.com/aswin-asokan/Portfolio_Flutter/main/assets/files/projects/screenshots/iotchallenge/iotchallege4.png",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot1.webp?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/portfolio-assets-337f2.firebasestorage.app/o/iot%2Fiot2.webp?alt=media",
   ],
   aboutApp:
       "This page showcases 20+ IoT projects built using Arduino and ESP32 as part of the Kerala IoT Challenge. Each project includes detailed documentation, circuit diagrams, source code, and working demo videos—making it a complete learning archive for embedded systems and IoT development.",
@@ -73,15 +71,11 @@ AppModel keralaiot = AppModel(
       TechStack.cCppForArduino,
       TechStack.firebase,
     ],
-    tools: [
-      Tools.arduinoIde,
-      Tools.mitAppInventor,
-      Tools.fritzing,
-    ],
+    tools: [Tools.arduinoIde, Tools.mitAppInventor, Tools.fritzing],
     skills: [
       Skills.technicalProficiency,
-      Skills.structuredLearningExecution,
-      Skills.documentationPresentation,
+      Skills.continuousLearning,
+      Skills.presentationAndPitching,
     ],
   ),
 );

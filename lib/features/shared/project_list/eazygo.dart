@@ -10,7 +10,7 @@ AppModel eazygo = AppModel(
   id: "eazygo",
   title: "EazyGo",
   caption: "Efficiently Report Infrastructural Damages on Map.",
-  techStack: ["Flutter", "Firebase", "GCP"],
+  techStack: ["Firebase", "GCP"],
   mainTech: "• Flutter",
   projectTypes: [ProjectType.flutter],
   bannerPath:
@@ -70,20 +70,12 @@ AppModel eazygo = AppModel(
     "Gained experience in app design, feature delegation, and cloud integration",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.firebase,
-      TechStack.gcp,
-    ],
-    tools: [
-      Tools.git,
-      Tools.github,
-      Tools.notion,
-    ],
+    techStack: [TechStack.flutter, TechStack.firebase, TechStack.gcp],
+    tools: [Tools.git, Tools.github, Tools.notion],
     skills: [
       Skills.teamLeadership,
-      Skills.presentation,
-      Skills.ideaStructuring,
+      Skills.presentationAndPitching,
+      Skills.problemSolving,
     ],
   ),
 );

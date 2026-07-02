@@ -10,7 +10,7 @@ AppModel eazygoauth = AppModel(
   id: "eazygoauth",
   title: "EazyGo Authority",
   caption: "Designed for Authorities to Manage eazyGo Reports.",
-  techStack: ["Flutter", "Firebase", "OSM"],
+  techStack: ["Firebase", "OSM"],
   mainTech: "• Flutter",
   projectTypes: [ProjectType.flutter, ProjectType.web],
   bannerPath:
@@ -68,19 +68,8 @@ AppModel eazygoauth = AppModel(
     "Understood the nuances of cross-platform design and rendering issues",
   ],
   projectInfo: ProjectInfo(
-    techStack: [
-      TechStack.flutter,
-      TechStack.firebase,
-      TechStack.osm,
-    ],
-    tools: [
-      Tools.git,
-      Tools.github,
-      Tools.notion,
-    ],
-    skills: [
-      Skills.independenceOwnership,
-      Skills.learningByDoing,
-    ],
+    techStack: [TechStack.flutter, TechStack.firebase, TechStack.osm],
+    tools: [Tools.git, Tools.github, Tools.notion],
+    skills: [Skills.stewardship, Skills.continuousLearning],
   ),
 );

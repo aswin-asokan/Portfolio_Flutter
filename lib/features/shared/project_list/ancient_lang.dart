@@ -78,10 +78,10 @@ AppModel ancientLang = AppModel(
       Tools.notion,
     ],
     skills: [
-      Skills.researchInnovation,
-      Skills.timeManagement,
+      Skills.problemSolving,
+      Skills.projectManagement,
       Skills.teamCollaboration,
-      Skills.presentationPitching,
+      Skills.presentationAndPitching,
     ],
   ),
 );
